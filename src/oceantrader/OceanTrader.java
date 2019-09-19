@@ -2,6 +2,8 @@ package oceantrader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class OceanTrader {
 
@@ -21,8 +23,26 @@ public class OceanTrader {
         cardPanel.add(configScreen.jpanel, "Config");
         cardPanel.add(confirmScreen.jpanel, "Confirm");
 
-        cardLayout.show(cardPanel, "Title");
+        titleScreen.titleScreenButton.addActionListener(e -> {
+            cardLayout.show(cardPanel, "Config");
+        });
 
+        configScreen.configScreenButton.addActionListener(e -> {
+            //grab name
+            //grab skill 1
+            //grab skill 2
+            //grab skill 3
+            //grab skill 4
+            //grab difficulty
+
+            //if valid inputs, then:
+            cardLayout.show(cardPanel, "Confirm");
+        });
+
+        confirmScreen.confirmScreenButton.addActionListener(e -> {
+        });
+
+        cardLayout.show(cardPanel, "Title");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1400, 1000);
         window.add(cardPanel);
