@@ -15,8 +15,14 @@ public class OceanTrader {
         final JPanel cardPanel = new JPanel(cardLayout);
 
 //        cardPanel.add(YOUR JPANEL HERE) for testing
+        ConfigurationScreen test = new ConfigurationScreen();
+        cardPanel.add(test.getPanel());
 
         window.add(cardPanel);
         window.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        startGame();
     }
 }
