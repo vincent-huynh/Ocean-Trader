@@ -1,3 +1,5 @@
+package oceantrader;
+
 /**
  * This class represents a player and stores information regarding the player's
  * stats and currency.
@@ -31,7 +33,6 @@ public class Player {
     private int skill3;
     private int skill4;
 
-
     public Player(String name, int skill1, int skill2, int skill3, int skill4,
                   String difficulty) {
 
@@ -42,28 +43,32 @@ public class Player {
         this.skill4 = skill4;
 
         switch (difficulty) {
-            case "easy" :
+            case "Easy" :
                 currency = 1000;
                 break;
-            case "normal" :
+            case "Normal" :
                 currency = 500;
                 break;
-            case "hard" :
+            case "Hard" :
                 currency = 100;
                 break;
         }
     }
+
     public Player(String name, int skill1, int skill2, int skill3, int skill4) {
-        this(name,skill1,skill2,skill3,skill4, "hard");
+        this(name, skill1, skill2, skill3, skill4, "Hard");
+
     }
+
     public Player(String name) {
-        this(name,0,0,0,0,"hard");
+        this(name, 0, 0, 0, 0, "Hard");
     }
 
 
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
@@ -71,6 +76,7 @@ public class Player {
     public int getCurrency() {
         return currency;
     }
+
     public void setCurrency(int currency) {
         this.currency = currency;
     }
@@ -91,5 +97,4 @@ public class Player {
         }
         return 0;
     }
-
 }
