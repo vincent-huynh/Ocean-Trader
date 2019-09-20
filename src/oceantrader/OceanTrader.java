@@ -21,6 +21,7 @@ public class OceanTrader {
 
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
+        final ConfirmScreen confirmScreen;
 
         cardPanel.add(titleScreen.jpanel, "Title");
         cardPanel.add(configScreen.jpanel, "Config");
@@ -37,19 +38,19 @@ public class OceanTrader {
         configScreen.configScreenButton.addActionListener(e -> {
             String name = titleScreen.nameText.getText().trim();
             Object difficulty = configScreen.comboBox.getSelectedItem();
-            int skill1 = ((Integer) configScreen.spinner1.getValue()).intValue();
-            int skill2 = ((Integer) configScreen.spinner2.getValue()).intValue();
-            int skill3 = ((Integer) configScreen.spinner3.getValue()).intValue();
-            int skill4 = ((Integer) configScreen.spinner4.getValue()).intValue();
-            int totalSkill = skill1 + skill2 + skill3 + skill4;
+            int pilotPoints = ((Integer) configScreen.spinner1.getValue()).intValue();
+            int fighterPoints = ((Integer) configScreen.spinner2.getValue()).intValue();
+            int traderPoints = ((Integer) configScreen.spinner3.getValue()).intValue();
+            int engineerPoints = ((Integer) configScreen.spinner4.getValue()).intValue();
+            int totalSkill = pilotPoints + fighterPoints + traderPoints + engineerPoints;
 
             if (name.equals("") || difficulty == null) {
                 JOptionPane.showMessageDialog(frame, "Please enter player info.");
             } else if (totalSkill != (map.get((String)difficulty)).intValue()) {
-                JOptionPane.showMessageDialog(frame, "Incorrect point allocation.");
+                JOptionPane.showMessageDialog(frame, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
             } else {
-                player = new Player(name, skill1, skill2, skill3, skill4, (String)difficulty);
-                final ConfirmScreen confirmScreen = new ConfirmScreen(player);
+                player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, (String)difficulty);
+                confirmScreen = new ConfirmScreen(player);
                 cardPanel.add(confirmScreen.jpanel, "Confirm");
                 cardLayout.show(cardPanel, "Confirm");
             }
@@ -63,6 +64,7 @@ public class OceanTrader {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1400, 1000);
         window.add(cardPanel);
+        window.setResizable(false);
         window.setVisible(true);
     }
 }

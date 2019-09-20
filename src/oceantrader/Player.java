@@ -28,19 +28,19 @@ public class Player {
     /**
      * The various skills a player can allocate a point into.
      */
-    private int skill1;
-    private int skill2;
-    private int skill3;
-    private int skill4;
+    private int pilotPoints;
+    private int fighterPoints;
+    private int traderPoints;
+    private int engineerPoints;
 
-    public Player(String name, int skill1, int skill2, int skill3, int skill4,
-                  String difficulty) {
+    public Player(String name, int pilotPoints, int fighterPoints,
+                  int traderPoints, int engineerPoints, String difficulty) {
 
         this.name = name;
-        this.skill1 = skill1;
-        this.skill2 = skill2;
-        this.skill3 = skill3;
-        this.skill4 = skill4;
+        this.pilotPoints = pilotPoints;
+        this.fighterPoints = fighterPoints;
+        this.traderPoints = traderPoints;
+        this.engineerPoints = engineerPoints;
 
         switch (difficulty) {
             case "Easy" :
@@ -55,9 +55,10 @@ public class Player {
         }
     }
 
-    public Player(String name, int skill1, int skill2, int skill3, int skill4) {
-        this(name, skill1, skill2, skill3, skill4, "Hard");
-
+    public Player(String name, int pilotPoints, int fighterPoints,
+                  int traderPoints, int engineerPoints) {
+        this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints,
+                "Hard");
     }
 
     public Player(String name) {
@@ -81,20 +82,17 @@ public class Player {
         this.currency = currency;
     }
 
-    public int getSkillLevel(int skill) {
-        if (skill < 0 || skill > 4) {
-            throw new IllegalArgumentException("Skill not found.");
-        }
+    public int getSkillLevel(String skill) {
         switch (skill) {
-            case 1 :
-                return skill1;
-            case 2 :
-                return skill2;
-            case 3 :
-                return skill3;
-            case 4 :
-                return skill4;
+            case "Pilot" :
+                return pilotPoints;
+            case "Fighter" :
+                return fighterPoints;
+            case "Trader" :
+                return traderPoints;
+            case "Engineer" :
+                return engineerPoints;
         }
-        return 0;
+        throw new IllegalArgumentException("Skill not found.");
     }
 }
