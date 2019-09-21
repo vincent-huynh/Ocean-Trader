@@ -3,11 +3,12 @@ package oceantrader;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class ConfigurationScreen {
+
     static JPanel panel;
     static GridBagLayout gbPanel;
     static GridBagConstraints constraints;
+
     public ConfigurationScreen() {
         panel = new JPanel();
         gbPanel = new GridBagLayout();
@@ -217,6 +218,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(startButton, constraints);
         panel.add(startButton);
     }
+
     public JPanel getPanel() {
         return panel;
     }
