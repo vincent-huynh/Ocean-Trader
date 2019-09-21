@@ -11,18 +11,13 @@ public class ConfigurationScreen {
     private static JButton startButton;
     private static JTextField nameField;
     private static JComboBox difficultyComboBox;
+
+
+
     private static JSpinner pilotSpinner;
     private static JSpinner fighterSpinner;
     private static JSpinner traderSpinner;
     private static JSpinner engineerSpinner;
-
-
-    private static String name;
-    private static Difficulty diffChoice;
-    private static int pilotPoints;
-    private static int engineerPoints;
-    private static int fighterPoints;
-    private static int traderPoints;
 
 
     public ConfigurationScreen() {
@@ -95,11 +90,15 @@ public class ConfigurationScreen {
     }
 
     private static void skillPoints() {
+        //updateSpinner();
         skillPointsLabel();
-        pilotPointsSection();
-        fighterPointsSection();
-        traderPointsSection();
-        engineerPointsSection();
+        SpinnerGroup group = new SpinnerGroup(16);
+
+        pilotPointsSection(group);
+        fighterPointsSection(group);
+        traderPointsSection(group);
+        engineerPointsSection(group);
+
         startButton();
     }
 
@@ -117,7 +116,7 @@ public class ConfigurationScreen {
         panel.add(skillPointLabel);
     }
 
-    private static void pilotPointsSection() {
+    private static void pilotPointsSection(SpinnerGroup group) {
         JLabel pilotLabel = new JLabel("Seamanship:");
         constraints.gridx = 1;
         constraints.gridy = 6;
@@ -130,7 +129,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(pilotLabel, constraints );
         panel.add(pilotLabel);
 
-        pilotSpinner = new JSpinner();
+        pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //pilotSpinner.setModel(spinModel0);
         constraints.gridx = 7;
         constraints.gridy = 6;
         constraints.gridwidth = 5;
@@ -143,7 +143,7 @@ public class ConfigurationScreen {
         panel.add(pilotSpinner);
     }
 
-    private static void fighterPointsSection() {
+    private static void fighterPointsSection(SpinnerGroup group) {
         JLabel fighterLabel = new JLabel( "Battle Ability:"  );
         constraints.gridx = 1;
         constraints.gridy = 8;
@@ -156,7 +156,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( fighterLabel, constraints );
         panel.add(fighterLabel);
 
-        fighterSpinner = new JSpinner( );
+        fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //fighterSpinner.setModel(spinModel1);
         constraints.gridx = 7;
         constraints.gridy = 8;
         constraints.gridwidth = 5;
@@ -169,7 +170,7 @@ public class ConfigurationScreen {
         panel.add(fighterSpinner);
     }
 
-    private static void traderPointsSection() {
+    private static void traderPointsSection(SpinnerGroup group) {
         JLabel traderLabel = new JLabel( "Tradesmanship:"  );
         constraints.gridx = 1;
         constraints.gridy = 10;
@@ -182,7 +183,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( traderLabel, constraints );
         panel.add(traderLabel);
 
-        traderSpinner = new JSpinner( );
+        traderSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //traderSpinner.setModel(spinModel2);
         constraints.gridx = 7;
         constraints.gridy = 10;
         constraints.gridwidth = 5;
@@ -195,7 +197,7 @@ public class ConfigurationScreen {
         panel.add(traderSpinner);
     }
 
-    private static void engineerPointsSection() {
+    private static void engineerPointsSection(SpinnerGroup group) {
         JLabel engineerLabel = new JLabel( "Workmanship:"  );
         constraints.gridx = 1;
         constraints.gridy = 12;
@@ -208,7 +210,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(engineerLabel, constraints );
         panel.add(engineerLabel);
 
-        engineerSpinner = new JSpinner( );
+        engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //engineerSpinner.setModel(spinModel3);
         constraints.gridx = 7;
         constraints.gridy = 12;
         constraints.gridwidth = 5;
@@ -235,9 +238,18 @@ public class ConfigurationScreen {
         panel.add(startButton);
     }
 
-    public static void grabInfo() {
-        name = nameField.getText();
-
+    public static Player grabInfo() {
+        String difficultyComboChoice = difficultyComboBox.getSelectedItem().toString();
+        Difficulty choice;
+        if (difficultyComboChoice.contains("Easy")) {
+            choice = Difficulty.EASY;
+        } else if (difficultyComboChoice.contains("Hard")) {
+            choice = Difficulty.HARD;
+        } else {
+            choice = Difficulty.MEDIUM;
+        }
+        Player creation = new Player(nameField.getText(), (int) pilotSpinner.getValue(), (int) fighterSpinner.getValue(), (int) traderSpinner.getValue(), (int) engineerSpinner.getValue(), choice);
+        return creation;
     }
     public JPanel getPanel() {
         return panel;
@@ -246,5 +258,23 @@ public class ConfigurationScreen {
     public static JButton getStartButton() {
         return startButton;
     }
+/*
+    public static JSpinner getPilotSpinner() {
+        return pilotSpinner;
+    }
+
+    public static JSpinner getFighterSpinner() {
+        return fighterSpinner;
+    }
+
+    public static JSpinner getTraderSpinner() {
+        return traderSpinner;
+    }
+
+    public static JSpinner getEngineerSpinner() {
+        return engineerSpinner;
+    }
+ */
+
 }
 

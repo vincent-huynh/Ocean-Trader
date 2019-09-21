@@ -1,12 +1,18 @@
 package oceantrader;
 
+import sun.security.krb5.Config;
+
+import javax.security.auth.login.Configuration;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OceanTrader {
 
+    static Player test1;
     public static void startGame() {
 
         JFrame window = new JFrame();
@@ -20,14 +26,20 @@ public class OceanTrader {
         ConfigurationScreen test = new ConfigurationScreen();
         cardPanel.add(test.getPanel());
         window.setMinimumSize(new Dimension(400, 500));
+
         ConfigurationScreen.getStartButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("test");
+                configPlayer();
+                System.out.println(test1.toString());
             }
         });
 
         window.add(cardPanel);
         window.setVisible(true);
+    }
+
+    private static void configPlayer() {
+        test1 = ConfigurationScreen.grabInfo();
     }
 }
