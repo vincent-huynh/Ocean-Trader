@@ -130,9 +130,6 @@ public class ConfigurationScreen {
         panel.add(pointsRemaining);
     }
 
-    public static void skillPointsRemaining(Player player) {
-        //pointsRemaining.setText((16 - player.getTotalSkill()) + " points remaining");
-    }
     private static void pilotPointsSection(SpinnerGroup group) {
         JLabel pilotLabel = new JLabel("Seamanship:");
         constraints.gridx = 1;
