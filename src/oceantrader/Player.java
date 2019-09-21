@@ -32,11 +32,7 @@ public class Player {
     private int skill2;
     private int skill3;
     private int skill4;
-    /**
-     * ...skill capacity
-     */
-    private int skillCap = 16;
-    private int totalPnts = 0;
+
 
     public Player(String name, int skill1, int skill2, int skill3, int skill4,
                   Difficulty difficulty) {
