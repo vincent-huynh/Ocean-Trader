@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class OceanTrader {
 
     static Player test1;
+    private static int currPoints = 0;
     public static void startGame() {
 
         JFrame window = new JFrame();
@@ -35,10 +36,36 @@ public class OceanTrader {
             }
         });
 
+        ConfigurationScreen.getPilotSpinner().addChangeListener(changeEvent -> {
+            updateCurrPoints();
+            ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
+        });
+
+        ConfigurationScreen.getFighterSpinner().addChangeListener(changeEvent -> {
+            updateCurrPoints();
+            ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
+        });
+
+        ConfigurationScreen.getTraderSpinner().addChangeListener(changeEvent -> {
+            updateCurrPoints();
+            ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
+        });
+
+        ConfigurationScreen.getEngineerSpinner().addChangeListener(changeEvent -> {
+            updateCurrPoints();
+            ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
+        });
+
         window.add(cardPanel);
         window.setVisible(true);
     }
 
+    private static void updateCurrPoints() {
+        currPoints = (int) ConfigurationScreen.getPilotSpinner().getValue()
+                + (int) ConfigurationScreen.getFighterSpinner().getValue()
+                + (int) ConfigurationScreen.getTraderSpinner().getValue()
+                + (int) ConfigurationScreen.getEngineerSpinner().getValue();
+    }
     private static void configPlayer() {
         test1 = ConfigurationScreen.grabInfo();
     }

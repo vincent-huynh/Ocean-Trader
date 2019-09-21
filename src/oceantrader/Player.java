@@ -36,6 +36,7 @@ public class Player {
      * ...skill capacity
      */
     private int skillCap = 16;
+    private int totalPnts = 0;
 
     public Player(String name, int skill1, int skill2, int skill3, int skill4,
                   Difficulty difficulty) {
@@ -100,6 +101,9 @@ public class Player {
         return 0;
     }
 
+    public int getTotalSkill() {
+        return skill1 + skill2 + skill3 + skill4;
+    }
     @Override
     public String toString() {
         return name + ":"

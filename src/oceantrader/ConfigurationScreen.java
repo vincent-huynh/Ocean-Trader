@@ -11,8 +11,8 @@ public class ConfigurationScreen {
     private static JButton startButton;
     private static JTextField nameField;
     private static JComboBox difficultyComboBox;
-
-
+    public static JTextField pointsRemaining;
+    private static int points = 16;
 
     private static JSpinner pilotSpinner;
     private static JSpinner fighterSpinner;
@@ -114,8 +114,25 @@ public class ConfigurationScreen {
         constraints.anchor = GridBagConstraints.NORTH;
         gbPanel.setConstraints(skillPointLabel, constraints );
         panel.add(skillPointLabel);
+
+        pointsRemaining = new JTextField(points + " points remaining.");
+        pointsRemaining.setBorder(BorderFactory.createEmptyBorder());
+        //pointsRemaining.setEditable(false);
+        constraints.gridx = 7;
+        constraints.gridy = 4;
+        constraints.gridwidth = 6;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weightx = 1;
+        constraints.weighty = 0;
+        constraints.anchor = GridBagConstraints.NORTH;
+        gbPanel.setConstraints(pointsRemaining, constraints);
+        panel.add(pointsRemaining);
     }
 
+    public static void skillPointsRemaining(Player player) {
+        //pointsRemaining.setText((16 - player.getTotalSkill()) + " points remaining");
+    }
     private static void pilotPointsSection(SpinnerGroup group) {
         JLabel pilotLabel = new JLabel("Seamanship:");
         constraints.gridx = 1;
@@ -258,7 +275,7 @@ public class ConfigurationScreen {
     public static JButton getStartButton() {
         return startButton;
     }
-/*
+
     public static JSpinner getPilotSpinner() {
         return pilotSpinner;
     }
@@ -274,7 +291,7 @@ public class ConfigurationScreen {
     public static JSpinner getEngineerSpinner() {
         return engineerSpinner;
     }
- */
+
 
 }
 
