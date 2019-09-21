@@ -2,6 +2,8 @@ package oceantrader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class OceanTrader {
 
@@ -18,6 +20,12 @@ public class OceanTrader {
         ConfigurationScreen test = new ConfigurationScreen();
         cardPanel.add(test.getPanel());
         window.setMinimumSize(new Dimension(400, 500));
+        ConfigurationScreen.getStartButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("test");
+            }
+        });
 
         window.add(cardPanel);
         window.setVisible(true);

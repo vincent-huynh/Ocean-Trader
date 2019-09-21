@@ -8,6 +8,23 @@ public class ConfigurationScreen {
     static JPanel panel;
     static GridBagLayout gbPanel;
     static GridBagConstraints constraints;
+    private static JButton startButton;
+    private static JTextField nameField;
+    private static JComboBox difficultyComboBox;
+    private static JSpinner pilotSpinner;
+    private static JSpinner fighterSpinner;
+    private static JSpinner traderSpinner;
+    private static JSpinner engineerSpinner;
+
+
+    private static String name;
+    private static Difficulty diffChoice;
+    private static int pilotPoints;
+    private static int engineerPoints;
+    private static int fighterPoints;
+    private static int traderPoints;
+
+
     public ConfigurationScreen() {
         panel = new JPanel();
         gbPanel = new GridBagLayout();
@@ -37,7 +54,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(nameLabel, constraints );
         panel.add(nameLabel);
 
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         constraints.gridx = 10;
         constraints.gridy = 1;
         constraints.gridwidth = 9;
@@ -64,7 +81,7 @@ public class ConfigurationScreen {
         panel.add(difficultyLabel);
 
         String[] difficultyComboData = { "Easy", "Medium", "Hard" };
-        JComboBox difficultyComboBox = new JComboBox(difficultyComboData);
+        difficultyComboBox = new JComboBox(difficultyComboData);
         constraints.gridx = 8;
         constraints.gridy = 2;
         constraints.gridwidth = 11;
@@ -113,7 +130,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(pilotLabel, constraints );
         panel.add(pilotLabel);
 
-        JSpinner pilotSpinner = new JSpinner();
+        pilotSpinner = new JSpinner();
         constraints.gridx = 7;
         constraints.gridy = 6;
         constraints.gridwidth = 5;
@@ -139,7 +156,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( fighterLabel, constraints );
         panel.add(fighterLabel);
 
-        JSpinner fighterSpinner = new JSpinner( );
+        fighterSpinner = new JSpinner( );
         constraints.gridx = 7;
         constraints.gridy = 8;
         constraints.gridwidth = 5;
@@ -165,7 +182,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( traderLabel, constraints );
         panel.add(traderLabel);
 
-        JSpinner traderSpinner = new JSpinner( );
+        traderSpinner = new JSpinner( );
         constraints.gridx = 7;
         constraints.gridy = 10;
         constraints.gridwidth = 5;
@@ -191,7 +208,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(engineerLabel, constraints );
         panel.add(engineerLabel);
 
-        JSpinner engineerSpinner = new JSpinner( );
+        engineerSpinner = new JSpinner( );
         constraints.gridx = 7;
         constraints.gridy = 12;
         constraints.gridwidth = 5;
@@ -205,7 +222,7 @@ public class ConfigurationScreen {
     }
 
     private static void startButton() {
-        JButton startButton = new JButton( "Embark"  );
+        startButton = new JButton( "Embark"  );
         constraints.gridx = 7;
         constraints.gridy = 15;
         constraints.gridwidth = 5;
@@ -217,8 +234,17 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(startButton, constraints);
         panel.add(startButton);
     }
+
+    public static void grabInfo() {
+        name = nameField.getText();
+
+    }
     public JPanel getPanel() {
         return panel;
+    }
+
+    public static JButton getStartButton() {
+        return startButton;
     }
 }
 
