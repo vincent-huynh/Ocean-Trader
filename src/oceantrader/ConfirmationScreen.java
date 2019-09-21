@@ -1,3 +1,5 @@
+//package oceantrader;
+
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
@@ -16,7 +18,7 @@ public class ConfirmationScreen {
         //TestRetriever();
     }
 
-    
+
     /**
      * Tester method for retriving player data
      */
@@ -45,14 +47,14 @@ public class ConfirmationScreen {
             }
         }
 
-        //"frame" represents the parent frame from Screen 2
+        //Displays a popup confirmation dialog
         int confirmation = JOptionPane.showConfirmDialog(frame, message, "Confirmation Screen", JOptionPane.DEFAULT_OPTION);
 
         //Modify logic below to determine event if not confirmed
         if (confirmation == 0) {
-            //confirm pressed
+            //confirm pressed, launch game
         } else {
-            //confirm not pressed
+            //confirm not pressed, revert to start menu
         }
     }
 
@@ -61,10 +63,28 @@ public class ConfirmationScreen {
      * Retrieves player data in order of Name, Difficulty, and Points (specific valus yet to be decided)
      * @return Returns the player setting values
      */
-    public static Object[][] RetrieveData() {
+    public static Object[][] RetrieveData(Player player) {
         //Puts all of settings selected into the confirmation window, still needs to add the getters and setters
 
-        //The values below are created only for testing purposes
+        //The possible fields
+        list[0][0] = "Player Name";
+        list[1][0] = "Difficulty";
+        list[2][0] = "Currency";
+        list[3][0] = "Skill1";
+        list[4][0] = "Skill2";
+        list[5][0] = "Skill3";
+        list[6][0] = "Skill4";
+
+        //Retrieving values from the player
+        list[0][1] = player.getName();
+        list[1][1] = player.getDifficulty();
+        list[2][1] = player.getCurrency();
+        list[3][1] = player.getSkillLevel(1);
+        list[4][1] = player.getSkillLevel(2);
+        list[5][1] = player.getSkillLevel(3);
+        list[6][1] = player.getSkillLevel(4);
+
+        /* The values below are created only for testing purposes, remove after above code is tested to be functional
         Object[][] list = new Object[10][2];
         list[0][0] = "PlayerName";
         list[0][1] = "Harry";
@@ -73,5 +93,6 @@ public class ConfirmationScreen {
         list[2][0] = "Points Allocated";
         list[2][1] = 10;
         return list;
+        */
     }
 }
