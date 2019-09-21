@@ -82,4 +82,9 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
-# End of https://www.gitignore.io/api/intellij
+# Checkstyle
+checkstyle-8.24-all.jar
+cs2340_checks.xml
+run_checkstyle.py
+
+# End of https://www.gitignore.io/api/intellijcheckstyle-*.jar
