@@ -9,18 +9,18 @@ public class SpinnerGroup {
     private int groupMax;
     private List<GroupSpinnerNumberModel> models = new ArrayList<>();
 
-    public SpinnerGroup (int max) {
+    protected SpinnerGroup (int max) {
         this.groupMax = max;
     }
 
-    public SpinnerNumberModel createGroupModel (int val, int min, int max, int step) {
+    protected SpinnerNumberModel createGroupModel (int val, int min, int max, int step) {
         GroupSpinnerNumberModel model = new GroupSpinnerNumberModel(val, min, max, step, this);
         models.add(model);
 
         return model;
     }
 
-    public Object getNextValue(int currentVal, int step) {
+    protected Object getNextValue(int currentVal, int step) {
         int max = getGroupVal() + step;
         if (max > groupMax) {
             return currentVal;
@@ -31,7 +31,7 @@ public class SpinnerGroup {
         }
     }
 
-    public int getGroupVal() {
+    protected int getGroupVal() {
         int max = 0;
         for (GroupSpinnerNumberModel model : models) {
             max += model.getNumber().intValue();
@@ -39,7 +39,7 @@ public class SpinnerGroup {
         return max;
     }
 
-    private void groupValUpdated(int val) {
+    protected void groupValUpdated(int val) {
         System.out.println(val);
     }
 

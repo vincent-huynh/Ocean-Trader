@@ -2,8 +2,6 @@ package oceantrader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class OceanTrader {
@@ -14,7 +12,7 @@ public class OceanTrader {
     private static JPanel cardPanel;
     private static int currPoints = 0;
 
-    public static void startGame() {
+    protected static void startGame() {
 
         window = new JFrame();
         cardLayout = new CardLayout();
@@ -24,7 +22,7 @@ public class OceanTrader {
         ConfigurationScreen configScreen = new ConfigurationScreen();
         ConfirmationScreen confirmScreen = new ConfirmationScreen();
 
-        cardPanel.add(titleScreen.panel, "Title");
+        cardPanel.add(titleScreen.panelGridBag, "Title");
         cardPanel.add(configScreen.panel, "Config");
 
         HashMap<String, Integer> map = new HashMap<>(3);

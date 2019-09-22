@@ -19,7 +19,7 @@ public class ConfigurationScreen {
     protected static JSpinner traderSpinner;
     protected static JSpinner engineerSpinner;
 
-    public ConfigurationScreen() {
+    protected ConfigurationScreen() {
         panel = new JPanel();
         gbPanel = new GridBagLayout();
         constraints = new GridBagConstraints();

@@ -11,12 +11,12 @@ public class ConfirmationScreen {
     protected JButton button;
     protected Object[][] list;
 
-    public ConfirmationScreen() {
+    protected ConfirmationScreen() {
         this.panel = new JPanel();
         this.button = new JButton();
     }
 
-    public void setPlayer(Player player) {
+    protected void setPlayer(Player player) {
         this.player = player;
         this.list = retrieveData();
         addPlayerInfo();
