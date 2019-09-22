@@ -89,7 +89,6 @@ public class ConfigurationScreen {
     }
 
     private static void skillPoints() {
-        //updateSpinner();
         skillPointsLabel();
         SpinnerGroup group = new SpinnerGroup(16);
 
@@ -143,7 +142,6 @@ public class ConfigurationScreen {
         panel.add(pilotLabel);
 
         pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
-        //pilotSpinner.setModel(spinModel0);
         constraints.gridx = 7;
         constraints.gridy = 6;
         constraints.gridwidth = 5;
@@ -170,7 +168,6 @@ public class ConfigurationScreen {
         panel.add(fighterLabel);
 
         fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
-        //fighterSpinner.setModel(spinModel1);
         constraints.gridx = 7;
         constraints.gridy = 8;
         constraints.gridwidth = 5;
@@ -197,7 +194,6 @@ public class ConfigurationScreen {
         panel.add(traderLabel);
 
         traderSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
-        //traderSpinner.setModel(spinModel2);
         constraints.gridx = 7;
         constraints.gridy = 10;
         constraints.gridwidth = 5;
@@ -224,7 +220,6 @@ public class ConfigurationScreen {
         panel.add(engineerLabel);
 
         engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
-        //engineerSpinner.setModel(spinModel3);
         constraints.gridx = 7;
         constraints.gridy = 12;
         constraints.gridwidth = 5;

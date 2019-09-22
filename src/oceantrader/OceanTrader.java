@@ -100,7 +100,7 @@ public class OceanTrader {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setMinimumSize(new Dimension(1400, 1000));
         window.add(cardPanel);
-        //window.setResizable(false);
+        window.setResizable(false);
         window.setVisible(true);
     }
 
