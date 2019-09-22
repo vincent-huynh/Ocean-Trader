@@ -2,34 +2,12 @@ package oceantrader;
 
 import java.util.NoSuchElementException;
 
-/**
- * This class represents a player and stores information regarding the player's
- * stats and currency.
- *
- * @author Thieu, with a little bit of Vincent :D
- * @version 1.0
- */
-
 public class Player {
 
-    /**
-     * The name of the player designated on initialization of game
-     */
     private String name;
-
-    /**
-     * The difficulty of the game, determines starting currency ___ tba___.
-     */
     private Difficulty difficulty;
-
-    /**
-     * The amount of money the player has.
-     */
     private int currency;
 
-    /**
-     * The various skills a player can allocate a point into.
-     */
     private int pilotPoints;
     private int fighterPoints;
     private int traderPoints;

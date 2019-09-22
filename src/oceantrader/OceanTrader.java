@@ -22,9 +22,9 @@ public class OceanTrader {
 
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
-        ConfirmationScreen confirmScreen = new ConfirmationScreen(null);
+        ConfirmationScreen confirmScreen = new ConfirmationScreen();
 
-        cardPanel.add(titleScreen.jpanel, "Title");
+        cardPanel.add(titleScreen.panel, "Title");
         cardPanel.add(configScreen.panel, "Config");
 
         HashMap<String, Integer> map = new HashMap<>(3);
@@ -32,7 +32,7 @@ public class OceanTrader {
         map.put("Medium", 12);
         map.put("Hard", 8);
 
-        titleScreen.titleScreenButton.addActionListener(e -> {
+        titleScreen.button.addActionListener(e -> {
             window.setMinimumSize(new Dimension(400, 500));
             window.setMaximumSize(new Dimension(400, 500));
             cardLayout.show(cardPanel, "Config");
@@ -48,7 +48,7 @@ public class OceanTrader {
             int totalSkill = pilotPoints + fighterPoints + traderPoints + engineerPoints;
 
             if (name.equals("") || difficulty == null) {
-                JOptionPane.showMessageDialog(window, "Please enter tplayer info.");
+                JOptionPane.showMessageDialog(window, "Please enter player info.");
             } else if (totalSkill != (map.get((String)difficulty)).intValue()) {
                 JOptionPane.showMessageDialog(window, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
             } else {
@@ -63,7 +63,7 @@ public class OceanTrader {
                 player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, choice);
                 confirmScreen.setPlayer(player);
                 cardPanel.add(confirmScreen.panel, "Confirm");
-                window.setMinimumSize(new Dimension(1400, 1000)); //change this if dimensions are jacked up
+                window.setMinimumSize(new Dimension(1400, 1000));
                 cardLayout.show(cardPanel, "Confirm");
             }
         });
@@ -88,7 +88,6 @@ public class OceanTrader {
             //TO BE IMPLEMENTED LATER
         });
 
-        cardLayout.show(cardPanel, "Title");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setMinimumSize(new Dimension(1400, 1000));
         window.add(cardPanel);
