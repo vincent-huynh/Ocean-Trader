@@ -1,5 +1,7 @@
 package oceantrader;
 
+import java.util.NoSuchElementException;
+
 /**
  * This class represents a player and stores information regarding the player's
  * stats and currency.
@@ -83,8 +85,16 @@ public class Player {
         return currency;
     }
 
-    public Difficulty getDifficulty() {
-        return difficulty;
+    public String getDifficulty() {
+        switch (difficulty) {
+            case EASY:
+                return "Easy";
+            case MEDIUM:
+                return "Medium";
+            case HARD:
+                return "Hard";
+        }
+        throw new NoSuchElementException("Difficulty not found.");
     }
 
     public int getSkillLevel(String skill) {

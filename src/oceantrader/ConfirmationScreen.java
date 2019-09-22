@@ -61,28 +61,28 @@ public class ConfirmationScreen {
      * Retrieves player data in order of Name, Difficulty, and Points (specific valus yet to be decided)
      * @return Returns the player setting values
      */
-    public static Object[][] RetrieveData(Player player) {
+    public static Object[][] RetrieveData() {
         //Puts all of settings selected into the confirmation window, still needs to add the getters and setters
 
-        //The possible fields
-        list[0][0] = "Player Name";
-        list[1][0] = "Difficulty";
-        list[2][0] = "Currency";
-        list[3][0] = "Skill1";
-        list[4][0] = "Skill2";
-        list[5][0] = "Skill3";
-        list[6][0] = "Skill4";
+//        //The possible fields
+//        list[0][0] = "Player Name";
+//        list[1][0] = "Difficulty";
+//        list[2][0] = "Currency";
+//        list[3][0] = "Skill1";
+//        list[4][0] = "Skill2";
+//        list[5][0] = "Skill3";
+//        list[6][0] = "Skill4";
+//
+//        //Retrieving values from the player
+//        list[0][1] = player.getName();
+//        list[1][1] = player.getDifficulty();
+//        list[2][1] = player.getCurrency();
+//        list[3][1] = player.getSkillLevel("Pilot");
+//        list[4][1] = player.getSkillLevel("Fighter");
+//        list[5][1] = player.getSkillLevel("Trader");
+//        list[6][1] = player.getSkillLevel("Engineer");
 
-        //Retrieving values from the player
-        list[0][1] = player.getName();
-        list[1][1] = player.getDifficulty();
-        list[2][1] = player.getCurrency();
-        list[3][1] = player.getSkillLevel("Pilot");
-        list[4][1] = player.getSkillLevel("Fighter");
-        list[5][1] = player.getSkillLevel("Trader");
-        list[6][1] = player.getSkillLevel("Engineer");
-
-        /* The values below are created only for testing purposes, remove after above code is tested to be functional
+        //The values below are created only for testing purposes, remove after above code is tested to be functional
         Object[][] list = new Object[10][2];
         list[0][0] = "PlayerName";
         list[0][1] = "Harry";
@@ -91,6 +91,5 @@ public class ConfirmationScreen {
         list[2][0] = "Points Allocated";
         list[2][1] = 10;
         return list;
-        */
     }
 }

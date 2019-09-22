@@ -4,7 +4,7 @@ import javax.swing.*;
 public class TitleScreen {
     public static void main(String[] args) {
         JFrame f = new JFrame("Ocean Traders");
-        JPanel p = new JPanel();
+        JPanel p = new JPanel(new GridBagLayout());
         JLabel l = new JLabel("Welcome to Ocean Traders!");
         l.setFont(l.getFont().deriveFont(60.0f));
         JLabel l2 = new JLabel(" ");
@@ -12,7 +12,7 @@ public class TitleScreen {
         JButton b = new JButton("Start");
         b.setFont(new Font("Tahoma", Font.PLAIN, 30));
         b.setAlignmentX(Component.CENTER_ALIGNMENT);
-        f.setLayout(new GridBagLayout());
+//        f.setLayout(new GridBagLayout());
         p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.CENTER;

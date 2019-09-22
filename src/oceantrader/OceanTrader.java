@@ -48,7 +48,7 @@ public class OceanTrader {
             int totalSkill = pilotPoints + fighterPoints + traderPoints + engineerPoints;
 
             if (name.equals("") || difficulty == null) {
-                JOptionPane.showMessageDialog(window, "Please enter player info.");
+                JOptionPane.showMessageDialog(window, "Please enter tplayer info.");
             } else if (totalSkill != (map.get((String)difficulty)).intValue()) {
                 JOptionPane.showMessageDialog(window, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
             } else {

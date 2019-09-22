@@ -7,7 +7,7 @@ import java.util.List;
 public class SpinnerGroup {
 
     private int groupMax;
-    private List<GroupSpinnerNumberModel> models = new ArrayList<GroupSpinnerNumberModel>();
+    private List<GroupSpinnerNumberModel> models = new ArrayList<>();
 
     public SpinnerGroup (int max) {
         this.groupMax = max;
@@ -42,6 +42,7 @@ public class SpinnerGroup {
     private void groupValUpdated(int val) {
         System.out.println(val);
     }
+
     private class GroupSpinnerNumberModel extends SpinnerNumberModel {
         private SpinnerGroup model;
         public GroupSpinnerNumberModel (int val, int min, int max, int step, SpinnerGroup model) {
@@ -55,6 +56,5 @@ public class SpinnerGroup {
 
             return model.getNextValue(currentVal, step);
         }
-
     }
 }
