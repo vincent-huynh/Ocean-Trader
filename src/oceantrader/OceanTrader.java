@@ -11,6 +11,7 @@ public class OceanTrader {
     private static CardLayout cardLayout;
     private static JPanel cardPanel;
     private static int currPoints = 0;
+    protected static HashMap<String, Integer> map;
 
     protected static void startGame() {
 
@@ -25,14 +26,19 @@ public class OceanTrader {
         cardPanel.add(titleScreen.panelGridBag, "Title");
         cardPanel.add(configScreen.panel, "Config");
 
-        HashMap<String, Integer> map = new HashMap<>(3);
+        map = new HashMap<>(3);
         map.put("Easy", 16);
         map.put("Medium", 12);
         map.put("Hard", 8);
 
         titleScreen.button.addActionListener(e -> {
+
             window.setMinimumSize(new Dimension(400, 500));
             window.setMaximumSize(new Dimension(400, 500));
+            window.setPreferredSize(new Dimension(400, 500));
+
+            window.setSize(400,500);
+
             cardLayout.show(cardPanel, "Config");
         });
 
@@ -61,25 +67,30 @@ public class OceanTrader {
                 player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, choice);
                 confirmScreen.setPlayer(player);
                 cardPanel.add(confirmScreen.panel, "Confirm");
-                window.setMinimumSize(new Dimension(1400, 1000));
+                window.setSize(new Dimension(1400, 1000));
                 cardLayout.show(cardPanel, "Confirm");
             }
         });
 
+        configScreen.difficultyComboBox.addActionListener(changeEvent -> {
+            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        });
+
         configScreen.pilotSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints();
+            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+
         });
 
         configScreen.fighterSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints();
+            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
 
         configScreen.traderSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints();
+            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
 
         configScreen.engineerSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints();
+            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
 
         confirmScreen.button.addActionListener(e2 -> {
@@ -89,15 +100,23 @@ public class OceanTrader {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setMinimumSize(new Dimension(1400, 1000));
         window.add(cardPanel);
-        window.setResizable(false);
+        //window.setResizable(false);
         window.setVisible(true);
     }
 
-    private static void updateCurrPoints() {
+    private static void updateCurrPoints(Object diff) {
+        int pointsDiff;
+        if (((String) diff).equals("Easy")) {
+            pointsDiff = 16;
+        } else if (((String) diff).equals("Hard")) {
+            pointsDiff = 8;
+        } else {
+            pointsDiff = 12;
+        }
         currPoints = (int) ConfigurationScreen.pilotSpinner.getValue()
                 + (int) ConfigurationScreen.fighterSpinner.getValue()
                 + (int) ConfigurationScreen.traderSpinner.getValue()
                 + (int) ConfigurationScreen.engineerSpinner.getValue();
-        ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
+        ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints) + " points remaining.");
     }
 }

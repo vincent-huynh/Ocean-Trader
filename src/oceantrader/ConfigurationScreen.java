@@ -116,7 +116,7 @@ public class ConfigurationScreen {
 
         pointsRemaining = new JTextField(points + " points remaining.");
         pointsRemaining.setBorder(BorderFactory.createEmptyBorder());
-        //pointsRemaining.setEditable(false);
+        pointsRemaining.setEditable(false);
         constraints.gridx = 7;
         constraints.gridy = 4;
         constraints.gridwidth = 6;
@@ -142,7 +142,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(pilotLabel, constraints );
         panel.add(pilotLabel);
 
-        pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
         //pilotSpinner.setModel(spinModel0);
         constraints.gridx = 7;
         constraints.gridy = 6;
@@ -169,7 +169,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( fighterLabel, constraints );
         panel.add(fighterLabel);
 
-        fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
         //fighterSpinner.setModel(spinModel1);
         constraints.gridx = 7;
         constraints.gridy = 8;
@@ -196,7 +196,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( traderLabel, constraints );
         panel.add(traderLabel);
 
-        traderSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        traderSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
         //traderSpinner.setModel(spinModel2);
         constraints.gridx = 7;
         constraints.gridy = 10;
@@ -223,7 +223,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(engineerLabel, constraints );
         panel.add(engineerLabel);
 
-        engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
         //engineerSpinner.setModel(spinModel3);
         constraints.gridx = 7;
         constraints.gridy = 12;
