@@ -22,6 +22,7 @@ public class OceanTrader {
 
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
+        ConfirmationScreen confirmScreen = new ConfirmationScreen(null);
 
         cardPanel.add(titleScreen.jpanel, "Title");
         cardPanel.add(configScreen.panel, "Config");
@@ -60,14 +61,10 @@ public class OceanTrader {
                     choice = Difficulty.MEDIUM;
                 }
                 player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, choice);
-                ConfirmationScreen confirmScreen = new ConfirmationScreen(player);
+                confirmScreen.setPlayer(player);
                 cardPanel.add(confirmScreen.panel, "Confirm");
                 window.setMinimumSize(new Dimension(1400, 1000)); //change this if dimensions are jacked up
                 cardLayout.show(cardPanel, "Confirm");
-
-                confirmScreen.button.addActionListener(e2 -> {
-                    //TO BE IMPLEMENTED LATER
-                });
             }
         });
 
@@ -85,6 +82,10 @@ public class OceanTrader {
 
         configScreen.engineerSpinner.addChangeListener(changeEvent -> {
             updateCurrPoints();
+        });
+
+        confirmScreen.button.addActionListener(e2 -> {
+            //TO BE IMPLEMENTED LATER
         });
 
         cardLayout.show(cardPanel, "Title");

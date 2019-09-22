@@ -30,7 +30,6 @@ public class ConfirmationScreen {
                 panel.add(new JLabel(list[i][0] + ": " + list[i][1]));
             }
         }
-
         button = new JButton("Proceed");
         panel.add(button);
     }
@@ -60,5 +59,9 @@ public class ConfirmationScreen {
         list[6][1] = player.getSkillLevel("Engineer");
 
         return list;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
