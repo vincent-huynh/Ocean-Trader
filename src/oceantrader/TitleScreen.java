@@ -12,7 +12,7 @@ public class TitleScreen {
         JButton b = new JButton("Start");
         b.setFont(new Font("Tahoma", Font.PLAIN, 30));
         b.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        f.setLayout(new GridBagLayout());
+        f.setLayout(new GridBagLayout());
         p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.CENTER;
