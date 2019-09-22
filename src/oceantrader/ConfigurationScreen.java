@@ -5,9 +5,19 @@ import java.awt.*;
 
 public class ConfigurationScreen {
 
-    static JPanel panel;
-    static GridBagLayout gbPanel;
-    static GridBagConstraints constraints;
+    protected static JPanel panel;
+    protected static GridBagLayout gbPanel;
+    private static GridBagConstraints constraints;
+    protected static JButton startButton;
+    protected static JTextField nameField;
+    protected static JComboBox difficultyComboBox;
+    protected static JTextField pointsRemaining;
+    protected static int points = 16;
+
+    protected static JSpinner pilotSpinner;
+    protected static JSpinner fighterSpinner;
+    protected static JSpinner traderSpinner;
+    protected static JSpinner engineerSpinner;
 
     public ConfigurationScreen() {
         panel = new JPanel();
@@ -38,7 +48,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(nameLabel, constraints );
         panel.add(nameLabel);
 
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         constraints.gridx = 10;
         constraints.gridy = 1;
         constraints.gridwidth = 9;
@@ -65,7 +75,7 @@ public class ConfigurationScreen {
         panel.add(difficultyLabel);
 
         String[] difficultyComboData = { "Easy", "Medium", "Hard" };
-        JComboBox difficultyComboBox = new JComboBox(difficultyComboData);
+        difficultyComboBox = new JComboBox(difficultyComboData);
         constraints.gridx = 8;
         constraints.gridy = 2;
         constraints.gridwidth = 11;
@@ -79,11 +89,15 @@ public class ConfigurationScreen {
     }
 
     private static void skillPoints() {
+        //updateSpinner();
         skillPointsLabel();
-        pilotPointsSection();
-        fighterPointsSection();
-        traderPointsSection();
-        engineerPointsSection();
+        SpinnerGroup group = new SpinnerGroup(16);
+
+        pilotPointsSection(group);
+        fighterPointsSection(group);
+        traderPointsSection(group);
+        engineerPointsSection(group);
+
         startButton();
     }
 
@@ -99,9 +113,23 @@ public class ConfigurationScreen {
         constraints.anchor = GridBagConstraints.NORTH;
         gbPanel.setConstraints(skillPointLabel, constraints );
         panel.add(skillPointLabel);
+
+        pointsRemaining = new JTextField(points + " points remaining.");
+        pointsRemaining.setBorder(BorderFactory.createEmptyBorder());
+        //pointsRemaining.setEditable(false);
+        constraints.gridx = 7;
+        constraints.gridy = 4;
+        constraints.gridwidth = 6;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weightx = 1;
+        constraints.weighty = 0;
+        constraints.anchor = GridBagConstraints.NORTH;
+        gbPanel.setConstraints(pointsRemaining, constraints);
+        panel.add(pointsRemaining);
     }
 
-    private static void pilotPointsSection() {
+    private static void pilotPointsSection(SpinnerGroup group) {
         JLabel pilotLabel = new JLabel("Seamanship:");
         constraints.gridx = 1;
         constraints.gridy = 6;
@@ -114,7 +142,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(pilotLabel, constraints );
         panel.add(pilotLabel);
 
-        JSpinner pilotSpinner = new JSpinner();
+        pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //pilotSpinner.setModel(spinModel0);
         constraints.gridx = 7;
         constraints.gridy = 6;
         constraints.gridwidth = 5;
@@ -127,7 +156,7 @@ public class ConfigurationScreen {
         panel.add(pilotSpinner);
     }
 
-    private static void fighterPointsSection() {
+    private static void fighterPointsSection(SpinnerGroup group) {
         JLabel fighterLabel = new JLabel( "Battle Ability:"  );
         constraints.gridx = 1;
         constraints.gridy = 8;
@@ -140,7 +169,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( fighterLabel, constraints );
         panel.add(fighterLabel);
 
-        JSpinner fighterSpinner = new JSpinner( );
+        fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //fighterSpinner.setModel(spinModel1);
         constraints.gridx = 7;
         constraints.gridy = 8;
         constraints.gridwidth = 5;
@@ -153,7 +183,7 @@ public class ConfigurationScreen {
         panel.add(fighterSpinner);
     }
 
-    private static void traderPointsSection() {
+    private static void traderPointsSection(SpinnerGroup group) {
         JLabel traderLabel = new JLabel( "Tradesmanship:"  );
         constraints.gridx = 1;
         constraints.gridy = 10;
@@ -166,7 +196,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints( traderLabel, constraints );
         panel.add(traderLabel);
 
-        JSpinner traderSpinner = new JSpinner( );
+        traderSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //traderSpinner.setModel(spinModel2);
         constraints.gridx = 7;
         constraints.gridy = 10;
         constraints.gridwidth = 5;
@@ -179,7 +210,7 @@ public class ConfigurationScreen {
         panel.add(traderSpinner);
     }
 
-    private static void engineerPointsSection() {
+    private static void engineerPointsSection(SpinnerGroup group) {
         JLabel engineerLabel = new JLabel( "Workmanship:"  );
         constraints.gridx = 1;
         constraints.gridy = 12;
@@ -192,7 +223,8 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(engineerLabel, constraints );
         panel.add(engineerLabel);
 
-        JSpinner engineerSpinner = new JSpinner( );
+        engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 10, 1));
+        //engineerSpinner.setModel(spinModel3);
         constraints.gridx = 7;
         constraints.gridy = 12;
         constraints.gridwidth = 5;
@@ -206,7 +238,7 @@ public class ConfigurationScreen {
     }
 
     private static void startButton() {
-        JButton startButton = new JButton( "Embark"  );
+        startButton = new JButton( "Embark"  );
         constraints.gridx = 7;
         constraints.gridy = 15;
         constraints.gridwidth = 5;
@@ -218,9 +250,4 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(startButton, constraints);
         panel.add(startButton);
     }
-
-    public JPanel getPanel() {
-        return panel;
-    }
 }
-

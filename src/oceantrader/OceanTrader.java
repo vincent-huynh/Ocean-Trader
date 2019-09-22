@@ -8,10 +8,11 @@ import java.util.HashMap;
 
 public class OceanTrader {
 
-    static Player player;
-    static JFrame window;
-    static CardLayout cardLayout;
-    static JPanel cardPanel;
+    private static Player player;
+    private static JFrame window;
+    private static CardLayout cardLayout;
+    private static JPanel cardPanel;
+    private static int currPoints = 0;
 
     public static void startGame() {
 
@@ -24,7 +25,7 @@ public class OceanTrader {
         final ConfirmScreen confirmScreen;
 
         cardPanel.add(titleScreen.jpanel, "Title");
-        cardPanel.add(configScreen.jpanel, "Config");
+        cardPanel.add(configScreen.panel, "Config");
 
         HashMap<String, Integer> map = new HashMap<>(3);
         map.put("Easy", 16);
@@ -32,26 +33,37 @@ public class OceanTrader {
         map.put("Hard", 8);
 
         titleScreen.titleScreenButton.addActionListener(e -> {
+            window.setMinimumSize(new Dimension(400, 500));
+            window.setMaximumSize(new Dimension(400, 500));
             cardLayout.show(cardPanel, "Config");
         });
 
-        configScreen.configScreenButton.addActionListener(e -> {
-            String name = titleScreen.nameText.getText().trim();
-            Object difficulty = configScreen.comboBox.getSelectedItem();
-            int pilotPoints = ((Integer) configScreen.spinner1.getValue()).intValue();
-            int fighterPoints = ((Integer) configScreen.spinner2.getValue()).intValue();
-            int traderPoints = ((Integer) configScreen.spinner3.getValue()).intValue();
-            int engineerPoints = ((Integer) configScreen.spinner4.getValue()).intValue();
+        configScreen.startButton.addActionListener(e -> {
+            String name = configScreen.nameField.getText().trim();
+            Object difficulty = configScreen.difficultyComboBox.getSelectedItem();
+            int pilotPoints = ((Integer) configScreen.pilotSpinner.getValue()).intValue();
+            int fighterPoints = ((Integer) configScreen.fighterSpinner.getValue()).intValue();
+            int traderPoints = ((Integer) configScreen.traderSpinner.getValue()).intValue();
+            int engineerPoints = ((Integer) configScreen.engineerSpinner.getValue()).intValue();
             int totalSkill = pilotPoints + fighterPoints + traderPoints + engineerPoints;
 
             if (name.equals("") || difficulty == null) {
-                JOptionPane.showMessageDialog(frame, "Please enter player info.");
+                JOptionPane.showMessageDialog(window, "Please enter player info.");
             } else if (totalSkill != (map.get((String)difficulty)).intValue()) {
-                JOptionPane.showMessageDialog(frame, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
+                JOptionPane.showMessageDialog(window, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
             } else {
-                player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, (String)difficulty);
+                Difficulty choice;
+                if (difficulty.equals("Easy")) {
+                    choice = Difficulty.EASY;
+                } else if (difficulty.equals("Hard")) {
+                    choice = Difficulty.HARD;
+                } else {
+                    choice = Difficulty.MEDIUM;
+                }
+                player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, choice);
                 confirmScreen = new ConfirmScreen(player);
                 cardPanel.add(confirmScreen.jpanel, "Confirm");
+                window.setMinimumSize(new Dimension(1400, 1000)); //change this if dimensions are jacked up
                 cardLayout.show(cardPanel, "Confirm");
             }
         });
@@ -60,11 +72,35 @@ public class OceanTrader {
             //To be implemented later.
         });
 
+        configScreen.pilotSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints();
+        });
+
+        configScreen.fighterSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints();
+        });
+
+        configScreen.traderSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints();
+        });
+
+        configScreen.engineerSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints();
+        });
+
         cardLayout.show(cardPanel, "Title");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1400, 1000);
+        window.setMinimumSize(new Dimension(1400, 1000));
         window.add(cardPanel);
         window.setResizable(false);
         window.setVisible(true);
+    }
+
+    private static void updateCurrPoints() {
+        currPoints = (int) ConfigurationScreen.pilotSpinner.getValue()
+                + (int) ConfigurationScreen.fighterSpinner.getValue()
+                + (int) ConfigurationScreen.traderSpinner.getValue()
+                + (int) ConfigurationScreen.engineerSpinner.getValue();
+        ConfigurationScreen.pointsRemaining.setText((16 - currPoints) + " points remaining");
     }
 }

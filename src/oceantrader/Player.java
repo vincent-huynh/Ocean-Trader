@@ -4,7 +4,7 @@ package oceantrader;
  * This class represents a player and stores information regarding the player's
  * stats and currency.
  *
- * @author Thieu
+ * @author Thieu, with a little bit of Vincent :D
  * @version 1.0
  */
 
@@ -18,7 +18,7 @@ public class Player {
     /**
      * The difficulty of the game, determines starting currency ___ tba___.
      */
-    private String difficulty;
+    private Difficulty difficulty;
 
     /**
      * The amount of money the player has.
@@ -34,7 +34,7 @@ public class Player {
     private int engineerPoints;
 
     public Player(String name, int pilotPoints, int fighterPoints,
-                  int traderPoints, int engineerPoints, String difficulty) {
+                  int traderPoints, int engineerPoints, Difficulty difficulty) {
 
         this.name = name;
         this.pilotPoints = pilotPoints;
@@ -43,26 +43,27 @@ public class Player {
         this.engineerPoints = engineerPoints;
 
         switch (difficulty) {
-            case "Easy" :
+            case EASY:
                 currency = 1000;
+                this.difficulty = Difficulty.EASY;
                 break;
-            case "Normal" :
+            case MEDIUM:
                 currency = 500;
+                this.difficulty = Difficulty.MEDIUM;
                 break;
-            case "Hard" :
+            case HARD:
                 currency = 100;
+                this.difficulty = Difficulty.HARD;
                 break;
         }
     }
 
-    public Player(String name, int pilotPoints, int fighterPoints,
-                  int traderPoints, int engineerPoints) {
-        this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints,
-                "Hard");
+    public Player(String name, int pilotPoints, int fighterPoints, int traderPoints, int engineerPoints) {
+        this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, Difficulty.HARD);
     }
 
     public Player(String name) {
-        this(name, 0, 0, 0, 0, "Hard");
+        this(name, 0, 0, 0, 0, Difficulty.HARD);
     }
 
 
@@ -74,12 +75,12 @@ public class Player {
         return name;
     }
 
-    public int getCurrency() {
-        return currency;
-    }
-
     public void setCurrency(int currency) {
         this.currency = currency;
+    }
+
+    public int getCurrency() {
+        return currency;
     }
 
     public int getSkillLevel(String skill) {
@@ -94,5 +95,19 @@ public class Player {
                 return engineerPoints;
         }
         throw new IllegalArgumentException("Skill not found.");
+    }
+
+    public int getTotalSkill() {
+        return pilotPoints + fighterPoints + traderPoints + engineerPoints;
+    }
+
+    @Override
+    public String toString() {
+        return name + ":"
+                + "\n\tPilot: " + this.pilotPoints
+                + "\n\tFighter: " + this.fighterPoints
+                + "\n\tTrader: " + this.traderPoints
+                + "\n\tEngineer: " + this.engineerPoints
+                + "\n\tDifficulty: " + this.difficulty;
     }
 }
