@@ -1,4 +1,4 @@
-//package oceantrader;
+package oceantrader;
 
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -9,6 +9,7 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class ConfirmationScreen {
+
     /**
      * Main method for debugging logic, remove/alter as needed
      * @param args The input given if ran from console
@@ -17,7 +18,6 @@ public class ConfirmationScreen {
         LoadConfirmation(null);
         //TestRetriever();
     }
-
 
     /**
      * Tester method for retriving player data
@@ -29,7 +29,6 @@ public class ConfirmationScreen {
             System.out.println(list[i][1]);
         }
     }
-    
 
     /**
      * Primary method for loading the confirmation UI
@@ -58,7 +57,6 @@ public class ConfirmationScreen {
         }
     }
 
-
     /**
      * Retrieves player data in order of Name, Difficulty, and Points (specific valus yet to be decided)
      * @return Returns the player setting values
@@ -79,10 +77,10 @@ public class ConfirmationScreen {
         list[0][1] = player.getName();
         list[1][1] = player.getDifficulty();
         list[2][1] = player.getCurrency();
-        list[3][1] = player.getSkillLevel(1);
-        list[4][1] = player.getSkillLevel(2);
-        list[5][1] = player.getSkillLevel(3);
-        list[6][1] = player.getSkillLevel(4);
+        list[3][1] = player.getSkillLevel("Pilot");
+        list[4][1] = player.getSkillLevel("Fighter");
+        list[5][1] = player.getSkillLevel("Trader");
+        list[6][1] = player.getSkillLevel("Engineer");
 
         /* The values below are created only for testing purposes, remove after above code is tested to be functional
         Object[][] list = new Object[10][2];

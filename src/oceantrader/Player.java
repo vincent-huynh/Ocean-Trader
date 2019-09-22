@@ -83,6 +83,10 @@ public class Player {
         return currency;
     }
 
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
     public int getSkillLevel(String skill) {
         switch (skill) {
             case "Pilot" :

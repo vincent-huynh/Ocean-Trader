@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpinnerGroup {
+
     private int groupMax;
     private List<GroupSpinnerNumberModel> models = new ArrayList<GroupSpinnerNumberModel>();
 
