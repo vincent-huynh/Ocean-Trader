@@ -23,23 +23,28 @@ public class Player {
         this.engineerPoints = engineerPoints;
 
         switch (difficulty) {
-            case EASY:
-                currency = 1000;
-                this.difficulty = Difficulty.EASY;
-                break;
-            case MEDIUM:
-                currency = 500;
-                this.difficulty = Difficulty.MEDIUM;
-                break;
-            case HARD:
-                currency = 100;
-                this.difficulty = Difficulty.HARD;
-                break;
+        case EASY:
+            currency = 1000;
+            this.difficulty = Difficulty.EASY;
+            break;
+        case MEDIUM:
+            currency = 500;
+            this.difficulty = Difficulty.MEDIUM;
+            break;
+        case HARD:
+            currency = 100;
+            this.difficulty = Difficulty.HARD;
+            break;
+        default:
+            break;
         }
     }
 
-    public Player(String name, int pilotPoints, int fighterPoints, int traderPoints, int engineerPoints) {
-        this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, Difficulty.HARD);
+    public Player(String name, int pilotPoints, int fighterPoints,
+                            int traderPoints, int engineerPoints) {
+
+        this(name, pilotPoints, fighterPoints, traderPoints,
+                            engineerPoints, Difficulty.HARD);
     }
 
     public Player(String name) {
@@ -65,28 +70,30 @@ public class Player {
 
     public String getDifficulty() {
         switch (difficulty) {
-            case EASY:
-                return "Easy";
-            case MEDIUM:
-                return "Medium";
-            case HARD:
-                return "Hard";
+        case EASY:
+            return "Easy";
+        case MEDIUM:
+            return "Medium";
+        case HARD:
+            return "Hard";
+        default:
+            throw new NoSuchElementException("Difficulty not found.");
         }
-        throw new NoSuchElementException("Difficulty not found.");
     }
 
     public int getSkillLevel(String skill) {
         switch (skill) {
-            case "Pilot" :
-                return pilotPoints;
-            case "Fighter" :
-                return fighterPoints;
-            case "Trader" :
-                return traderPoints;
-            case "Engineer" :
-                return engineerPoints;
+        case "Pilot" :
+            return pilotPoints;
+        case "Fighter" :
+            return fighterPoints;
+        case "Trader" :
+            return traderPoints;
+        case "Engineer" :
+            return engineerPoints;
+        default:
+            throw new IllegalArgumentException("Skill not found.");
         }
-        throw new IllegalArgumentException("Skill not found.");
     }
 
     public int getTotalSkill() {

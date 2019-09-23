@@ -1,7 +1,10 @@
 package oceantrader;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.util.HashMap;
 
 public class OceanTrader {
@@ -36,37 +39,49 @@ public class OceanTrader {
             window.setMinimumSize(new Dimension(400, 500));
             window.setMaximumSize(new Dimension(400, 500));
             window.setPreferredSize(new Dimension(400, 500));
-
-            window.setSize(400,500);
+            window.setSize(400, 500);
 
             cardLayout.show(cardPanel, "Config");
         });
 
         configScreen.startButton.addActionListener(e -> {
-            String name = configScreen.nameField.getText().trim();
-            Object difficulty = configScreen.difficultyComboBox.getSelectedItem();
-            int pilotPoints = ((Integer) configScreen.pilotSpinner.getValue()).intValue();
-            int fighterPoints = ((Integer) configScreen.fighterSpinner.getValue()).intValue();
-            int traderPoints = ((Integer) configScreen.traderSpinner.getValue()).intValue();
-            int engineerPoints = ((Integer) configScreen.engineerSpinner.getValue()).intValue();
-            int totalSkill = pilotPoints + fighterPoints + traderPoints + engineerPoints;
 
-            if (name.equals("") || difficulty == null) {
-                JOptionPane.showMessageDialog(window, "Please enter player info.");
-            } else if (totalSkill != (map.get((String)difficulty)).intValue()) {
-                JOptionPane.showMessageDialog(window, "Incorrect point allocation.\nExpected: " + map.get((String)difficulty).toString() + "\nReceived: " + totalSkill);
+            String name = configScreen.nameField.getText().trim();
+            Object diff = configScreen.difficultyComboBox.getSelectedItem();
+
+            int pilotPoints = ((Integer) configScreen.pilotSpinner
+                    .getValue()).intValue();
+            int fighterPoints = ((Integer) configScreen.fighterSpinner
+                    .getValue()).intValue();
+            int traderPoints = ((Integer) configScreen.traderSpinner
+                    .getValue()).intValue();
+            int engineerPoints = ((Integer) configScreen.engineerSpinner
+                    .getValue()).intValue();
+
+            int totalSkill = pilotPoints + fighterPoints + traderPoints
+                    + engineerPoints;
+
+            if (name.equals("") || diff == null) {
+                JOptionPane.showMessageDialog(window,
+                        "Please enter player info.");
+            } else if (totalSkill != (map.get((String) diff)).intValue()) {
+                JOptionPane.showMessageDialog(window,
+                        "Incorrect point allocation.\nExpected: "
+                                + map.get((String) diff).toString()
+                                + "\nReceived: " + totalSkill);
             } else {
                 Difficulty choice;
-                if (difficulty.equals("Easy")) {
+                if (diff.equals("Easy")) {
                     choice = Difficulty.EASY;
-                } else if (difficulty.equals("Hard")) {
+                } else if (diff.equals("Hard")) {
                     choice = Difficulty.HARD;
                 } else {
                     choice = Difficulty.MEDIUM;
                 }
-                player = new Player(name, pilotPoints, fighterPoints, traderPoints, engineerPoints, choice);
+                player = new Player(name, pilotPoints, fighterPoints,
+                                    traderPoints, engineerPoints, choice);
                 confirmScreen.setPlayer(player);
-                cardPanel.add(confirmScreen.panel, "Confirm");
+                cardPanel.add(confirmScreen.panelGridBag, "Confirm");
                 window.setSize(new Dimension(1400, 1000));
                 cardLayout.show(cardPanel, "Confirm");
             }
@@ -117,6 +132,7 @@ public class OceanTrader {
                 + (int) ConfigurationScreen.fighterSpinner.getValue()
                 + (int) ConfigurationScreen.traderSpinner.getValue()
                 + (int) ConfigurationScreen.engineerSpinner.getValue();
-        ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints) + " points remaining.");
+        ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints)
+                + " points remaining.");
     }
 }

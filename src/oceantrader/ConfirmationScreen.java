@@ -1,8 +1,12 @@
 package oceantrader;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 public class ConfirmationScreen {
 
@@ -10,10 +14,13 @@ public class ConfirmationScreen {
     protected Player player;
     protected JButton button;
     protected Object[][] list;
+    protected JPanel panelGridBag;
 
     protected ConfirmationScreen() {
         this.panel = new JPanel();
+        this.panelGridBag = new JPanel(new GridBagLayout());
         this.button = new JButton();
+        this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
     }
 
     protected void setPlayer(Player player) {
@@ -23,13 +30,20 @@ public class ConfirmationScreen {
     }
 
     private void addPlayerInfo() {
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.CENTER;
         for (int i = 0; i < list.length; i++) {
             if (list[i][0] != null) {
-                panel.add(new JLabel(list[i][0] + ": " + list[i][1]));
+                JLabel label = new JLabel("<html>" + list[i][0] + ": "
+                        + list[i][1] + "<br><br>" + "</html>");
+                label.setFont(new Font("Tahoma", Font.PLAIN, 30));
+                this.panel.add(label, constraints);
             }
         }
         button = new JButton("Proceed");
+        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
         panel.add(button);
+        panelGridBag.add(panel);
     }
 
     private Object[][] retrieveData() {

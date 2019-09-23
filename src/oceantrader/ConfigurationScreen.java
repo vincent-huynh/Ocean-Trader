@@ -1,7 +1,15 @@
 package oceantrader;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 public class ConfigurationScreen {
 
@@ -45,7 +53,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(nameLabel, constraints );
+        gbPanel.setConstraints(nameLabel, constraints);
         panel.add(nameLabel);
 
         nameField = new JTextField();
@@ -57,7 +65,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(nameField, constraints );
+        gbPanel.setConstraints(nameField, constraints);
         panel.add(nameField);
     }
 
@@ -71,10 +79,10 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(difficultyLabel, constraints );
+        gbPanel.setConstraints(difficultyLabel, constraints);
         panel.add(difficultyLabel);
 
-        String[] difficultyComboData = { "Easy", "Medium", "Hard" };
+        String[] difficultyComboData = {"Easy", "Medium", "Hard" };
         difficultyComboBox = new JComboBox(difficultyComboData);
         constraints.gridx = 8;
         constraints.gridy = 2;
@@ -84,7 +92,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(difficultyComboBox, constraints );
+        gbPanel.setConstraints(difficultyComboBox, constraints);
         panel.add(difficultyComboBox);
     }
 
@@ -110,7 +118,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(skillPointLabel, constraints );
+        gbPanel.setConstraints(skillPointLabel, constraints);
         panel.add(skillPointLabel);
 
         pointsRemaining = new JTextField(points + " points remaining.");
@@ -138,7 +146,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(pilotLabel, constraints );
+        gbPanel.setConstraints(pilotLabel, constraints);
         panel.add(pilotLabel);
 
         pilotSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
@@ -150,12 +158,12 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(pilotSpinner, constraints );
+        gbPanel.setConstraints(pilotSpinner, constraints);
         panel.add(pilotSpinner);
     }
 
     private static void fighterPointsSection(SpinnerGroup group) {
-        JLabel fighterLabel = new JLabel( "Battle Ability:"  );
+        JLabel fighterLabel = new JLabel("Battle Ability:");
         constraints.gridx = 1;
         constraints.gridy = 8;
         constraints.gridwidth = 6;
@@ -164,7 +172,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints( fighterLabel, constraints );
+        gbPanel.setConstraints(fighterLabel, constraints);
         panel.add(fighterLabel);
 
         fighterSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
@@ -181,7 +189,7 @@ public class ConfigurationScreen {
     }
 
     private static void traderPointsSection(SpinnerGroup group) {
-        JLabel traderLabel = new JLabel( "Tradesmanship:"  );
+        JLabel traderLabel = new JLabel("Tradesmanship:");
         constraints.gridx = 1;
         constraints.gridy = 10;
         constraints.gridwidth = 6;
@@ -190,7 +198,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints( traderLabel, constraints );
+        gbPanel.setConstraints(traderLabel, constraints);
         panel.add(traderLabel);
 
         traderSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
@@ -207,7 +215,7 @@ public class ConfigurationScreen {
     }
 
     private static void engineerPointsSection(SpinnerGroup group) {
-        JLabel engineerLabel = new JLabel( "Workmanship:"  );
+        JLabel engineerLabel = new JLabel("Workmanship:");
         constraints.gridx = 1;
         constraints.gridy = 12;
         constraints.gridwidth = 6;
@@ -216,7 +224,7 @@ public class ConfigurationScreen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.anchor = GridBagConstraints.NORTH;
-        gbPanel.setConstraints(engineerLabel, constraints );
+        gbPanel.setConstraints(engineerLabel, constraints);
         panel.add(engineerLabel);
 
         engineerSpinner = new JSpinner(group.createGroupModel(0, 0, 16, 1));
@@ -233,7 +241,7 @@ public class ConfigurationScreen {
     }
 
     private static void startButton() {
-        startButton = new JButton( "Embark"  );
+        startButton = new JButton("Embark");
         constraints.gridx = 7;
         constraints.gridy = 15;
         constraints.gridwidth = 5;
