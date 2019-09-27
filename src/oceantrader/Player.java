@@ -6,6 +6,7 @@ public class Player {
 
     private String name;
     private Difficulty difficulty;
+    private Region region;
     private int currency;
 
     private int pilotPoints;
@@ -66,6 +67,14 @@ public class Player {
 
     public int getCurrency() {
         return currency;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     public String getDifficulty() {
