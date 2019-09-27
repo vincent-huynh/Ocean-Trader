@@ -11,10 +11,9 @@ import java.awt.GridBagLayout;
 public class ConfirmationScreen {
 
     protected JPanel panel;
-    protected Player player;
     protected JButton button;
-    protected Object[][] list;
     protected JPanel panelGridBag;
+    protected Object[][] list = new Object[10][2];
 
     protected ConfirmationScreen() {
         this.panel = new JPanel();
@@ -24,8 +23,7 @@ public class ConfirmationScreen {
     }
 
     protected void setPlayer(Player player) {
-        this.player = player;
-        this.list = retrieveData();
+        retrieveData(player);
         addPlayerInfo();
     }
 
@@ -46,9 +44,7 @@ public class ConfirmationScreen {
         panelGridBag.add(panel);
     }
 
-    private Object[][] retrieveData() {
-
-        Object[][] list = new Object[10][2];
+    private void retrieveData(Player player) {
         list[0][0] = "Player Name";
         list[1][0] = "Difficulty";
         list[2][0] = "Currency";
@@ -64,7 +60,5 @@ public class ConfirmationScreen {
         list[4][1] = player.getSkillLevel("Fighter");
         list[5][1] = player.getSkillLevel("Trader");
         list[6][1] = player.getSkillLevel("Engineer");
-
-        return list;
     }
 }
