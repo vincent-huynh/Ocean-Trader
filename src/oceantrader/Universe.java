@@ -1,36 +1,70 @@
 package oceantrader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class Universe {
 
-    boolean IVAN_IS_THE_BEST;
-    ArrayList<Region> list;
+    private static Universe singleInstance = null;
+    protected ArrayList<Region> regions;
 
-    public Universe() {
-        IVAN_IS_THE_BEST = true;
-        list = new ArrayList<>();
+    private Universe() {
 
-        Region r1 = new Region("Region 1", TechLevel.MODERN, 0, 0);
-        Region r2 = new Region("Region 2", TechLevel.MODERN, 5, 5);
-        Region r3 = new Region("Region 3", TechLevel.MODERN, 10, 10);
-        Region r4 = new Region("Region 4", TechLevel.MODERN, 15, 15);
-        Region r5 = new Region("Region 5", TechLevel.MODERN, 20, 20);
-        Region r6 = new Region("Region 6", TechLevel.MODERN, 25, 25);
-        Region r7 = new Region("Region 7", TechLevel.MODERN, 30, 30);
-        Region r8 = new Region("Region 8", TechLevel.MODERN, 40, 40);
-        Region r9 = new Region("Region 9", TechLevel.MODERN, 50, 50);
-        Region r10 = new Region("Region 10", TechLevel.MODERN, 60, 60);
+        Random rand = new Random();
+        regions = new ArrayList<Region>();
+        HashMap<Integer, Integer> coords = new HashMap<Integer, Integer>();
 
-        list.add(r1);
-        list.add(r2);
-        list.add(r3);
-        list.add(r4);
-        list.add(r5);
-        list.add(r6);
-        list.add(r7);
-        list.add(r8);
-        list.add(r9);
-        list.add(r10);
+        ArrayList<String> regionNames = new ArrayList<String>();
+        regionNames.add("Crystal Cove");
+        regionNames.add("Sandy Shores");
+        regionNames.add("Skull Island");
+        regionNames.add("Buccaneer Bay");
+        regionNames.add("Pirate’s Peak");
+        regionNames.add("Boomer’s Cannon");
+        regionNames.add("Carribean Coast");
+        regionNames.add("Shipwreck Harbor");
+        regionNames.add("Plunder's Paradise");
+        regionNames.add("Mermaid Mediterranean");
+
+        TechLevel[] techLevels = {TechLevel.PREAG, TechLevel.AGRICULTURE,
+                TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
+                TechLevel.MODERN, TechLevel.FUTURISTIC};
+
+        for (int i = 0; i < 10; ++i) {
+            boolean newCoords = true;
+            while (newCoords) {
+                boolean stop = false;
+                int x = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
+                int y = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
+                for (Map.Entry<Integer, Integer> entry : coords.entrySet()) {
+                    if (distanceBetween((double)x, (double)y,
+                            entry.getKey().doubleValue(),
+                            entry.getValue().doubleValue()) < 5) {
+                        stop = true;
+                        break;
+                    }
+                }
+                if (!stop) {
+                    coords.put(new Integer(x), new Integer(y));
+                    regions.add(new Region(regionNames
+                            .remove(rand.nextInt(regionNames.size())),
+                            techLevels[rand.nextInt(7)], x, y));
+                    newCoords = false;
+                }
+            }
+        }
+    }
+
+    private double distanceBetween(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    }
+
+    protected static Universe getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new Universe();
+        }
+        return singleInstance;
     }
 }
