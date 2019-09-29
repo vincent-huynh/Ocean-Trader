@@ -23,7 +23,7 @@ public class Universe {
         regionNames.add("Buccaneer Bay");
         regionNames.add("Pirate’s Peak");
         regionNames.add("Boomer’s Cannon");
-        regionNames.add("Carribean Coast");
+        regionNames.add("Caribbean Coast");
         regionNames.add("Shipwreck Harbor");
         regionNames.add("Plunder's Paradise");
         regionNames.add("Mermaid Mediterranean");
