@@ -25,9 +25,11 @@ public class OceanTrader {
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
         ConfirmationScreen confirmScreen = new ConfirmationScreen();
+        RegionDisplay regionDisplay = new RegionDisplay();
 
         cardPanel.add(titleScreen.panelGridBag, "Title");
         cardPanel.add(configScreen.panel, "Config");
+        cardPanel.add(regionDisplay.panel, "Main");
 
         diffMap = new HashMap<>(3);
         diffMap.put("Easy", 16);
@@ -40,7 +42,6 @@ public class OceanTrader {
             window.setMaximumSize(new Dimension(400, 500));
             window.setPreferredSize(new Dimension(400, 500));
             window.setSize(400, 500);
-
             cardLayout.show(cardPanel, "Config");
         });
 
@@ -108,8 +109,8 @@ public class OceanTrader {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
 
-        confirmScreen.button.addActionListener(e2 -> {
-            //TO BE IMPLEMENTED LATER
+        confirmScreen.button.addActionListener(e -> {
+            cardLayout.show(cardPanel, "Main");
         });
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

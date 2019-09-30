@@ -16,10 +16,11 @@ public class ConfirmationScreen {
     protected Object[][] list = new Object[10][2];
 
     protected ConfirmationScreen() {
-        this.panel = new JPanel();
-        this.panelGridBag = new JPanel(new GridBagLayout());
-        this.button = new JButton();
-        this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+        panelGridBag = new JPanel(new GridBagLayout());
+        button = new JButton("Proceed");
+        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
     }
 
     protected void setPlayer(Player player) {
@@ -38,8 +39,6 @@ public class ConfirmationScreen {
                 this.panel.add(label, constraints);
             }
         }
-        button = new JButton("Proceed");
-        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
         panel.add(button);
         panelGridBag.add(panel);
     }
