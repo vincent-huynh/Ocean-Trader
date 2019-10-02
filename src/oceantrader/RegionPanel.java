@@ -9,6 +9,7 @@ import java.util.AbstractList;
 public class RegionPanel {
     protected JPanel panel;
     protected AbstractListModel regionListy;
+    protected JList regionList;
     public RegionPanel() {
         panel = new JPanel();
 
@@ -18,7 +19,7 @@ public class RegionPanel {
     @SuppressWarnings("unchecked")
     private void initGUI() {
         JScrollPane jScrollPane1 = new JScrollPane();
-        JList regionList = new JList();
+        regionList = new JList();
         JLabel regionNameLbl = new JLabel("Region:");
         JLabel regionTechLbl = new JLabel("Tech Level:");
         JLabel regionCoordsLbl = new JLabel("Coordinates:");
@@ -36,19 +37,7 @@ public class RegionPanel {
         panel.setMaximumSize(new Dimension(350, 950));
         panel.setPreferredSize(new Dimension(350, 950));
 
-        regionListy = new AbstractListModel() {
-            String[] strings = Universe.getInstance().getRegionArray();
-            @Override
-            public int getSize() {
-                return strings.length;
-            }
-
-            @Override
-            public Object getElementAt(int i) {
-                return strings[i];
-            }
-        };
-        regionList.setModel(regionListy);
+        updateRegionList();
 
         regionList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -119,5 +108,20 @@ public class RegionPanel {
                         .addComponent(distance, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(283, Short.MAX_VALUE))
         );
+    }
+
+    protected void updateRegionList() {
+        regionListy = new AbstractListModel() {
+            String[] strings = Universe.getInstance().getRegionArray();
+            @Override
+            public int getSize() {
+                return strings.length;
+            }
+            @Override
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
+        };
+        regionList.setModel(regionListy);
     }
 }

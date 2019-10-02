@@ -73,8 +73,10 @@ public class Universe {
         return regionArr;
     }
 
-    public void sortRegions() {
-        Collections.sort(regions);
+    protected void sortRegions() {
+        ArrayList<Region> temp = regions;
+        Collections.sort(temp);
+        this.regions = temp;
     }
 
     public String toString() {

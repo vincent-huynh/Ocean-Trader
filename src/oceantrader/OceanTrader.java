@@ -112,6 +112,7 @@ public class OceanTrader {
 
         confirmScreen.button.addActionListener(e -> {
             cardLayout.show(cardPanel, "Main");
+            Universe.getInstance().sortRegions();
         });
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
