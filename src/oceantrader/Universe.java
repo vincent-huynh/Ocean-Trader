@@ -61,6 +61,8 @@ public class Universe {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 
+
+
     protected static Universe getInstance() {
         if (singleInstance == null) {
             singleInstance = new Universe();
@@ -79,4 +81,6 @@ public class Universe {
     public String toString() {
         return regions.toString();
     }
+
+
 }

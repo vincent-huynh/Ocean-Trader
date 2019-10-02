@@ -2,9 +2,11 @@ package oceantrader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.AbstractList;
 
 public class RegionPanel {
     protected JPanel panel;
+    protected AbstractListModel regionListy;
     public RegionPanel() {
         panel = new JPanel();
 
@@ -29,10 +31,7 @@ public class RegionPanel {
         panel.setMaximumSize(new Dimension(350, 950));
         panel.setPreferredSize(new Dimension(350, 950));
 
-
-
-        regionList.setModel(new AbstractListModel() {
-            //String[] strings = { "Temporary region 1", "Temp region 2", "Temp region 3"};
+        regionListy = new AbstractListModel() {
             String[] strings = OceanTrader.universe.getRegionArray();
             @Override
             public int getSize() {
@@ -43,7 +42,9 @@ public class RegionPanel {
             public Object getElementAt(int i) {
                 return strings[i];
             }
-        });
+        };
+
+        regionList.setModel(regionListy);
 
         jScrollPane1.setViewportView(regionList);
 

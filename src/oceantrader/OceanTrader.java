@@ -137,4 +137,12 @@ public class OceanTrader {
         ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints)
                 + " points remaining.");
     }
+
+    protected void sortRegions() {
+
+    }
+
+    protected static Player getPlayer() {
+        return player;
+    }
 }

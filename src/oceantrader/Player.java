@@ -14,6 +14,9 @@ public class Player {
     private int traderPoints;
     private int engineerPoints;
 
+    protected int x;
+    protected int y;
+
     public Player(String name, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
 
