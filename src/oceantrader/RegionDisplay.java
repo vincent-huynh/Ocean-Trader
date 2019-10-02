@@ -28,6 +28,7 @@ public class RegionDisplay {
 
         leftPanel = regionPanel.panel;
         leftPanel.setPreferredSize(new Dimension(350, 1000));
+
         //leftPanel.setBackground(Color.orange);
 
         rightPanel = new JPanel();

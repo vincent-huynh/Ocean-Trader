@@ -29,8 +29,11 @@ public class RegionPanel {
         panel.setMaximumSize(new Dimension(350, 950));
         panel.setPreferredSize(new Dimension(350, 950));
 
+
+
         regionList.setModel(new AbstractListModel() {
-            String[] strings = { "Temporary region 1", "Temp region 2", "Temp region 3"};
+            //String[] strings = { "Temporary region 1", "Temp region 2", "Temp region 3"};
+            String[] strings = OceanTrader.universe.getRegionArray();
             @Override
             public int getSize() {
                 return strings.length;
@@ -41,6 +44,7 @@ public class RegionPanel {
                 return strings[i];
             }
         });
+
         jScrollPane1.setViewportView(regionList);
 
         GroupLayout layout = new GroupLayout(panel);

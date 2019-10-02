@@ -10,7 +10,7 @@ public class Universe {
     private static Universe singleInstance = null;
     protected ArrayList<Region> regions;
 
-    private Universe() {
+    public Universe() {
 
         Random rand = new Random();
         regions = new ArrayList<Region>();
@@ -66,5 +66,17 @@ public class Universe {
             singleInstance = new Universe();
         }
         return singleInstance;
+    }
+
+    public String[] getRegionArray() {
+        String[] regionArr = new String[regions.size()];
+        for(int i = 0; i < regions.size(); i++) {
+            regionArr[i] = regions.get(i).getName();
+        }
+        return regionArr;
+    }
+
+    public String toString() {
+        return regions.toString();
     }
 }
