@@ -11,21 +11,20 @@ import java.awt.GridBagLayout;
 public class ConfirmationScreen {
 
     protected JPanel panel;
-    protected Player player;
     protected JButton button;
-    protected Object[][] list;
     protected JPanel panelGridBag;
+    protected Object[][] list = new Object[10][2];
 
     protected ConfirmationScreen() {
-        this.panel = new JPanel();
-        this.panelGridBag = new JPanel(new GridBagLayout());
-        this.button = new JButton();
-        this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+        panelGridBag = new JPanel(new GridBagLayout());
+        button = new JButton("Proceed");
+        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
     }
 
     protected void setPlayer(Player player) {
-        this.player = player;
-        this.list = retrieveData();
+        retrieveData(player);
         addPlayerInfo();
     }
 
@@ -40,15 +39,11 @@ public class ConfirmationScreen {
                 this.panel.add(label, constraints);
             }
         }
-        button = new JButton("Proceed");
-        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
         panel.add(button);
         panelGridBag.add(panel);
     }
 
-    private Object[][] retrieveData() {
-
-        Object[][] list = new Object[10][2];
+    private void retrieveData(Player player) {
         list[0][0] = "Player Name";
         list[1][0] = "Difficulty";
         list[2][0] = "Currency";
@@ -64,7 +59,5 @@ public class ConfirmationScreen {
         list[4][1] = player.getSkillLevel("Fighter");
         list[5][1] = player.getSkillLevel("Trader");
         list[6][1] = player.getSkillLevel("Engineer");
-
-        return list;
     }
 }

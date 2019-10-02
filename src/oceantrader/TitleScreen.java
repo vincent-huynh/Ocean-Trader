@@ -11,12 +11,13 @@ import javax.swing.JPanel;
 
 public class TitleScreen {
 
-    protected JPanel panelBox;
-    protected JPanel panelGridBag;
-    protected JLabel label;
-    protected JButton button;
+    private JLabel label;
+    private JPanel panelBox;
 
-    public TitleScreen() {
+    protected JButton button;
+    protected JPanel panelGridBag;
+
+    protected TitleScreen() {
 
         panelBox = new JPanel();
         panelGridBag = new JPanel(new GridBagLayout());

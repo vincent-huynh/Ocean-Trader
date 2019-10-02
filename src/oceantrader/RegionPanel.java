@@ -11,6 +11,7 @@ public class RegionPanel {
         initGUI();
     }
 
+    @SuppressWarnings("unchecked")
     private void initGUI() {
         JScrollPane jScrollPane1 = new JScrollPane();
         JList regionList = new JList();

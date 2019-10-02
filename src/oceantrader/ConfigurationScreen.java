@@ -13,14 +13,15 @@ import java.awt.Insets;
 
 public class ConfigurationScreen {
 
-    protected static JPanel panel;
-    protected static GridBagLayout gbPanel;
+    private static int points = 16;
+    private static GridBagLayout gbPanel;
     private static GridBagConstraints constraints;
+
+    protected static JPanel panel;
     protected static JButton startButton;
     protected static JTextField nameField;
-    protected static JComboBox difficultyComboBox;
     protected static JTextField pointsRemaining;
-    protected static int points = 16;
+    protected static JComboBox difficultyComboBox;
 
     protected static JSpinner pilotSpinner;
     protected static JSpinner fighterSpinner;
@@ -82,7 +83,7 @@ public class ConfigurationScreen {
         gbPanel.setConstraints(difficultyLabel, constraints);
         panel.add(difficultyLabel);
 
-        String[] difficultyComboData = {"Easy", "Medium", "Hard" };
+        String[] difficultyComboData = {"Easy", "Medium", "Hard"};
         difficultyComboBox = new JComboBox(difficultyComboData);
         constraints.gridx = 8;
         constraints.gridy = 2;

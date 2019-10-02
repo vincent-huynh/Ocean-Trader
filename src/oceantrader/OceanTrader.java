@@ -11,10 +11,10 @@ public class OceanTrader {
 
     private static Player player;
     private static JFrame window;
-    private static CardLayout cardLayout;
     private static JPanel cardPanel;
+    private static CardLayout cardLayout;
+    private static HashMap<String, Integer> diffMap;
     private static int currPoints = 0;
-    protected static HashMap<String, Integer> map;
 
     protected static void startGame() {
 
@@ -25,14 +25,16 @@ public class OceanTrader {
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
         ConfirmationScreen confirmScreen = new ConfirmationScreen();
+        RegionDisplay regionDisplay = new RegionDisplay();
 
         cardPanel.add(titleScreen.panelGridBag, "Title");
         cardPanel.add(configScreen.panel, "Config");
+        cardPanel.add(regionDisplay.panel, "Main");
 
-        map = new HashMap<>(3);
-        map.put("Easy", 16);
-        map.put("Medium", 12);
-        map.put("Hard", 8);
+        diffMap = new HashMap<>(3);
+        diffMap.put("Easy", 16);
+        diffMap.put("Medium", 12);
+        diffMap.put("Hard", 8);
 
         titleScreen.button.addActionListener(e -> {
 
@@ -40,7 +42,6 @@ public class OceanTrader {
             window.setMaximumSize(new Dimension(400, 500));
             window.setPreferredSize(new Dimension(400, 500));
             window.setSize(400, 500);
-
             cardLayout.show(cardPanel, "Config");
         });
 
@@ -64,10 +65,10 @@ public class OceanTrader {
             if (name.equals("") || diff == null) {
                 JOptionPane.showMessageDialog(window,
                         "Please enter player info.");
-            } else if (totalSkill != (map.get((String) diff)).intValue()) {
+            } else if (totalSkill != (diffMap.get((String) diff)).intValue()) {
                 JOptionPane.showMessageDialog(window,
                         "Incorrect point allocation.\nExpected: "
-                                + map.get((String) diff).toString()
+                                + diffMap.get((String) diff).toString()
                                 + "\nReceived: " + totalSkill);
             } else {
                 Difficulty choice;
@@ -108,8 +109,8 @@ public class OceanTrader {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
 
-        confirmScreen.button.addActionListener(e2 -> {
-            //TO BE IMPLEMENTED LATER
+        confirmScreen.button.addActionListener(e -> {
+            cardLayout.show(cardPanel, "Main");
         });
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

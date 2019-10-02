@@ -6,6 +6,7 @@ public class Player {
 
     private String name;
     private Difficulty difficulty;
+    private Region region;
     private int currency;
 
     private int pilotPoints;
@@ -68,17 +69,16 @@ public class Player {
         return currency;
     }
 
-    public String getDifficulty() {
-        switch (difficulty) {
-        case EASY:
-            return "Easy";
-        case MEDIUM:
-            return "Medium";
-        case HARD:
-            return "Hard";
-        default:
-            throw new NoSuchElementException("Difficulty not found.");
-        }
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 
     public int getSkillLevel(String skill) {
@@ -103,10 +103,10 @@ public class Player {
     @Override
     public String toString() {
         return name + ":"
-                + "\n\tPilot: " + this.pilotPoints
-                + "\n\tFighter: " + this.fighterPoints
-                + "\n\tTrader: " + this.traderPoints
-                + "\n\tEngineer: " + this.engineerPoints
+                + "\n\tSeamanship: " + this.pilotPoints
+                + "\n\tBattle Ability: " + this.fighterPoints
+                + "\n\tTradesmanship: " + this.traderPoints
+                + "\n\tWorkmanship: " + this.engineerPoints
                 + "\n\tDifficulty: " + this.difficulty;
     }
 }
