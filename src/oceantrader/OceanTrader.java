@@ -22,7 +22,7 @@ public class OceanTrader {
         window = new JFrame();
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        
+
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
         ConfirmationScreen confirmScreen = new ConfirmationScreen();
@@ -136,10 +136,6 @@ public class OceanTrader {
                 + (int) ConfigurationScreen.engineerSpinner.getValue();
         ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints)
                 + " points remaining.");
-    }
-
-    protected void sortRegions() {
-
     }
 
     protected static Player getPlayer() {
