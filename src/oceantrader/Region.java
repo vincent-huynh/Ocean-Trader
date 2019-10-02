@@ -56,8 +56,10 @@ public class Region implements Comparable<Region> {
 
 
     protected double calcDistance(Player player, Region region) {
-        return Math.sqrt(Math.pow((region.getyCoord() - player.getY()), 2)
-                + Math.pow((region.getxCoord() - player.getX()), 2));
+        return Math.sqrt(Math.pow((region.getyCoord()
+                - player.getRegion().getyCoord()), 2)
+                + Math.pow((region.getxCoord()
+                - player.getRegion().getxCoord()), 2));
     }
 
     @Override

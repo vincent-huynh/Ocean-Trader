@@ -15,10 +15,10 @@ import java.awt.Dimension;
 public class RegionPanel {
 
     protected JPanel panel;
-    protected AbstractListModel regionListy;
-    protected JList regionList;
+    private AbstractListModel regionListy;
+    private JList regionList;
 
-    public RegionPanel() {
+    protected RegionPanel() {
         panel = new JPanel();
         initGUI();
     }
@@ -127,7 +127,7 @@ public class RegionPanel {
         );
     }
 
-    protected void updateRegionList() {
+    private void updateRegionList() {
         regionListy = new AbstractListModel() {
             private String[] strings = Universe.getInstance().getRegionArray();
 

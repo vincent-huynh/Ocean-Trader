@@ -110,8 +110,9 @@ public class OceanTrader {
         });
 
         confirmScreen.button.addActionListener(e -> {
-            cardLayout.show(cardPanel, "Main");
+            player.setRegion(Universe.regions.get(0));
             Universe.getInstance().sortRegions();
+            cardLayout.show(cardPanel, "Main");
         });
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
