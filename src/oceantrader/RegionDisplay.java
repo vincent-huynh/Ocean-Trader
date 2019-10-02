@@ -17,14 +17,18 @@ public class RegionDisplay {
 
     protected JButton travelButton;
 
+    protected RegionPanel regionPanel;
     protected RegionDisplay() {
 
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        leftPanel = new JPanel();
+        regionPanel = new RegionPanel();
+
+
+        leftPanel = regionPanel.panel;
         leftPanel.setPreferredSize(new Dimension(350, 1000));
-        leftPanel.setBackground(Color.orange);
+        //leftPanel.setBackground(Color.orange);
 
         rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(350, 1000));
