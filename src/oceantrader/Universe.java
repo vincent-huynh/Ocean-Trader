@@ -1,9 +1,6 @@
 package oceantrader;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Universe {
 
@@ -61,8 +58,6 @@ public class Universe {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 
-
-
     protected static Universe getInstance() {
         if (singleInstance == null) {
             singleInstance = new Universe();
@@ -76,6 +71,10 @@ public class Universe {
             regionArr[i] = regions.get(i).getName();
         }
         return regionArr;
+    }
+
+    public void sortRegions() {
+        Collections.sort(regions);
     }
 
     public String toString() {

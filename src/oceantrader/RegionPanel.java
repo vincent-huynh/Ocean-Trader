@@ -1,6 +1,8 @@
 package oceantrader;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.AbstractList;
 
@@ -43,8 +45,17 @@ public class RegionPanel {
                 return strings[i];
             }
         };
-
         regionList.setModel(regionListy);
+
+        regionList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                Region selected = Universe.getInstance().regions.get(regionList.getSelectedIndex());
+                regionName.setText(selected.getName());
+                regionTech.setText(selected.getTechLevel().toString());
+                regionCoords.setText("X: " + selected.getxCoord() + " | Y: " + selected.getyCoord());
+            }
+        });
 
         jScrollPane1.setViewportView(regionList);
 
