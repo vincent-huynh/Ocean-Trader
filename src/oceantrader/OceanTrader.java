@@ -9,13 +9,12 @@ import java.util.HashMap;
 
 public class OceanTrader {
 
-    private static Player player;
+    protected static Player player;
     private static JFrame window;
     private static JPanel cardPanel;
     private static CardLayout cardLayout;
     private static HashMap<String, Integer> diffMap;
     private static int currPoints = 0;
-
 
     protected static void startGame() {
 
@@ -137,9 +136,5 @@ public class OceanTrader {
                 + (int) ConfigurationScreen.engineerSpinner.getValue();
         ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints)
                 + " points remaining.");
-    }
-
-    protected static Player getPlayer() {
-        return player;
     }
 }

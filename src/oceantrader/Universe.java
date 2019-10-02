@@ -1,6 +1,10 @@
 package oceantrader;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class Universe {
 
@@ -26,8 +30,8 @@ public class Universe {
         regionNames.add("Mermaid Mediterranean");
 
         TechLevel[] techLevels = {TechLevel.PREAG, TechLevel.AGRICULTURE,
-                TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
-                TechLevel.MODERN, TechLevel.FUTURISTIC};
+            TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
+            TechLevel.MODERN, TechLevel.FUTURISTIC};
 
         for (int i = 0; i < 10; ++i) {
             boolean newCoords = true;
@@ -36,7 +40,7 @@ public class Universe {
                 int x = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 int y = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 for (Map.Entry<Integer, Integer> entry : coords.entrySet()) {
-                    if (distanceBetween((double)x, (double)y,
+                    if (distanceBetween((double) x, (double) y,
                             entry.getKey().doubleValue(),
                             entry.getValue().doubleValue()) < 5) {
                         stop = true;
@@ -65,23 +69,19 @@ public class Universe {
         return singleInstance;
     }
 
-    public String[] getRegionArray() {
+    protected String[] getRegionArray() {
         String[] regionArr = new String[regions.size()];
-        for(int i = 0; i < regions.size(); i++) {
+        for (int i = 0; i < regions.size(); ++i) {
             regionArr[i] = regions.get(i).getName();
         }
         return regionArr;
     }
 
     protected void sortRegions() {
-        ArrayList<Region> temp = regions;
-        Collections.sort(temp);
-        this.regions = temp;
+        Collections.sort(regions);
     }
 
     public String toString() {
         return regions.toString();
     }
-
-
 }
