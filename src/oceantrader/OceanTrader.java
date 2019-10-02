@@ -15,14 +15,14 @@ public class OceanTrader {
     private static CardLayout cardLayout;
     private static HashMap<String, Integer> diffMap;
     private static int currPoints = 0;
-    protected static Universe universe;
+
 
     protected static void startGame() {
 
         window = new JFrame();
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        universe = new Universe();
+        
         TitleScreen titleScreen = new TitleScreen();
         ConfigurationScreen configScreen = new ConfigurationScreen();
         ConfirmationScreen confirmScreen = new ConfirmationScreen();

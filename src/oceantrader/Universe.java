@@ -10,7 +10,7 @@ public class Universe {
     private static Universe singleInstance = null;
     protected ArrayList<Region> regions;
 
-    public Universe() {
+    private Universe() {
 
         Random rand = new Random();
         regions = new ArrayList<Region>();

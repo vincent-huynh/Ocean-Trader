@@ -32,7 +32,7 @@ public class RegionPanel {
         panel.setPreferredSize(new Dimension(350, 950));
 
         regionListy = new AbstractListModel() {
-            String[] strings = OceanTrader.universe.getRegionArray();
+            String[] strings = Universe.getInstance().getRegionArray();
             @Override
             public int getSize() {
                 return strings.length;
