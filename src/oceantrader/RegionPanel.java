@@ -14,9 +14,9 @@ import java.awt.Dimension;
 
 public class RegionPanel {
 
-    protected JPanel panel;
-    private AbstractListModel regionListy;
-    private JList regionList;
+    protected static JPanel panel;
+    protected static JList regionList;
+    protected static AbstractListModel regionListy;
 
     protected RegionPanel() {
         panel = new JPanel();
@@ -127,7 +127,7 @@ public class RegionPanel {
         );
     }
 
-    private void updateRegionList() {
+    protected static void updateRegionList() {
         regionListy = new AbstractListModel() {
             private String[] strings = Universe.getInstance().getRegionArray();
 

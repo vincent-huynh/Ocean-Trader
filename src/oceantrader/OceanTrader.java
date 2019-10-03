@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class OceanTrader {
 
     protected static Player player;
-    private static JFrame window;
+    protected static JFrame window;
     private static JPanel cardPanel;
     private static CardLayout cardLayout;
     private static HashMap<String, Integer> diffMap;
@@ -113,6 +113,10 @@ public class OceanTrader {
             player.setRegion(Universe.regions.get(0));
             Universe.getInstance().sortRegions();
             cardLayout.show(cardPanel, "Main");
+        });
+
+        regionDisplay.travelButton.addActionListener(e -> {
+            Travel.confirmTravel();
         });
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
