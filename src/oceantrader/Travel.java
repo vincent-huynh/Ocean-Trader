@@ -9,10 +9,12 @@ public class Travel {
         if (RegionPanel.regionList.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(OceanTrader.window,
                     "No region selected.");
+
         } else if (RegionPanel.regionList.getSelectedValue()
                 .equals(OceanTrader.player.getRegion().getName())) {
             JOptionPane.showMessageDialog(OceanTrader.window,
                     "You are already at this region!");
+
         } else {
             OceanTrader.player.setRegion(Universe.regions
                     .get(RegionPanel.regionList.getSelectedIndex()));
