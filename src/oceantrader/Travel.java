@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 public class Travel {
 
     protected static void confirmTravel() {
+
         if (RegionPanel.regionList.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(OceanTrader.window,
                     "No region selected.");
