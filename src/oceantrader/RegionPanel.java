@@ -50,14 +50,16 @@ public class RegionPanel {
         regionList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                Region selected = Universe.getInstance()
-                        .regions.get(regionList.getSelectedIndex());
-                regionName.setText(selected.getName());
-                regionTech.setText(selected.getTechLevel().toString());
-                regionCoords.setText("X: " + selected.getxCoord()
-                        + " | Y: " + selected.getyCoord());
-                distance.setText(String.format("%.2f nautical miles",
-                        selected.calcDistance(OceanTrader.player, selected)));
+                if (regionList.getSelectedIndex() >= 0) {
+                    Region selected = Universe.getInstance()
+                            .regions.get(regionList.getSelectedIndex());
+                    regionName.setText(selected.getName());
+                    regionTech.setText(selected.getTechLevel().toString());
+                    regionCoords.setText("X: " + selected.getxCoord()
+                            + " | Y: " + selected.getyCoord());
+                    distance.setText(String.format("%.2f nautical miles",
+                            selected.calcDistance(OceanTrader.player, selected)));
+                }
             }
         });
 

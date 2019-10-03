@@ -5,7 +5,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class OceanTrader {
 
@@ -15,6 +17,7 @@ public class OceanTrader {
     private static CardLayout cardLayout;
     private static HashMap<String, Integer> diffMap;
     private static int currPoints = 0;
+    private static Random rand = new Random();
 
     protected static void startGame() {
 
@@ -110,7 +113,7 @@ public class OceanTrader {
         });
 
         confirmScreen.button.addActionListener(e -> {
-            player.setRegion(Universe.regions.get(0));
+            player.setRegion(Universe.regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
             cardLayout.show(cardPanel, "Main");
         });

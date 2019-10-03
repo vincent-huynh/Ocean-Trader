@@ -12,6 +12,7 @@ public class Travel {
         } else {
             OceanTrader.player.setRegion(Universe.regions.get(RegionPanel.regionList.getSelectedIndex()));
             JOptionPane.showMessageDialog(OceanTrader.window, "Welcome to " + OceanTrader.player.getRegion().getName() + "!");
+            Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
         }
     }
