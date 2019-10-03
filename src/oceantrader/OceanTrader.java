@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -115,6 +114,7 @@ public class OceanTrader {
         confirmScreen.button.addActionListener(e -> {
             player.setRegion(Universe.regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
+            RegionPanel.updateRegionList();
             cardLayout.show(cardPanel, "Main");
         });
 

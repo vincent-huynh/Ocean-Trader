@@ -40,7 +40,7 @@ public class Universe {
                 int x = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 int y = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 for (Map.Entry<Integer, Integer> entry : coords.entrySet()) {
-                    if (distanceBetween((double) x, (double) y,
+                    if (distBetween((double) x, (double) y,
                             entry.getKey().doubleValue(),
                             entry.getValue().doubleValue()) < 5) {
                         stop = true;
@@ -58,7 +58,7 @@ public class Universe {
         }
     }
 
-    private double distanceBetween(double x1, double y1, double x2, double y2) {
+    protected double distBetween(double x1, double y1, double x2, double y2) {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 

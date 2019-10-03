@@ -1,16 +1,10 @@
 package oceantrader;
 
-import javax.swing.AbstractListModel;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.Dimension;
+import java.awt.Font;
 
 public class RegionPanel {
 
@@ -28,24 +22,37 @@ public class RegionPanel {
 
         regionList = new JList();
         JScrollPane jScrollPane1 = new JScrollPane();
+
         JLabel regionNameLbl = new JLabel("Region:");
+        jLabelEdit(regionNameLbl);
+
         JLabel regionTechLbl = new JLabel("Tech Level:");
+        jLabelEdit(regionTechLbl);
+
         JLabel regionCoordsLbl = new JLabel("Coordinates:");
+        jLabelEdit(regionCoordsLbl);
+
         JLabel distanceLbl = new JLabel("Distance:");
+        jLabelEdit(distanceLbl);
 
         JTextField regionName = new JTextField();
-        regionName.setEditable(false);
+        jTextFieldEdit(regionName);
+
         JTextField regionTech = new JTextField();
-        regionTech.setEditable(false);
+        jTextFieldEdit(regionTech);
+
         JTextField regionCoords = new JTextField();
-        regionCoords.setEditable(false);
+        jTextFieldEdit(regionCoords);
+
         JTextField distance = new JTextField();
-        distance.setEditable(false);
+        jTextFieldEdit(distance);
 
         panel.setMaximumSize(new Dimension(350, 950));
         panel.setPreferredSize(new Dimension(350, 950));
 
         updateRegionList();
+
+        regionList.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         regionList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -57,8 +64,8 @@ public class RegionPanel {
                     regionTech.setText(selected.getTechLevel().toString());
                     regionCoords.setText("X: " + selected.getxCoord()
                             + " | Y: " + selected.getyCoord());
-                    distance.setText(String.format("%.2f nautical miles",
-                            selected.calcDistance(OceanTrader.player, selected)));
+                    distance.setText(String.format("%.2f Nautical Miles",
+                        selected.calcDistance(OceanTrader.player, selected)));
                 }
             }
         });
@@ -81,17 +88,14 @@ public class RegionPanel {
                             .addComponent(regionCoords,
                                     GroupLayout.DEFAULT_SIZE, 218,
                                     Short.MAX_VALUE))
-
                     .addGroup(layout.createSequentialGroup()
                             .addComponent(regionNameLbl).addPreferredGap(
                                     LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(regionName))
-
                     .addGroup(layout.createSequentialGroup()
                             .addComponent(distanceLbl).addPreferredGap(
                                     LayoutStyle.ComponentPlacement
                                         .UNRELATED).addComponent(distance))
-
                     .addGroup(layout.createSequentialGroup()
                                     .addComponent(regionTechLbl)
                             .addPreferredGap(LayoutStyle.ComponentPlacement
@@ -127,6 +131,16 @@ public class RegionPanel {
                                     .PREFERRED_SIZE))
             .addContainerGap(283, Short.MAX_VALUE))
         );
+    }
+
+    private static void jTextFieldEdit(JTextField jTextField) {
+        jTextField.setEditable(false);
+        jTextField.setBorder(BorderFactory.createEmptyBorder());
+        jTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+    }
+
+    private static void jLabelEdit(JLabel jLabel) {
+        jLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
     }
 
     protected static void updateRegionList() {
