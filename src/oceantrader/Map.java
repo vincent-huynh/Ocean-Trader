@@ -1,53 +1,99 @@
 package oceantrader;
 
-import javafx.scene.shape.Circle;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Shape;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Map extends JPanel {
 
-    private Graphics gMain;
-    private int widthSize = 700;
-    private int heightSize = 950;
-    private int mapWidth = widthSize - 100;
-    private int mapHeight = heightSize - 100;
+    private int widthSize = 600;
+    private int heightSize = 850;
+    private int mapWidth = widthSize;   // - 100;  This portion is here for
+    // later to pretty up the program by adding borders
+    private int mapHeight = heightSize; // - 100; This portion is here for
+    // later to pretty up the program by adding borders
+    private int radius = 10;            //Modify as needed to change dot size
+    private HashMap regions = new HashMap<Region, Color>();
+    private Universe instance;
 
-    protected JLabel xCoor;
-    protected JLabel yCoor;
-    protected JLabel regionName;
-    protected Ellipse2D selected;
+    private static final Color DEFAULT_POINT_COLOR = Color.GREEN;
+    private static final Color SELECTED_POINT_COLOR = Color.ORANGE;
+    private static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
+    private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
-    public Map() {
-        this.xCoor = new JLabel();
-        this.yCoor = new JLabel();
-        this.regionName = new JLabel();
+    protected JLabel xCoor = new JLabel();
+    protected JLabel yCoor = new JLabel();
+    protected JLabel regionName = new JLabel();
+    protected Region selected; //Keeps track of the region that is selected
+
+    /**
+     * Constructor for Map, sets up all variables and fields
+     * Follows up by
+     */
+    protected Map() {
+        this.add(regionName);
         this.add(xCoor);
         this.add(yCoor);
-        this.add(regionName);
-        this.setBackground(Color.YELLOW);
+        this.setBackground(BACKGROUND_COLOR);
         this.setPreferredSize(new Dimension(mapWidth, mapHeight));
-        LoadMap();
+        this.instance = Universe.getInstance();
+        setup();
+        loadMap();
     }
 
-    public void LoadMap() {
+    /**
+     * An extension to the constructor to make code more readable
+     * Sets up the intial Font, Color, and Pulls regions from Universe
+     */
+    private void setup() {
+        this.yCoor.setFont(DEFAULT_FONT);
+        this.xCoor.setFont(DEFAULT_FONT);
+        this.regionName.setFont(DEFAULT_FONT);
+        this.yCoor.setForeground(Color.WHITE);
+        this.xCoor.setForeground(Color.WHITE);
+        this.regionName.setForeground(DEFAULT_POINT_COLOR);
+        for (Region region : instance.regions) {
+            this.regions.put(region, DEFAULT_POINT_COLOR);
+        }
+    }
+
+    /**
+     * Handles the backend logic behind recoloring the map points based
+     * on what ths user selects, then reloads the Map
+     * @param newChoice The new region the User selects
+     */
+    private void reloadGraphics(Region newChoice) {
+        regions.replace(selected, SELECTED_POINT_COLOR, DEFAULT_POINT_COLOR);
+        regions.replace(newChoice, DEFAULT_POINT_COLOR, SELECTED_POINT_COLOR);
+        selected = newChoice;
+        this.repaint();
+    }
+
+    /**
+     * Detects if the user clicks a point on the Map, and if so
+     * passes onto the mouseClickedEvent()
+     */
+    private void loadMap() {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                System.out.println("mouse clicked");
                 mouseClickedEvent(mouseEvent);
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {}
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
@@ -55,75 +101,58 @@ public class Map extends JPanel {
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
         });
     }
 
-    public void mouseClickedEvent(MouseEvent e) {
+    /**
+     * Custom MouseListener Event that checks if the user has clicked on or
+     * within a reasonable distance around a point, if so, selects it, and calls
+     * reloadGraphics() To highlight the point selected. Also updates xCoor,
+     * yCoor, and regionName
+     * @param e MouseEvent
+     */
+    private void mouseClickedEvent(MouseEvent e) {
         double x = e.getX() * 400.0 / mapWidth - 200;
         double y = e.getY() * 400.0 / mapHeight - 200;
         for (Region region : Universe.getInstance().regions) {
-            //TODO: Change to distBetween instead of current method
-            double distance = Universe.getInstance().distBetween(x, y, region.getxCoord(), region.getyCoord());
-//            if (region.getxCoord() / x <= approxFactor && region.getyCoord() / y <= approxFactor) {
+            double distance = Universe.getInstance().distBetween(x, y,
+                    region.getxCoord(), region.getyCoord());
             if (distance < 10) {
-                if (selected != null) {
-                    drawCircle(gMain, (int) selected.getCenterX(), (int) selected.getCenterY(), 10, Color.RED);
-                }
-                this.xCoor.setText("x is " + region.getxCoord());
-                this.yCoor.setText("y is " + region.getyCoord());
-                drawCircle(gMain, region.getxCoord(), region.getyCoord(), 10, Color.BLUE);
+                reloadGraphics(region);
                 this.regionName.setText(region.getName());
+                this.xCoor.setText("[X: " + region.getxCoord());
+                this.yCoor.setText(", Y: " + region.getyCoord() + "]");
             }
         }
     }
 
-    public void paintComponent(Graphics g) {
-        this.setGraphics(g);
+    /**
+     * Overridden paintComponent method in JPanel to draw points based
+     * on the regions in Universe
+     * @param g Graphics
+     */
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int radius = 10; //Modify this to change the size of the dots
-        g.setColor(Color.RED);
         double scaleWidthFactor = (mapWidth / 400.0);
         double scaleHeightFactor = (mapHeight / 400.0);
-        Universe uni = Universe.getInstance();
-        for (Region region : uni.regions) {
-            if (region != null) {
-                Shape circle = new Ellipse2D.Double(((int)((region.getxCoord() + 200) * scaleWidthFactor)), (int)((region.getyCoord() + 200) * scaleHeightFactor), radius, radius);
-                ((Graphics2D) g).fill(circle);
-            }
+        Iterator it  = regions.entrySet().iterator();
+        while (it.hasNext()) {
+            java.util.Map.Entry<Region, Color> entryItem
+                    = (java.util.Map.Entry) it.next();
+            Region region = entryItem.getKey();
+            g.setColor(entryItem.getValue());
+            Shape circle = new Ellipse2D.Double(((int) ((region.getxCoord()
+                    + 200) * scaleWidthFactor)), (int) ((region.getyCoord()
+                    + 200) * scaleHeightFactor), radius, radius);
+            ((Graphics2D) g).fill(circle);
         }
     }
-
-    public void drawCircle(Graphics g, int x, int y, int radius, Color color) {
-        super.paintComponent(g);
-        double scaleWidthFactor = (mapWidth / 400.0);
-        double scaleHeightFactor = (mapHeight / 400.0);
-        g.setColor(color);
-        this.selected = new Ellipse2D.Double(((int)((x + 200) * scaleWidthFactor)), (int)((y + 200) * scaleHeightFactor), radius, radius);
-        ((Graphics2D) g).fill(this.selected);
-    }
-
-    public int getWidthSize() {
-        return this.widthSize;
-    }
-
-    public int getHeightSize() {
-        return this.heightSize;
-    }
-
-    public void setGraphics(Graphics g) {
-        this.gMain = g;
-    }
-
-//    public static void main (String[] args) {
-//        JFrame frame = new JFrame();
-//        Map2 map = new Map2();
-//        frame.add(map);
-//        frame.setVisible(true);
-//        frame.setBackground(Color.BLUE);
-//        frame.setSize(map.getWidthSize(), map.getHeightSize());
-//    }
 }
