@@ -17,7 +17,8 @@ public class Travel {
                     "You are already at this region!");
 
         } else {
-            updateCurrentDot(Map.CURRENT_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
+            Map.regions.replace(OceanTrader.player.getRegion(),
+                    Map.CURRENT_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
             OceanTrader.player.setRegion(Universe.regions
                     .get(RegionPanel.regionList.getSelectedIndex()));
             JOptionPane.showMessageDialog(OceanTrader.window, "Welcome to "
@@ -28,9 +29,5 @@ public class Travel {
             RegionDisplay.map.updateMapTitle(OceanTrader.player.getRegion());
             RegionDisplay.map.repaint();
         }
-    }
-
-    private static void updateCurrentDot(Color oldVal, Color newVal) {
-        Map.regions.replace(OceanTrader.player.getRegion(), oldVal, newVal);
     }
 }
