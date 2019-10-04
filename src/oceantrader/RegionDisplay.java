@@ -17,7 +17,7 @@ public class RegionDisplay {
 
     protected JButton travelButton;
     protected RegionPanel regionPanel;
-    protected Map map;
+    protected static Map map;
 
     protected RegionDisplay() {
 

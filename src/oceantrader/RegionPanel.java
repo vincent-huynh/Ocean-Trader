@@ -74,6 +74,8 @@ public class RegionPanel {
                             + " | Y: " + selected.getyCoord());
                     distance.setText(String.format("%.2f Nautical Miles",
                         selected.calcDistance(OceanTrader.player, selected)));
+                    RegionDisplay.map.reloadGraphics(selected);
+                    RegionDisplay.map.updateMapTitle(selected);
                 }
             }
         });
@@ -144,7 +146,7 @@ public class RegionPanel {
     private static void jTextFieldEdit(JTextField jTextField) {
         jTextField.setEditable(false);
         jTextField.setBorder(BorderFactory.createEmptyBorder());
-        jTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        jTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
     }
 
     private static void jLabelEdit(JLabel jLabel) {

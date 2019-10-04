@@ -22,19 +22,19 @@ public class Map extends JPanel {
     // later to pretty up the program by adding borders
     private int mapHeight = heightSize; // - 100; This portion is here for
     // later to pretty up the program by adding borders
-    private int radius = 10;            //Modify as needed to change dot size
-    private HashMap regions = new HashMap<Region, Color>();
+    private int radius = 15;  //Modify as needed to change dot size
+    private static HashMap regions = new HashMap<Region, Color>();
     private Universe instance;
 
     private static final Color DEFAULT_POINT_COLOR = Color.GREEN;
-    private static final Color SELECTED_POINT_COLOR = Color.ORANGE;
+    private static final Color SELECTED_POINT_COLOR = new Color(255, 180, 0);
     private static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
     private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
     protected JLabel xCoor = new JLabel();
     protected JLabel yCoor = new JLabel();
     protected JLabel regionName = new JLabel();
-    protected Region selected; //Keeps track of the region that is selected
+    protected Region selected; //Curent region selected
 
     /**
      * Constructor for Map, sets up all variables and fields
@@ -72,7 +72,7 @@ public class Map extends JPanel {
      * on what ths user selects, then reloads the Map
      * @param newChoice The new region the User selects
      */
-    private void reloadGraphics(Region newChoice) {
+    protected void reloadGraphics(Region newChoice) {
         regions.replace(selected, SELECTED_POINT_COLOR, DEFAULT_POINT_COLOR);
         regions.replace(newChoice, DEFAULT_POINT_COLOR, SELECTED_POINT_COLOR);
         selected = newChoice;
@@ -127,11 +127,16 @@ public class Map extends JPanel {
                     region.getxCoord(), region.getyCoord());
             if (distance < 10) {
                 reloadGraphics(region);
-                this.regionName.setText(region.getName());
-                this.xCoor.setText("[X: " + region.getxCoord());
-                this.yCoor.setText(", Y: " + region.getyCoord() + "]");
+                updateMapTitle(region);
+//                RegionPanel.regionList.setSelectedValue(selected, true);
             }
         }
+    }
+
+    protected void updateMapTitle(Region region) {
+        this.regionName.setText(region.getName());
+        this.xCoor.setText("[X: " + region.getxCoord());
+        this.yCoor.setText(", Y: " + region.getyCoord() + "]");
     }
 
     /**
@@ -143,7 +148,7 @@ public class Map extends JPanel {
         super.paintComponent(g);
         double scaleWidthFactor = (mapWidth / 400.0);
         double scaleHeightFactor = (mapHeight / 400.0);
-        Iterator it  = regions.entrySet().iterator();
+        Iterator it = regions.entrySet().iterator();
         while (it.hasNext()) {
             java.util.Map.Entry<Region, Color> entryItem
                     = (java.util.Map.Entry) it.next();
