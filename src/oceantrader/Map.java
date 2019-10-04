@@ -134,7 +134,6 @@ public class Map extends JPanel {
                     region.getxCoord(), region.getyCoord());
             if (distance < 10) {
                 reloadGraphics(region);
-                //updateMapTitle(region); DONT DELETE!!
                 RegionPanel.updateList(selected, RegionPanel.regionName,
                         RegionPanel.regionTech, RegionPanel.regionCoords,
                         RegionPanel.distance);
