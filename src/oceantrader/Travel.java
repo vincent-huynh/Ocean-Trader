@@ -1,7 +1,6 @@
 package oceantrader;
 
 import javax.swing.JOptionPane;
-import java.awt.Color;
 
 public class Travel {
 
