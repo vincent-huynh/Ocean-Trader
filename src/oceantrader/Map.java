@@ -23,12 +23,13 @@ public class Map extends JPanel {
     private int mapHeight = heightSize; // - 100; This portion is here for
     // later to pretty up the program by adding borders
     private int radius = 15;  //Modify as needed to change dot size
-    private static HashMap regions = new HashMap<Region, Color>();
+    protected static HashMap regions = new HashMap<Region, Color>();
     private Universe instance;
 
-    private static final Color DEFAULT_POINT_COLOR = Color.GREEN;
-    private static final Color SELECTED_POINT_COLOR = new Color(255, 127, 0);
-    private static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
+    protected static final Color DEFAULT_POINT_COLOR = Color.GREEN;
+    protected static final Color SELECTED_POINT_COLOR = new Color(255, 127, 0);
+    protected static final Color CURRENT_POINT_COLOR = new Color(255, 255, 0);
+    protected static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
     private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
     protected JLabel current = new JLabel();
@@ -79,6 +80,8 @@ public class Map extends JPanel {
     protected void reloadGraphics(Region newChoice) {
         regions.replace(selected, SELECTED_POINT_COLOR, DEFAULT_POINT_COLOR);
         regions.replace(newChoice, DEFAULT_POINT_COLOR, SELECTED_POINT_COLOR);
+        regions.replace(OceanTrader.player.getRegion(), DEFAULT_POINT_COLOR,
+                CURRENT_POINT_COLOR);
         selected = newChoice;
         this.repaint();
     }
