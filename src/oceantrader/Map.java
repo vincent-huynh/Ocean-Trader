@@ -27,7 +27,7 @@ public class Map extends JPanel {
     private Universe instance;
 
     private static final Color DEFAULT_POINT_COLOR = Color.GREEN;
-    private static final Color SELECTED_POINT_COLOR = new Color(255, 180, 0);
+    private static final Color SELECTED_POINT_COLOR = new Color(255, 127, 0);
     private static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
     private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
@@ -131,6 +131,8 @@ public class Map extends JPanel {
                 RegionPanel.updateList(selected, RegionPanel.regionName,
                         RegionPanel.regionTech, RegionPanel.regionCoords,
                         RegionPanel.distance);
+                RegionPanel.regionList
+                        .setSelectedIndex(Universe.regions.indexOf(region));
             }
         }
     }
@@ -138,7 +140,7 @@ public class Map extends JPanel {
     protected void updateMapTitle(Region region) {
         this.regionName.setText(region.getName());
         this.xCoor.setText("[X: " + region.getxCoord());
-        this.yCoor.setText(", Y: " + region.getyCoord() + "]");
+        this.yCoor.setText("| Y: " + region.getyCoord() + "]");
     }
 
     /**
