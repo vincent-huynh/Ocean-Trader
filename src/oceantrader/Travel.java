@@ -22,6 +22,7 @@ public class Travel {
                     + OceanTrader.player.getRegion().getName() + "!");
             Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
+            RegionPanel.regionList.setSelectedIndex(0);
         }
     }
 }
