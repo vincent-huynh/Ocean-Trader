@@ -31,6 +31,7 @@ public class Map extends JPanel {
     private static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
     private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
+    protected JLabel current = new JLabel();
     protected JLabel xCoor = new JLabel();
     protected JLabel yCoor = new JLabel();
     protected JLabel regionName = new JLabel();
@@ -41,6 +42,7 @@ public class Map extends JPanel {
      * Follows up by
      */
     protected Map() {
+        this.add(current);
         this.add(regionName);
         this.add(xCoor);
         this.add(yCoor);
@@ -56,9 +58,11 @@ public class Map extends JPanel {
      * Sets up the intial Font, Color, and Pulls regions from Universe
      */
     private void setup() {
+        this.current.setFont(DEFAULT_FONT);
         this.yCoor.setFont(DEFAULT_FONT);
         this.xCoor.setFont(DEFAULT_FONT);
         this.regionName.setFont(DEFAULT_FONT);
+        this.current.setForeground(Color.YELLOW);
         this.yCoor.setForeground(Color.WHITE);
         this.xCoor.setForeground(Color.WHITE);
         this.regionName.setForeground(DEFAULT_POINT_COLOR);
@@ -127,7 +131,7 @@ public class Map extends JPanel {
                     region.getxCoord(), region.getyCoord());
             if (distance < 10) {
                 reloadGraphics(region);
-                updateMapTitle(region);
+                //updateMapTitle(region); DONT DELETE!!
                 RegionPanel.updateList(selected, RegionPanel.regionName,
                         RegionPanel.regionTech, RegionPanel.regionCoords,
                         RegionPanel.distance);
@@ -138,6 +142,7 @@ public class Map extends JPanel {
     }
 
     protected void updateMapTitle(Region region) {
+        this.current.setText("Your Current Location: ");
         this.regionName.setText(region.getName());
         this.xCoor.setText("[X: " + region.getxCoord());
         this.yCoor.setText("| Y: " + region.getyCoord() + "]");

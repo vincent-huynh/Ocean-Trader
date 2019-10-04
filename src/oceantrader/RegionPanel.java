@@ -76,7 +76,7 @@ public class RegionPanel {
                     updateList(selected, regionName, regionTech,
                             regionCoords, distance);
                     RegionDisplay.map.reloadGraphics(selected);
-                    RegionDisplay.map.updateMapTitle(selected);
+                    //RegionDisplay.map.updateMapTitle(selected); DONT DELETE!!
                 }
             }
         });
