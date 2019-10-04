@@ -27,12 +27,15 @@ public class RegionDisplay {
         regionPanel = new RegionPanel();
         map = new Map();
 
+        Color panelColor = new Color(196, 196, 196);
+
         leftPanel = regionPanel.panel;
         leftPanel.setPreferredSize(new Dimension(350, 1000));
+        leftPanel.setBackground(panelColor);
 
         rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(350, 1000));
-        rightPanel.setBackground(Color.orange);
+        rightPanel.setBackground(panelColor);
 
         centerPanel = map;
 
