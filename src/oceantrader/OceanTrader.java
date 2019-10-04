@@ -115,6 +115,7 @@ public class OceanTrader {
             player.setRegion(Universe.regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
+            RegionDisplay.map.updateMapTitle(player.getRegion());
             cardLayout.show(cardPanel, "Main");
         });
 
