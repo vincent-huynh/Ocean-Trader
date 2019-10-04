@@ -20,6 +20,11 @@ public class RegionPanel {
     protected static JList regionList;
     protected static AbstractListModel regionListy;
 
+    protected static JTextField regionName;
+    protected static JTextField regionTech;
+    protected static JTextField regionCoords;
+    protected static JTextField distance;
+
     protected RegionPanel() {
         panel = new JPanel();
         initGUI();
@@ -43,16 +48,16 @@ public class RegionPanel {
         JLabel distanceLbl = new JLabel("Distance:");
         jLabelEdit(distanceLbl);
 
-        JTextField regionName = new JTextField();
+        regionName = new JTextField();
         jTextFieldEdit(regionName);
 
-        JTextField regionTech = new JTextField();
+        regionTech = new JTextField();
         jTextFieldEdit(regionTech);
 
-        JTextField regionCoords = new JTextField();
+        regionCoords = new JTextField();
         jTextFieldEdit(regionCoords);
 
-        JTextField distance = new JTextField();
+        distance = new JTextField();
         jTextFieldEdit(distance);
 
         panel.setMaximumSize(new Dimension(350, 950));
@@ -68,12 +73,8 @@ public class RegionPanel {
                 if (regionList.getSelectedIndex() >= 0) {
                     Region selected = Universe.getInstance()
                             .regions.get(regionList.getSelectedIndex());
-                    regionName.setText(selected.getName());
-                    regionTech.setText(selected.getTechLevel().toString());
-                    regionCoords.setText("X: " + selected.getxCoord()
-                            + " | Y: " + selected.getyCoord());
-                    distance.setText(String.format("%.2f Nautical Miles",
-                        selected.calcDistance(OceanTrader.player, selected)));
+                    updateList(selected, regionName, regionTech,
+                            regionCoords, distance);
                     RegionDisplay.map.reloadGraphics(selected);
                     RegionDisplay.map.updateMapTitle(selected);
                 }
@@ -141,6 +142,19 @@ public class RegionPanel {
                                     .PREFERRED_SIZE))
             .addContainerGap(283, Short.MAX_VALUE))
         );
+    }
+
+    protected static void updateList(Region selected,
+                                     JTextField regionName,
+                                     JTextField regionTech,
+                                     JTextField regionCoords,
+                                     JTextField distance) {
+        regionName.setText(selected.getName());
+        regionTech.setText(selected.getTechLevel().toString());
+        regionCoords.setText("X: " + selected.getxCoord()
+                + " | Y: " + selected.getyCoord());
+        distance.setText(String.format("%.2f Nautical Miles",
+                selected.calcDistance(OceanTrader.player, selected)));
     }
 
     private static void jTextFieldEdit(JTextField jTextField) {

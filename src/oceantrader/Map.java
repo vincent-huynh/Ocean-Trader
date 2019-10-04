@@ -128,7 +128,9 @@ public class Map extends JPanel {
             if (distance < 10) {
                 reloadGraphics(region);
                 updateMapTitle(region);
-//                RegionPanel.regionList.setSelectedValue(selected, true);
+                RegionPanel.updateList(selected, RegionPanel.regionName,
+                        RegionPanel.regionTech, RegionPanel.regionCoords,
+                        RegionPanel.distance);
             }
         }
     }
