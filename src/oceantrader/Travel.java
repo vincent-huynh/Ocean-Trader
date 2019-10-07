@@ -16,17 +16,25 @@ public class Travel {
                     "You are already at this region!");
 
         } else {
-            Map.regions.replace(OceanTrader.player.getRegion(),
-                    Map.CURRENT_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
-            OceanTrader.player.setRegion(Universe.regions
-                    .get(RegionPanel.regionList.getSelectedIndex()));
-            JOptionPane.showMessageDialog(OceanTrader.window, "Welcome to "
-                    + OceanTrader.player.getRegion().getName() + "!");
-            Universe.getInstance().sortRegions();
-            RegionPanel.updateRegionList();
-            RegionPanel.regionList.setSelectedIndex(0);
-            RegionDisplay.map.updateMapTitle(OceanTrader.player.getRegion());
-            RegionDisplay.map.repaint();
+            travel();
         }
+    }
+
+    protected static void travel() {
+        Map.regions.replace(OceanTrader.player.getRegion(),
+                Map.CURRENT_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
+        OceanTrader.player.setRegion(Universe.regions
+                .get(RegionPanel.regionList.getSelectedIndex()));
+        JOptionPane.showMessageDialog(OceanTrader.window, "Welcome to "
+                + OceanTrader.player.getRegion().getName() + "!");
+        Universe.getInstance().sortRegions();
+        RegionPanel.updateRegionList();
+        RegionPanel.regionList.setSelectedIndex(0);
+        RegionDisplay.map.updateMapTitle(OceanTrader.player.getRegion());
+        RegionDisplay.map.repaint();
+    }
+
+    protected static int fuelCalc() {
+        return 0;
     }
 }

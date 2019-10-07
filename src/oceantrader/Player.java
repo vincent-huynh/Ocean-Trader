@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private Difficulty difficulty;
     private Region region;
+    private Ship ship;
     private int currency;
 
     private int pilotPoints;
@@ -20,6 +21,7 @@ public class Player {
         this.fighterPoints = fighterPoints;
         this.traderPoints = traderPoints;
         this.engineerPoints = engineerPoints;
+        this.ship = Ship.newShip(ShipType.DEFAULT);
 
         switch (difficulty) {
         case EASY:
@@ -73,6 +75,14 @@ public class Player {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public Difficulty getDifficulty() {

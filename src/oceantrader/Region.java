@@ -1,9 +1,13 @@
 package oceantrader;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Region implements Comparable<Region> {
 
     private String name;
     private TechLevel techLevel;
+    private ArrayList marketItems;
 
     private int xCoord;
     private int yCoord;
@@ -40,6 +44,14 @@ public class Region implements Comparable<Region> {
 
     public void setTechLevel(TechLevel techLevel) {
         this.techLevel = techLevel;
+    }
+
+    public ArrayList getMarketItems() {
+        return marketItems;
+    }
+
+    public void setMarketItems(ArrayList marketItems) {
+        this.marketItems = marketItems;
     }
 
     public void setxCoord(int xCoord) {
