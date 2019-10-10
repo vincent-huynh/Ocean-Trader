@@ -1,32 +1,36 @@
 package oceantrader;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Travel {
 
     protected static void confirmTravel() {
 
-        if (RegionPanel.regionList.getSelectedValue() == null) {
-            JOptionPane.showMessageDialog(OceanTrader.window,
-                    "No region selected.");
+        JFrame window = OceanTrader.window;
+        Object value = RegionPanel.regionList.getSelectedValue();
 
-        } else if (RegionPanel.regionList.getSelectedValue()
-                .equals(OceanTrader.player.getRegion().getName())) {
-            JOptionPane.showMessageDialog(OceanTrader.window,
-                    "You are already at this region!");
-
+        if (value == null) {
+            JOptionPane.showMessageDialog(window, "No region selected.");
+        } else if (value.equals(OceanTrader.player.getRegion().getName())) {
+            JOptionPane.showMessageDialog(window, "You are at this region!");
         } else {
+            System.out.println(fuelCost());
             travel();
         }
     }
 
-    protected static void travel() {
-        Map.regions.replace(OceanTrader.player.getRegion(),
-                Map.CURRENT_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
-        OceanTrader.player.setRegion(Universe.regions
-                .get(RegionPanel.regionList.getSelectedIndex()));
-        JOptionPane.showMessageDialog(OceanTrader.window, "Welcome to "
-                + OceanTrader.player.getRegion().getName() + "!");
+    private static void travel() {
+        Player player = OceanTrader.player;
+        JFrame window = OceanTrader.window;
+        Region region = OceanTrader.player.getRegion();
+        int listSelected = RegionPanel.regionList.getSelectedIndex();
+
+        Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEF_POINT_COLOR);
+        player.setRegion(Universe.regions.get(listSelected));
+        String newRegion = player.getRegion().getName();
+        JOptionPane.showMessageDialog(window, "Welcome to " + newRegion + "!");
+
         Universe.getInstance().sortRegions();
         RegionPanel.updateRegionList();
         RegionPanel.regionList.setSelectedIndex(0);
@@ -34,7 +38,21 @@ public class Travel {
         RegionDisplay.map.repaint();
     }
 
-    protected static int fuelCalc() {
-        return 0;
+    private static int fuelCost() {
+        return (int) (Region.calcDistance(OceanTrader.player, Map.selected)
+                * getDiffMultiplier() * getPilotSavings());
+    }
+
+    private static double getDiffMultiplier() {
+        if (OceanTrader.player.getDifficulty() == Difficulty.EASY) {
+            return 1.0;
+        } else if (OceanTrader.player.getDifficulty() == Difficulty.MEDIUM) {
+            return 1.5;
+        }
+        return 2.0;
+    }
+
+    private static double getPilotSavings() {
+        return (100 - (OceanTrader.player.getSkillLevel("Pilot") * 3.0)) / 100;
     }
 }

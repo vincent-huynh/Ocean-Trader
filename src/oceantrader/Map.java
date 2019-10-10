@@ -26,9 +26,9 @@ public class Map extends JPanel {
     protected static HashMap regions = new HashMap<Region, Color>();
     private Universe instance;
 
-    protected static final Color DEFAULT_POINT_COLOR = Color.GREEN;
+    protected static final Color DEF_POINT_COLOR = Color.GREEN;
     protected static final Color SELECTED_POINT_COLOR = new Color(255, 127, 0);
-    protected static final Color CURRENT_POINT_COLOR = new Color(255, 255, 0);
+    protected static final Color CURR_POINT_COLOR = new Color(255, 255, 0);
     protected static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
     private static final Font DEFAULT_FONT = new Font("Tahoma", Font.PLAIN, 20);
 
@@ -36,7 +36,7 @@ public class Map extends JPanel {
     protected JLabel xCoor = new JLabel();
     protected JLabel yCoor = new JLabel();
     protected JLabel regionName = new JLabel();
-    protected Region selected; //Curent region selected
+    protected static Region selected = null; //Curent region selected
 
     /**
      * Constructor for Map, sets up all variables and fields
@@ -66,9 +66,9 @@ public class Map extends JPanel {
         this.current.setForeground(Color.YELLOW);
         this.yCoor.setForeground(Color.WHITE);
         this.xCoor.setForeground(Color.WHITE);
-        this.regionName.setForeground(DEFAULT_POINT_COLOR);
+        this.regionName.setForeground(DEF_POINT_COLOR);
         for (Region region : instance.regions) {
-            this.regions.put(region, DEFAULT_POINT_COLOR);
+            this.regions.put(region, DEF_POINT_COLOR);
         }
     }
 
@@ -78,10 +78,10 @@ public class Map extends JPanel {
      * @param newChoice The new region the User selects
      */
     protected void reloadGraphics(Region newChoice) {
-        regions.replace(selected, SELECTED_POINT_COLOR, DEFAULT_POINT_COLOR);
-        regions.replace(newChoice, DEFAULT_POINT_COLOR, SELECTED_POINT_COLOR);
-        regions.replace(OceanTrader.player.getRegion(), DEFAULT_POINT_COLOR,
-                CURRENT_POINT_COLOR);
+        regions.replace(selected, SELECTED_POINT_COLOR, DEF_POINT_COLOR);
+        regions.replace(newChoice, DEF_POINT_COLOR, SELECTED_POINT_COLOR);
+        regions.replace(OceanTrader.player.getRegion(), DEF_POINT_COLOR,
+                CURR_POINT_COLOR);
         selected = newChoice;
         this.repaint();
     }
