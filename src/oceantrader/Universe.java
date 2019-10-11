@@ -93,7 +93,10 @@ public class Universe {
      * @return The one and only Universe object.
      */
     protected static Universe getInstance() {
-        return singleInstance == null ? new Universe() : singleInstance;
+        if (singleInstance == null) {
+            singleInstance = new Universe();
+        }
+        return singleInstance;
     }
 
     /**

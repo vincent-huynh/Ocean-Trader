@@ -82,12 +82,6 @@ public class Region implements Comparable<Region> {
     public int compareTo(Region region) {
         this.setDistance(calcDistance(OceanTrader.player, this));
         region.setDistance(calcDistance(OceanTrader.player, region));
-
-        if (this.distance < region.distance) {
-            return -1;
-        } else if (this.distance > region.distance) {
-            return 1;
-        }
-        return -1;
+        return this.distance < region.distance ? -1 : 1;
     }
 }
