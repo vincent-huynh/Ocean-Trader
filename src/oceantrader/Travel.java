@@ -12,8 +12,8 @@ public class Travel {
 
     /*
      * Basically checks to see whether or not the user has a valid selection
-     * when hitting "travel". If so, calls the travel() method, which performs
-     * the actual traveling.
+     * when hitting "travel". If so, then it does a bunch of checks with fuel
+     * and all that to make sure the player can actually travel.
      */
     protected static void confirmTravel() {
 
@@ -24,7 +24,26 @@ public class Travel {
         } else if (value.equals(OceanTrader.player.getRegion().getName())) {
             JOptionPane.showMessageDialog(window, "You are at this region!");
         } else {
-            travel();
+            int cost = fuelCost();
+            int capacity = player.getShip().getFuelCapacity();
+            if (cost > capacity) {
+                String errorMsg = String.format("Not enough fuel!"
+                                + "\nYour ship only has %d fuel."
+                                + "\nTraveling to %s will cost %d fuel.",
+                                capacity, Map.selected.getName(), cost);
+                JOptionPane.showMessageDialog(window, errorMsg);
+            } else {
+                String confirmMsg = String.format("Your ship currently has"
+                        + " %d fuel.\nTraveling to %s will use %d fuel."
+                        + "\nConfirm Travel?",
+                        capacity, Map.selected.getName(), cost);
+                int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
+                        "Travel Confirmation", JOptionPane.YES_NO_OPTION);
+                if (yesOrNo == 0) {
+                    updateFuel(cost);
+                    travel();
+                }
+            }
         }
     }
 
@@ -79,5 +98,14 @@ public class Travel {
      */
     private static double getPilotSavings() {
         return (100 - (player.getSkillLevel("Pilot") * 3.0)) / 100;
+    }
+
+    /**
+     * This method updates the player's ship fuel after they have traveled.
+     * @param cost The amount of fuel required to travel.
+     */
+    private static void updateFuel(int cost) {
+        Ship ship = player.getShip();
+        ship.setFuelCapacity(ship.getFuelCapacity() - cost);
     }
 }
