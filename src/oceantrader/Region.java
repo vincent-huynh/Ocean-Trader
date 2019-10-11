@@ -1,6 +1,5 @@
 package oceantrader;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Region implements Comparable<Region> {

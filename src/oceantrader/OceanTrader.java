@@ -1,8 +1,5 @@
 package oceantrader;
 
-import javafx.beans.binding.When;
-import sun.security.krb5.Config;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

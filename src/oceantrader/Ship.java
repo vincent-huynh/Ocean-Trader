@@ -34,15 +34,15 @@ public class Ship {
      * Call like so: Ship SOME_NAME = newShip(YOUR_TYPE);
      */
     public static Ship newShip(ShipType type) {
-        switch(type) {
-            case WARSHIP:
-                return new Ship(ShipType.WARSHIP, 5, 300, 2000);
-            case MERCHANT:
-                return new Ship(ShipType.MERCHANT, 45, 650, 1250);
-            case EXPLORER:
-                return new Ship(ShipType.EXPLORER, 15, 1000, 600);
-            default:
-                return new Ship(ShipType.DEFAULT, 5, 500, 1000);
+        switch (type) {
+        case WARSHIP:
+            return new Ship(ShipType.WARSHIP, 5, 300, 2000);
+        case MERCHANT:
+            return new Ship(ShipType.MERCHANT, 45, 650, 1250);
+        case EXPLORER:
+            return new Ship(ShipType.EXPLORER, 15, 1000, 600);
+        default:
+            return new Ship(ShipType.DEFAULT, 5, 500, 1000);
         }
     }
 
