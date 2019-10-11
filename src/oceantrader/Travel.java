@@ -84,12 +84,8 @@ public class Travel {
      * x1 amount, medium pays x1.5 amount, and hard pays x2 amount.
      */
     private static double getDiffMultiplier() {
-        if (player.getDifficulty() == Difficulty.EASY) {
-            return 1.0;
-        } else if (player.getDifficulty() == Difficulty.MEDIUM) {
-            return 1.5;
-        }
-        return 2.0;
+        return player.getDifficulty() == Difficulty.EASY ? 1.0
+                : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
     }
 
     /**

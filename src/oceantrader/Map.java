@@ -23,7 +23,7 @@ public class Map extends JPanel {
     private int mapHeight = heightSize; // - 100; This portion is here for
     // later to pretty up the program by adding borders
     private int radius = 15;  //Modify as needed to change dot size
-    protected static HashMap regions = new HashMap<Region, Color>();
+    protected static HashMap<Region, Color> regions = new HashMap();
     private Universe instance;
 
     protected static final Color DEF_POINT_COLOR = Color.GREEN;

@@ -14,16 +14,15 @@ public class Ship {
     private int maxFuelCapacity;
     private int maxHealth;
 
-    public Ship(ShipType type, int cargoSpace, int fuelCapacity,
-                   int health) {
+    public Ship(ShipType type, int cargoSpace, int fuelCapacity, int health) {
         this.type = type;
-        this.cargoList = new ArrayList();
         this.cargoSpace = cargoSpace;
         this.fuelCapacity = fuelCapacity;
         this.health = health;
         this.maxCargoSpace = cargoSpace;
         this.maxFuelCapacity = fuelCapacity;
         this.maxHealth = health;
+        this.cargoList = new ArrayList();
     }
 
     /**

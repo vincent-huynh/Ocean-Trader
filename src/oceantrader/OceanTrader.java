@@ -105,11 +105,10 @@ public class OceanTrader {
                                 + diffMap.get((String) diff).toString()
                                 + "\nReceived: " + totalSkill);
             } else {
-                Difficulty choice = diff.equals("Easy") ? Difficulty.EASY
+                Difficulty df = diff.equals("Easy") ? Difficulty.EASY
                                   : diff.equals("Hard") ? Difficulty.HARD
                                                         : Difficulty.MEDIUM;
-                player = new Player(name, pilot, fighter, trader, engineer,
-                                                                    choice);
+                player = new Player(name, pilot, fighter, trader, engineer, df);
                 /*
                 After the player object is created, we pass it onto Nick's GUI
                 for the info to be displayed. We reset the GUI size back to

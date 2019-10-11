@@ -44,8 +44,8 @@ public class Player {
     public Player(String name, int pilotPoints, int fighterPoints,
                             int traderPoints, int engineerPoints) {
 
-        this(name, pilotPoints, fighterPoints, traderPoints,
-                            engineerPoints, Difficulty.HARD);
+        this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints,
+                                                             Difficulty.HARD);
     }
 
     public Player(String name) {
