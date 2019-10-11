@@ -5,9 +5,16 @@ import javax.swing.JOptionPane;
 
 public class Travel {
 
+
+    //Variables to help keep the code clean and easier to read.
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
 
+    /*
+     * Basically checks to see whether or not the user has a valid selection
+     * when hitting "travel". If so, calls the travel() method, which performs
+     * the actual traveling.
+     */
     protected static void confirmTravel() {
 
         Object value = RegionPanel.regionList.getSelectedValue();
@@ -21,16 +28,22 @@ public class Travel {
         }
     }
 
+    /*
+     * This method facilitates the travel.
+     */
     private static void travel() {
 
+        // Variables to help keep the code clean and easier to read.
         Region region = OceanTrader.player.getRegion();
         int listSelected = RegionPanel.regionList.getSelectedIndex();
 
+        // Makes changes to the map, and also changes the player's region
         Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEF_POINT_COLOR);
         player.setRegion(Universe.regions.get(listSelected));
         String newRegion = player.getRegion().getName();
         JOptionPane.showMessageDialog(window, "Welcome to " + newRegion + "!");
 
+        // Logistics to update the GUI list and map to properly reflect changes.
         Universe.getInstance().sortRegions();
         RegionPanel.updateRegionList();
         RegionPanel.regionList.setSelectedIndex(0);
@@ -38,11 +51,19 @@ public class Travel {
         RegionDisplay.map.repaint();
     }
 
+    /**
+     * Calculates the fuel cost to travel.
+     * @return the fuel cost, as an int.
+     */
     private static int fuelCost() {
         return (int) (Region.calcDistance(player, Map.selected)
                 * getDiffMultiplier() * getPilotSavings());
     }
 
+    /**
+     * @return The difficulty multipler to be used in fuelCost(). Easy pays
+     * x1 amount, medium pays x1.5 amount, and hard pays x2 amount.
+     */
     private static double getDiffMultiplier() {
         if (player.getDifficulty() == Difficulty.EASY) {
             return 1.0;
@@ -52,6 +73,10 @@ public class Travel {
         return 2.0;
     }
 
+    /**
+     * For every point the player has allocated to pilot, the cost will be -3%.
+     * @return The amount of fuel the player saves as a result of pilot points.
+     */
     private static double getPilotSavings() {
         return (100 - (player.getSkillLevel("Pilot") * 3.0)) / 100;
     }

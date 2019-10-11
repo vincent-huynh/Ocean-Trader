@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Ship {
 
     private ShipType type;
-    private ArrayList cargoList;
+    private ArrayList<Item> cargoList;
     private int cargoSpace;
     private int fuelCapacity;
     private int health;
@@ -26,6 +26,13 @@ public class Ship {
         this.maxHealth = health;
     }
 
+    /**
+     * This method bypasses the constructor restrictions of having to have
+     * all constructor chaining calls to be on the first line.
+     * @param type ShipType enum that will dictate the type of ship created.
+     * @return A new ship.
+     * Call like so: Ship SOME_NAME = newShip(YOUR_TYPE);
+     */
     public static Ship newShip(ShipType type) {
         switch(type) {
             case WARSHIP:

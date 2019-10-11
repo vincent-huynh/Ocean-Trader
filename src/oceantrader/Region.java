@@ -7,7 +7,7 @@ public class Region implements Comparable<Region> {
 
     private String name;
     private TechLevel techLevel;
-    private ArrayList marketItems;
+    private ArrayList<Item> marketItems;
 
     private int xCoord;
     private int yCoord;
@@ -66,6 +66,12 @@ public class Region implements Comparable<Region> {
         this.distance = distance;
     }
 
+    /**
+     * Calculates the distance between the player and a region.
+     * @param player The player.
+     * @param region the region to compare with.
+     * @return the distance between the player and the region (as a double).
+     */
     protected static double calcDistance(Player player, Region region) {
         return Math.sqrt(Math.pow((region.getyCoord()
                 - player.getRegion().getyCoord()), 2)

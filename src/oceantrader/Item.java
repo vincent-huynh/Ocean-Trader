@@ -32,7 +32,7 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        }else if (o == null || getClass() != o.getClass()) {
+        } else if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Item item = (Item) o;

@@ -17,6 +17,10 @@ public class Universe {
         regions = new ArrayList<Region>();
         HashMap<Integer, Integer> coords = new HashMap<Integer, Integer>();
 
+        /*
+        This array list holds all the region names.
+        For use in region generation below.
+         */
         ArrayList<String> regionNames = new ArrayList<String>();
         regionNames.add("Crystal Cove");
         regionNames.add("Sandy Shores");
@@ -29,10 +33,19 @@ public class Universe {
         regionNames.add("Plunder's Paradise");
         regionNames.add("Mermaid Mediterranean");
 
+        /*
+        This array holds all the tech level enums.
+        For use in region generation below.
+         */
         TechLevel[] techLevels = {TechLevel.PREAG, TechLevel.AGRICULTURE,
             TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
             TechLevel.MODERN, TechLevel.FUTURISTIC};
 
+        /*
+        When the Universe object is first created, this for-loop will create
+        10 distinct regions with random coordinates that are no closer than
+         5 units in any direction.
+         */
         for (int i = 0; i < 10; ++i) {
             boolean newCoords = true;
             while (newCoords) {
@@ -56,12 +69,29 @@ public class Universe {
                 }
             }
         }
+        /*
+        After this for loop finishes, 10 regions will have been generated
+        and added to the regions variable above.
+         */
     }
 
+    /**
+     * Basically this is the distance formula.
+     * @param x1 x1
+     * @param y1 y1
+     * @param x2 x2
+     * @param y2 y2
+     * @return The distance between two coordinates.
+     */
     protected double distBetween(double x1, double y1, double x2, double y2) {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 
+    /**
+     * Universe is a singleton class. This method ensures that only one
+     * Universe object exists.
+     * @return The one and only Universe object.
+     */
     protected static Universe getInstance() {
         if (singleInstance == null) {
             singleInstance = new Universe();
@@ -69,6 +99,9 @@ public class Universe {
         return singleInstance;
     }
 
+    /**
+     * @return An array holding all the region names.
+     */
     protected String[] getRegionArray() {
         String[] regionArr = new String[regions.size()];
         for (int i = 0; i < regions.size(); ++i) {
@@ -77,6 +110,9 @@ public class Universe {
         return regionArr;
     }
 
+    /*
+     * Sorts all the regions.
+     */
     protected void sortRegions() {
         Collections.sort(regions);
     }
