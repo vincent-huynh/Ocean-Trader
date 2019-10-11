@@ -1,8 +1,11 @@
 package oceantrader;
 
+import sun.security.krb5.Config;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.HashMap;
@@ -52,37 +55,26 @@ public class OceanTrader {
             String name = configScreen.nameField.getText().trim();
             Object diff = configScreen.difficultyComboBox.getSelectedItem();
 
-            int pilotPoints = ((Integer) configScreen.pilotSpinner
-                    .getValue()).intValue();
-            int fighterPoints = ((Integer) configScreen.fighterSpinner
-                    .getValue()).intValue();
-            int traderPoints = ((Integer) configScreen.traderSpinner
-                    .getValue()).intValue();
-            int engineerPoints = ((Integer) configScreen.engineerSpinner
-                    .getValue()).intValue();
+            int pilot = ((Integer) configScreen.pilotSpinner.getValue());
+            int fighter = ((Integer) configScreen.fighterSpinner.getValue());
+            int trader = ((Integer) configScreen.traderSpinner.getValue());
+            int engineer = ((Integer) configScreen.engineerSpinner.getValue());
 
-            int totalSkill = pilotPoints + fighterPoints + traderPoints
-                    + engineerPoints;
+            int totalSkill = pilot + fighter + trader + engineer;
 
-            if (name.equals("") || diff == null) {
-                JOptionPane.showMessageDialog(window,
-                        "Please enter player info.");
+            if (name.isEmpty() || diff == null) {
+                JOptionPane.showMessageDialog(window, "Please enter name.");
             } else if (totalSkill != (diffMap.get((String) diff)).intValue()) {
                 JOptionPane.showMessageDialog(window,
                         "Incorrect point allocation.\nExpected: "
                                 + diffMap.get((String) diff).toString()
                                 + "\nReceived: " + totalSkill);
             } else {
-                Difficulty choice;
-                if (diff.equals("Easy")) {
-                    choice = Difficulty.EASY;
-                } else if (diff.equals("Hard")) {
-                    choice = Difficulty.HARD;
-                } else {
-                    choice = Difficulty.MEDIUM;
-                }
-                player = new Player(name, pilotPoints, fighterPoints,
-                                    traderPoints, engineerPoints, choice);
+                Difficulty choice = diff.equals("Easy") ? Difficulty.EASY
+                                  : diff.equals("Hard") ? Difficulty.HARD
+                                                        : Difficulty.MEDIUM;
+                player = new Player(name, pilot, fighter, trader, engineer,
+                                                                    choice);
                 confirmScreen.setPlayer(player);
                 cardPanel.add(confirmScreen.panelGridBag, "Confirm");
                 window.setSize(new Dimension(1400, 1000));
@@ -93,20 +85,15 @@ public class OceanTrader {
         configScreen.difficultyComboBox.addActionListener(changeEvent -> {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
-
         configScreen.pilotSpinner.addChangeListener(changeEvent -> {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
-
         });
-
         configScreen.fighterSpinner.addChangeListener(changeEvent -> {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
-
         configScreen.traderSpinner.addChangeListener(changeEvent -> {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
-
         configScreen.engineerSpinner.addChangeListener(changeEvent -> {
             updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
         });
@@ -132,18 +119,12 @@ public class OceanTrader {
 
     private static void updateCurrPoints(Object diff) {
         int pointsDiff;
-        if (((String) diff).equals("Easy")) {
-            pointsDiff = 16;
-        } else if (((String) diff).equals("Hard")) {
-            pointsDiff = 8;
-        } else {
-            pointsDiff = 12;
-        }
+        JTextField pointsRemain = ConfigurationScreen.pointsRemaining;
+        pointsDiff = diff.equals("Easy") ? 16 : diff.equals("Hard") ? 8 : 12;
         currPoints = (int) ConfigurationScreen.pilotSpinner.getValue()
-                + (int) ConfigurationScreen.fighterSpinner.getValue()
-                + (int) ConfigurationScreen.traderSpinner.getValue()
-                + (int) ConfigurationScreen.engineerSpinner.getValue();
-        ConfigurationScreen.pointsRemaining.setText((pointsDiff - currPoints)
-                + " points remaining.");
+                   + (int) ConfigurationScreen.fighterSpinner.getValue()
+                   + (int) ConfigurationScreen.traderSpinner.getValue()
+                   + (int) ConfigurationScreen.engineerSpinner.getValue();
+        pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
     }
 }

@@ -90,18 +90,11 @@ public class Player {
     }
 
     public int getSkillLevel(String skill) {
-        switch (skill) {
-        case "Pilot" :
-            return pilotPoints;
-        case "Fighter" :
-            return fighterPoints;
-        case "Trader" :
-            return traderPoints;
-        case "Engineer" :
-            return engineerPoints;
-        default:
-            throw new IllegalArgumentException("Skill not found.");
-        }
+        return skill.equals("Pilot") ? pilotPoints
+                : skill.equals("Fighter") ? fighterPoints
+                : skill.equals("Trader") ? traderPoints
+                : skill.equals("Engineer") ? engineerPoints
+                : null;
     }
 
     public int getTotalSkill() {
