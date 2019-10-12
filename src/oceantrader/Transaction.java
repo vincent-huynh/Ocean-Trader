@@ -7,12 +7,17 @@ public class Transaction {
 
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
+    private static Ship ship = player.getShip();
 
     protected void processTransaction(Item item) {
 
         double price = calculatePrice(item);
 
-        if (player.getCurrency() < price) {
+        if (ship.getNumOfItems() == ship.getMaxCargoSpace()) {
+            String fullInv = "Your ship's inventory is full!" +
+                    "\nPlease upgrade your inventory before purchase.";
+            JOptionPane.showMessageDialog(window, fullInv);
+        } else if (player.getCurrency() < price) {
             String errorMsg = String.format("Not enough currency!\n"
                             + "You only have %d.\n%s costs %d.",
                     player.getCurrency(), item.getName(), price);
@@ -45,6 +50,7 @@ public class Transaction {
     }
 
     private void updateCargoList(Item item) {
-        player.getShip().getCargoList().add(item);
+        ship.getCargoList().add(item);
+        ship.setNumOfItems(ship.getNumOfItems() + 1);
     }
 }

@@ -21,7 +21,7 @@ public class Travel {
 
         if (value == null) {
             JOptionPane.showMessageDialog(window, "No region selected.");
-        } else if (value.equals(OceanTrader.player.getRegion().getName())) {
+        } else if (value.equals(player.getRegion().getName())) {
             JOptionPane.showMessageDialog(window, "You are at this region!");
         } else {
             int cost = fuelCost();
@@ -53,7 +53,7 @@ public class Travel {
     private static void travel() {
 
         // Variables to help keep the code clean and easier to read.
-        Region region = OceanTrader.player.getRegion();
+        Region region = player.getRegion();
         int listSelected = RegionPanel.regionList.getSelectedIndex();
 
         // Makes changes to the map, and also changes the player's region

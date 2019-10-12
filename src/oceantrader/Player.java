@@ -29,11 +29,11 @@ public class Player {
             this.difficulty = Difficulty.EASY;
             break;
         case MEDIUM:
-            currency = 500;
+            currency = 750;
             this.difficulty = Difficulty.MEDIUM;
             break;
         case HARD:
-            currency = 100;
+            currency = 500;
             this.difficulty = Difficulty.HARD;
             break;
         default:
