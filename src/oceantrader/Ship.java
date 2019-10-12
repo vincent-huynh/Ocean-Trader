@@ -57,6 +57,10 @@ public class Ship {
         this.cargoSpace = cargoSpace;
     }
 
+    public ArrayList<Item> getCargoList() {
+        return cargoList;
+    }
+
     public int getFuelCapacity() {
         return fuelCapacity;
     }

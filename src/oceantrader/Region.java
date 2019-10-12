@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Region implements Comparable<Region> {
 
     private String name;
+    private int tax;
     private TechLevel techLevel;
     private ArrayList<Item> marketItems;
 
@@ -12,12 +13,14 @@ public class Region implements Comparable<Region> {
     private int yCoord;
     private double distance;
 
-    public Region(String name, TechLevel techLevel, int xCoord, int yCoord) {
+    public Region(String name, TechLevel techLevel, int xCoord, int yCoord,
+                  int tax) {
 
         this.name = name;
         this.techLevel = techLevel;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+        this.tax = tax;
         this.distance = 0;
     }
 
@@ -37,12 +40,20 @@ public class Region implements Comparable<Region> {
         return yCoord;
     }
 
+    public int getTax() {
+        return tax;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setTechLevel(TechLevel techLevel) {
         this.techLevel = techLevel;
+    }
+
+    public void setTax() {
+        this.tax = tax;
     }
 
     public ArrayList getMarketItems() {

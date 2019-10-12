@@ -6,7 +6,7 @@ public class Player {
     private Difficulty difficulty;
     private Region region;
     private Ship ship;
-    private int currency;
+    private double currency;
 
     private int pilotPoints;
     private int fighterPoints;
@@ -61,12 +61,16 @@ public class Player {
         return name;
     }
 
-    public void setCurrency(int currency) {
+    public void setCurrency(double currency) {
         this.currency = currency;
     }
 
-    public int getCurrency() {
+    public double getCurrency() {
         return currency;
+    }
+
+    public void setCurrency() {
+        this.currency = currency;
     }
 
     public Region getRegion() {
