@@ -60,11 +60,11 @@ public class Transaction {
     private static HashMap<Integer, Double> offsetMap() {
         if (offset == null) {
             offset = new HashMap<>();
-            offset.put(0, 1.05);
-            offset.put(5, 1.05);
-            offset.put(6, 1.05);
+            offset.put(0, 1.21);
+            offset.put(5, 1.21);
+            offset.put(6, 1.21);
             for (int i = 19; i < 24; ++i) {
-                offset.put(i, 1.48);
+                offset.put(i, 1.24);
             }
         }
         return offset;

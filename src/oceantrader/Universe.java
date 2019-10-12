@@ -65,7 +65,7 @@ public class Universe {
                     regions.add(new Region(regionNames
                             .remove(rand.nextInt(regionNames.size())),
                             techLevels[rand.nextInt(7)], x, y,
-                            (int) Math.round(rand.nextDouble() + 10)));
+                            (int) Math.round(rand.nextDouble() * 7)));
                     newCoords = false;
                 }
             }
