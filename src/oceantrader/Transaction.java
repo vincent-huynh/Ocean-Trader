@@ -8,17 +8,19 @@ public class Transaction {
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
 
-
     protected void processTransaction(Item item) {
+
         double price = calculatePrice(item);
+
         if (player.getCurrency() < price) {
-            String errorMsg = String.format("Not enough currency!\nYou only " +
-                            "have %d.\nThe item costs %d.",
-                    player.getCurrency(), price);
+            String errorMsg = String.format("Not enough currency!\n"
+                            + "You only have %d.\n%s costs %d.",
+                    player.getCurrency(), item.getName(), price);
             JOptionPane.showMessageDialog(window, errorMsg);
         } else {
-            String confirmMsg = String.format("You have %d.\nThe item costs %d."
-                    + "\nConfirm purchase?", player.getCurrency(), price);
+            String confirmMsg = String.format("You have %d.\n%s costs %d."
+                    + "\nConfirm Purchase?",
+                    player.getCurrency(), item.getName(), price);
             int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                     "Purchase Confirmation", JOptionPane.YES_NO_OPTION);
             if (yesOrNo == 0) {
@@ -30,9 +32,8 @@ public class Transaction {
     }
 
     private double calculatePrice(Item item) {
-        double price = item.getPrice() * calculateDiscount()
-                * ((100 + OceanTrader.player.getRegion().getTax()) / 100);
-        return price;
+        return item.getPrice() * calculateDiscount()
+                * ((100.0 + player.getRegion().getTax()) / 100.0);
     }
 
     private double calculateDiscount() {
@@ -44,6 +45,6 @@ public class Transaction {
     }
 
     private void updateCargoList(Item item) {
-        OceanTrader.player.getShip().getCargoList().add(item);
+        player.getShip().getCargoList().add(item);
     }
 }
