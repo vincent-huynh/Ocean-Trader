@@ -4,43 +4,46 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Transaction {
+
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
-    private double updatedPrice;
 
-    public void confirmPrice(Item item) {
-        if (player.getCurrency() < item.getPrice()) {
-            JOptionPane.showMessageDialog(window, "Not enough "
-                    + "currency.");
+
+    protected void processTransaction(Item item) {
+        double price = calculatePrice(item);
+        if (player.getCurrency() < price) {
+            String errorMsg = String.format("Not enough currency!\nYou only " +
+                            "have %d.\nThe item costs %d.",
+                    player.getCurrency(), price);
+            JOptionPane.showMessageDialog(window, errorMsg);
         } else {
-            String confirmMsg = String.format("You currently have %f amount "
-                    + "of currency", player.getCurrency());
+            String confirmMsg = String.format("You have %d.\nThe item costs %d."
+                    + "\nConfirm purchase?", player.getCurrency(), price);
             int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
-                    "Are you sure you want to buy this item?",
-                    JOptionPane.YES_NO_OPTION);
+                    "Purchase Confirmation", JOptionPane.YES_NO_OPTION);
             if (yesOrNo == 0) {
                 processTransaction(item);
-                updateCurrency();
+                updateCurrency((int) price);
                 updateCargoList(item);
             }
         }
     }
 
-    public void processTransaction(Item item) {
-        double price = item.getPrice() - calculateDiscount()
-                * OceanTrader.player.getRegion().getTax();
-        updatedPrice = price;
+    private double calculatePrice(Item item) {
+        double price = item.getPrice() * calculateDiscount()
+                * ((100 + OceanTrader.player.getRegion().getTax()) / 100);
+        return price;
     }
 
-    public double calculateDiscount() {
+    private double calculateDiscount() {
         return (100 - (player.getSkillLevel("Trader") * 3.0)) / 100;
     }
 
-    public void updateCurrency() {
-        player.setCurrency(player.getCurrency() - updatedPrice);
+    private void updateCurrency(int price) {
+        player.setCurrency(player.getCurrency() - price);
     }
 
-    public void updateCargoList(Item item) {
+    private void updateCargoList(Item item) {
         OceanTrader.player.getShip().getCargoList().add(item);
     }
 }

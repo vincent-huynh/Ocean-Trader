@@ -30,7 +30,7 @@ public class Travel {
                 String errorMsg = String.format("Not enough fuel!"
                                 + "\nYour ship only has %d fuel."
                                 + "\nTraveling to %s will cost %d fuel.",
-                                capacity, Map.selected.getName(), cost);
+                        capacity, Map.selected.getName(), cost);
                 JOptionPane.showMessageDialog(window, errorMsg);
             } else {
                 String confirmMsg = String.format("Your ship currently has"
