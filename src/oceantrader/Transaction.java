@@ -13,7 +13,7 @@ public class Transaction {
 
         double price = calculatePrice(item);
 
-        if (ship.getNumOfItems() == ship.getMaxCargoSpace()) {
+        if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
             String fullInv = "Your ship's inventory is full!" +
                     "\nPlease upgrade your inventory before purchase.";
             JOptionPane.showMessageDialog(window, fullInv);
@@ -51,6 +51,5 @@ public class Transaction {
 
     private void updateCargoList(Item item) {
         ship.getCargoList().add(item);
-        ship.setNumOfItems(ship.getNumOfItems() + 1);
     }
 }

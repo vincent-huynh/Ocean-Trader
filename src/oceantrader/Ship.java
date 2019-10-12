@@ -6,7 +6,6 @@ public class Ship {
 
     private ShipType type;
     private ArrayList<Item> cargoList;
-    private int numOfItems;
     private int fuelCapacity;
     private int health;
 
@@ -14,14 +13,15 @@ public class Ship {
     private int maxFuelCapacity;
     private int maxHealth;
 
-    public Ship(ShipType type, int maxCargoSpace, int fuelCapacity, int health) {
+    public Ship(ShipType type, int space, int fuel, int health) {
         this.type = type;
-        this.fuelCapacity = fuelCapacity;
+        this.fuelCapacity = fuel;
         this.health = health;
-        this.maxCargoSpace = maxCargoSpace;
-        this.maxFuelCapacity = fuelCapacity;
+
+        this.maxCargoSpace = space;
+        this.maxFuelCapacity = fuel;
         this.maxHealth = health;
-        this.numOfItems = 0;
+
         this.cargoList = new ArrayList();
     }
 
@@ -49,12 +49,8 @@ public class Ship {
         return type;
     }
 
-    public int getNumOfItems() {
-        return numOfItems;
-    }
-
-    public void setNumOfItems(int numOfItems) {
-        this.numOfItems = numOfItems;
+    public int getCargoSize() {
+        return cargoList.size();
     }
 
     public ArrayList<Item> getCargoList() {
