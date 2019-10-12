@@ -2,14 +2,17 @@ package oceantrader;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Transaction {
 
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
+    private static HashMap<Integer, Double> offset = null;
     private static Ship ship = player.getShip();
 
-    protected void processTransaction(Item item) {
+    protected static void processTransaction(Item item) {
 
         double price = calculatePrice(item);
 
@@ -36,20 +39,42 @@ public class Transaction {
         }
     }
 
-    private double calculatePrice(Item item) {
-        return item.getPrice() * calculateDiscount()
-                * ((100.0 + player.getRegion().getTax()) / 100.0);
+    private static double calculatePrice(Item item) {
+        return item.getPrice() * dateOffset() * skillDiscount() * tax();
     }
 
-    private double calculateDiscount() {
+    private static double skillDiscount() {
         return (100 - (player.getSkillLevel("Trader") * 3.0)) / 100;
     }
 
-    private void updateCurrency(int price) {
+    private static double tax() {
+        return (100.0 + player.getRegion().getTax()) / 100.0;
+    }
+
+    private static double dateOffset() {
+        Date date = new Date();
+        return offsetMap().getOrDefault(date.getDay(), 1.0)
+                * offsetMap().getOrDefault(date.getHours(), 1.0);
+    }
+
+    private static HashMap<Integer, Double> offsetMap() {
+        if (offset == null) {
+            offset = new HashMap<>();
+            offset.put(0, 1.05);
+            offset.put(5, 1.05);
+            offset.put(6, 1.05);
+            for (int i = 19; i < 24; ++i) {
+                offset.put(i, 1.48);
+            }
+        }
+        return offset;
+    }
+
+    private static void updateCurrency(int price) {
         player.setCurrency(player.getCurrency() - price);
     }
 
-    private void updateCargoList(Item item) {
+    private static void updateCargoList(Item item) {
         ship.getCargoList().add(item);
     }
 }
