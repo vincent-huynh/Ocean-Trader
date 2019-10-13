@@ -5,11 +5,14 @@ import java.util.Objects;
 public class Item {
 
     private String name;
+    private String type;
     private int price;
+    private int sellPrice;
 
-    public Item(String name, int price) {
+    public Item(String name, int price, String type) {
         this.name = name;
         this.price = price;
+        this.type = type;
     }
 
     public String getName() {
@@ -28,6 +31,18 @@ public class Item {
         this.price = price;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,11 +51,13 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return price == item.price && Objects.equals(name, item.name);
+        return price == item.getPrice() && Objects.equals(name, item.getName())
+                && Objects.equals(type, item.getType());
     }
 
     @Override
     public String toString() {
-        return String.format("Item Name: %s \n Item Price: %d", name, price);
+        return String.format("Item Name: %s\nItem Price: %d\nItem Type: %s",
+                name, price, type);
     }
 }
