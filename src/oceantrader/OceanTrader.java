@@ -146,7 +146,8 @@ public class OceanTrader {
         The map and lists of the next GUI are updated before it is displayed.
          */
         confirmScreen.button.addActionListener(e -> {
-            player.setRegion(Universe.regions.get(rand.nextInt(10)));
+            player.setRegion(Universe.getInstance()
+                    .regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
             RegionDisplay.map.updateMapTitle(player.getRegion());

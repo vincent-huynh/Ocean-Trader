@@ -137,8 +137,8 @@ public class Map extends JPanel {
                 RegionPanel.updateList(selected, RegionPanel.regionName,
                         RegionPanel.regionTech, RegionPanel.regionCoords,
                         RegionPanel.distance);
-                RegionPanel.regionList
-                        .setSelectedIndex(Universe.regions.indexOf(region));
+                RegionPanel.regionList.setSelectedIndex(Universe.getInstance()
+                        .regions.indexOf(region));
             }
         }
     }

@@ -35,6 +35,7 @@ public class Transaction {
                 item.setSellPrice((int) price);
                 updateCurrency(-1 * ((int) price));
                 ship.getCargoList().add(item);
+                confirmationDialog("Purchased", item);
             }
         }
     }
@@ -50,6 +51,7 @@ public class Transaction {
         if (yesOrNo == 0) {
             updateCurrency((int) price);
             ship.getCargoList().remove(item);
+            confirmationDialog("Sold", item);
         }
     }
 
@@ -86,5 +88,10 @@ public class Transaction {
 
     private static void updateCurrency(int price) {
         player.setCurrency(player.getCurrency() + price);
+    }
+
+    private static void confirmationDialog(String s, Item item) {
+        String msg = String.format("Successfully %s %s!", s, item.getName());
+        JOptionPane.showMessageDialog(window, msg);
     }
 }

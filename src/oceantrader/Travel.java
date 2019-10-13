@@ -58,7 +58,7 @@ public class Travel {
 
         // Makes changes to the map, and also changes the player's region
         Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEF_POINT_COLOR);
-        player.setRegion(Universe.regions.get(listSelected));
+        player.setRegion(Universe.getInstance().regions.get(listSelected));
         String newRegion = player.getRegion().getName();
         JOptionPane.showMessageDialog(window, "Welcome to " + newRegion + "!");
 

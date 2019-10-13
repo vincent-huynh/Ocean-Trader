@@ -9,7 +9,7 @@ import java.util.Random;
 public class Universe {
 
     private static Universe singleInstance = null;
-    protected static ArrayList<Region> regions;
+    protected ArrayList<Region> regions;
 
     private Universe() {
 
