@@ -18,7 +18,7 @@ public class Transaction {
 
         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
             String fullInv = "Your ship's inventory is full!" +
-                    "\nPlease upgrade your inventory before purchase.";
+                    "\nPlease upgrade your inventory before purchasing.";
             JOptionPane.showMessageDialog(window, fullInv);
         } else if (player.getCurrency() < price) {
             String errorMsg = String.format("Not enough currency!\n"
@@ -54,7 +54,7 @@ public class Transaction {
     private static double dateOffset() {
         Date date = new Date();
         return offsetMap().getOrDefault(date.getDay(), 1.0)
-                * offsetMap().getOrDefault(date.getHours(), 1.0);
+                * offsetMap().getOrDefault(10 + date.getHours(), 1.0);
     }
 
     private static HashMap<Integer, Double> offsetMap() {
@@ -63,7 +63,7 @@ public class Transaction {
             offset.put(0, 1.21);
             offset.put(5, 1.21);
             offset.put(6, 1.21);
-            for (int i = 19; i < 24; ++i) {
+            for (int i = 29; i < 34; ++i) {
                 offset.put(i, 1.24);
             }
         }
