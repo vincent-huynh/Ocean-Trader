@@ -13,6 +13,17 @@ public class Item {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.sellPrice = 0;
+    }
+
+    /*
+    Copy Constructor
+     */
+    public Item(Item item) {
+        this.name = item.getName();
+        this.price = item.getPrice();
+        this.type = item.getType();
+        this.sellPrice = item.getSellPrice();
     }
 
     public String getName() {
