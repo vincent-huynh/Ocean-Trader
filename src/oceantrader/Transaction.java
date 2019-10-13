@@ -17,8 +17,8 @@ public class Transaction {
         double price = calculatePrice(item);
 
         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
-            String fullInv = "Your ship's inventory is full!" +
-                    "\nPlease upgrade your inventory before purchasing.";
+            String fullInv = "Your ship's inventory is full!"
+                    + "\nPlease upgrade your inventory before purchasing.";
             JOptionPane.showMessageDialog(window, fullInv);
         } else if (player.getCurrency() < price) {
             String errorMsg = String.format("Not enough currency!\n"
@@ -32,25 +32,24 @@ public class Transaction {
             int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                     "Purchase Confirmation", JOptionPane.YES_NO_OPTION);
             if (yesOrNo == 0) {
-                updateCurrencyBuy((int) price);
-                updateCargoListBuy(item);
+                item.setSellPrice((int) price);
+                updateCurrency(-1 * ((int) price));
+                ship.getCargoList().add(item);
             }
         }
     }
 
     protected static void processTransactionSell(Item item) {
 
-        double price = calculatePrice(item);
-        item.setSellPrice((int) price);
+        double price = item.getSellPrice() * (75.0 / 100.0);
 
-        String confirmMsg = String.format("You have %d.\n%s sells for %d."
-                        + "\nConfirm Sell?",
-                player.getCurrency(), item.getName(), item.getSellPrice());
+        String confirmMsg = String.format("%s sells for %d.\nConfirm Sell?",
+                item.getName(), price);
         int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                 "Sell Confirmation", JOptionPane.YES_NO_OPTION);
         if (yesOrNo == 0) {
-            updateCurrencySell((int) price);
-            updateCargoListSell(item);
+            updateCurrency((int) price);
+            ship.getCargoList().remove(item);
         }
     }
 
@@ -69,8 +68,7 @@ public class Transaction {
     private static double dateOffset() {
         Date date = new Date();
         return offsetMap().getOrDefault(date.getDay(), 1.0)
-                * offsetMap().getOrDefault(10 + date.getHours(),
-                1.0);
+                * offsetMap().getOrDefault(10 + date.getHours(), 1.0);
     }
 
     private static HashMap<Integer, Double> offsetMap() {
@@ -86,19 +84,7 @@ public class Transaction {
         return offset;
     }
 
-    private static void updateCurrencyBuy(int price) {
-        player.setCurrency(player.getCurrency() - price);
-    }
-
-    private static void updateCurrencySell(int price) {
+    private static void updateCurrency(int price) {
         player.setCurrency(player.getCurrency() + price);
-    }
-
-    private static void updateCargoListBuy(Item item) {
-        ship.getCargoList().add(item);
-    }
-
-    private static void updateCargoListSell(Item item) {
-        ship.getCargoList().remove(item);
     }
 }
