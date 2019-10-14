@@ -1,53 +1,47 @@
 package oceantrader;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum TechLevel {
+    PREAG("Pre-Agriculture", new Item[]{new Item("Fish"), new Item("Deer"), new Item("Chicken"), new Item("Stone"), new Item("Crab"),
+        new Item("Berry"), new Item("Flint"), new Item("Wood"), new Item("Fur"), new Item("Water")}),
+    AGRICULTURE("Agriculture", new Item[] {new Item("Carrot"), new Item("Apple"), new Item("Orange"), new Item("Vegetable")}, PREAG),
+    MEDIEVAL("Medieval", new Item[] {new Item("Sword"), new Item("Shield"), new Item("Wine")}, AGRICULTURE),
+    RENAISSANCE("Renaissance", new Item[] {new Item("Mono Lisa"), new Item("Gold"), new Item("Clock"), new Item("Compass"), new Item("Gunpowder")}, MEDIEVAL),
+    INDUSTRIAL("Industrial", new Item[] {new Item("Cannon"), new Item("Gun"), new Item("Narcotic")}, RENAISSANCE),
+    MODERN("Modern", new Item[] {new Item("Oil"), new Item("Phone"), new Item("Nuclear Missile")}, INDUSTRIAL),
+    FUTURISTIC("Futuristic", new Item[] {new Item("Laser Gun"), new Item("Anti-Gravity Machine"), new Item("Time Machine")}, MODERN);
 
-    PREAG {
-        @Override
-        public String toString() {
-            return "Pre-Agriculture";
-        }
-    },
+    private String name;
+    private ArrayList<Item> items;
+    private ArrayList<Item> formerItems;
 
-    AGRICULTURE {
-        @Override
-        public String toString() {
-            return "Agriculture";
-        }
-    },
+    TechLevel(String name, Item[] items) {
+        this.name = name;
+        this.items = new ArrayList<>(Arrays.asList(items));
+        this.formerItems = new ArrayList<>();
+    }
 
-    MEDIEVAL {
-        @Override
-        public String toString() {
-            return "Medieval";
-        }
-    },
+    TechLevel(String name, Item[] items, TechLevel formerTech) {
+        this(name, items);
+        this.formerItems = formerTech.getItems();
+        this.formerItems.addAll(formerTech.getFormerItems());
+    }
 
-    RENAISSANCE {
-        @Override
-        public String toString() {
-            return "Renaissance";
-        }
-    },
+    public String getName() {
+        return this.name;
+    }
 
-    INDUSTRIAL {
-        @Override
-        public String toString() {
-            return "Industrial";
-        }
-    },
+    public ArrayList<Item> getItems() {
+        return this.items;
+    }
 
-    MODERN {
-        @Override
-        public String toString() {
-            return "Modern";
-        }
-    },
+    public ArrayList<Item> getFormerItems() {
+        return formerItems;
+    }
 
-    FUTURISTIC {
-        @Override
-        public String toString() {
-            return "Futuristic";
-        }
-    },
+    public String toString() {
+        return this.name;
+    }
 }

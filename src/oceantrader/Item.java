@@ -16,6 +16,10 @@ public class Item {
         this.sellPrice = 0;
     }
 
+    public Item(String name) {
+        this(name, 10, "DEFAULT_VALUE");
+    }
+
     /*
     Copy Constructor
      */
