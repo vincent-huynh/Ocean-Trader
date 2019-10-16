@@ -27,18 +27,24 @@ public class Region implements Comparable<Region> {
 
     private void generateMarket() {
         ArrayList<Item> currentTech = new ArrayList<>(techLevel.getItems());
-        ArrayList<Item> formerTech = new ArrayList<>(techLevel.getFormerItems());
-        marketItems.add(new Item(currentTech.remove((int) (Math.random() * currentTech.size()))));
-        //This implementation relies on there being at least 10 possible items generated for a region
+        ArrayList<Item> formerTech = new ArrayList<>(techLevel.getFormerItem());
+        marketItems.add(new Item(currentTech.remove((int) (Math.random()
+                * currentTech.size()))));
+        //This implementation relies on there being at least 10 possible items
+        // generated for a region
         for (int i = 0; i < 9; i++) {
             if (currentTech.size() == 0) {
-                marketItems.add(new Item(formerTech.remove((int) (Math.random() * formerTech.size()))));
+                marketItems.add(new Item(formerTech.remove((int) (Math.random()
+                        * formerTech.size()))));
             } else if (formerTech.size() == 0) {
-                marketItems.add(new Item(currentTech.remove((int) (Math.random() * currentTech.size()))));
+                marketItems.add(new Item(currentTech.remove((int) (Math.random()
+                        * currentTech.size()))));
             } else if (Math.random() > 0.5) {
-                marketItems.add(new Item(currentTech.remove((int) (Math.random() * currentTech.size()))));
+                marketItems.add(new Item(currentTech.remove((int) (Math.random()
+                        * currentTech.size()))));
             } else {
-                marketItems.add(new Item(formerTech.remove((int) (Math.random() * formerTech.size()))));
+                marketItems.add(new Item(formerTech.remove((int) (Math.random()
+                        * formerTech.size()))));
             }
         }
     }

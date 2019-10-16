@@ -14,7 +14,7 @@ public class Transaction {
 
     protected static void processTransactionBuy(Item item) {
 
-        double price = calculatePrice(item);
+        int price = (int) calculatePrice(item);
 
         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
             String fullInv = "Your ship's inventory is full!"
@@ -32,8 +32,8 @@ public class Transaction {
             int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                     "Purchase Confirmation", JOptionPane.YES_NO_OPTION);
             if (yesOrNo == 0) {
-                item.setSellPrice((int) price);
-                updateCurrency(-1 * ((int) price));
+                item.setSellPrice(price);
+                updateCurrency(-1 * price);
                 ship.getCargoList().add(item);
                 confirmationDialog("Purchased", item);
             }
@@ -42,14 +42,14 @@ public class Transaction {
 
     protected static void processTransactionSell(Item item) {
 
-        double price = item.getSellPrice() * (75.0 / 100.0);
+        int price = (int) (item.getSellPrice() * (75.0 / 100.0));
 
         String confirmMsg = String.format("%s sells for %d.\nConfirm Sell?",
                 item.getName(), price);
         int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                 "Sell Confirmation", JOptionPane.YES_NO_OPTION);
         if (yesOrNo == 0) {
-            updateCurrency((int) price);
+            updateCurrency(price);
             ship.getCargoList().remove(item);
             confirmationDialog("Sold", item);
         }
