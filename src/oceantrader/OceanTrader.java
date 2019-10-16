@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -184,4 +186,20 @@ public class OceanTrader {
                    + (int) ConfigurationScreen.engineerSpinner.getValue();
         pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
     }
+
+//    private static void testRegionItems() {
+//        for (Region region : Universe.getInstance().regions) {
+//            ArrayList<String> list = new ArrayList<>();
+//            System.out.println(region.getName() + " // " + region.getTechLevel());
+//            System.out.println("===============\n");
+//            for (Item item : region.getMarketItems()) {
+//                list.add(item.getName());
+//            }
+//            Collections.sort(list);
+//            for (String name : list) {
+//                System.out.println(name);
+//            }
+//            System.out.println();
+//        }
+//    }
 }
