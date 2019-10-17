@@ -16,8 +16,12 @@ public class Item {
         this.sellPrice = 0;
     }
 
+    public Item(String name, int price) {
+        this(name, price, "DEFAULT_VALUE");
+    }
+
     public Item(String name) {
-        this(name, 10, "DEFAULT_VALUE");
+        this(name, 0, "DEFAULT_VALUE");
     }
 
     /*

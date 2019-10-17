@@ -75,7 +75,7 @@ public class ShipDisplay {
         healthLabel.setText("Health: " + ship.getHealth()
                 + " / " + ship.getMaxHealth());
         fuelLabel.setText("Fuel Capacity: " + ship.getFuelCapacity()
-                + " out of " + ship.getMaxFuelCapacity());
+                + " / " + ship.getMaxFuelCapacity());
         cargoLabel.setText("Cargo Space: " + ship.getCargoSize()
                 + " / " + ship.getMaxCargoSpace());
     }
