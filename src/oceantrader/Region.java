@@ -81,7 +81,7 @@ public class Region implements Comparable<Region> {
         this.tax = tax;
     }
 
-    public ArrayList getMarketItems() {
+    public ArrayList<Item> getMarketItems() {
         return marketItems;
     }
 
