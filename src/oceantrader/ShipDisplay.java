@@ -23,32 +23,32 @@ public class ShipDisplay {
         panel = new JPanel();
         gbPanel = new GridBagLayout();
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets( 2, 10, 2, 10);
+        constraints.insets = new Insets(2, 10, 2, 10);
         panel.setLayout(gbPanel);
         displaySetup();
     }
 
     private static void displaySetup() {
 
-        typeLabel = new JLabel( "Ship Type: ");
-        changeConstraints(1,1,5,1,1,1);
+        typeLabel = new JLabel("Ship Type: ");
+        changeConstraints(1, 1, 5, 1, 1, 1);
         jLabelEdit(typeLabel);
         panel.add(typeLabel, constraints);
 
         healthLabel = new JLabel("Health: ");
-        changeConstraints(1,2,5,1,1,1);
+        changeConstraints(1, 2, 5, 1, 1, 1);
         jLabelEdit(healthLabel);
         panel.add(healthLabel, constraints);
 
         fuelLabel = new JLabel("Fuel Capacity: ");
-        changeConstraints(1,3,5,1,1,1);
+        changeConstraints(1, 3, 5, 1, 1, 1);
         jLabelEdit(fuelLabel);
         panel.add(fuelLabel, constraints);
 
-        cargoLabel = new JLabel( "Cargo Space: ");
-        changeConstraints(1,4,5,1,1,1);
+        cargoLabel = new JLabel("Cargo Space: ");
+        changeConstraints(1, 4, 5, 1, 1, 1);
         jLabelEdit(cargoLabel);
-        panel.add(cargoLabel,constraints);
+        panel.add(cargoLabel, constraints);
 
     }
 
