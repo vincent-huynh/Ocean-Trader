@@ -116,7 +116,6 @@ public class InvMarketDisplay {
         marketTextField.setBorder(null);
 
         sellBtn.setText("Sell Item");
-
         buyBtn.setText("Buy Item");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
