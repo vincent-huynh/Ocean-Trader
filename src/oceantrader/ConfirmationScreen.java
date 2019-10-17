@@ -31,7 +31,7 @@ public class ConfirmationScreen {
     private void addPlayerInfo() {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.CENTER;
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 0; i < list.length; ++i) {
             if (list[i][0] != null) {
                 JLabel label = new JLabel("<html>" + list[i][0] + ": "
                         + list[i][1] + "<br><br>" + "</html>");

@@ -20,9 +20,15 @@ public class OceanTrader {
     private static CardLayout cardLayout;
 
     //Random variables that we need.
-    private static HashMap<String, Integer> diffMap;
     private static int currPoints = 0;
     private static Random rand = new Random();
+    private static HashMap<String, Integer> diffMap;
+
+    //GUI Screens
+    protected static TitleScreen titleScreen;
+    protected static ConfigurationScreen configScreen;
+    protected static ConfirmationScreen confirmScreen;
+    protected static RegionDisplay regionDisplay;
 
     /*
     The first method that is called when the game first begins.
@@ -35,10 +41,10 @@ public class OceanTrader {
         cardPanel = new JPanel(cardLayout);
 
         // Creates instances of all the beautiful GUIs you guys made.
-        TitleScreen titleScreen = new TitleScreen();
-        ConfigurationScreen configScreen = new ConfigurationScreen();
-        ConfirmationScreen confirmScreen = new ConfirmationScreen();
-        RegionDisplay regionDisplay = new RegionDisplay();
+        titleScreen = new TitleScreen();
+        configScreen = new ConfigurationScreen();
+        confirmScreen = new ConfirmationScreen();
+        regionDisplay = new RegionDisplay();
 
         /*
         Adds all your GUIs into a card panel, this allows me to switch
@@ -152,10 +158,10 @@ public class OceanTrader {
                     .regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
-            RegionDisplay.map.updateMapTitle(player.getRegion());
+            regionDisplay.map.updateMapTitle(player.getRegion());
             cardLayout.show(cardPanel, "Main");
-            RegionDisplay.invMarketDisplay.updateInventory();
-            RegionDisplay.invMarketDisplay.updateMarket();
+            regionDisplay.invMarketDisplay.updateInventory();
+            regionDisplay.invMarketDisplay.updateMarket();
         });
 
         /*
@@ -163,9 +169,9 @@ public class OceanTrader {
         to facilitate with all the traveling.
          */
         regionDisplay.travelButton.addActionListener(e -> {
-//            Travel.confirmTravel();
-            RegionDisplay.invMarketDisplay.updateInventory();
-            RegionDisplay.invMarketDisplay.updateMarket();
+            Travel.confirmTravel();
+            regionDisplay.invMarketDisplay.updateInventory();
+            regionDisplay.invMarketDisplay.updateMarket();
         });
 
         // Basic window stuff that we need. Can ignore.

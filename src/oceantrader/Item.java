@@ -76,7 +76,7 @@ public class Item {
                 name, price, type);
     }
 
-    public Object[] tableizer() {
+    protected Object[] tableizer() {
         Object[] row = {name, price, type};
         return row;
     }

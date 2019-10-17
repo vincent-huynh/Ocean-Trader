@@ -21,7 +21,7 @@ public class Region implements Comparable<Region> {
         this.yCoord = yCoord;
         this.tax = tax;
         this.distance = 0;
-        this.marketItems = new ArrayList<>();
+        this.marketItems = new ArrayList<Item>();
         generateMarket();
     }
 
@@ -32,7 +32,7 @@ public class Region implements Comparable<Region> {
                 * currentTech.size()))));
         //This implementation relies on there being at least 10 possible items
         // generated for a region
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; ++i) {
             if (currentTech.size() == 0) {
                 marketItems.add(new Item(formerTech.remove((int) (Math.random()
                         * formerTech.size()))));
@@ -53,19 +53,19 @@ public class Region implements Comparable<Region> {
         return name;
     }
 
-    protected TechLevel getTechLevel() {
+    public TechLevel getTechLevel() {
         return techLevel;
     }
 
-    protected int getxCoord() {
+    public int getxCoord() {
         return xCoord;
     }
 
-    protected int getyCoord() {
+    public int getyCoord() {
         return yCoord;
     }
 
-    protected int getTax() {
+    public int getTax() {
         return tax;
     }
 
