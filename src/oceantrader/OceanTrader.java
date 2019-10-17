@@ -154,6 +154,8 @@ public class OceanTrader {
             RegionPanel.updateRegionList();
             RegionDisplay.map.updateMapTitle(player.getRegion());
             cardLayout.show(cardPanel, "Main");
+            RegionDisplay.invMarketDisplay.updateInventory();
+            RegionDisplay.invMarketDisplay.updateMarket();
         });
 
         /*
@@ -163,6 +165,8 @@ public class OceanTrader {
         regionDisplay.travelButton.addActionListener(e -> {
             testRegionItems();
 //            Travel.confirmTravel();
+            RegionDisplay.invMarketDisplay.updateInventory();
+            RegionDisplay.invMarketDisplay.updateMarket();
         });
 
         // Basic window stuff that we need. Can ignore.

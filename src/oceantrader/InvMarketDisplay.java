@@ -2,6 +2,7 @@ package oceantrader;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 
 public class InvMarketDisplay {
@@ -63,10 +64,14 @@ public class InvMarketDisplay {
         inventoryTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(inventoryTable);
 
+        TableColumnModel tcm = inventoryTable.getColumnModel();
+        tcm.getColumn(1).setPreferredWidth(20);
+
         inventoryTextField.setEditable(false);
         inventoryTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         inventoryTextField.setText("Inventory");
         inventoryTextField.setBorder(null);
+
 
         marketModel = new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -94,6 +99,9 @@ public class InvMarketDisplay {
         marketTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         marketTable.setModel(marketModel);
         marketScroll.setViewportView(marketTable);
+
+        TableColumnModel tcm2 = marketTable.getColumnModel();
+        tcm2.getColumn(1).setPreferredWidth(20);
 
         marketTextField.setEditable(false);
         marketTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -151,13 +159,21 @@ public class InvMarketDisplay {
         );
         if (OceanTrader.player != null) {
             updateInventory();
+            updateMarket();
         }
 
     }
 
-    private void updateInventory() {
+    protected void updateInventory() {
         for (int i = 0; i < OceanTrader.player.getShip().getCargoSize(); i++) {
-            inventoryModel.addRow(OceanTrader.player.getShip().getCargoList().get(i).tableizer());
+            Object[] row = OceanTrader.player.getShip().getCargoList().get(i).tableizer();
+            inventoryModel.addRow(row);
+        }
+    }
+
+    protected void updateMarket() {
+        for (Item i : OceanTrader.player.getRegion().getMarketItems()) {
+            marketModel.addRow(i.tableizer());
         }
     }
 }
