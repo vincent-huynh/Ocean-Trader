@@ -75,4 +75,9 @@ public class Item {
         return String.format("Item Name: %s\nItem Price: %d\nItem Type: %s",
                 name, price, type);
     }
+
+    public Object[] tableizer() {
+        Object[] row = {name, price, type};
+        return row;
+    }
 }

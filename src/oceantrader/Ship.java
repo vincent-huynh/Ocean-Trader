@@ -96,4 +96,5 @@ public class Ship {
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
+
 }

@@ -1,0 +1,163 @@
+package oceantrader;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+
+public class InvMarketDisplay {
+    protected JPanel panel;
+
+    private JButton buyBtn;
+    private JScrollPane inventoryScroll;
+    private JTable inventoryTable;
+    private JTextField inventoryTextField;
+    private JScrollPane marketScroll;
+    private JTable marketTable;
+    private JTextField marketTextField;
+    private JButton sellBtn;
+    private DefaultTableModel inventoryModel;
+    private DefaultTableModel marketModel;
+
+    public InvMarketDisplay() {
+        panel = new JPanel();
+        initGUI();
+    }
+
+    private void initGUI() {
+        inventoryScroll = new JScrollPane();
+        inventoryTable = new JTable();
+        inventoryTextField = new JTextField();
+        marketScroll = new JScrollPane();
+        marketTable = new JTable();
+        marketTextField = new JTextField();
+        sellBtn = new JButton();
+        buyBtn = new JButton();
+
+        panel.setPreferredSize(new java.awt.Dimension(350, 600));
+
+        inventoryModel = new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+
+                },
+                new String [] {
+                        "Item Name", "Price", "Type"
+                }
+        ) {
+            Class[] types = new Class [] {
+                    java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                    false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+
+        inventoryTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        inventoryTable.setModel(inventoryModel);
+        inventoryScroll.setViewportView(inventoryTable);
+
+        inventoryTextField.setEditable(false);
+        inventoryTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        inventoryTextField.setText("Inventory");
+        inventoryTextField.setBorder(null);
+
+        marketModel = new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                },
+                new String [] {
+                        "Item Name", "Price", "Type"
+                }
+        ) {
+            Class[] types = new Class [] {
+                    java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                    false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
+
+        marketTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        marketTable.setModel(marketModel);
+        marketScroll.setViewportView(marketTable);
+
+        marketTextField.setEditable(false);
+        marketTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        marketTextField.setText("Market");
+        marketTextField.setBorder(null);
+
+
+        sellBtn.setText("Sell Item");
+
+        buyBtn.setText("Buy Item");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(inventoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                        .addComponent(marketScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(138, 138, 138)
+                                                                .addComponent(marketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addContainerGap())
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 117, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(sellBtn)
+                                                        .addComponent(buyBtn))
+                                                .addGap(126, 126, 126))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(141, 141, 141))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(inventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(inventoryScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sellBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                .addComponent(buyBtn)
+                                .addGap(20, 20, 20)
+                                .addComponent(marketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(marketScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+        );
+        if (OceanTrader.player != null) {
+            updateInventory();
+        }
+
+    }
+
+    private void updateInventory() {
+        for (int i = 0; i < OceanTrader.player.getShip().getCargoSize(); i++) {
+            inventoryModel.addRow(OceanTrader.player.getShip().getCargoList().get(i).tableizer());
+        }
+    }
+}

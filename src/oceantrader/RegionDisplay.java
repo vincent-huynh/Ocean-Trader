@@ -2,6 +2,7 @@ package oceantrader;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ public class RegionDisplay {
 
     protected JButton travelButton;
     protected RegionPanel regionPanel;
+    protected InvMarketDisplay invMarketDisplay;
     protected static Map map;
 
     protected RegionDisplay() {
@@ -25,6 +27,7 @@ public class RegionDisplay {
         panel.setLayout(new BorderLayout());
 
         regionPanel = new RegionPanel();
+        invMarketDisplay = new InvMarketDisplay();
         map = new Map();
 
         Color panelColor = new Color(196, 196, 196);
@@ -33,7 +36,8 @@ public class RegionDisplay {
         leftPanel.setPreferredSize(new Dimension(350, 1000));
         leftPanel.setBackground(panelColor);
 
-        rightPanel = new JPanel();
+        rightPanel = new JPanel(new BorderLayout());
+        rightPanel.add(invMarketDisplay.panel, BorderLayout.NORTH);
         rightPanel.setPreferredSize(new Dimension(350, 1000));
         rightPanel.setBackground(panelColor);
 
