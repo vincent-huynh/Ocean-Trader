@@ -41,7 +41,7 @@ public enum TechLevel {
 
     TechLevel(String name, Item[] items, TechLevel formerTech) {
         this(name, items);
-        this.formerItems = formerTech.getItems();
+        this.formerItems.addAll(formerTech.getItems());
         this.formerItems.addAll(formerTech.getFormerItem());
     }
 
