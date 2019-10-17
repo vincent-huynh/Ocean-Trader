@@ -1,9 +1,11 @@
 package oceantrader;
 
-import javax.swing.*;
-import java.awt.*;
-
-import static oceantrader.OceanTrader.player;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 public class ShipDisplay {
 
@@ -11,40 +13,41 @@ public class ShipDisplay {
     private static GridBagConstraints constraints;
 
     protected static JPanel panel;
-    protected static JLabel typeLabel;
-    protected static JLabel fuelLabel;
-    protected static JLabel healthLabel;
-    protected static JLabel cargoLabel;
-    private static Ship ship = player.getShip();
+    private static JLabel typeLabel;
+    private static JLabel fuelLabel;
+    private static JLabel healthLabel;
+    private static JLabel cargoLabel;
+    private static Ship ship;
 
     protected ShipDisplay() {
         panel = new JPanel();
         gbPanel = new GridBagLayout();
         constraints = new GridBagConstraints();
-        constraints.insets = new Insets( 5, 10, 5, 10);
+        constraints.insets = new Insets( 2, 10, 2, 10);
         panel.setLayout(gbPanel);
-        //panel.setSize();
         displaySetup();
     }
 
     private static void displaySetup() {
-        typeLabel = new JLabel( "Ship Type: " + ship.getType());
+
+        typeLabel = new JLabel( "Ship Type: ");
         changeConstraints(1,1,5,1,1,1);
+        jLabelEdit(typeLabel);
         panel.add(typeLabel, constraints);
 
-        healthLabel = new JLabel("Health: " + ship.getHealth() + " / "
-                + ship.getMaxHealth());
+        healthLabel = new JLabel("Health: ");
         changeConstraints(1,2,5,1,1,1);
+        jLabelEdit(healthLabel);
         panel.add(healthLabel, constraints);
 
-        fuelLabel = new JLabel("Fuel Capacity: " + ship.getFuelCapacity
-                + " out of " + ship.getMaxFuelCapacity());
+        fuelLabel = new JLabel("Fuel Capacity: ");
         changeConstraints(1,3,5,1,1,1);
+        jLabelEdit(fuelLabel);
         panel.add(fuelLabel, constraints);
 
-        cargoLabel = new JLabel( "Cargo Space: " + ship.getCargoSize()
-                + " / " + ship.getMaxCargoSpace());
+        cargoLabel = new JLabel( "Cargo Space: ");
         changeConstraints(1,4,5,1,1,1);
+        jLabelEdit(cargoLabel);
         panel.add(cargoLabel,constraints);
 
     }
@@ -60,14 +63,18 @@ public class ShipDisplay {
         constraints.anchor = GridBagConstraints.NORTH;
     }
 
-    protected void updateShipDisplay(Ship ship) {
+    protected void updateShipDisplay(Player player) {
+        ship = player.getShip();
         typeLabel.setText("Ship Type: " + ship.getType());
         healthLabel.setText("Health: " + ship.getHealth()
                 + " / " + ship.getMaxHealth());
-        fuelLabel.setText("Fuel Capacity: " + ship.getFuelCapacity
+        fuelLabel.setText("Fuel Capacity: " + ship.getFuelCapacity()
                 + " out of " + ship.getMaxFuelCapacity());
         cargoLabel.setText("Cargo Space: " + ship.getCargoSize()
                 + " / " + ship.getMaxCargoSpace());
     }
 
+    private static void jLabelEdit(JLabel jLabel) {
+        jLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+    }
 }

@@ -36,6 +36,7 @@ public class Transaction {
                 updateCurrency(-1 * price);
                 ship.getCargoList().add(item);
                 confirmationDialog("Purchased", item);
+                OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
             }
         }
     }

@@ -20,6 +20,7 @@ public class RegionDisplay {
     //GUI Screens
     protected RegionPanel regionPanel;
     protected InvMarketDisplay invMarketDisplay;
+    protected ShipDisplay shipDisplay;
     protected Map map;
 
     protected RegionDisplay() {
@@ -29,7 +30,9 @@ public class RegionDisplay {
 
         regionPanel = new RegionPanel();
         invMarketDisplay = new InvMarketDisplay();
+        shipDisplay = new ShipDisplay();
         map = new Map();
+
 
         Color panelColor = new Color(196, 196, 196);
 
@@ -39,6 +42,7 @@ public class RegionDisplay {
 
         rightPanel = new JPanel(new BorderLayout());
         rightPanel.add(invMarketDisplay.panel, BorderLayout.NORTH);
+        rightPanel.add(shipDisplay.panel, BorderLayout.SOUTH);
         rightPanel.setPreferredSize(new Dimension(350, 1000));
         rightPanel.setBackground(panelColor);
 

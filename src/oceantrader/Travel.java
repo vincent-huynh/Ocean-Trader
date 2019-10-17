@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 public class Travel {
 
-
     //Variables to help keep the code clean and easier to read.
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
@@ -68,6 +67,7 @@ public class Travel {
         RegionPanel.regionList.setSelectedIndex(0);
         OceanTrader.regionDisplay.map.updateMapTitle(player.getRegion());
         OceanTrader.regionDisplay.map.repaint();
+        OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
     }
 
     /**

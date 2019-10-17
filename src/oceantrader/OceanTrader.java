@@ -162,6 +162,7 @@ public class OceanTrader {
             cardLayout.show(cardPanel, "Main");
             regionDisplay.invMarketDisplay.updateInventory();
             regionDisplay.invMarketDisplay.updateMarket();
+            regionDisplay.shipDisplay.updateShipDisplay(player);
         });
 
         /*
