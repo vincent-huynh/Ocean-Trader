@@ -48,12 +48,12 @@ public class InvMarketDisplay {
                     "Item Name", "Price", "Type"
                 }
         ) {
-            protected Class[] types = new Class[] {
+            private Class[] types = new Class[] {
                 java.lang.Object.class, java.lang.Integer.class,
                 java.lang.String.class
             };
 
-            protected boolean[] canEdit = new boolean[] {
+            private boolean[] canEdit = new boolean[] {
                 false, false, false
             };
 
@@ -85,12 +85,12 @@ public class InvMarketDisplay {
                     "Item Name", "Price", "Type"
                 }
         ) {
-            protected Class[] types = new Class[] {
+            private Class[] types = new Class[] {
                 java.lang.Object.class, java.lang.Integer.class,
                 java.lang.String.class
             };
 
-            protected boolean[] canEdit = new boolean[] {
+            private boolean[] canEdit = new boolean[] {
                 false, false, false
             };
 
