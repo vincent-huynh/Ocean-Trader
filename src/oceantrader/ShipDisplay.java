@@ -13,6 +13,7 @@ public class ShipDisplay {
     private static GridBagConstraints constraints;
 
     protected static JPanel panel;
+    private static JLabel shipLabel;
     private static JLabel typeLabel;
     private static JLabel fuelLabel;
     private static JLabel healthLabel;
@@ -30,23 +31,28 @@ public class ShipDisplay {
 
     private static void displaySetup() {
 
-        typeLabel = new JLabel("Ship Type: ");
+        shipLabel = new JLabel("Ship Information");
         changeConstraints(1, 1, 5, 1, 1, 1);
+        shipLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+        panel.add(shipLabel, constraints);
+
+        typeLabel = new JLabel("Ship Type: ");
+        changeConstraints(1, 2, 5, 1, 1, 1);
         jLabelEdit(typeLabel);
         panel.add(typeLabel, constraints);
 
         healthLabel = new JLabel("Health: ");
-        changeConstraints(1, 2, 5, 1, 1, 1);
+        changeConstraints(1, 3, 5, 1, 1, 1);
         jLabelEdit(healthLabel);
         panel.add(healthLabel, constraints);
 
         fuelLabel = new JLabel("Fuel Capacity: ");
-        changeConstraints(1, 3, 5, 1, 1, 1);
+        changeConstraints(1, 4, 5, 1, 1, 1);
         jLabelEdit(fuelLabel);
         panel.add(fuelLabel, constraints);
 
         cargoLabel = new JLabel("Cargo Space: ");
-        changeConstraints(1, 4, 5, 1, 1, 1);
+        changeConstraints(1, 5, 5, 1, 1, 1);
         jLabelEdit(cargoLabel);
         panel.add(cargoLabel, constraints);
 
