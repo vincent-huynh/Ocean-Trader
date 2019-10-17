@@ -163,7 +163,6 @@ public class OceanTrader {
         to facilitate with all the traveling.
          */
         regionDisplay.travelButton.addActionListener(e -> {
-            testRegionItems();
 //            Travel.confirmTravel();
             RegionDisplay.invMarketDisplay.updateInventory();
             RegionDisplay.invMarketDisplay.updateMarket();
@@ -190,21 +189,5 @@ public class OceanTrader {
                    + (int) ConfigurationScreen.traderSpinner.getValue()
                    + (int) ConfigurationScreen.engineerSpinner.getValue();
         pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
-    }
-
-    private static void testRegionItems() {
-        for (Region region : Universe.getInstance().regions) {
-            ArrayList<String> list = new ArrayList<>();
-            System.out.println(region.getName() + " // " + region.getTechLevel());
-            System.out.println("===============\n");
-            for (Item item : region.getMarketItems()) {
-                list.add(item.getName());
-            }
-            Collections.sort(list);
-            for (String name : list) {
-                System.out.println(name);
-            }
-            System.out.println();
-        }
     }
 }
