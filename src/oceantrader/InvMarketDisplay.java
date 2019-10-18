@@ -25,6 +25,9 @@ public class InvMarketDisplay {
     private JTextField marketTextField;
     private DefaultTableModel inventoryModel;
     private DefaultTableModel marketModel;
+    private JTextField playerBalanceDisplay;
+    private JTextField playerBalanceLbl;
+
     private Item buyItem;
     private Item sellItem;
 
@@ -43,6 +46,8 @@ public class InvMarketDisplay {
         marketTextField = new JTextField();
         sellBtn = new JButton();
         buyBtn = new JButton();
+        playerBalanceDisplay = new JTextField();
+        playerBalanceLbl = new JTextField();
 
         panel.setPreferredSize(new java.awt.Dimension(350, 600));
 
@@ -135,6 +140,16 @@ public class InvMarketDisplay {
         sellBtn.setText("Sell Item");
         buyBtn.setText("Buy Item");
 
+
+        playerBalanceLbl.setEditable(false);
+        playerBalanceLbl.setText("Player Balance:");
+        playerBalanceLbl.setBorder(null);
+
+        playerBalanceDisplay.setEditable(false);
+        playerBalanceDisplay.setBorder(null);
+
+
+
         inventoryTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -165,12 +180,14 @@ public class InvMarketDisplay {
             Transaction.processTransactionSell(sellItem);
             updateInventory();
             updateMarket();
+            updateCurrencyDisplay();
         });
 
         buyBtn.addActionListener(e -> {
             Transaction.processTransactionBuy(buyItem);
             updateInventory();
             updateMarket();
+            updateCurrencyDisplay();
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
@@ -193,12 +210,16 @@ public class InvMarketDisplay {
             .createSequentialGroup().addGap(0, 117, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
             .Alignment.LEADING).addComponent(sellBtn).addComponent(buyBtn))
-            .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment
-            .TRAILING, layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short
-            .MAX_VALUE).addComponent(inventoryTextField, javax.swing.GroupLayout
-            .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-            javax.swing.GroupLayout.PREFERRED_SIZE).addGap(141, 141, 141))
+            .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(inventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141))
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(playerBalanceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(playerBalanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.setVerticalGroup(layout
@@ -210,15 +231,17 @@ public class InvMarketDisplay {
             .addComponent(inventoryScroll, javax.swing.GroupLayout
             .PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18).addComponent(sellBtn)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-            71, Short.MAX_VALUE).addComponent(buyBtn).addGap(20, 20, 20)
-            .addComponent(marketTextField, javax.swing.GroupLayout
-            .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-            javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-            .UNRELATED).addComponent(marketScroll, javax.swing.GroupLayout
-            .PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(playerBalanceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(playerBalanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(buyBtn)
+                    .addGap(20, 20, 20)
+                    .addComponent(marketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(marketScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
 
         if (OceanTrader.player != null) {
@@ -249,6 +272,12 @@ public class InvMarketDisplay {
 
     private void ghettoSellItem(Item it) {
         sellItem = it;
+    }
+
+    protected void updateCurrencyDisplay() {
+        if (OceanTrader.player != null) {
+            playerBalanceDisplay.setText("" + OceanTrader.player.getCurrency());
+        }
     }
 
 }
