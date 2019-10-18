@@ -1,6 +1,7 @@
 package oceantrader;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -181,17 +182,27 @@ public class InvMarketDisplay {
         });
 
         sellBtn.addActionListener(e -> {
-            Transaction.processTransactionSell(sellItem);
-            updateInventory();
-            updateMarket();
-            updateCurrencyDisplay();
+            if (sellItem == null) {
+                JOptionPane.showMessageDialog(OceanTrader.window,
+                        "No Item Selected!");
+            } else {
+                Transaction.processTransactionSell(sellItem);
+                updateInventory();
+                updateMarket();
+                updateCurrencyDisplay();
+            }
         });
 
         buyBtn.addActionListener(e -> {
-            Transaction.processTransactionBuy(new Item(buyItem));
-            updateInventory();
-            updateMarket();
-            updateCurrencyDisplay();
+            if (buyItem == null) {
+                JOptionPane.showMessageDialog(OceanTrader.window,
+                        "No Item Selected!");
+            } else {
+                Transaction.processTransactionBuy(new Item(buyItem));
+                updateInventory();
+                updateMarket();
+                updateCurrencyDisplay();
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
@@ -214,16 +225,20 @@ public class InvMarketDisplay {
             .createSequentialGroup().addGap(0, 117, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
             .Alignment.LEADING).addComponent(sellBtn).addComponent(buyBtn))
-            .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141))
-                .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(playerBalanceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(playerBalanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment
+            .TRAILING, layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+            Short.MAX_VALUE).addComponent(inventoryTextField,
+            javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
+            .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(141, 141, 141)).addGroup(layout.createSequentialGroup()
+            .addGap(46, 46, 46).addComponent(playerBalanceLbl,
+            javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
+            .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18).addComponent(playerBalanceDisplay,
+            javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout
+            .PREFERRED_SIZE).addContainerGap(javax.swing.GroupLayout
+            .DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.setVerticalGroup(layout
@@ -234,18 +249,23 @@ public class InvMarketDisplay {
             javax.swing.GroupLayout.PREFERRED_SIZE).addGap(5, 5, 5)
             .addComponent(inventoryScroll, javax.swing.GroupLayout
             .PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18).addComponent(sellBtn)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(playerBalanceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(playerBalanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                    .addComponent(buyBtn)
-                    .addGap(20, 20, 20)
-                    .addComponent(marketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(marketScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+            .addGap(18, 18, 18).addComponent(sellBtn).addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+            .Alignment.BASELINE).addComponent(playerBalanceLbl,
+            javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
+            .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(playerBalanceDisplay, javax.swing.GroupLayout
+            .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+            javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+            38, Short.MAX_VALUE).addComponent(buyBtn).addGap(20, 20, 20)
+            .addComponent(marketTextField, javax.swing.GroupLayout
+            .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+            javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
+            .UNRELATED).addComponent(marketScroll, javax.swing.GroupLayout
+            .PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
         );
 
         if (OceanTrader.player != null) {
