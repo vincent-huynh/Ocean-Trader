@@ -55,7 +55,7 @@ public class InvMarketDisplay {
         Font bigFont = new Font("Tahoma", 0, 18);
         Font smallFont = new Font("Tahoma", 0, 14);
         panel.setPreferredSize(new java.awt.Dimension(350, 600));
-        panel.setBackground(RegionDisplay.color);
+        panel.setBackground(RegionDisplay.mainGUIColor);
 
         inventoryModel = new javax.swing.table.DefaultTableModel(
                 new Object[][] {

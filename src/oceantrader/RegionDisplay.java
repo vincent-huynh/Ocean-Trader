@@ -24,7 +24,7 @@ public class RegionDisplay {
     protected Map map;
     protected CostDisplay costDisplay;
 
-    protected static Color color = new Color(196, 196, 196);
+    protected static Color mainGUIColor = new Color(196, 196, 196);
 
     protected RegionDisplay() {
 
@@ -39,14 +39,14 @@ public class RegionDisplay {
 
         leftPanel = regionPanel.panel;
         leftPanel.setPreferredSize(new Dimension(350, 1000));
-        leftPanel.setBackground(color);
+        leftPanel.setBackground(mainGUIColor);
 
         rightPanel = new JPanel(new BorderLayout());
         rightPanel.add(invMarketDisplay.panel, BorderLayout.NORTH);
         rightPanel.add(costDisplay.panel, BorderLayout.CENTER);
         rightPanel.add(shipDisplay.panel, BorderLayout.SOUTH);
         rightPanel.setPreferredSize(new Dimension(350, 1000));
-        rightPanel.setBackground(color);
+        rightPanel.setBackground(mainGUIColor);
 
         centerPanel = map;
 

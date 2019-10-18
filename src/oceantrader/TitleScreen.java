@@ -14,7 +14,7 @@ public class TitleScreen {
 
     private JLabel label;
     private JPanel panelBox;
-    protected static Color color = new Color(211, 243, 255);
+    protected static Color launchScreenColor = new Color(211, 243, 255);
 
     protected JButton button;
     protected JPanel panelGridBag;
@@ -40,8 +40,8 @@ public class TitleScreen {
         panelBox.add(label, constraints);
         panelBox.add(label2, constraints);
         panelBox.add(button, constraints);
-        panelBox.setBackground(color);
+        panelBox.setBackground(launchScreenColor);
         panelGridBag.add(panelBox);
-        panelGridBag.setBackground(color);
+        panelGridBag.setBackground(launchScreenColor);
     }
 }
