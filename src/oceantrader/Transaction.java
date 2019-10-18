@@ -82,12 +82,19 @@ public class Transaction {
     private static double dateOffset() {
         if (offset == null) {
             offset = new HashMap<>();
-            for (int i : new int[] {0, 5, 6, 29, 30, 31, 32, 33}) {
-                offset.put(i, 1.05);
-            }
+            // +5% increase in price for date and/or time match
+            offset.put(0, 1.05); //Sunday
+            offset.put(5, 1.05); //Friday
+            offset.put(6, 1.05); //Saturday
+            offset.put(29, 1.05); //7pm
+            offset.put(30, 1.05); //8pm
+            offset.put(31, 1.05); //9pm
+            offset.put(32, 1.05); //10pm
+            offset.put(33, 1.05); //11pm
         }
-        return offset.getOrDefault(new Date().getDay(), 1.0)
-                * offset.getOrDefault(10 + new Date().getHours(), 1.0);
+        Date date = new Date();
+        return offset.getOrDefault(date.getDay(), 1.0)
+                * offset.getOrDefault(10 + date.getHours(), 1.0);
     }
 
     private static void updateCurrency(int price) {
