@@ -45,7 +45,7 @@ public class CostDisplay {
         finalPriceTF = new JTextField();
         semiColonLbl = new JLabel();
 
-        Font bestFont = new Font("Comic Sans MS", 0, 14);
+        Font bestFont = new Font("Tahoma", 0, 14);
         Color backgroundColor = new Color(238, 238, 238);
 
         basePriceLbl.setEditable(false);
@@ -84,11 +84,11 @@ public class CostDisplay {
         tradeTF.setFont(bestFont);
         jScrollPane3.setViewportView(tradeTF);
 
-        finalPriceLbl.setFont(new Font("Comic Sans MS", 1, 18));
+        finalPriceLbl.setFont(new Font("Tahoma", 1, 18));
         finalPriceLbl.setText("Final Price:");
 
         finalPriceTF.setEditable(false);
-        finalPriceTF.setFont(new Font("Comic Sans MS", 0, 18));
+        finalPriceTF.setFont(new Font("Tahoma", 0, 18));
         finalPriceTF.setBorder(javax.swing.BorderFactory
                 .createMatteBorder(1, 1, 1, 1, new Color(102, 0, 0)));
 
