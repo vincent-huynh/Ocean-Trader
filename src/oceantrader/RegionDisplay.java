@@ -48,7 +48,7 @@ public class RegionDisplay {
 
         centerPanel = map;
 
-        bottomPanel = new JPanel();
+        bottomPanel = new JPanel(new BorderLayout());
         travelButton = new JButton("Travel");
         travelButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
         bottomPanel.setPreferredSize(new Dimension(50, 60));
