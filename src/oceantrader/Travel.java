@@ -9,6 +9,9 @@ public class Travel {
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
 
+    private static double cost = 0;
+    private static StringBuilder str = new StringBuilder();
+
     /*
      * Basically checks to see whether or not the user has a valid selection
      * when hitting "travel". If so, then it does a bunch of checks with fuel
@@ -23,7 +26,10 @@ public class Travel {
         } else if (value.equals(player.getRegion().getName())) {
             JOptionPane.showMessageDialog(window, "You are at this region!");
         } else {
-            int cost = fuelCost();
+            addBaseCost();
+            addDiffMultipler();
+            addPilotSavings();
+
             int capacity = player.getShip().getFuelCapacity();
             if (cost > capacity) {
                 String errorMsg = String.format("Not enough fuel!"
@@ -32,15 +38,21 @@ public class Travel {
                         capacity, Map.selected.getName(), cost);
                 JOptionPane.showMessageDialog(window, errorMsg);
             } else {
-                String confirmMsg = String.format("Your ship currently has"
-                        + " %d fuel.\nTraveling to %s will use %d fuel."
-                        + "\nConfirm Travel?",
-                        capacity, Map.selected.getName(), cost);
-                int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
-                        "Travel Confirmation", JOptionPane.YES_NO_OPTION);
-                if (yesOrNo == 0) {
-                    updateFuel(cost);
-                    travel();
+                int confirmPage = JOptionPane.showConfirmDialog(window,
+                        str.toString(), "Price Confirmation",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirmPage == 0) {
+                    String confirmMsg = String.format("Your ship currently has"
+                                    + " %d fuel.\nTraveling to %s will use %d"
+                                    + " fuel.\nConfirm Travel?",
+                            capacity, Map.selected.getName(), (int) cost);
+                    int yesOrNo = JOptionPane.showConfirmDialog(window,
+                            confirmMsg, "Travel Confirmation",
+                            JOptionPane.YES_NO_OPTION);
+                    if (yesOrNo == 0) {
+                        updateFuel((int) cost);
+                        travel();
+                    }
                 }
             }
         }
@@ -70,30 +82,29 @@ public class Travel {
         OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
     }
 
-    /**
-     * Calculates the fuel cost to travel.
-     * @return the fuel cost, as an int.
-     */
-    private static int fuelCost() {
-        return (int) (Region.calcDistance(player, Map.selected)
-                * getDiffMultiplier() * getPilotSavings());
+    private static void addBaseCost() {
+        cost = Region.calcDistance(player, Map.selected);
+        str.setLength(0);
+        str.append(String.format("Base Fuel Cost: %.1f Coins\n\n", cost));
     }
 
-    /**
-     * @return The difficulty multipler to be used in fuelCost(). Easy pays
-     * x1 amount, medium pays x1.5 amount, and hard pays x2 amount.
-     */
-    private static double getDiffMultiplier() {
-        return player.getDifficulty() == Difficulty.EASY ? 1.0
+    private static void addDiffMultipler() {
+        String x = "x";
+        double multipler = player.getDifficulty() == Difficulty.EASY ? 1.0
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
+        cost *= multipler;
+        str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
+                + " after multipler: %.1f Coins\n\n", multipler, x, cost));
     }
 
-    /**
-     * For every point the player has allocated to pilot, the cost will be -3%.
-     * @return The amount of fuel the player saves as a result of pilot points.
-     */
-    private static double getPilotSavings() {
-        return (100 - (player.getSkillLevel("Pilot") * 3.0)) / 100;
+    private static void addPilotSavings() {
+        String s = "%";
+        int points = player.getSkillLevel("Pilot");
+        double savings = (100 - points * 3.0) / 100;
+        cost *= savings;
+        str.append(String.format("You have %d point(s) allocated to Seamanship."
+                + "\nYour skill bonus discount is -%d%s.\n\nYour final cost is:"
+                + " %.1f Coins", points, points * 3, s, cost));
     }
 
     /**
