@@ -66,7 +66,7 @@ public class InvMarketDisplay {
             }
         };
 
-        inventoryTable.setFont(new java.awt.Font("Dialog", 0, 14)); //NOI18N
+        inventoryTable.setFont(new java.awt.Font("Tahoma", 0, 14));
         inventoryTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(inventoryTable);
         inventoryTable.getTableHeader().setReorderingAllowed(false);
@@ -76,7 +76,7 @@ public class InvMarketDisplay {
         inventoryTable.setSelectionModel(new SingleSelectionModel());
 
         inventoryTextField.setEditable(false);
-        inventoryTextField.setFont(new java.awt.Font("Dialog", 0, 14)); //NOI18N
+        inventoryTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
         inventoryTextField.setText("Inventory");
         inventoryTextField.setBorder(null);
 
@@ -105,7 +105,7 @@ public class InvMarketDisplay {
             }
         };
 
-        marketTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        marketTable.setFont(new java.awt.Font("Tahoma", 0, 14));
         marketTable.setModel(marketModel);
         marketScroll.setViewportView(marketTable);
         marketTable.getTableHeader().setReorderingAllowed(false);
@@ -115,7 +115,7 @@ public class InvMarketDisplay {
         marketTable.setSelectionModel(new SingleSelectionModel());
 
         marketTextField.setEditable(false);
-        marketTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        marketTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
         marketTextField.setText("Market");
         marketTextField.setBorder(null);
 

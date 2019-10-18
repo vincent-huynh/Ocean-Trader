@@ -10,11 +10,9 @@ public class SingleSelectionModel extends DefaultListSelectionModel {
 
     @Override
     public void clearSelection() {
-
     }
 
     @Override
     public void removeSelectionInterval(int index0, int index1) {
-
     }
 }
