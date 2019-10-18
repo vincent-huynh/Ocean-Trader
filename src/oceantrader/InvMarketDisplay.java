@@ -80,9 +80,12 @@ public class InvMarketDisplay {
         inventoryTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(inventoryTable);
         inventoryTable.getTableHeader().setReorderingAllowed(false);
+        inventoryTable.getTableHeader().setResizingAllowed(false);
         TableColumnModel tcm = inventoryTable.getColumnModel();
-        tcm.getColumn(1).setPreferredWidth(20);
-
+        tcm.getColumn(0).setPreferredWidth(120);
+        tcm.getColumn(0).setMinWidth(120);
+        tcm.getColumn(1).setPreferredWidth(10);
+        tcm.getColumn(2).setPreferredWidth(10);
         inventoryTable.setSelectionModel(new SingleSelectionModel());
 
         tcm.getColumn(3).setMaxWidth(0);
@@ -123,8 +126,12 @@ public class InvMarketDisplay {
         marketTable.setModel(marketModel);
         marketScroll.setViewportView(marketTable);
         marketTable.getTableHeader().setReorderingAllowed(false);
+        marketTable.getTableHeader().setResizingAllowed(false);
         TableColumnModel tcm2 = marketTable.getColumnModel();
-        tcm2.getColumn(1).setPreferredWidth(20);
+        tcm2.getColumn(0).setPreferredWidth(120);
+        tcm2.getColumn(0).setMinWidth(120);
+        tcm2.getColumn(1).setPreferredWidth(5);
+        tcm2.getColumn(2).setPreferredWidth(10);
 
         tcm2.getColumn(3).setMaxWidth(0);
         tcm2.getColumn(3).setMinWidth(0);
@@ -184,7 +191,7 @@ public class InvMarketDisplay {
         });
 
         buyBtn.addActionListener(e -> {
-            Transaction.processTransactionBuy(buyItem);
+            Transaction.processTransactionBuy(new Item(buyItem));
             updateInventory();
             updateMarket();
             updateCurrencyDisplay();
