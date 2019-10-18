@@ -69,7 +69,7 @@ public class InvMarketDisplay {
         inventoryTable.setFont(new java.awt.Font("Dialog", 0, 14)); //NOI18N
         inventoryTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(inventoryTable);
-
+        inventoryTable.getTableHeader().setReorderingAllowed(false);
         TableColumnModel tcm = inventoryTable.getColumnModel();
         tcm.getColumn(1).setPreferredWidth(20);
 
@@ -106,7 +106,7 @@ public class InvMarketDisplay {
         marketTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         marketTable.setModel(marketModel);
         marketScroll.setViewportView(marketTable);
-
+        marketTable.getTableHeader().setReorderingAllowed(false);
         TableColumnModel tcm2 = marketTable.getColumnModel();
         tcm2.getColumn(1).setPreferredWidth(20);
 
@@ -181,6 +181,7 @@ public class InvMarketDisplay {
     }
 
     protected void updateMarket() {
+        marketModel.setRowCount(0);
         for (Item i : OceanTrader.player.getRegion().getMarketItems()) {
             marketModel.addRow(i.tableizer());
         }
