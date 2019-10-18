@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -51,6 +52,8 @@ public class InvMarketDisplay {
         playerBalanceDisplay = new JTextField();
         playerBalanceLbl = new JTextField();
 
+        Font bigFont = new Font("Tahoma", 0, 18);
+        Font smallFont = new Font("Tahoma", 0, 14);
         panel.setPreferredSize(new java.awt.Dimension(350, 600));
 
         inventoryModel = new javax.swing.table.DefaultTableModel(
@@ -81,7 +84,7 @@ public class InvMarketDisplay {
         DefaultTableCellRenderer centerizer = new DefaultTableCellRenderer();
         centerizer.setHorizontalAlignment(JLabel.CENTER);
 
-        invTable.setFont(new java.awt.Font("Tahoma", 0, 14));
+        invTable.setFont(smallFont);
         invTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(invTable);
         invTable.getTableHeader().setReorderingAllowed(false);
@@ -102,7 +105,7 @@ public class InvMarketDisplay {
         invTable.getColumnModel().getColumn(2).setCellRenderer(centerizer);
 
         invTextField.setEditable(false);
-        invTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
+        invTextField.setFont(bigFont);
         invTextField.setText("Inventory");
         invTextField.setBorder(null);
 
@@ -131,7 +134,7 @@ public class InvMarketDisplay {
             }
         };
 
-        marketTable.setFont(new java.awt.Font("Tahoma", 0, 14));
+        marketTable.setFont(smallFont);
         marketTable.setModel(marketModel);
         marketScroll.setViewportView(marketTable);
         marketTable.getTableHeader().setReorderingAllowed(false);
@@ -153,7 +156,7 @@ public class InvMarketDisplay {
         marketTable.setSelectionModel(new SingleSelectionModel());
 
         marketTextField.setEditable(false);
-        marketTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
+        marketTextField.setFont(bigFont);
         marketTextField.setText("Market");
         marketTextField.setBorder(null);
 
@@ -162,11 +165,11 @@ public class InvMarketDisplay {
 
         playerBalanceLbl.setEditable(false);
         playerBalanceLbl.setText("Player Balance:");
-        playerBalanceLbl.setFont(new java.awt.Font("Tahoma", 0, 18));
+        playerBalanceLbl.setFont(bigFont);
         playerBalanceLbl.setBorder(null);
 
         playerBalanceDisplay.setEditable(false);
-        playerBalanceDisplay.setFont(new java.awt.Font("Tahoma", 0, 18));
+        playerBalanceDisplay.setFont(bigFont);
         playerBalanceDisplay.setBorder(null);
 
         invTable.addMouseListener(new MouseAdapter() {
