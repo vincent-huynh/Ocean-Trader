@@ -37,10 +37,12 @@ public class Travel {
                                 + "\nTraveling to %s will cost %d fuel.",
                         capacity, Map.selected.getName(), (int) cost);
                 JOptionPane.showMessageDialog(window, errorMsg);
+
             } else {
                 int confirmPage = JOptionPane.showConfirmDialog(window,
                         str.toString(), "Price Confirmation",
                         JOptionPane.YES_NO_OPTION);
+
                 if (confirmPage == 0) {
                     String confirmMsg = String.format("Your ship currently has"
                                     + " %d fuel.\nTraveling to %s will use %d"
@@ -49,6 +51,7 @@ public class Travel {
                     int yesOrNo = JOptionPane.showConfirmDialog(window,
                             confirmMsg, "Travel Confirmation",
                             JOptionPane.YES_NO_OPTION);
+
                     if (yesOrNo == 0) {
                         updateFuel((int) cost);
                         travel();
@@ -89,22 +92,21 @@ public class Travel {
     }
 
     private static void addDiffMultipler() {
-        String x = "x";
         double multipler = player.getDifficulty() == Difficulty.EASY ? 1.0
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
         cost *= multipler;
         str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
-                + " after multipler: %.1f Coins\n\n", multipler, x, cost));
+                + " after multipler: %.1f Coins\n\n", multipler,
+                new String("x"), cost));
     }
 
     private static void addPilotSavings() {
-        String s = "%";
         int points = player.getSkillLevel("Pilot");
         double savings = (100 - points * 3.0) / 100;
         cost *= savings;
         str.append(String.format("You have %d point(s) allocated to Seamanship."
                 + "\nYour skill bonus discount is -%d%s.\n\nYour final cost is:"
-                + " %.1f Coins", points, points * 3, s, cost));
+                + " %.1f Coins", points, points * 3, new String("%"), cost));
     }
 
     /**
