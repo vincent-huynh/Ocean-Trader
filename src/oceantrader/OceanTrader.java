@@ -163,6 +163,7 @@ public class OceanTrader {
             regionDisplay.invMarketDisplay.updateInventory();
             regionDisplay.invMarketDisplay.updateMarket();
             regionDisplay.shipDisplay.updateShipDisplay(player);
+            regionDisplay.invMarketDisplay.updateCurrencyDisplay();
         });
 
         /*
