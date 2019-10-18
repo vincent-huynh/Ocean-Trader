@@ -193,7 +193,8 @@ public class InvMarketDisplay {
                     final int row = target.getSelectedRow();
                     final Item selectedItem = (Item) target.getValueAt(row, 3);
                     ghettoBuyItem(selectedItem);
-                    RegionDisplay.costDisplay.updateBuyDisplay(Transaction.getPriceValues(selectedItem));
+                    RegionDisplay.costDisplay.updateBuyDisplay(Transaction
+                            .getPriceValues(selectedItem));
                 }
             }
         });

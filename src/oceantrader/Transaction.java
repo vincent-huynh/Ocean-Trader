@@ -72,7 +72,8 @@ public class Transaction {
     }
 
     protected static double[] getPriceValues(Item item) {
-        double[] itemVals = {item.getPrice(), dateOffset(), skillDiscount(), tax(), calculatePrice(item)};
+        double[] itemVals = {item.getPrice(), dateOffset(), skillDiscount(),
+                tax(), calculatePrice(item)};
         return itemVals;
     }
 
