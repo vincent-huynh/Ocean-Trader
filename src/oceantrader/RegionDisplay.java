@@ -22,7 +22,7 @@ public class RegionDisplay {
     protected InvMarketDisplay invMarketDisplay;
     protected ShipDisplay shipDisplay;
     protected Map map;
-    protected CostDisplay costDisplay;
+    protected static CostDisplay costDisplay;
 
     protected static Color mainGUIColor = new Color(196, 196, 196);
 
