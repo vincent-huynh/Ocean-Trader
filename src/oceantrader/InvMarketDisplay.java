@@ -7,6 +7,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InvMarketDisplay {
 
@@ -22,6 +25,8 @@ public class InvMarketDisplay {
     private JTextField marketTextField;
     private DefaultTableModel inventoryModel;
     private DefaultTableModel marketModel;
+    private Item buyItem;
+    private Item sellItem;
 
     protected InvMarketDisplay() {
         panel = new JPanel();
@@ -45,16 +50,16 @@ public class InvMarketDisplay {
                 new Object[][] {
                 },
                 new String[] {
-                    "Item Name", "Price", "Type"
+                    "Item Name", "Price", "Type", ""
                 }
         ) {
             private Class[] types = new Class[] {
                 java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class
+                java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -75,6 +80,10 @@ public class InvMarketDisplay {
 
         inventoryTable.setSelectionModel(new SingleSelectionModel());
 
+        tcm.getColumn(3).setMaxWidth(0);
+        tcm.getColumn(3).setMinWidth(0);
+        tcm.getColumn(3).setPreferredWidth(0);
+
         inventoryTextField.setEditable(false);
         inventoryTextField.setFont(new java.awt.Font("Dialog", 0, 14)); //NOI18N
         inventoryTextField.setText("Inventory");
@@ -84,16 +93,16 @@ public class InvMarketDisplay {
                 new Object[][] {
                 },
                 new String[] {
-                    "Item Name", "Price", "Type"
+                    "Item Name", "Price", "Type", ""
                 }
         ) {
             private Class[] types = new Class[] {
                 java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class
+                java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -112,6 +121,10 @@ public class InvMarketDisplay {
         TableColumnModel tcm2 = marketTable.getColumnModel();
         tcm2.getColumn(1).setPreferredWidth(20);
 
+        tcm2.getColumn(3).setMaxWidth(0);
+        tcm2.getColumn(3).setMinWidth(0);
+        tcm2.getColumn(3).setPreferredWidth(0);
+
         marketTable.setSelectionModel(new SingleSelectionModel());
 
         marketTextField.setEditable(false);
@@ -121,6 +134,44 @@ public class InvMarketDisplay {
 
         sellBtn.setText("Sell Item");
         buyBtn.setText("Buy Item");
+
+        inventoryTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 1) {
+                    final JTable target = (JTable) mouseEvent.getSource();
+                    final int row = target.getSelectedRow();
+                    final Item selectedItem = (Item) target.getValueAt(row, 3);
+                    ghettoSellItem(selectedItem);
+                }
+            }
+        });
+
+        marketTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 1) {
+                    final JTable target = (JTable)mouseEvent.getSource();
+                    final int row = target.getSelectedRow();
+                    final Item selectedItem = (Item) target.getValueAt(row, 3);
+                    ghettoBuyItem(selectedItem);
+                }
+            }
+        });
+
+
+
+        sellBtn.addActionListener(e -> {
+            Transaction.processTransactionSell(sellItem);
+            updateInventory();
+            updateMarket();
+        });
+
+        buyBtn.addActionListener(e -> {
+            Transaction.processTransactionBuy(buyItem);
+            updateInventory();
+            updateMarket();
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
         panel.setLayout(layout);
@@ -177,6 +228,7 @@ public class InvMarketDisplay {
     }
 
     protected void updateInventory() {
+        inventoryModel.setRowCount(0);
         for (int i = 0; i < OceanTrader.player.getShip().getCargoSize(); ++i) {
             Object[] row = OceanTrader.player.getShip().getCargoList().get(i)
                     .tableizer();
@@ -190,4 +242,13 @@ public class InvMarketDisplay {
             marketModel.addRow(i.tableizer());
         }
     }
+
+    private void ghettoBuyItem(Item it) {
+        buyItem = it;
+    }
+
+    private void ghettoSellItem(Item it) {
+        sellItem = it;
+    }
+
 }
