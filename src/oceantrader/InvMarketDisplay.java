@@ -1,6 +1,12 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -14,8 +20,8 @@ public class InvMarketDisplay {
     protected JButton sellBtn;
 
     private JScrollPane inventoryScroll;
-    private JTable inventoryTable;
-    private JTextField inventoryTextField;
+    private JTable invTable;
+    private JTextField invTextField;
     private JScrollPane marketScroll;
     private JTable marketTable;
     private JTextField marketTextField;
@@ -35,8 +41,8 @@ public class InvMarketDisplay {
     private void initGUI() {
 
         inventoryScroll = new JScrollPane();
-        inventoryTable = new JTable();
-        inventoryTextField = new JTextField();
+        invTable = new JTable();
+        invTextField = new JTextField();
         marketScroll = new JScrollPane();
         marketTable = new JTable();
         marketTextField = new JTextField();
@@ -75,32 +81,30 @@ public class InvMarketDisplay {
         DefaultTableCellRenderer centerizer = new DefaultTableCellRenderer();
         centerizer.setHorizontalAlignment(JLabel.CENTER);
 
-
-        inventoryTable.setFont(new java.awt.Font("Tahoma", 0, 14));
-        inventoryTable.setModel(inventoryModel);
-        inventoryScroll.setViewportView(inventoryTable);
-        inventoryTable.getTableHeader().setReorderingAllowed(false);
-        inventoryTable.getTableHeader().setResizingAllowed(false);
-        TableColumnModel tcm = inventoryTable.getColumnModel();
+        invTable.setFont(new java.awt.Font("Tahoma", 0, 14));
+        invTable.setModel(inventoryModel);
+        inventoryScroll.setViewportView(invTable);
+        invTable.getTableHeader().setReorderingAllowed(false);
+        invTable.getTableHeader().setResizingAllowed(false);
+        TableColumnModel tcm = invTable.getColumnModel();
         tcm.getColumn(0).setPreferredWidth(120);
         tcm.getColumn(0).setMinWidth(120);
         tcm.getColumn(1).setPreferredWidth(10);
         tcm.getColumn(2).setPreferredWidth(10);
-        inventoryTable.setSelectionModel(new SingleSelectionModel());
+        invTable.setSelectionModel(new SingleSelectionModel());
 
         tcm.getColumn(3).setMaxWidth(0);
         tcm.getColumn(3).setMinWidth(0);
         tcm.getColumn(3).setPreferredWidth(0);
 
-        inventoryTable.getColumnModel().getColumn(0).setCellRenderer(centerizer);
-        inventoryTable.getColumnModel().getColumn(1).setCellRenderer(centerizer);
-        inventoryTable.getColumnModel().getColumn(2).setCellRenderer(centerizer);
+        invTable.getColumnModel().getColumn(0).setCellRenderer(centerizer);
+        invTable.getColumnModel().getColumn(1).setCellRenderer(centerizer);
+        invTable.getColumnModel().getColumn(2).setCellRenderer(centerizer);
 
-
-        inventoryTextField.setEditable(false);
-        inventoryTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
-        inventoryTextField.setText("Inventory");
-        inventoryTextField.setBorder(null);
+        invTextField.setEditable(false);
+        invTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
+        invTextField.setText("Inventory");
+        invTextField.setBorder(null);
 
         marketModel = new javax.swing.table.DefaultTableModel(
                 new Object[][] {
@@ -156,17 +160,16 @@ public class InvMarketDisplay {
         sellBtn.setText("Sell Item");
         buyBtn.setText("Buy Item");
 
-
         playerBalanceLbl.setEditable(false);
         playerBalanceLbl.setText("Player Balance:");
+        playerBalanceLbl.setFont(new java.awt.Font("Tahoma", 0, 18));
         playerBalanceLbl.setBorder(null);
 
         playerBalanceDisplay.setEditable(false);
+        playerBalanceDisplay.setFont(new java.awt.Font("Tahoma", 0, 18));
         playerBalanceDisplay.setBorder(null);
 
-
-
-        inventoryTable.addMouseListener(new MouseAdapter() {
+        invTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getClickCount() == 1) {
@@ -237,7 +240,7 @@ public class InvMarketDisplay {
             .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment
             .TRAILING, layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-            Short.MAX_VALUE).addComponent(inventoryTextField,
+            Short.MAX_VALUE).addComponent(invTextField,
             javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
             .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(141, 141, 141)).addGroup(layout.createSequentialGroup()
@@ -253,7 +256,7 @@ public class InvMarketDisplay {
         layout.setVerticalGroup(layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup().addContainerGap()
-            .addComponent(inventoryTextField, javax.swing.GroupLayout
+            .addComponent(invTextField, javax.swing.GroupLayout
             .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
             javax.swing.GroupLayout.PREFERRED_SIZE).addGap(5, 5, 5)
             .addComponent(inventoryScroll, javax.swing.GroupLayout
@@ -293,7 +296,6 @@ public class InvMarketDisplay {
     }
 
     protected void updateMarket() {
-        marketTextField.setText(OceanTrader.player.getRegion().getName() + " Market");
         marketModel.setRowCount(0);
         for (Item i : OceanTrader.player.getRegion().getMarketItems()) {
             marketModel.addRow(i.tableizer());
