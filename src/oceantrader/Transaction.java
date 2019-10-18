@@ -69,22 +69,14 @@ public class Transaction {
     }
 
     private static double dateOffset() {
-        Date date = new Date();
-        return offsetMap().getOrDefault(date.getDay(), 1.0)
-                * offsetMap().getOrDefault(10 + date.getHours(), 1.0);
-    }
-
-    private static HashMap<Integer, Double> offsetMap() {
         if (offset == null) {
             offset = new HashMap<>();
-            offset.put(0, 1.21);
-            offset.put(5, 1.21);
-            offset.put(6, 1.21);
-            for (int i = 29; i < 34; ++i) {
-                offset.put(i, 1.24);
+            for (int i : new int[] {0, 5, 6, 29, 30, 31, 32, 33}) {
+                offset.put(i, 1.05);
             }
         }
-        return offset;
+        return offset.getOrDefault(new Date().getDay(), 1.0)
+                * offset.getOrDefault(10 + new Date().getHours(), 1.0);
     }
 
     private static void updateCurrency(int price) {
