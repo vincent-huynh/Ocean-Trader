@@ -7,7 +7,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -151,15 +150,13 @@ public class InvMarketDisplay {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getClickCount() == 1) {
-                    final JTable target = (JTable)mouseEvent.getSource();
+                    final JTable target = (JTable) mouseEvent.getSource();
                     final int row = target.getSelectedRow();
                     final Item selectedItem = (Item) target.getValueAt(row, 3);
                     ghettoBuyItem(selectedItem);
                 }
             }
         });
-
-
 
         sellBtn.addActionListener(e -> {
             Transaction.processTransactionSell(sellItem);
@@ -250,5 +247,4 @@ public class InvMarketDisplay {
     private void ghettoSellItem(Item it) {
         sellItem = it;
     }
-
 }
