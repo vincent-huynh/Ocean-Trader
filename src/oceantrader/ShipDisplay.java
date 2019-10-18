@@ -2,7 +2,10 @@ package oceantrader;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 public class ShipDisplay {
 
@@ -32,7 +35,7 @@ public class ShipDisplay {
         changeConstraints(1, 1, 5, 1, 1, 1);
         shipLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
         panel.add(shipLabel, constraints);
-        panel.setBackground(new Color(197, 205, 226));
+        //panel.setBackground(new Color(228, 226, 227));
 
         typeLabel = new JLabel("Ship Type: ");
         changeConstraints(1, 2, 5, 1, 1, 1);

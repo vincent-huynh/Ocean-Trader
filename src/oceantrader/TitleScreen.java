@@ -1,5 +1,6 @@
 package oceantrader;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -13,6 +14,7 @@ public class TitleScreen {
 
     private JLabel label;
     private JPanel panelBox;
+    protected static Color color = new Color(211, 243, 255);
 
     protected JButton button;
     protected JPanel panelGridBag;
@@ -38,6 +40,8 @@ public class TitleScreen {
         panelBox.add(label, constraints);
         panelBox.add(label2, constraints);
         panelBox.add(button, constraints);
+        panelBox.setBackground(color);
         panelGridBag.add(panelBox);
+        panelGridBag.setBackground(color);
     }
 }

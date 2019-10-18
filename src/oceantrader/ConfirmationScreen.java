@@ -18,7 +18,9 @@ public class ConfirmationScreen {
     protected ConfirmationScreen() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+        panel.setBackground(TitleScreen.color);
         panelGridBag = new JPanel(new GridBagLayout());
+        panelGridBag.setBackground(TitleScreen.color);
         button = new JButton("Proceed");
         button.setFont(new Font("Tahoma", Font.PLAIN, 30));
     }
