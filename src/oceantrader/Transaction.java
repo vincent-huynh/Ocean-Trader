@@ -63,6 +63,7 @@ public class Transaction {
             confirmationDialog("Sold", item);
 
             InvMarketDisplay.sellItem = null;
+            OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
         }
     }
 
