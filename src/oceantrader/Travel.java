@@ -88,7 +88,7 @@ public class Travel {
     private static void addBaseCost() {
         cost = Region.calcDistance(player, Map.selected);
         str.setLength(0);
-        str.append(String.format("Base Fuel Cost: %.1f Coins\n\n", cost));
+        str.append(String.format("Base Fuel Cost: %.1f Fuel\n\n", cost));
     }
 
     private static void addDiffMultipler() {
@@ -96,7 +96,7 @@ public class Travel {
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
         cost *= multipler;
         str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
-                + " after multipler: %.1f Coins\n\n", multipler,
+                + " after multipler: %.1f Fuel\n\n", multipler,
                 new String("x"), cost));
     }
 
@@ -106,7 +106,7 @@ public class Travel {
         cost *= savings;
         str.append(String.format("You have %d point(s) allocated to Seamanship."
                 + "\nYour skill bonus discount is -%d%s.\n\nYour final cost is:"
-                + " %.1f Coins", points, points * 3, new String("%"), cost));
+                + " %.1f Fuel", points, points * 3, new String("%"), cost));
     }
 
     /**
