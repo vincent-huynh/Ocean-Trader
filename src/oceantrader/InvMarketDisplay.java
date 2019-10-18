@@ -30,8 +30,8 @@ public class InvMarketDisplay {
     private JTextField playerBalanceDisplay;
     private JTextField playerBalanceLbl;
 
-    private Item buyItem;
-    private Item sellItem;
+    protected static Item buyItem;
+    protected static Item sellItem;
 
     protected InvMarketDisplay() {
         panel = new JPanel();

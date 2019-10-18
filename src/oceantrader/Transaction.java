@@ -20,22 +20,28 @@ public class Transaction {
             String fullInv = "Your ship's inventory is full!"
                     + "\nPlease upgrade your inventory before purchasing.";
             JOptionPane.showMessageDialog(window, fullInv);
+
         } else if (player.getCurrency() < price) {
             String errorMsg = String.format("Not enough currency!\n"
                             + "You only have %d coins.\n%s costs %d coins.",
                     player.getCurrency(), item.getName(), price);
             JOptionPane.showMessageDialog(window, errorMsg);
+
         } else {
-            String confirmMsg = String.format("You have %d coins." +
-                            "\n%s costs %d coins.\nConfirm Purchase?",
+            String confirmMsg = String.format("You have %d coins."
+                            + "\n%s costs %d coins.\nConfirm Purchase?",
                     player.getCurrency(), item.getName(), price);
             int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                     "Purchase Confirmation", JOptionPane.YES_NO_OPTION);
+
             if (yesOrNo == 0) {
+
                 item.setSellPrice(price);
                 updateCurrency(-1 * price);
                 ship.getCargoList().add(item);
                 confirmationDialog("Purchased", item);
+
+                InvMarketDisplay.buyItem = null;
                 OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
             }
         }
@@ -45,14 +51,18 @@ public class Transaction {
 
         int price = (int) (item.getSellPrice() * (75.0 / 100.0));
 
-        String confirmMsg = String.format("%s sells for %d coins." +
-                "\nConfirm Sell?", item.getName(), price);
+        String confirmMsg = String.format("%s sells for %d coins."
+                + "\nConfirm Sell?", item.getName(), price);
         int yesOrNo = JOptionPane.showConfirmDialog(window, confirmMsg,
                 "Sell Confirmation", JOptionPane.YES_NO_OPTION);
+
         if (yesOrNo == 0) {
+
             updateCurrency(price);
             ship.getCargoList().remove(item);
             confirmationDialog("Sold", item);
+
+            InvMarketDisplay.sellItem = null;
         }
     }
 
