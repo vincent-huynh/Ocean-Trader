@@ -1,11 +1,7 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.MouseAdapter;
@@ -76,6 +72,10 @@ public class InvMarketDisplay {
             }
         };
 
+        DefaultTableCellRenderer centerizer = new DefaultTableCellRenderer();
+        centerizer.setHorizontalAlignment(JLabel.CENTER);
+
+
         inventoryTable.setFont(new java.awt.Font("Tahoma", 0, 14));
         inventoryTable.setModel(inventoryModel);
         inventoryScroll.setViewportView(inventoryTable);
@@ -91,6 +91,11 @@ public class InvMarketDisplay {
         tcm.getColumn(3).setMaxWidth(0);
         tcm.getColumn(3).setMinWidth(0);
         tcm.getColumn(3).setPreferredWidth(0);
+
+        inventoryTable.getColumnModel().getColumn(0).setCellRenderer(centerizer);
+        inventoryTable.getColumnModel().getColumn(1).setCellRenderer(centerizer);
+        inventoryTable.getColumnModel().getColumn(2).setCellRenderer(centerizer);
+
 
         inventoryTextField.setEditable(false);
         inventoryTextField.setFont(new java.awt.Font("Tahoma", 0, 18));
@@ -136,6 +141,10 @@ public class InvMarketDisplay {
         tcm2.getColumn(3).setMaxWidth(0);
         tcm2.getColumn(3).setMinWidth(0);
         tcm2.getColumn(3).setPreferredWidth(0);
+
+        marketTable.getColumnModel().getColumn(0).setCellRenderer(centerizer);
+        marketTable.getColumnModel().getColumn(1).setCellRenderer(centerizer);
+        marketTable.getColumnModel().getColumn(2).setCellRenderer(centerizer);
 
         marketTable.setSelectionModel(new SingleSelectionModel());
 
