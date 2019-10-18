@@ -55,7 +55,7 @@ public class CostDisplay {
 
         timeLbl.setEditable(false);
         timeLbl.setFont(bestFont); 
-        timeLbl.setText("Day Value:");
+        timeLbl.setText("Peak Time:");
         timeLbl.setBorder(null);
 
         valueCalcLbl.setFont(new Font("Cantarell Extra Bold", 1, 24)); 
