@@ -284,6 +284,7 @@ public class InvMarketDisplay {
     }
 
     protected void updateMarket() {
+        marketTextField.setText(OceanTrader.player.getRegion().getName() + " Market");
         marketModel.setRowCount(0);
         for (Item i : OceanTrader.player.getRegion().getMarketItems()) {
             marketModel.addRow(i.tableizer());
