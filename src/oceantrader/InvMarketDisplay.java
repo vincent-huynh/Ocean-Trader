@@ -92,7 +92,9 @@ public class InvMarketDisplay {
         inventoryScroll.setViewportView(invTable);
         invTable.getTableHeader().setReorderingAllowed(false);
         invTable.getTableHeader().setResizingAllowed(false);
+
         TableColumnModel tcm = invTable.getColumnModel();
+
         tcm.getColumn(0).setPreferredWidth(120);
         tcm.getColumn(0).setMinWidth(120);
         tcm.getColumn(1).setPreferredWidth(10);
@@ -142,7 +144,9 @@ public class InvMarketDisplay {
         marketScroll.setViewportView(marketTable);
         marketTable.getTableHeader().setReorderingAllowed(false);
         marketTable.getTableHeader().setResizingAllowed(false);
+
         TableColumnModel tcm2 = marketTable.getColumnModel();
+
         tcm2.getColumn(0).setPreferredWidth(120);
         tcm2.getColumn(0).setMinWidth(120);
         tcm2.getColumn(1).setPreferredWidth(5);
@@ -178,23 +182,27 @@ public class InvMarketDisplay {
         invTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
             }
         });
-        invTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+        invTable.getSelectionModel()
+                .addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 if (invTable.getSelectedRow() != -1) {
-                    sellItem = (Item) invTable.getValueAt(invTable.getSelectedRow(), 3);
+                    sellItem = (Item) invTable.getValueAt(invTable
+                            .getSelectedRow(), 3);
                 }
             }
         });
 
-        marketTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        marketTable.getSelectionModel()
+                .addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 if (marketTable.getSelectedRow() != -1) {
-                    buyItem = (Item) marketTable.getValueAt(marketTable.getSelectedRow(), 3);
+                    buyItem = (Item) marketTable.getValueAt(marketTable
+                            .getSelectedRow(), 3);
                     RegionDisplay.costDisplay.updateBuyDisplay(Transaction
                             .getPriceValues(buyItem));
                 }
