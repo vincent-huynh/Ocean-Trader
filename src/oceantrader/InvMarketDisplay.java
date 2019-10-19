@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -176,25 +178,25 @@ public class InvMarketDisplay {
         invTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                if (mouseEvent.getClickCount() == 1) {
-                    final JTable target = (JTable) mouseEvent.getSource();
-                    final int row = target.getSelectedRow();
-                    final Item selectedItem = (Item) target.getValueAt(row, 3);
-                    ghettoSellItem(selectedItem);
+
+            }
+        });
+        invTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (invTable.getSelectedRow() != -1) {
+                    sellItem = (Item) invTable.getValueAt(invTable.getSelectedRow(), 3);
                 }
             }
         });
 
-        marketTable.addMouseListener(new MouseAdapter() {
+        marketTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                if (mouseEvent.getClickCount() == 1) {
-                    final JTable target = (JTable) mouseEvent.getSource();
-                    final int row = target.getSelectedRow();
-                    final Item selectedItem = (Item) target.getValueAt(row, 3);
-                    ghettoBuyItem(selectedItem);
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (marketTable.getSelectedRow() != -1) {
+                    buyItem = (Item) marketTable.getValueAt(marketTable.getSelectedRow(), 3);
                     RegionDisplay.costDisplay.updateBuyDisplay(Transaction
-                            .getPriceValues(selectedItem));
+                            .getPriceValues(buyItem));
                 }
             }
         });
@@ -306,14 +308,6 @@ public class InvMarketDisplay {
         for (Item i : OceanTrader.player.getRegion().getMarketItems()) {
             marketModel.addRow(i.tableizer());
         }
-    }
-
-    private void ghettoBuyItem(Item it) {
-        buyItem = it;
-    }
-
-    private void ghettoSellItem(Item it) {
-        sellItem = it;
     }
 
     protected void updateCurrencyDisplay() {
