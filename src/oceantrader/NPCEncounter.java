@@ -20,7 +20,7 @@ the game as much.
                         Travel.updateFuel(fuelCost);
                         Travel.travel();
 
-Lastly, the getChance() method does the calculation for the chance outcomes.
+Lastly, the getOutcome() method does the calculation for the chance outcomes.
 This method is created for consistency among all the NPCs.
  */
 
@@ -70,7 +70,7 @@ public class NPCEncounter {
         return chances.getOrDefault(diff, 100);
     }
 
-    protected static int getChance(int skillLevel) {
-        return 0; //STILL NEED TO DO THIS
+    protected static boolean getOutcome(int skillLevel) {
+        return true; //to be implemented later
     }
 }
