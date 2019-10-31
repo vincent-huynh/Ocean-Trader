@@ -55,33 +55,33 @@ public class CostDisplay {
         Color backgroundColor = new Color(238, 238, 238);
 
         basePriceLbl.setEditable(false);
-        basePriceLbl.setFont(bestFont); 
+        basePriceLbl.setFont(bestFont);
         basePriceLbl.setText("Base Price:");
         basePriceLbl.setBorder(null);
 
         timeLbl.setEditable(false);
-        timeLbl.setFont(bestFont); 
+        timeLbl.setFont(bestFont);
         timeLbl.setText("Peak Time:");
         timeLbl.setBorder(null);
 
-        valueCalcLbl.setFont(new Font("Cantarell Extra Bold", 1, 24)); 
+        valueCalcLbl.setFont(new Font("Cantarell Extra Bold", 1, 24));
         valueCalcLbl.setText("Value Calculation");
 
         tradeSkillLbl.setEditable(false);
-        tradeSkillLbl.setFont(bestFont); 
+        tradeSkillLbl.setFont(bestFont);
         tradeSkillLbl.setText("Trade Skill:");
         tradeSkillLbl.setBorder(null);
 
         basePriceTF.setEditable(false);
         basePriceTF.setBackground(backgroundColor);
         basePriceTF.setBorder(null);
-        basePriceTF.setFont(bestFont); 
+        basePriceTF.setFont(bestFont);
         jScrollPane1.setViewportView(basePriceTF);
 
         timeTF.setEditable(false);
         timeTF.setBackground(backgroundColor);
         timeTF.setBorder(null);
-        timeTF.setFont(bestFont); 
+        timeTF.setFont(bestFont);
         jScrollPane2.setViewportView(timeTF);
 
         tradeTF.setEditable(false);

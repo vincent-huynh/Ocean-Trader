@@ -53,6 +53,7 @@ public class Travel {
                             JOptionPane.YES_NO_OPTION);
 
                     if (yesOrNo == 0) {
+//                        NPCEncounter.initiateEncounter((int) cost);
                         updateFuel((int) cost);
                         travel();
                     }
@@ -64,7 +65,7 @@ public class Travel {
     /*
      * This method facilitates the travel.
      */
-    private static void travel() {
+    protected static void travel() {
 
         // Variables to help keep the code clean and easier to read.
         Region region = player.getRegion();
@@ -113,7 +114,7 @@ public class Travel {
      * This method updates the player's ship fuel after they have traveled.
      * @param cost The amount of fuel required to travel.
      */
-    private static void updateFuel(int cost) {
+    protected static void updateFuel(int cost) {
         Ship ship = player.getShip();
         ship.setFuelCapacity(ship.getFuelCapacity() - cost);
     }
