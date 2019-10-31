@@ -22,6 +22,8 @@ the game as much.
 
 Lastly, the getOutcome() method does the calculation for the chance outcomes.
 This method is created for consistency among all the NPCs.
+
+To begin testing your code, refer to line 56 in Travel.java
  */
 
 package oceantrader;
@@ -48,14 +50,10 @@ public class NPCEncounter {
 //            Trader.initiateTraderEncounter(fuelCost);
         } else if (rand.nextInt(100) + 1
                 <= getEncounterChance(OceanTrader.player.getDifficulty())) {
-            if (rand.nextInt(2) == 0) {
-//                Bandit.initiateBanditEncounter(fuelCost);
+            if (OceanTrader.player.getShip().getCargoSize() > 0) {
+                callNPC(rand.nextInt(3));
             } else {
-//                Police.initiatePoliceEncounter(fuelCost);
-            }
-        } else {
-            if (rand.nextInt(4) == 0) {
-//                Trader.initiateTraderEncounter(fuelCost);
+                callNPC(rand.nextInt(2));
             }
         }
     }
@@ -70,7 +68,21 @@ public class NPCEncounter {
         return chances.getOrDefault(diff, 100);
     }
 
+    private static void callNPC(int id) {
+        if (id == 0) {
+//            Bandit.initiateBanditEncounter(fuelCost);
+        } else if (id == 1) {
+//            Police.initiatePoliceEncounter(fuelCost);
+        } else {
+//            Trader.initiateTraderEncounter(fuelCost);
+        }
+    }
+
     protected static boolean getOutcome(int skillLevel) {
-        return true; //to be implemented later
+        return rand.nextInt(100) + 1 <= 30 + 3 * skillLevel ? true : false;
+    }
+
+    protected static void damageShip() {
+        System.out.println("tbd...");
     }
 }
