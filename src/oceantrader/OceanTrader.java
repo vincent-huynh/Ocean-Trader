@@ -29,6 +29,7 @@ public class OceanTrader {
     protected static ConfigurationScreen configScreen;
     protected static ConfirmationScreen confirmScreen;
     protected static RegionDisplay regionDisplay;
+    protected static EncounterFrame encounterFrame;
 
     /*
     The first method that is called when the game first begins.
@@ -36,9 +37,10 @@ public class OceanTrader {
     protected static void startGame() {
 
         // Initializes all the important GUI variables.
-        window = new JFrame();
+        window = new JFrame("Ocean Trader");
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
+        encounterFrame = new EncounterFrame();
 
         // Creates instances of all the beautiful GUIs you guys made.
         titleScreen = new TitleScreen();
