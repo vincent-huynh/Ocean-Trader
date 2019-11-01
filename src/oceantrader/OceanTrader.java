@@ -68,7 +68,6 @@ public class OceanTrader {
         The cardLayout.show() is what transitions the GUIs.
          */
         titleScreen.button.addActionListener(e -> {
-
             window.setMinimumSize(new Dimension(400, 500));
             window.setMaximumSize(new Dimension(400, 500));
             window.setPreferredSize(new Dimension(400, 500));
