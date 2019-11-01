@@ -37,15 +37,10 @@ public class NPCEncounter {
     private static HashMap<Difficulty, Integer> chances = null;
 
     protected static void initiateEncounter(int fuelCost) {
-        //centers to window
+
         OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
-        //makes the encounterFrame visible, does not do anything yet
         OceanTrader.encounterFrame.setVisible(true);
         OceanTrader.encounterFrame.setAlwaysOnTop(true);
-
-
-        //TODO: find a way to not travel and force
-        // the player to finish the encounter
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
                     int forceEncounter = 0;             //
