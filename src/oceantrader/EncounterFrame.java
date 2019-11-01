@@ -1,8 +1,15 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle;
+import javax.swing.JProgressBar;
+import javax.swing.WindowConstants;
 
 public class EncounterFrame extends JFrame {
+
     private JLabel oppHPLbl;
     private JProgressBar oppHealthBar;
     private JLabel oppLabel;
@@ -27,23 +34,18 @@ public class EncounterFrame extends JFrame {
         oppPanel = new JPanel();
 
         doNotTouchlol();
-
-
     }
 
     private void doNotTouchlol() {
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encounter!");
-        setName("Encounter"); // NOI18N
+        setName("Encounter");
 
         youLabel.setText("You:");
-
         oppLabel.setText("Opponent:");
-
         youHPLbl.setText("Health:");
-
         oppHPLbl.setText("Health:");
-
         oppSaysLbl.setText("Opponent says . . .");
 
         GroupLayout oppPanelLayout = new GroupLayout(oppPanel);
@@ -107,7 +109,6 @@ public class EncounterFrame extends JFrame {
                                 .addComponent(oppPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
-
         pack();
     }
 }
