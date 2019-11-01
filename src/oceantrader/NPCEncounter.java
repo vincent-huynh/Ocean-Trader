@@ -12,9 +12,10 @@ to utilize the following lines of code:
                         Travel.updateFuel(fuelCost);
                         Travel.travel();
 
-Lastly, the getOutcome() method does the calculation for the chance outcomes,
-and the damageShip() method damages the player's ship. Use these in your code.
-These methods are created for consistency among all the NPCs.
+Lastly, the getOutcome() method does the calculation for the chance outcomes:
+returns true if player is successful, and false otherwise. The damageShip()
+method damages the player's ship. Use these in your code. These methods are
+created for consistency among all the NPCs.
 
 To begin testing your code, refer to line 56 in Travel.java
  */
