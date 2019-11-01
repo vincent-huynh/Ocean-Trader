@@ -54,11 +54,11 @@ public class Travel {
 
                     if (yesOrNo == 0) {
                         //TO TEST YOUR CODE, UN-COMMENT THE LINE BELOW
-//                        NPCEncounter.initiateEncounter((int) cost);
+                        NPCEncounter.initiateEncounter((int) cost);
 
                         //COMMENT THESE TWO LINES OUT
-                        updateFuel((int) cost);
-                        travel();
+                        //updateFuel((int) cost);
+                        //travel();
                     }
                 }
             }
