@@ -7,7 +7,7 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 import javax.swing.JProgressBar;
 import javax.swing.WindowConstants;
-import java.awt.*;
+import java.awt.CardLayout;
 
 public class EncounterFrame extends JFrame {
 
@@ -45,7 +45,6 @@ public class EncounterFrame extends JFrame {
         youImage = new JPanel();
         oppImage = new JPanel();
 
-
         banditPanel = new BanditEncounter();
         policePanel = new JPanel();
         traderPanel = new TraderEncounter();;
@@ -56,7 +55,6 @@ public class EncounterFrame extends JFrame {
         oppPanel.add(banditPanel, "bandit");
         oppPanel.add(policePanel, "police");
         oppPanel.add(traderPanel, "trader");
-
 
         doNotTouchlol();
     }
@@ -171,6 +169,7 @@ public class EncounterFrame extends JFrame {
     }
 
     protected void setOppPanel(int selection) {
+
         if (selection == 1) {
             currentSelection = banditPanel;
 
