@@ -32,19 +32,22 @@ public class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = 77;            //
-        // 1 = TRADER       2 = BANDIT      3 = POLICE //
 
-        //THE FIRST 3 IF STATEMENTS ARE FOR TESTING ONLY, WILL BE DELETED LATER
+
+        //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
+                    int forceEncounter = 3;             //
+        // 1 = BANDIT       2 = POLICE      3 = TRADER //
+
         if (forceEncounter == 1) {
-//            Trader.initiateTraderEncounter(fuelCost);
-        } else if (forceEncounter == 2) {
-            OceanTrader.encounterFrame.setOppPanel(3);
-            System.out.println("bandit!");
+            OceanTrader.encounterFrame.setOppPanel(1);
+            OceanTrader.encounterFrame.updatePanel();
 //            Bandit.initiateBanditEncounter(fuelCost);
-        } else if (forceEncounter == 3) {
+        } else if (forceEncounter == 2) {
 //            Police.initiatePoliceEncounter(fuelCost);
+        } else if (forceEncounter == 3) {
+            OceanTrader.encounterFrame.setOppPanel(3);
+            OceanTrader.encounterFrame.updatePanel();
+//            Trader.initiateTraderEncounter(fuelCost);
         } else if (rand.nextInt(100) + 1
                 <= getEncounterChance(OceanTrader.player.getDifficulty())) {
             if (OceanTrader.player.getShip().getCargoSize() > 0) {
@@ -52,10 +55,10 @@ public class NPCEncounter {
             } else {
                 callNPC(rand.nextInt(2));
             }
-        } else {
-            Travel.updateFuel(fuelCost);
-            Travel.travel();
         }
+        OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
+        OceanTrader.encounterFrame.setVisible(true);
+        OceanTrader.encounterFrame.setAlwaysOnTop(true);
     }
 
     private static int getEncounterChance(Difficulty diff) {
@@ -70,18 +73,12 @@ public class NPCEncounter {
 
     private static void callNPC(int id) {
         if (id == 0) {
-            System.out.println("test called trader");
-//            Trader.initiateTraderEncounter(fuelCost);
-        } else if (id == 1) {
-            System.out.println("test called bandit");
 //            Bandit.initiateBanditEncounter(fuelCost);
-        } else {
-            System.out.println("test called police");
+        } else if (id == 1) {
 //            Police.initiatePoliceEncounter(fuelCost);
+        } else {
+//            Trader.initiateTraderEncounter(fuelCost);
         }
-        OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
-        OceanTrader.encounterFrame.setAlwaysOnTop(true);
-        OceanTrader.encounterFrame.setVisible(true);
     }
 
     protected static boolean getOutcome(int skillLevel) {

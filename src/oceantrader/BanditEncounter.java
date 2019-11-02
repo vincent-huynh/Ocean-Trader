@@ -8,8 +8,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class BanditEncounter extends JPanel {
+public class BanditEncounter extends JPanel implements IEncounter {
 
     private JTextArea buttonDText;
     private JTextField demandText;
@@ -46,26 +48,84 @@ public class BanditEncounter extends JPanel {
         demandText.setBackground(null);
         demandText.setFont(new java.awt.Font("Dialog", 1, 18));
         demandText.setBorder(null);
-        demandText.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                demandTextActionPerformed(evt);
-            }
-        });
+
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18));
         jLabel1.setText("monies!");
 
         payBtn.setText("Pay");
+        payBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                //TODO: YOUR FUNCTIONALITY FOR PAY FOR BANDIT
+            }
+            public void mouseEntered(MouseEvent e) {
+                payDisc();
+            }
+        });
         fleeBtn.setText("Flee");
+        fleeBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                //TODO: YOUR FUNCTIONALITY FOR FLEE FOR BANDIT
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+                fleeDisc();
+            }
+        });
         fightBtn.setText("Fight");
+        fightBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                //TODO: YOUR FUNCTIONALITY FOR FIGHT FOR BANDIT
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+                fightDisc();
+            }
+        });
 
         buttonDText.setEditable(false);
         buttonDText.setBackground(null);
         buttonDText.setColumns(20);
         buttonDText.setRows(5);
-        jScrollPane1.setViewportView(buttonDText);
+        buttonDText.setFont(new java.awt.Font("Dialog", 1, 14));
+        buttonDText.setWrapStyleWord(true);
+        buttonDText.setLineWrap(true);
 
+        jScrollPane1.setViewportView(buttonDText);
         doNotTouch();
+    }
+
+    @Override
+    public void updatePanel() {
+        demandText.setText("1234"); //PLEASE CHANGE THIS TO BANDIT DEMAND
+    }
+
+    private void payDisc() {
+        String text = "Attempt to pay the bandit's demands. If you do not have enough funds, "
+                + "you will forfeit all of your items in your inventory to the bandit. "
+                + "If you have no items, the bandit will attack you!";
+        buttonDText.setText(text);
+    }
+
+    private void fleeDisc() {
+        String text = "Attempt to flee to your previous region. "
+                + "Your success is based on your piloting skills. "
+                + "If you are unsuccessful in fleeing safely, the bandit "
+                + "will take all of your money and damage your ship!";
+        buttonDText.setText(text);
+    }
+
+    private void fightDisc() {
+        String text = "Attempt to fight the bandit. Your success is based on your "
+                + "fighting skill. If you are successful, you receive some of the "
+                + "bandit's credits as reward. If you are unsuccessful, the bandit "
+                + "steals all of your money and damages  your ship!";
+        buttonDText.setText(text);
     }
 
     private void doNotTouch() {
@@ -97,15 +157,11 @@ public class BanditEncounter extends JPanel {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(demandText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(22, 22, 22)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(lbl1)
-                                                        .addComponent(jLabel1))))
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lbl1)
+                                        .addComponent(jLabel1)
+                                        .addComponent(demandText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -115,8 +171,5 @@ public class BanditEncounter extends JPanel {
                                         .addComponent(payBtn))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-    }
-    private void demandTextActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
     }
 }
