@@ -1,5 +1,11 @@
 package oceantrader;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -19,12 +25,12 @@ public class TraderEncounter extends JPanel implements IEncounter {
     private JLabel traderTop;
     private DefaultTableModel traderModel;
 
-
     public TraderEncounter() {
         initGUI();
     }
 
     private void initGUI() {
+
         traderTop = new JLabel();
         traderItems = new JTable();
         buyBtn = new JButton();
@@ -35,24 +41,23 @@ public class TraderEncounter extends JPanel implements IEncounter {
         jScrollPane2 = new JScrollPane();
         explainArea = new JTextArea();
 
-
-        traderTop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        traderTop.setFont(new java.awt.Font("Dialog", 1, 18));
         traderTop.setText("A trader would like to trade!");
 
         traderModel = new javax.swing.table.DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
-                        "Item Name", "Price", "Type", ""
+                    "Item Name", "Price", "Type", ""
                 }
         ) {
             private Class[] types = new Class[] {
-                    java.lang.Object.class, java.lang.Integer.class,
-                    java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class,
+                java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
-                    false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -115,6 +120,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 ignoreDisc();
             }
         });
+
         robBtn.setText("Rob");
         robBtn.addMouseListener(new MouseAdapter() {
             @Override
@@ -160,28 +166,30 @@ public class TraderEncounter extends JPanel implements IEncounter {
     }
 
     private void ignoreDisc() {
-        String text = "Ignore the trader and continue traveling.";
+        String text = "Ignore the Trader and continue traveling.";
         explainArea.setText(text);
     }
 
     private void robDisc() {
-        String text = "Attempt to rob the trader. Success is based on "
-                + "fighter points. If unsuccessful, your ship is damaged.";
+        String text = "Attempt to rob the Trader. Success is based on your "
+                + "Fighter Skill. If unsuccessful, your ship will be damaged.";
         explainArea.setText(text);
     }
 
     private void negotiateDisc() {
-        String text = "Attempt to negotiate for a better price. Success based on trading skill.";
+        String text = "Attempt to negotiate for a better price."
+                + " Success based on your Trading Skill.";
         explainArea.setText(text);
     }
 
     public void updatePanel() {
         traderModel.setRowCount(0);
-        //for (int i = 0; i < [!TRADERMODEL ITEM COUNT]; ++i) {
-        //    Object[] row = OceanTrader.player.getShip().getCargoList().get(i)
-        //            .tableizer(); [MAKE A TABLEIZER METHOD FOR THE TRADER'S INVENTORY LIST]
-        //    traderModel.addRow(row);
-        //}
+//        for (int i = 0; i < [!TRADERMODEL ITEM COUNT]; ++i) {
+//            Object[] row = OceanTrader.player.getShip().getCargoList().get(i)
+//                    .tableizer();
+////      [MAKE A TABLEIZER METHOD FOR THE TRADER'S INVENTORY LIST]
+//            traderModel.addRow(row);
+//        }
     }
 
     private void doNotTouch() {
@@ -189,45 +197,58 @@ public class TraderEncounter extends JPanel implements IEncounter {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                    .LEADING).addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                            .Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addComponent(buyBtn)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ignoreBtn)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(robBtn)
-                                                .addGap(12, 12, 12)
-                                                .addComponent(negotiateBtn)
-                                                .addGap(0, 28, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(traderTop)
-                                                                .addGap(0, 0, Short.MAX_VALUE))
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                                .addContainerGap())))
+                        .addGap(12, 12, 12)
+                        .addComponent(buyBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(ignoreBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle
+                                .ComponentPlacement.UNRELATED)
+                        .addComponent(robBtn)
+                        .addGap(12, 12, 12)
+                        .addComponent(negotiateBtn)
+                        .addGap(0, 28, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing
+                                .GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                        .addComponent(traderTop)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout
+                                .Alignment.TRAILING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout
+                                .PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(traderTop)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(buyBtn)
-                                        .addComponent(ignoreBtn)
-                                        .addComponent(robBtn)
-                                        .addComponent(negotiateBtn))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                        .LEADING).addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(traderTop)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout
+                            .PREFERRED_SIZE, 96, javax.swing.GroupLayout
+                            .PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout
+                            .PREFERRED_SIZE, javax.swing.GroupLayout
+                            .DEFAULT_SIZE, javax.swing.GroupLayout
+                            .PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
+                            .UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                            .Alignment.BASELINE)
+                    .addComponent(buyBtn)
+                    .addComponent(ignoreBtn)
+                    .addComponent(robBtn)
+                    .addComponent(negotiateBtn))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+                            Short.MAX_VALUE))
         );
     }
 }
