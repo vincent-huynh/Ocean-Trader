@@ -35,7 +35,7 @@ public class NPCEncounter {
 
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = 3;             //
+                    int forceEncounter = 0;             //
         // 1 = BANDIT       2 = POLICE      3 = TRADER //
 
         if (forceEncounter == 1) {
@@ -43,6 +43,7 @@ public class NPCEncounter {
             OceanTrader.encounterFrame.updatePanel();
 //            Bandit.initiateBanditEncounter(fuelCost);
         } else if (forceEncounter == 2) {
+            OceanTrader.encounterFrame.setOppPanel(2);
 //            Police.initiatePoliceEncounter(fuelCost);
         } else if (forceEncounter == 3) {
             OceanTrader.encounterFrame.setOppPanel(3);

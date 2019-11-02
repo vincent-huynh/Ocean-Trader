@@ -44,9 +44,8 @@ public class EncounterFrame extends JFrame {
         oppPanel = new JPanel(); // this is set to encounter
         youImage = new JPanel();
         oppImage = new JPanel();
-
         banditPanel = new BanditEncounter();
-        policePanel = new JPanel();
+        policePanel = new PoliceEncounter();
         traderPanel = new TraderEncounter();;
 
         card = new CardLayout();
@@ -62,19 +61,13 @@ public class EncounterFrame extends JFrame {
     private void doNotTouchlol() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encounter!");
-        setName("Encounter"); // NOI18N
+        setName("Encounter");
 
         youLabel.setText("You:");
-
         oppLabel.setText("Opponent:");
-
         youHPLbl.setText("Health:");
-
         oppHPLbl.setText("Health:");
-
         oppSaysLbl.setText("Opponent says . . .");
-
-
 
         youImage.setPreferredSize(new java.awt.Dimension(75, 75));
 
@@ -178,6 +171,11 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
         } else if (selection == 2) {
+            currentSelection = policePanel;
+            card.show(oppPanel, "police");
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
+            youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
+            youHealthBar.setStringPainted(true);
 
         } else if (selection == 3) {
             currentSelection = traderPanel;
