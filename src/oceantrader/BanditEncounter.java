@@ -1,5 +1,10 @@
 package oceantrader;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -113,9 +118,4 @@ public class BanditEncounter extends JPanel {
     private void demandTextActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
     }
-
-
-
-
-
 }
