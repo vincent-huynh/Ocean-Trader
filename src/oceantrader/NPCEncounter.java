@@ -32,15 +32,15 @@ public class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
-        OceanTrader.encounterFrame.setVisible(true);
-        OceanTrader.encounterFrame.setAlwaysOnTop(true);
+
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = 0;             //
+                    int forceEncounter = 1;             //
         // 1 = BANDIT       2 = POLICE      3 = TRADER //
 
         if (forceEncounter == 1) {
+            OceanTrader.encounterFrame.setOppPanel(1);
+            System.out.println("bandit!");
 //            Bandit.initiateBanditEncounter(fuelCost);
         } else if (forceEncounter == 2) {
 //            Police.initiatePoliceEncounter(fuelCost);
@@ -54,6 +54,9 @@ public class NPCEncounter {
                 callNPC(rand.nextInt(2));
             }
         }
+        OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
+        OceanTrader.encounterFrame.setVisible(true);
+        OceanTrader.encounterFrame.setAlwaysOnTop(true);
     }
 
     private static int getEncounterChance(Difficulty diff) {

@@ -7,6 +7,7 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 import javax.swing.JProgressBar;
 import javax.swing.WindowConstants;
+import java.awt.*;
 
 public class EncounterFrame extends JFrame {
 
@@ -18,6 +19,14 @@ public class EncounterFrame extends JFrame {
     private JLabel youHPLbl;
     private JProgressBar youHealthBar;
     private JLabel youLabel;
+    private JPanel youImage;
+    private JPanel oppImage;
+
+    private JPanel banditPanel;
+    private JPanel policePanel;
+    private JPanel traderPanel;
+
+    private CardLayout card;
 
     public EncounterFrame() {
         initGUI();
@@ -31,84 +40,139 @@ public class EncounterFrame extends JFrame {
         youHealthBar = new JProgressBar();
         oppHealthBar = new JProgressBar();
         oppSaysLbl = new JLabel();
-        oppPanel = new JPanel();
+        oppPanel = new JPanel(); // this is set to encounter
+        youImage = new JPanel();
+        oppImage = new JPanel();
+
+
+        banditPanel = new BanditEncounter();
+        policePanel = new JPanel();
+        traderPanel = new JPanel();
+
+        card = new CardLayout();
+        oppPanel.setLayout(card);
+
+        oppPanel.add(banditPanel, "bandit");
+        oppPanel.add(policePanel, "police");
+        oppPanel.add(traderPanel, "trader");
+
 
         doNotTouchlol();
     }
 
     private void doNotTouchlol() {
-
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Encounter!");
-        setName("Encounter");
+        setName("Encounter"); // NOI18N
 
         youLabel.setText("You:");
+
         oppLabel.setText("Opponent:");
+
         youHPLbl.setText("Health:");
+
         oppHPLbl.setText("Health:");
+
         oppSaysLbl.setText("Opponent says . . .");
 
-        GroupLayout oppPanelLayout = new GroupLayout(oppPanel);
-        oppPanel.setLayout(oppPanelLayout);
-        oppPanelLayout.setHorizontalGroup(
-                oppPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+        oppPanel.setLayout(new java.awt.CardLayout());
+
+        youImage.setPreferredSize(new java.awt.Dimension(75, 75));
+
+        javax.swing.GroupLayout youImageLayout = new javax.swing.GroupLayout(youImage);
+        youImage.setLayout(youImageLayout);
+        youImageLayout.setHorizontalGroup(
+                youImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 75, Short.MAX_VALUE)
         );
-        oppPanelLayout.setVerticalGroup(
-                oppPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 335, Short.MAX_VALUE)
+        youImageLayout.setVerticalGroup(
+                youImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 75, Short.MAX_VALUE)
         );
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        oppImage.setPreferredSize(new java.awt.Dimension(75, 75));
+
+        javax.swing.GroupLayout oppImageLayout = new javax.swing.GroupLayout(oppImage);
+        oppImage.setLayout(oppImageLayout);
+        oppImageLayout.setHorizontalGroup(
+                oppImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 75, Short.MAX_VALUE)
+        );
+        oppImageLayout.setVerticalGroup(
+                oppImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 75, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(youLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(oppLabel)
-                                .addGap(80, 80, 80))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(youHPLbl)
-                                        .addComponent(youHealthBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(oppHPLbl)
-                                        .addComponent(oppHealthBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(oppSaysLbl)
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(oppPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(oppPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(youHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(youHPLbl)
+                                                .addGap(93, 93, 93)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(oppHPLbl)
+                                        .addComponent(oppHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(154, 154, 154)
+                                                .addComponent(oppSaysLbl))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(71, 71, 71)
+                                                .addComponent(youImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(youLabel)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(oppImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(oppLabel))
+                                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(youLabel)
-                                        .addComponent(oppLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(oppLabel)
+                                        .addComponent(youLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(youImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(oppImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(youHPLbl)
                                         .addComponent(oppHPLbl))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(youHealthBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(oppHealthBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(youHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(oppHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(oppSaysLbl)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(oppPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(oppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
+
         pack();
+    }
+
+    protected void setOppPanel(int selection) {
+        if (selection == 1) {
+            CardLayout temp = (CardLayout) oppPanel.getLayout();
+            temp.show(oppPanel, "bandit");
+        }
     }
 }
