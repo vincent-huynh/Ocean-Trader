@@ -28,6 +28,7 @@ public class EncounterFrame extends JFrame {
 
     private CardLayout card;
 
+    private JPanel currentSelection;
     public EncounterFrame() {
         initGUI();
     }
@@ -47,7 +48,7 @@ public class EncounterFrame extends JFrame {
 
         banditPanel = new BanditEncounter();
         policePanel = new JPanel();
-        traderPanel = new JPanel();
+        traderPanel = new TraderEncounter();;
 
         card = new CardLayout();
         oppPanel.setLayout(card);
@@ -75,7 +76,7 @@ public class EncounterFrame extends JFrame {
 
         oppSaysLbl.setText("Opponent says . . .");
 
-        oppPanel.setLayout(new java.awt.CardLayout());
+
 
         youImage.setPreferredSize(new java.awt.Dimension(75, 75));
 
@@ -171,8 +172,29 @@ public class EncounterFrame extends JFrame {
 
     protected void setOppPanel(int selection) {
         if (selection == 1) {
-            CardLayout temp = (CardLayout) oppPanel.getLayout();
-            temp.show(oppPanel, "bandit");
+            currentSelection = banditPanel;
+
+            card.show(oppPanel, "bandit");
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
+            youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
+            youHealthBar.setStringPainted(true);
+        } else if (selection == 2) {
+
+        } else if (selection == 3) {
+            currentSelection = traderPanel;
+
+            card.show(oppPanel, "trader");
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
+            youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
+            youHealthBar.setStringPainted(true);
         }
     }
+
+    protected void updatePanel() {
+        IEncounter p = (IEncounter) currentSelection;
+        ((IEncounter) currentSelection).updatePanel();
+        youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
+        //oppHealthBar.setValue(); THIS IS WHERE YOU SET YOUR ENCOUNTERER'S HEALTH BAR
+    }
+
 }

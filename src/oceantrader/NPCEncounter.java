@@ -35,16 +35,18 @@ public class NPCEncounter {
 
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = 1;             //
+                    int forceEncounter = 3;             //
         // 1 = BANDIT       2 = POLICE      3 = TRADER //
 
         if (forceEncounter == 1) {
             OceanTrader.encounterFrame.setOppPanel(1);
-            System.out.println("bandit!");
+            OceanTrader.encounterFrame.updatePanel();
 //            Bandit.initiateBanditEncounter(fuelCost);
         } else if (forceEncounter == 2) {
 //            Police.initiatePoliceEncounter(fuelCost);
         } else if (forceEncounter == 3) {
+            OceanTrader.encounterFrame.setOppPanel(3);
+            OceanTrader.encounterFrame.updatePanel();
 //            Trader.initiateTraderEncounter(fuelCost);
         } else if (rand.nextInt(100) + 1
                 <= getEncounterChance(OceanTrader.player.getDifficulty())) {
