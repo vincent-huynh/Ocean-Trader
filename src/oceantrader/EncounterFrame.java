@@ -1,10 +1,12 @@
 package oceantrader;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import java.awt.CardLayout;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class EncounterFrame extends JFrame {
 
@@ -16,8 +18,9 @@ public class EncounterFrame extends JFrame {
     private JLabel youHPLbl;
     private JProgressBar youHealthBar;
     private JLabel youLabel;
-    private JPanel youImage;
-    private JPanel oppImage;
+
+    private JLabel youImage;
+    private JLabel oppImage;
 
     private JPanel banditPanel;
     private JPanel policePanel;
@@ -26,6 +29,11 @@ public class EncounterFrame extends JFrame {
     private CardLayout card;
 
     private JPanel currentSelection;
+
+    private JLabel playerImg;
+    private JLabel oppImg;
+    private ImageIcon[] imgs;
+
     public EncounterFrame() {
         initGUI();
     }
@@ -40,11 +48,36 @@ public class EncounterFrame extends JFrame {
         oppHealthBar = new JProgressBar();
         oppSaysLbl = new JLabel();
         oppPanel = new JPanel(); // this is set to encounter
-        youImage = new JPanel();
-        oppImage = new JPanel();
+        oppImage = new JLabel(); // image here
         banditPanel = new BanditEncounter();
         policePanel = new PoliceEncounter();
         traderPanel = new TraderEncounter();
+        imgs = new ImageIcon[3];
+
+        try {
+            File img = new File("src/images/youImage.png");
+            BufferedImage playerSource = ImageIO.read(img);
+            playerImg = new JLabel(new ImageIcon(playerSource));
+            youImage = playerImg;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            File img = new File("src/images/pirate.png");
+            BufferedImage playerSource = ImageIO.read(img);
+            imgs[0] = new ImageIcon(playerSource);
+
+            File img2 = new File("src/images/police.png");
+            BufferedImage src2 = ImageIO.read(img2);
+            imgs[1] = new ImageIcon(src2);
+
+            File img3 = new File(("src/images/trader.png"));
+            BufferedImage traderSrc = ImageIO.read(img3);
+            imgs[2] = new ImageIcon(traderSrc);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         card = new CardLayout();
         oppPanel.setLayout(card);
@@ -53,6 +86,9 @@ public class EncounterFrame extends JFrame {
         oppPanel.add(policePanel, "police");
         oppPanel.add(traderPanel, "trader");
 
+        oppHealthBar.setMaximum(100);
+        oppHealthBar.setValue(100);
+        oppHealthBar.setStringPainted(true);
         doNotTouchlol();
     }
 
@@ -231,7 +267,7 @@ public class EncounterFrame extends JFrame {
     protected void setOppPanel(int selection) {
 
         if (selection == 0) {
-
+            oppImage.setIcon(imgs[0]);
             BanditEncounter bandit = (BanditEncounter) banditPanel;
             bandit.updatePlayer(OceanTrader.player);
             currentSelection = banditPanel;
@@ -242,7 +278,7 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setStringPainted(true);
 
         } else if (selection == 1) {
-
+            oppImage.setIcon(imgs[1]);
             currentSelection = traderPanel;
             card.show(oppPanel, "trader");
             youHealthBar.setMaximum(OceanTrader.player.getShip()
@@ -251,7 +287,7 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setStringPainted(true);
 
         } else if (selection == 2) {
-
+            oppImage.setIcon(imgs[2]);
             PoliceEncounter popo = (PoliceEncounter) policePanel;
             popo.updatePlayer(OceanTrader.player);
             currentSelection = policePanel;
@@ -267,7 +303,6 @@ public class EncounterFrame extends JFrame {
         IEncounter p = (IEncounter) currentSelection;
         ((IEncounter) currentSelection).updatePanel();
         youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
-        //oppHealthBar.setValue(); THIS IS WHERE YOU SET YOUR ENCOUNTERER'S
-        //HEALTH BAR
     }
+
 }
