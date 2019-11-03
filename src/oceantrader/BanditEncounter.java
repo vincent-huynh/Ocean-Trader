@@ -271,8 +271,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
         playerInventory = player.getShip().getCargoList();
         Random rand = new Random();
         if (player.getCurrency() >= 20) {
-            int upperBound = (int) (1.50 * player.getCurrency());
-            int lowerBound = (int) (.50 * player.getCurrency());
+            int upperBound = (int) (1.10 * player.getCurrency());
+            int lowerBound = (int) (.20 * player.getCurrency());
             int randomInteger =
                     rand.nextInt(upperBound - lowerBound) + lowerBound;
             demand = randomInteger;
