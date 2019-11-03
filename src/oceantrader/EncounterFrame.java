@@ -241,6 +241,7 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setStringPainted(true);
 
         } else if (selection == 1) {
+
             currentSelection = traderPanel;
             card.show(oppPanel, "trader");
             youHealthBar.setMaximum(OceanTrader.player.getShip()
@@ -249,6 +250,9 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setStringPainted(true);
 
         } else if (selection == 2) {
+
+            PoliceEncounter popo = (PoliceEncounter) policePanel;
+            popo.updatePlayer(OceanTrader.player);
             currentSelection = policePanel;
             card.show(oppPanel, "police");
             youHealthBar.setMaximum(OceanTrader.player.getShip()

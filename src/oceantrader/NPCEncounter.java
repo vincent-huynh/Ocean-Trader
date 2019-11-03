@@ -30,7 +30,7 @@ public class NPCEncounter {
     protected static void initiateEncounter(int fuelCost) {
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = -1;            //
+                    int forceEncounter = 2;            //
         // 0 = BANDIT       1 = TRADER      2 = POLICE //
 
         if (forceEncounter == 0) {
