@@ -46,6 +46,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 JOptionPane.showMessageDialog(window, "You forfeited " +
                         "your " + forbidden.getName() + " and continued to your"
                         + " destination.");
+
+                Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
 
@@ -68,6 +70,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     fleeSuccess = true;
                     JOptionPane.showMessageDialog(window, "You "
                             + "successfully fled from the police!");
+
+                    Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
 
@@ -106,6 +110,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 if (outcome) {
                     JOptionPane.showMessageDialog(window, "You won the "
                             + "fight! You safely traveled to your destination.");
+                    Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
                     fleeSuccess = false;
@@ -223,7 +228,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
       // interface// if not needed probably don't need it here tbh
     }
 
-    public void updatePlayer(Player player) {
+    protected void updatePlayer(Player player) {
         this.player = player;
         rand = new Random();
         inventory = player.getShip().getCargoList();
