@@ -60,8 +60,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     player.setCurrency(player.getCurrency() - demand);
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateCurrencyDisplay();
-                    JOptionPane.showMessageDialog(window, "You lost "
-                            + "currency to the bandit");
+                    JOptionPane.showMessageDialog(window, "You lost " + demand
+                            + " currency to the bandit.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else if (playerInventory.size() >= 1) {
@@ -70,16 +70,15 @@ public class BanditEncounter extends JPanel implements IEncounter {
                             .updateShipDisplay(player);
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateInventory();
-                    JOptionPane.showMessageDialog(window, "You didn't "
-                            + "have enough currency so the bandit cleared your "
-                            + "inventory.");
+                    JOptionPane.showMessageDialog(window, "You could not afford"
+                            + " the bandit's demands, so he demanded your"
+                            + " inventory.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
                     NPCEncounter.damageShip();
-                    JOptionPane.showMessageDialog(window, "You didn't "
-                            + "have any inventory so the bandit damaged your "
-                            + "ship.");
+                    JOptionPane.showMessageDialog(window, "You didn't have any"
+                            + " items so the bandit damaged your ship.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 }
@@ -95,8 +94,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
             public void mouseClicked(MouseEvent mouseEvent) {
                 OceanTrader.encounterFrame.setVisible(false);
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
-                    JOptionPane.showMessageDialog(window, "You're " +
-                            "able to successfully flee but you lost fuel.");
+                    JOptionPane.showMessageDialog(window, "You're able to "
+                            + "successfully flee but you lost fuel.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -105,8 +104,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
                             .updateCurrencyDisplay();
                     NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You failed "
-                            + "to flee so the bandit took all of your " +
-                            "currency and damaged your ship.");
+                            + "to flee so the bandit took all of your "
+                            + "currency and damaged your ship.");
                 }
             }
 
@@ -128,9 +127,9 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     player.setCurrency(randomInteger + player.getCurrency());
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateCurrencyDisplay();
-                    JOptionPane.showMessageDialog(window, "You " +
-                            "successfully defeated the bandit and got some of " +
-                            "the bandit's credits as a reward");
+                    JOptionPane.showMessageDialog(window, "You successfully"
+                            + " defeated the bandit and got some of the"
+                            + " bandit's credits as a reward.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -139,8 +138,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
                             .updateCurrencyDisplay();
                     NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You failed "
-                            + "to fight off the bandit took all of " +
-                            "your currency and damaged your ship.");
+                            + "to fight off the bandit, and the bandit took all"
+                            + " of your currency and damaged your ship.");
                 }
             }
 
