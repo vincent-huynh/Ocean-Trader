@@ -231,6 +231,7 @@ public class EncounterFrame extends JFrame {
     protected void setOppPanel(int selection) {
 
         if (selection == 0) {
+
             BanditEncounter bandit = (BanditEncounter) banditPanel;
             bandit.updatePlayer(OceanTrader.player);
             currentSelection = banditPanel;

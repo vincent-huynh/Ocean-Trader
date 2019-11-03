@@ -1,6 +1,12 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -112,9 +118,9 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                     Random rand = new Random();
-                    int random_integer =
+                    int randomInteger =
                             rand.nextInt(1000 - 300) + 300;
-                    player.setCurrency(random_integer + player.getCurrency());
+                    player.setCurrency(randomInteger + player.getCurrency());
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateCurrencyDisplay();
                 } else {
@@ -248,13 +254,13 @@ public class BanditEncounter extends JPanel implements IEncounter {
         if (player.getCurrency() >= 20) {
             int upperBound = (int) (1.50 * player.getCurrency());
             int lowerBound = (int) (.50 * player.getCurrency());
-            int random_integer =
+            int randomInteger =
                     rand.nextInt(upperBound - lowerBound) + lowerBound;
-            demand = random_integer;
+            demand = randomInteger;
             demandText.setText("" + demand);
         } else {
-            int random_integer = rand.nextInt(40 - 21) + 21;
-            demand = random_integer;
+            int randomInteger = rand.nextInt(40 - 21) + 21;
+            demand = randomInteger;
             demandText.setText("" + demand);
         }
     }
