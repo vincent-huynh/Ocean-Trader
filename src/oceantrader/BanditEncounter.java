@@ -1,16 +1,17 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class BanditEncounter extends JPanel implements IEncounter {
 
+    private static int demand;
+    private JFrame window = OceanTrader.window;
+    private Player player;
+    private ArrayList<Item> playerInventory;
     private JTextArea buttonDText;
     private JTextField demandText;
     private JButton fightBtn;
@@ -54,7 +55,26 @@ public class BanditEncounter extends JPanel implements IEncounter {
         payBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR PAY FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (player.getCurrency() >= demand) {
+                    player.setCurrency(player.getCurrency() - demand);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else if (playerInventory.size() >= 1) {
+                    playerInventory.clear();
+                    OceanTrader.regionDisplay.shipDisplay
+                            .updateShipDisplay(player);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateInventory();
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else {
+                    NPCEncounter.damageShip();
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                }
             }
             public void mouseEntered(MouseEvent e) {
                 payDisc();
@@ -65,7 +85,16 @@ public class BanditEncounter extends JPanel implements IEncounter {
         fleeBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR FLEE FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else {
+                    player.setCurrency(0);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    NPCEncounter.damageShip();
+                }
             }
 
             @Override
@@ -78,7 +107,22 @@ public class BanditEncounter extends JPanel implements IEncounter {
         fightBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR FIGHT FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                    Random rand = new Random();
+                    int random_integer =
+                            rand.nextInt(1000 - 300) + 300;
+                    player.setCurrency(random_integer + player.getCurrency());
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                } else {
+                    player.setCurrency(0);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    NPCEncounter.damageShip();
+                }
             }
 
             @Override
@@ -99,9 +143,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
         doNotTouch();
     }
 
-    @Override
     public void updatePanel() {
-        demandText.setText("1234"); //PLEASE CHANGE THIS TO BANDIT DEMAND
+        demandText.setText("1234");
     }
 
     private void payDisc() {
@@ -196,5 +239,23 @@ public class BanditEncounter extends JPanel implements IEncounter {
                                 .addContainerGap(javax.swing.GroupLayout
                                         .DEFAULT_SIZE, Short.MAX_VALUE))
         );
+    }
+
+    protected void updatePlayer(Player player) {
+        this.player = player;
+        playerInventory = player.getShip().getCargoList();
+        Random rand = new Random();
+        if (player.getCurrency() >= 20) {
+            int upperBound = (int) (1.50 * player.getCurrency());
+            int lowerBound = (int) (.50 * player.getCurrency());
+            int random_integer =
+                    rand.nextInt(upperBound - lowerBound) + lowerBound;
+            demand = random_integer;
+            demandText.setText("" + demand);
+        } else {
+            int random_integer = rand.nextInt(40 - 21) + 21;
+            demand = random_integer;
+            demandText.setText("" + demand);
+        }
     }
 }
