@@ -1,14 +1,10 @@
 package oceantrader;
 
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class PoliceEncounter extends JPanel implements IEncounter {
 
@@ -18,6 +14,13 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     private JScrollPane jScrollPane1;
     private JTextArea jTextArea1;
     private JLabel policeLbl;
+    private JFrame window = OceanTrader.window;
+    private ArrayList<Item> inventory;
+    private Random rand;
+    private Player player;
+    private Item forbidden;
+    private boolean fleeSuccess;
+    private int itemPos;
 
     public PoliceEncounter() {
         initGUI();
@@ -36,7 +39,14 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         forfeitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //YOUR CODE FOR snitching HERE
+
+                OceanTrader.encounterFrame.setVisible(false);
+                player.getShip().getCargoList().remove(itemPos);
+                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                JOptionPane.showMessageDialog(window, "You forfeited " +
+                        "your " + forbidden.getName() + " and continued to your"
+                        + " destination.");
+                Travel.travel();
             }
 
             @Override
@@ -49,7 +59,34 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         fleeBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //YOUR CODE FOR FLEEING FROM TWELVE HERE
+
+                int pilotSkill = player.getSkillLevel("Pilot");
+                boolean outcome = NPCEncounter.getOutcome(pilotSkill);
+
+                OceanTrader.encounterFrame.setVisible(false);
+                if (outcome) {
+                    fleeSuccess = true;
+                    JOptionPane.showMessageDialog(window, "You "
+                            + "successfully fled from the police!");
+                    Travel.travel();
+                } else {
+
+                    fleeSuccess = false;
+
+                    int money = player.getCurrency();
+                    int fee = rand.nextInt(money/4);
+
+                    NPCEncounter.damageShip();
+                    player.getShip().getCargoList().remove(itemPos);
+                    player.setCurrency(money - fee);
+
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateInventory();
+                    JOptionPane.showMessageDialog(window, "You were "
+                            + "unsuccessful in evading the police. Your " +
+                            forbidden.getName() + " was confiscated, and you "
+                            + "are fined " + fee + "for trying to escape.");
+                }
             }
 
             @Override
@@ -62,7 +99,34 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         fightBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //YOUR CODE FOR FIGHT THE POPO HERE
+                int fightSKill = player.getSkillLevel("Fighter");
+                boolean outcome = NPCEncounter.getOutcome(fightSKill);
+
+                OceanTrader.encounterFrame.setVisible(false);
+                if (outcome) {
+                    JOptionPane.showMessageDialog(window, "You won the "
+                            + "fight! You safely traveled to your destination.");
+                    Travel.travel();
+                } else {
+                    fleeSuccess = false;
+
+                    int money = player.getCurrency();
+                    int fee = rand.nextInt(money/2);
+
+
+                    player.getShip().getCargoList().remove(itemPos);
+                    player.setCurrency(money - fee);
+                    NPCEncounter.damageShip();
+
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateInventory();
+                    JOptionPane.showMessageDialog(window, "You lost "
+                            + "the fight. Your ship was damaged, your "
+                            + forbidden.getName() + "was confiscated and you "
+                            + "were fined " + fee + " for fighting the "
+                            + "police.");
+                }
+
             }
 
             @Override
@@ -74,7 +138,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     }
 
     private void forfeitDisc() {
-        String text = "Forfeit your illegal item and continue to on.";
+
+        String text = "Forfeit your illegal item and continue to move on.";
         jTextArea1.setText(text);
     }
 
@@ -157,4 +222,15 @@ public class PoliceEncounter extends JPanel implements IEncounter {
       //do something here, otherwise i'll delete the implementing of the
       // interface// if not needed probably don't need it here tbh
     }
+
+    public void updatePlayer(Player player) {
+        this.player = player;
+        rand = new Random();
+        inventory = player.getShip().getCargoList();
+        itemPos = rand.nextInt(inventory.size());
+        forbidden = inventory.get(itemPos);
+        policeLbl.setText("The Police believe you stole: "
+                + forbidden.getName() + ".");
+    }
+
 }
