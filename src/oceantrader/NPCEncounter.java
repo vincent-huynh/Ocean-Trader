@@ -64,7 +64,6 @@ public class NPCEncounter {
 
     private static void callNPC(int id) {
         if (id == 0) {
-            OceanTrader.encounterFrame.updatePanel();
             OceanTrader.encounterFrame.setOppPanel(0);
         } else if (id == 1) {
             OceanTrader.encounterFrame.setOppPanel(1);
