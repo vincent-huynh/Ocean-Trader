@@ -89,7 +89,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     JOptionPane.showMessageDialog(window, "You were "
                             + "unsuccessful in evading the police. Your " +
                             forbidden.getName() + " was confiscated, and you "
-                            + "are fined " + fee + "for trying to escape.");
+                            + "are fined " + fee + " for trying to escape.");
                 }
             }
 
@@ -127,7 +127,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                             .updateInventory();
                     JOptionPane.showMessageDialog(window, "You lost "
                             + "the fight. Your ship was damaged, your "
-                            + forbidden.getName() + "was confiscated and you "
+                            + forbidden.getName() + " was confiscated and you "
                             + "were fined " + fee + " for fighting the "
                             + "police.");
                 }
@@ -160,8 +160,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     private void fightDisc() {
         String text = "Attempt to fight the Police. Your success is dependent "
                 + "on your Fighting Skill. If you are successful, you keep "
-                + "your items. NOTHING IS SAID ABOUT UNSUCCESSFUL !!!";
-        //UNSUCCESSFUL NOT ACCOUNTED FOR, WE NEED TO MAKE SOMETHING UP
+                + "your items. If you lose, your ship will be damaged, and you"
+                + " will pay a fine for fighting with the police.";
         jTextArea1.setText(text);
     }
 

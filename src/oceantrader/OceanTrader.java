@@ -173,8 +173,6 @@ public class OceanTrader {
          */
         regionDisplay.travelButton.addActionListener(e -> {
             Travel.confirmTravel();
-            regionDisplay.invMarketDisplay.updateInventory();
-            regionDisplay.invMarketDisplay.updateMarket();
         });
 
         // Basic window stuff that we need. Can ignore.
