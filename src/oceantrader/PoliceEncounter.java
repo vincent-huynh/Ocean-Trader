@@ -54,7 +54,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 JOptionPane.showMessageDialog(window, "You forfeited your "
                         + forbidden.getName() + " and continued to your"
                         + " destination.");
-
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
@@ -78,7 +77,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     fleeSuccess = true;
                     JOptionPane.showMessageDialog(window, "You "
                             + "successfully fled from the police!");
-
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -91,7 +89,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     NPCEncounter.damageShip();
                     player.getShip().getCargoList().remove(itemPos);
                     player.setCurrency(money - fee);
-
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateInventory();
                     JOptionPane.showMessageDialog(window, "You were "
@@ -126,11 +125,11 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     int money = player.getCurrency();
                     int fee = rand.nextInt(money / 2);
 
-
                     player.getShip().getCargoList().remove(itemPos);
                     player.setCurrency(money - fee);
                     NPCEncounter.damageShip();
-
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateInventory();
                     JOptionPane.showMessageDialog(window, "You lost "
@@ -139,7 +138,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                             + "were fined " + fee + " for fighting the "
                             + "police.");
                 }
-
             }
 
             @Override
@@ -151,7 +149,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     }
 
     private void forfeitDisc() {
-
         String text = "Forfeit your illegal item and continue to move on.";
         jTextArea1.setText(text);
     }
