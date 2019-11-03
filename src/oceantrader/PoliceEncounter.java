@@ -1,6 +1,14 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -43,8 +51,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 OceanTrader.encounterFrame.setVisible(false);
                 player.getShip().getCargoList().remove(itemPos);
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                JOptionPane.showMessageDialog(window, "You forfeited " +
-                        "your " + forbidden.getName() + " and continued to your"
+                JOptionPane.showMessageDialog(window, "You forfeited your "
+                        + forbidden.getName() + " and continued to your"
                         + " destination.");
 
                 Travel.updateFuel((int) Travel.getCost());
@@ -78,7 +86,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     fleeSuccess = false;
 
                     int money = player.getCurrency();
-                    int fee = rand.nextInt(money/4);
+                    int fee = rand.nextInt(money / 4);
 
                     NPCEncounter.damageShip();
                     player.getShip().getCargoList().remove(itemPos);
@@ -87,8 +95,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay
                             .updateInventory();
                     JOptionPane.showMessageDialog(window, "You were "
-                            + "unsuccessful in evading the police. Your " +
-                            forbidden.getName() + " was confiscated, and you "
+                            + "unsuccessful in evading the police. Your "
+                            + forbidden.getName() + " was confiscated, and you "
                             + "are fined " + fee + " for trying to escape.");
                 }
             }
@@ -108,15 +116,15 @@ public class PoliceEncounter extends JPanel implements IEncounter {
 
                 OceanTrader.encounterFrame.setVisible(false);
                 if (outcome) {
-                    JOptionPane.showMessageDialog(window, "You won the "
-                            + "fight! You safely traveled to your destination.");
+                    JOptionPane.showMessageDialog(window, "You won the fight!"
+                            + " You safely traveled to your destination.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
                     fleeSuccess = false;
 
                     int money = player.getCurrency();
-                    int fee = rand.nextInt(money/2);
+                    int fee = rand.nextInt(money / 2);
 
 
                     player.getShip().getCargoList().remove(itemPos);
@@ -237,5 +245,4 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         policeLbl.setText("The Police believe you stole: "
                 + forbidden.getName() + ".");
     }
-
 }
