@@ -32,6 +32,7 @@ public class EncounterFrame extends JFrame {
 
     private JLabel playerImg;
     private JLabel oppImg;
+
     private ImageIcon[] imgs;
 
     public EncounterFrame() {
@@ -276,7 +277,6 @@ public class EncounterFrame extends JFrame {
                     .getMaxHealth());
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
-
         } else if (selection == 1) {
             oppImage.setIcon(imgs[1]);
             currentSelection = traderPanel;
