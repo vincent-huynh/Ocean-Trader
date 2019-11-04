@@ -137,14 +137,11 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     buyItem = null;
                     trader = new Trader();
                 }
-<<<<<<< HEAD
-=======
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                 OceanTrader.regionDisplay.invMarketDisplay
                         .updateCurrencyDisplay();
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
->>>>>>> 47a59fb94dd1a8b7776d2092f51dc123a06eccbb
             }
 
             @Override
