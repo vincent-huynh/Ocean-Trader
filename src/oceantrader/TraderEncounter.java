@@ -15,6 +15,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TraderEncounter extends JPanel implements IEncounter {
 
@@ -124,6 +125,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                     buyItem.getName() + " was bought!");
                             OceanTrader.player.getShip().getCargoList().add(buyItem);
                             OceanTrader.encounterFrame.setVisible(false);
+                            OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                            OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                            Travel.updateFuel((int) Travel.getCost());
+                            Travel.travel();
                             break;
                         default:
                             break;
@@ -131,10 +136,6 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     buyItem = null;
                     trader = new Trader();
                 }
-                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                Travel.updateFuel((int) Travel.getCost());
-                Travel.travel();
             }
 
             @Override
@@ -167,8 +168,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 Ship ship = player.getShip();
                 ArrayList<Item> stolen = trader.robbed();
                 if (stolen.size() == 0) {
+                    NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(traderItems,
-                            "You were not able to steal anything!");
+                            "You were not able to steal anything and the " +
+                                    "trader inflicted damage on your ship!");
                 } else {
                     for (Item item : stolen) {
                         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
@@ -200,10 +203,18 @@ public class TraderEncounter extends JPanel implements IEncounter {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 double dis = trader.negotiate();
-                if (dis != 0) {
+                if (dis > 0) {
                     JOptionPane.showMessageDialog(traderItems,
                             "You were able to haggle down the price by "
                                     + dis + "%!");
+                    updatePanel();
+                } else if (dis == -12345) {
+                    JOptionPane.showMessageDialog(traderItems,
+                            "You cannot negotiate with the trader again!");
+                } else if (dis < 0) {
+
+                    JOptionPane.showMessageDialog(traderItems,
+                            "The trader got angry and increased the prices by " + (dis * -1) + "%!");
                     updatePanel();
                 } else {
                     JOptionPane.showMessageDialog(traderItems,

@@ -45,12 +45,24 @@ public class Trader extends Ship {
         boolean success =  NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Trader"));
         Random rand = new Random();
         double discount = 0;
-        if (success && negotiable) {
+        if (!negotiable) {
+            return -12345;
+        } else if (success && negotiable) {
             discount = (OceanTrader.player.getSkillLevel("Trader")
                     * rand.nextDouble() * 0.3) / 100;
             for (int i = 0; i < getCargoSize(); i++) {
                 Item item = getCargoList().get(i);
                 item.setPrice((int) (item.getPrice() * (1 - discount)));
+            }
+        } else {
+            if (rand.nextDouble() < 0.4) {
+                discount = (OceanTrader.player.getSkillLevel("Trader")
+                        * rand.nextDouble() * 0.3) / 100;
+                for (int i = 0; i < getCargoSize(); i++) {
+                    Item item = getCargoList().get(i);
+                    item.setPrice((int) (item.getPrice() * (1 + discount)));
+                }
+                discount *= -1;
             }
         }
         negotiable = false;
