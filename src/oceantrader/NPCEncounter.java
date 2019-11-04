@@ -53,9 +53,9 @@ public class NPCEncounter {
     private static int getEncounterChance(Difficulty diff) {
         if (chances == null) {
             chances = new HashMap<>();
-            chances.put(Difficulty.EASY, 25);
-            chances.put(Difficulty.MEDIUM, 37);
-            chances.put(Difficulty.HARD, 50);
+            chances.put(Difficulty.EASY, 50);
+            chances.put(Difficulty.MEDIUM, 65);
+            chances.put(Difficulty.HARD, 80);
         }
         return chances.getOrDefault(diff, 100);
     }
