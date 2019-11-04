@@ -24,6 +24,7 @@ public class Trader extends Ship {
         allItems.addAll(TechLevel.FUTURISTIC.getFormerItem());
         for (int i = 0; i < rand.nextInt(5) + 5; i++) {
             this.getCargoList().add(allItems.remove(rand.nextInt(allItems.size())));
+            this.getCargoList().get(i).setSellPrice((int) (this.getCargoList().get(i).getPrice() * 0.75));
         }
     }
 
@@ -42,7 +43,6 @@ public class Trader extends Ship {
 
     public double negotiate() {
         boolean success =  NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Trader"));
-        System.out.println(success);
         Random rand = new Random();
         double discount = 0;
         if (success && negotiable) {
