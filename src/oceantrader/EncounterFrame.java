@@ -1,9 +1,12 @@
 package oceantrader;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import java.awt.CardLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -268,6 +271,7 @@ public class EncounterFrame extends JFrame {
     protected void setOppPanel(int selection) {
 
         if (selection == 0) {
+
             oppImage.setIcon(imgs[0]);
             BanditEncounter bandit = (BanditEncounter) banditPanel;
             bandit.updatePlayer(OceanTrader.player);
@@ -277,7 +281,9 @@ public class EncounterFrame extends JFrame {
                     .getMaxHealth());
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
+
         } else if (selection == 1) {
+
             oppImage.setIcon(imgs[1]);
             currentSelection = traderPanel;
             card.show(oppPanel, "trader");
@@ -287,6 +293,7 @@ public class EncounterFrame extends JFrame {
             youHealthBar.setStringPainted(true);
 
         } else if (selection == 2) {
+
             oppImage.setIcon(imgs[2]);
             PoliceEncounter popo = (PoliceEncounter) policePanel;
             popo.updatePlayer(OceanTrader.player);
@@ -304,5 +311,4 @@ public class EncounterFrame extends JFrame {
         ((IEncounter) currentSelection).updatePanel();
         youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
     }
-
 }
