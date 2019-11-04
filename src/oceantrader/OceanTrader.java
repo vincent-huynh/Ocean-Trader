@@ -35,7 +35,6 @@ public class OceanTrader {
     The first method that is called when the game first begins.
      */
     protected static void startGame() {
-
         // Initializes all the important GUI variables.
         window = new JFrame("Ocean Trader");
         cardLayout = new CardLayout();

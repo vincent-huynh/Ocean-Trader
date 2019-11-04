@@ -169,7 +169,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
     }
 
     public void updatePanel() {
-        demandText.setText("1234");
+        demandText.setText("" + demand);
     }
 
     private void payDisc() {
@@ -276,11 +276,11 @@ public class BanditEncounter extends JPanel implements IEncounter {
             int randomInteger =
                     rand.nextInt(upperBound - lowerBound) + lowerBound;
             demand = randomInteger;
-            demandText.setText("" + demand);
+            updatePanel();
         } else {
             int randomInteger = rand.nextInt(40 - 21) + 21;
             demand = randomInteger;
-            demandText.setText("" + demand);
+            updatePanel();
         }
     }
 }
