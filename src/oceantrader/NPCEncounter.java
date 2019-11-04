@@ -29,7 +29,7 @@ public class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        int forceEncounter = -1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+        int forceEncounter = 1; //0 -> Bandit, 1 -> Trader, 2 -> Police
 
         if (forceEncounter == 0) {
             callNPC(0);
