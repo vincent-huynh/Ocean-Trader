@@ -21,3 +21,6 @@ This milestone covers the creation and display of the universe (in this case, th
 For M5, the group created a ship entity with associated type, cargo space, and health. These ships can store cargo in the form of objects of type Item. The GUI now includes a display for items in both the player's inventory and marketplace and update according to region. The item price during purchase is dependent on the base price, time of day, player's trading skill, and local region tax. The robustness diagram models the player's travel and the handling of bandits.
 
 [Robustness Diagram](https://github.gatech.edu/ileung6/Ocean-Trader/blob/master/src/Models/RobustDiagram.pdf)
+
+# M6 - NPC Encounters
+For M6, the group created NPCs and their encounter screen popups. There are three types of NPCs with different interactions: Bandits, Traders, and Police. Each interaction has its own unique image, graphical interface, and respective backend logic.
