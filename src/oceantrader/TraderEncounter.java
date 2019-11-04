@@ -122,6 +122,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                         case "success":
                             JOptionPane.showMessageDialog(traderItems,
                                     buyItem.getName() + " was bought!");
+                            OceanTrader.player.getShip().getCargoList().add(buyItem);
                             OceanTrader.encounterFrame.setVisible(false);
                             break;
                         default:
@@ -130,6 +131,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     buyItem = null;
                     trader = new Trader();
                 }
+                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                Travel.updateFuel((int) Travel.getCost());
+                Travel.travel();
             }
 
             @Override
@@ -144,6 +149,8 @@ public class TraderEncounter extends JPanel implements IEncounter {
             public void mouseClicked(MouseEvent mouseEvent) {
                 OceanTrader.encounterFrame.setVisible(false);
                 trader = new Trader();
+                Travel.updateFuel((int) Travel.getCost());
+                Travel.travel();
             }
 
             @Override
@@ -176,7 +183,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     }
                 }
                 trader = new Trader();
+                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                 OceanTrader.encounterFrame.setVisible(false);
+                Travel.updateFuel((int) Travel.getCost());
+                Travel.travel();
             }
 
             @Override

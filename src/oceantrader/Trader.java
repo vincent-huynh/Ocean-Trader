@@ -7,7 +7,7 @@ public class Trader extends Ship {
     //Vincent --> Method updatePanel()
     private boolean negotiable = true;
 
-    public Trader() {
+    public Trader () {
         super(ShipType.MERCHANT, 45, 650, 1250);
         generateCargo();
     }
@@ -23,8 +23,8 @@ public class Trader extends Ship {
         allItems.addAll(TechLevel.FUTURISTIC.getItems());
         allItems.addAll(TechLevel.FUTURISTIC.getFormerItem());
         for (int i = 0; i < rand.nextInt(5) + 5; i++) {
-            this.getCargoList().add(allItems.remove(rand.nextInt(allItems
-                    .size())));
+            this.getCargoList().add(allItems.remove(rand.nextInt(allItems.size())));
+            this.getCargoList().get(i).setSellPrice((int) (this.getCargoList().get(i).getPrice() * 0.75));
         }
     }
 
@@ -42,9 +42,7 @@ public class Trader extends Ship {
     }
 
     public double negotiate() {
-        boolean success =  NPCEncounter.getOutcome(OceanTrader.player
-                .getSkillLevel("Trader"));
-        System.out.println(success);
+        boolean success =  NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Trader"));
         Random rand = new Random();
         double discount = 0;
         if (success && negotiable) {
@@ -60,8 +58,7 @@ public class Trader extends Ship {
     }
 
     public ArrayList<Item> robbed() {
-        boolean robbed = NPCEncounter.getOutcome(OceanTrader.player
-                .getSkillLevel("Fighter"));
+        boolean robbed = NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Fighter"));
         Random rand = new Random();
         ArrayList<Item> stolen = new ArrayList<>();
         if (robbed) {
