@@ -29,7 +29,7 @@ public class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        int forceEncounter = 1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+        int forceEncounter = -1; //0 -> Bandit, 1 -> Trader, 2 -> Police
 
         if (forceEncounter == 0) {
             callNPC(0);
@@ -53,9 +53,9 @@ public class NPCEncounter {
     private static int getEncounterChance(Difficulty diff) {
         if (chances == null) {
             chances = new HashMap<>();
-            chances.put(Difficulty.EASY, 50);
-            chances.put(Difficulty.MEDIUM, 65);
-            chances.put(Difficulty.HARD, 80);
+            chances.put(Difficulty.EASY, 40);
+            chances.put(Difficulty.MEDIUM, 55);
+            chances.put(Difficulty.HARD, 70);
         }
         return chances.getOrDefault(diff, 100);
     }
