@@ -1,16 +1,24 @@
 package oceantrader;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class BanditEncounter extends JPanel implements IEncounter {
 
+    private static int demand;
+    private JFrame window = OceanTrader.window;
+    private Player player;
+    private ArrayList<Item> playerInventory;
     private JTextArea buttonDText;
     private JTextField demandText;
     private JButton fightBtn;
@@ -54,7 +62,33 @@ public class BanditEncounter extends JPanel implements IEncounter {
         payBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR PAY FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (player.getCurrency() >= demand) {
+                    player.setCurrency(player.getCurrency() - demand);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    JOptionPane.showMessageDialog(window, "You lost " + demand
+                            + " coins to the bandit.");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else if (playerInventory.size() >= 1) {
+                    playerInventory.clear();
+                    OceanTrader.regionDisplay.shipDisplay
+                            .updateShipDisplay(player);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateInventory();
+                    JOptionPane.showMessageDialog(window, "You could not afford"
+                            + " the bandit's demands, so he demanded your"
+                            + " inventory.");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else {
+                    NPCEncounter.damageShip();
+                    JOptionPane.showMessageDialog(window, "You didn't have any"
+                            + " items, so the bandit damaged your ship.");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                }
             }
             public void mouseEntered(MouseEvent e) {
                 payDisc();
@@ -65,7 +99,21 @@ public class BanditEncounter extends JPanel implements IEncounter {
         fleeBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR FLEE FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
+                    JOptionPane.showMessageDialog(window, "You have "
+                            + "successfully fled but you lost fuel.");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else {
+                    player.setCurrency(0);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    NPCEncounter.damageShip();
+                    JOptionPane.showMessageDialog(window, "You failed "
+                            + "to flee, so the bandit took all of your "
+                            + "coins and damaged your ship.");
+                }
             }
 
             @Override
@@ -78,7 +126,28 @@ public class BanditEncounter extends JPanel implements IEncounter {
         fightBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                //TODO: YOUR FUNCTIONALITY FOR FIGHT FOR BANDIT
+                OceanTrader.encounterFrame.setVisible(false);
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
+                    Random rand = new Random();
+                    int creditsGained = rand.nextInt(1000 - 300) + 300;
+                    player.setCurrency(creditsGained + player.getCurrency());
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    JOptionPane.showMessageDialog(window, "You have"
+                            + " successfully defeated the bandit and received "
+                            + creditsGained + " of the bandit's coins as a"
+                            + " reward.");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                } else {
+                    player.setCurrency(0);
+                    OceanTrader.regionDisplay.invMarketDisplay
+                            .updateCurrencyDisplay();
+                    NPCEncounter.damageShip();
+                    JOptionPane.showMessageDialog(window, "You failed "
+                            + "to fight off the bandit, so the bandit took all"
+                            + " of your coins and damaged your ship.");
+                }
             }
 
             @Override
@@ -99,14 +168,13 @@ public class BanditEncounter extends JPanel implements IEncounter {
         doNotTouch();
     }
 
-    @Override
     public void updatePanel() {
-        demandText.setText("1234"); //PLEASE CHANGE THIS TO BANDIT DEMAND
+        demandText.setText("" + demand);
     }
 
     private void payDisc() {
         String text = "The Bandit makes his demands. If you do not have"
-                + " enough funds, you will forfeit all of your items to the"
+                + " enough coins, you will forfeit all of your items to the"
                 + " bandit. If you have no items, the bandit will attack you!";
         buttonDText.setText(text);
     }
@@ -115,14 +183,14 @@ public class BanditEncounter extends JPanel implements IEncounter {
         String text = "Attempt to flee to your previous region. "
                 + "Your success is based on your Piloting Skills. "
                 + "If you are unsuccessful in fleeing safely, the Bandit "
-                + "will take all of your money and damage your ship!";
+                + "will take all of your coins and damage your ship!";
         buttonDText.setText(text);
     }
 
     private void fightDisc() {
         String text = "Attempt to fight the Bandit. Your success is based"
                 + " on your fighting Skill. If you are successful, you receive"
-                + " some of the Bandit's credits as reward. If you are"
+                + " some of the Bandit's coins as reward. If you are"
                 + " unsuccessful, the Bandit steals all of your money and"
                 + " damages your ship!";
         buttonDText.setText(text);
@@ -196,5 +264,23 @@ public class BanditEncounter extends JPanel implements IEncounter {
                                 .addContainerGap(javax.swing.GroupLayout
                                         .DEFAULT_SIZE, Short.MAX_VALUE))
         );
+    }
+
+    protected void updatePlayer(Player player) {
+        this.player = player;
+        playerInventory = player.getShip().getCargoList();
+        Random rand = new Random();
+        if (player.getCurrency() >= 20) {
+            int upperBound = (int) (1.10 * player.getCurrency());
+            int lowerBound = (int) (.20 * player.getCurrency());
+            int randomInteger =
+                    rand.nextInt(upperBound - lowerBound) + lowerBound;
+            demand = randomInteger;
+            updatePanel();
+        } else {
+            int randomInteger = rand.nextInt(40 - 21) + 21;
+            demand = randomInteger;
+            updatePanel();
+        }
     }
 }

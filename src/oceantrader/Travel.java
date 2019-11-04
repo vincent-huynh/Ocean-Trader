@@ -82,6 +82,8 @@ public class Travel {
         OceanTrader.regionDisplay.map.updateMapTitle(player.getRegion());
         OceanTrader.regionDisplay.map.repaint();
         OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
+        OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+        OceanTrader.regionDisplay.invMarketDisplay.updateMarket();
     }
 
     private static void addBaseCost() {

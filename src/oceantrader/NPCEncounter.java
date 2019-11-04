@@ -8,7 +8,7 @@ the encounter are only here for testing purposes, and will be removed later.
 
 If the user is able to travel, utilize the following lines of code:
 
-                    Travel.updateFuel(Travel.getCost());
+                    Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
 
 Lastly, the getOutcome() method does the calculation for the chance outcomes:
@@ -30,7 +30,7 @@ public class NPCEncounter {
     protected static void initiateEncounter(int fuelCost) {
 
         //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = -1;            //
+                    int forceEncounter = 0;            //
         // 0 = BANDIT       1 = TRADER      2 = POLICE //
 
         if (forceEncounter == 0) {
@@ -63,6 +63,7 @@ public class NPCEncounter {
     }
 
     private static void callNPC(int id) {
+        OceanTrader.encounterFrame = new EncounterFrame();
         if (id == 0) {
             OceanTrader.encounterFrame.setOppPanel(0);
             OceanTrader.encounterFrame.updatePanel();
@@ -71,6 +72,7 @@ public class NPCEncounter {
             OceanTrader.encounterFrame.updatePanel();
         } else {
             OceanTrader.encounterFrame.setOppPanel(2);
+            OceanTrader.encounterFrame.updatePanel();
         }
         OceanTrader.encounterFrame.setLocationRelativeTo(OceanTrader.window);
         OceanTrader.encounterFrame.setVisible(true);
