@@ -28,10 +28,9 @@ public class NPCEncounter {
     private static HashMap<Difficulty, Integer> chances = null;
 
     protected static void initiateEncounter(int fuelCost) {
-        //CHANGE THIS VALUE TO ENABLE 100% ENCOUNTER RATE//
-                    int forceEncounter = 1;            //
-        // 0 = BANDIT       1 = TRADER      2 = POLICE //
-        //int forceEncounter = -1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+
+        int forceEncounter = 1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+
         if (forceEncounter == 0) {
             callNPC(0);
         } else if (forceEncounter == 1) {
