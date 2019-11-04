@@ -1,6 +1,12 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -49,16 +55,16 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 new Object[][] {
                 },
                 new String[] {
-                        "Item Name", "Price", "Type", ""
+                    "Item Name", "Price", "Type", ""
                 }
         ) {
             private Class[] types = new Class[] {
-                    java.lang.Object.class, java.lang.Integer.class,
-                    java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class,
+                java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
-                    false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,6 +125,8 @@ public class TraderEncounter extends JPanel implements IEncounter {
                             OceanTrader.player.getShip().getCargoList().add(buyItem);
                             OceanTrader.encounterFrame.setVisible(false);
                             break;
+                        default:
+                            break;
                     }
                     buyItem = null;
                     trader = new Trader();
@@ -165,7 +173,8 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     for (Item item : stolen) {
                         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
                             JOptionPane.showMessageDialog(traderItems,
-                                    "Your inventory is full, cannot take " + item.getName() + "!");
+                                    "Your inventory is full, cannot take "
+                                            + item.getName() + "!");
                         } else {
                             JOptionPane.showMessageDialog(traderItems,
                                     "You have gained: " + item.getName());
@@ -193,11 +202,12 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 double dis = trader.negotiate();
                 if (dis != 0) {
                     JOptionPane.showMessageDialog(traderItems,
-                            "You were able to haggle down the price by " + dis + "%!");
+                            "You were able to haggle down the price by "
+                                    + dis + "%!");
                     updatePanel();
                 } else {
                     JOptionPane.showMessageDialog(traderItems,
-                            "You were not successful in negotiating");
+                            "You were not successful in negotiating.");
                 }
             }
 
@@ -208,18 +218,19 @@ public class TraderEncounter extends JPanel implements IEncounter {
         });
 
         traderItems.getSelectionModel()
-                .addListSelectionListener(new ListSelectionListener() {
+            .addListSelectionListener(new ListSelectionListener() {
                     @Override
-                    public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                    public void valueChanged(ListSelectionEvent
+                                                     listSelectionEvent) {
                         if (traderItems.getSelectedRow() != -1) {
                             buyItem = (Item) traderItems.getValueAt(traderItems
                                     .getSelectedRow(), 3);
-                            RegionDisplay.costDisplay.updateBuyDisplay(Transaction
-                                    .getPriceValues(buyItem));
+                            RegionDisplay.costDisplay
+                                    .updateBuyDisplay(Transaction
+                                            .getPriceValues(buyItem));
                         }
                     }
                 });
-
 
         explainArea.setEditable(false);
         explainArea.setBackground(null);
@@ -271,8 +282,8 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment
                         .LEADING).addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                .Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing
+                                .GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
                                         .addComponent(buyBtn)
@@ -285,15 +296,21 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                         .addComponent(negotiateBtn)
                                         .addGap(0, 28, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing
+                                        .addGroup(layout
+                                                .createParallelGroup(javax.swing
                                                 .GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout
+                                                        .createSequentialGroup()
                                                         .addComponent(traderTop)
-                                                        .addGap(0, 0, Short.MAX_VALUE))
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout
+                                                        .addGap(0, 0, Short
+                                                                .MAX_VALUE))
+                                                .addComponent(jScrollPane1,
+                                                        javax.swing.GroupLayout
                                                         .Alignment.TRAILING)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                                .addComponent(jScrollPane2,
+                                                        javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE, 0,
+                                                        Short.MAX_VALUE))
                                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -310,10 +327,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                 .PREFERRED_SIZE, javax.swing.GroupLayout
                                 .DEFAULT_SIZE, javax.swing.GroupLayout
                                 .PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                .UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                .Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle
+                                .ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing
+                                .GroupLayout.Alignment.BASELINE)
                                 .addComponent(buyBtn)
                                 .addComponent(ignoreBtn)
                                 .addComponent(robBtn)
