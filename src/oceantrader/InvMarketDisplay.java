@@ -187,27 +187,29 @@ public class InvMarketDisplay {
 
         invTable.getSelectionModel()
                 .addListSelectionListener(new ListSelectionListener() {
-            @Override
+                    @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                if (invTable.getSelectedRow() != -1) {
-                    sellItem = (Item) invTable.getValueAt(invTable
-                            .getSelectedRow(), 3);
-                }
-            }
-        });
+                        if (invTable.getSelectedRow() != -1) {
+                            sellItem = (Item) invTable.getValueAt(invTable
+                                    .getSelectedRow(), 3);
+                        }
+                    }
+                });
 
         marketTable.getSelectionModel()
                 .addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                if (marketTable.getSelectedRow() != -1) {
-                    buyItem = (Item) marketTable.getValueAt(marketTable
-                            .getSelectedRow(), 3);
-                    RegionDisplay.costDisplay.updateBuyDisplay(Transaction
-                            .getPriceValues(buyItem));
-                }
-            }
-        });
+                    @Override
+                    public void valueChanged(ListSelectionEvent
+                                                     listSelectionEvent) {
+                        if (marketTable.getSelectedRow() != -1) {
+                            buyItem = (Item) marketTable.getValueAt(marketTable
+                                    .getSelectedRow(), 3);
+                            RegionDisplay.costDisplay
+                                    .updateBuyDisplay(Transaction
+                                            .getPriceValues(buyItem));
+                        }
+                    }
+                });
 
         sellBtn.addActionListener(e -> {
             if (sellItem == null) {

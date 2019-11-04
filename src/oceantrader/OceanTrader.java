@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
