@@ -22,14 +22,14 @@ package oceantrader;
 import java.util.Random;
 import java.util.HashMap;
 
-public class NPCEncounter {
+public abstract class NPCEncounter {
 
     private static Random rand = new Random();
     private static HashMap<Difficulty, Integer> chances = null;
 
     protected static void initiateEncounter(int fuelCost) {
 
-        int forceEncounter = -1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+        int forceEncounter = 1; //0 -> Bandit, 1 -> Trader, 2 -> Police
 
         if (forceEncounter == 0) {
             callNPC(0);
