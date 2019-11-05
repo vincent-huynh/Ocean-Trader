@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -232,17 +230,13 @@ public class TraderEncounter extends JPanel implements IEncounter {
         });
 
         traderItems.getSelectionModel()
-                .addListSelectionListener(new ListSelectionListener() {
-                    @Override
-                    public void valueChanged(ListSelectionEvent
-                                                     listSelectionEvent) {
-                        if (traderItems.getSelectedRow() != -1) {
-                            buyItem = (Item) traderItems.getValueAt(traderItems
-                                    .getSelectedRow(), 3);
-                            RegionDisplay.costDisplay
-                                    .updateBuyDisplay(Transaction
-                                            .getPriceValues(buyItem));
-                        }
+                .addListSelectionListener(listSelectionEvent -> {
+                    if (traderItems.getSelectedRow() != -1) {
+                        buyItem = (oceantrader.Item) traderItems.getValueAt(traderItems
+                                .getSelectedRow(), 3);
+                        oceantrader.RegionDisplay.costDisplay
+                                .updateBuyDisplay(oceantrader.Transaction
+                                        .getPriceValues(buyItem));
                     }
                 });
 
