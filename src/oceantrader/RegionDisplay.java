@@ -1,30 +1,23 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 
 public class RegionDisplay {
 
+    protected static CostDisplay costDisplay;
+    protected static Color mainGUIColor = new Color(196, 196, 196);
     protected JPanel panel;
     protected JPanel leftPanel;
     protected JPanel rightPanel;
     protected JPanel centerPanel;
     protected JPanel bottomPanel;
-
     protected JButton travelButton;
-
     //GUI Screens
     protected RegionPanel regionPanel;
     protected InvMarketDisplay invMarketDisplay;
     protected ShipDisplay shipDisplay;
     protected Map map;
-    protected static CostDisplay costDisplay;
-
-    protected static Color mainGUIColor = new Color(196, 196, 196);
 
     protected RegionDisplay() {
 
@@ -44,7 +37,7 @@ public class RegionDisplay {
         rightPanel = new JPanel(new BorderLayout());
         rightPanel.add(invMarketDisplay.panel, BorderLayout.NORTH);
         rightPanel.add(costDisplay.panel, BorderLayout.CENTER);
-        rightPanel.add(shipDisplay.panel, BorderLayout.SOUTH);
+        rightPanel.add(ShipDisplay.panel, BorderLayout.SOUTH);
         rightPanel.setPreferredSize(new Dimension(350, 1000));
         rightPanel.setBackground(mainGUIColor);
 

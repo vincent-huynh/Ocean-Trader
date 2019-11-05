@@ -1,18 +1,13 @@
 package oceantrader;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 
 public class ShipDisplay {
 
+    protected static JPanel panel;
     private static GridBagLayout gbPanel;
     private static GridBagConstraints constraints;
-
-    protected static JPanel panel;
     private static JLabel shipLabel;
     private static JLabel typeLabel;
     private static JLabel fuelLabel;
@@ -70,6 +65,10 @@ public class ShipDisplay {
         constraints.anchor = GridBagConstraints.NORTH;
     }
 
+    private static void jLabelEdit(JLabel jLabel) {
+        jLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+    }
+
     protected void updateShipDisplay(Player player) {
         ship = player.getShip();
         typeLabel.setText("Ship Type: " + ship.getType());
@@ -79,9 +78,5 @@ public class ShipDisplay {
                 + " / " + ship.getMaxFuelCapacity());
         cargoLabel.setText("Cargo Space: " + ship.getCargoSize()
                 + " / " + ship.getMaxCargoSpace());
-    }
-
-    private static void jLabelEdit(JLabel jLabel) {
-        jLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
     }
 }

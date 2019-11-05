@@ -1,12 +1,6 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -52,19 +46,19 @@ public class TraderEncounter extends JPanel implements IEncounter {
         traderTop.setText("A trader would like to trade!");
 
         traderModel = new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+                new Object[][]{
                 },
-                new String[] {
-                    "Item Name", "Price", "Type", ""
+                new String[]{
+                        "Item Name", "Price", "Type", ""
                 }
         ) {
-            private Class[] types = new Class[] {
-                java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class, Item.class
+            private Class[] types = new Class[]{
+                    java.lang.Object.class, java.lang.Integer.class,
+                    java.lang.String.class, Item.class
             };
 
-            private boolean[] canEdit = new boolean[] {
-                false, false, false, false
+            private boolean[] canEdit = new boolean[]{
+                    false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -232,7 +226,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
         });
 
         traderItems.getSelectionModel()
-            .addListSelectionListener(new ListSelectionListener() {
+                .addListSelectionListener(new ListSelectionListener() {
                     @Override
                     public void valueChanged(ListSelectionEvent
                                                      listSelectionEvent) {
@@ -312,7 +306,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                 .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout
                                                 .createParallelGroup(javax.swing
-                                                .GroupLayout.Alignment.LEADING)
+                                                        .GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout
                                                         .createSequentialGroup()
                                                         .addComponent(traderTop)
@@ -320,10 +314,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                                                 .MAX_VALUE))
                                                 .addComponent(jScrollPane1,
                                                         javax.swing.GroupLayout
-                                                        .Alignment.TRAILING)
+                                                                .Alignment.TRAILING)
                                                 .addComponent(jScrollPane2,
                                                         javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE, 0,
+                                                                .PREFERRED_SIZE, 0,
                                                         Short.MAX_VALUE))
                                         .addContainerGap())))
         );

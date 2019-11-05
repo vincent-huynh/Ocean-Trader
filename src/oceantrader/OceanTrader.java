@@ -1,11 +1,7 @@
 package oceantrader;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.CardLayout;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -14,20 +10,18 @@ public class OceanTrader {
     //Important variables that facilitate the entire GUI.
     protected static Player player;
     protected static JFrame window;
-    private static JPanel cardPanel;
-    private static CardLayout cardLayout;
-
-    //Random variables that we need.
-    private static int currPoints = 0;
-    private static Random rand = new Random();
-    private static HashMap<String, Integer> diffMap;
-
     //GUI Screens
     protected static TitleScreen titleScreen;
     protected static ConfigurationScreen configScreen;
     protected static ConfirmationScreen confirmScreen;
     protected static RegionDisplay regionDisplay;
     protected static EncounterFrame encounterFrame;
+    private static JPanel cardPanel;
+    private static CardLayout cardLayout;
+    //Random variables that we need.
+    private static int currPoints = 0;
+    private static Random rand = new Random();
+    private static HashMap<String, Integer> diffMap;
 
     /*
     The first method that is called when the game first begins.
@@ -50,7 +44,7 @@ public class OceanTrader {
         between the panels easily.
          */
         cardPanel.add(titleScreen.panelGridBag, "Title");
-        cardPanel.add(configScreen.panel, "Config");
+        cardPanel.add(ConfigurationScreen.panel, "Config");
         cardPanel.add(regionDisplay.panel, "Main");
 
         //Hashmap to faciliate with logic because O(1) is gr8.
@@ -80,17 +74,17 @@ public class OceanTrader {
         After that, we have to send that player to Nick's GUI to display all the
         information on the confirmation screen. Below I break down the steps.
          */
-        configScreen.startButton.addActionListener(e -> {
+        ConfigurationScreen.startButton.addActionListener(e -> {
 
             // Grabs the name field and the difficulty field
-            String name = configScreen.nameField.getText().trim();
-            Object diff = configScreen.difficultyComboBox.getSelectedItem();
+            String name = ConfigurationScreen.nameField.getText().trim();
+            Object diff = ConfigurationScreen.difficultyComboBox.getSelectedItem();
 
             // Grabs the values the user entered for their point allocations.
-            int pilot = ((Integer) configScreen.pilotSpinner.getValue());
-            int fighter = ((Integer) configScreen.fighterSpinner.getValue());
-            int trader = ((Integer) configScreen.traderSpinner.getValue());
-            int engineer = ((Integer) configScreen.engineerSpinner.getValue());
+            int pilot = ((Integer) ConfigurationScreen.pilotSpinner.getValue());
+            int fighter = ((Integer) ConfigurationScreen.fighterSpinner.getValue());
+            int trader = ((Integer) ConfigurationScreen.traderSpinner.getValue());
+            int engineer = ((Integer) ConfigurationScreen.engineerSpinner.getValue());
 
             // The sum of all the points. To be used in calculation below.
             int totalSkill = pilot + fighter + trader + engineer;
@@ -105,15 +99,15 @@ public class OceanTrader {
              */
             if (name.isEmpty() || diff == null) {
                 JOptionPane.showMessageDialog(window, "Please enter name.");
-            } else if (totalSkill != (diffMap.get((String) diff)).intValue()) {
+            } else if (totalSkill != (diffMap.get(diff)).intValue()) {
                 JOptionPane.showMessageDialog(window,
                         "Incorrect point allocation.\nExpected: "
-                                + diffMap.get((String) diff).toString()
+                                + diffMap.get(diff).toString()
                                 + "\nReceived: " + totalSkill);
             } else {
                 Difficulty df = diff.equals("Easy") ? Difficulty.EASY
-                                  : diff.equals("Hard") ? Difficulty.HARD
-                                                        : Difficulty.MEDIUM;
+                        : diff.equals("Hard") ? Difficulty.HARD
+                        : Difficulty.MEDIUM;
                 player = new Player(name, pilot, fighter, trader, engineer, df);
                 /*
                 After the player object is created, we pass it onto Nick's GUI
@@ -131,20 +125,20 @@ public class OceanTrader {
         No need to worry about these. All of these below are just action
         listeners that updates points as the user clicks through the spinners.
          */
-        configScreen.difficultyComboBox.addActionListener(changeEvent -> {
-            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        ConfigurationScreen.difficultyComboBox.addActionListener(changeEvent -> {
+            updateCurrPoints(ConfigurationScreen.difficultyComboBox.getSelectedItem());
         });
-        configScreen.pilotSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        ConfigurationScreen.pilotSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints(ConfigurationScreen.difficultyComboBox.getSelectedItem());
         });
-        configScreen.fighterSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        ConfigurationScreen.fighterSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints(ConfigurationScreen.difficultyComboBox.getSelectedItem());
         });
-        configScreen.traderSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        ConfigurationScreen.traderSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints(ConfigurationScreen.difficultyComboBox.getSelectedItem());
         });
-        configScreen.engineerSpinner.addChangeListener(changeEvent -> {
-            updateCurrPoints(configScreen.difficultyComboBox.getSelectedItem());
+        ConfigurationScreen.engineerSpinner.addChangeListener(changeEvent -> {
+            updateCurrPoints(ConfigurationScreen.difficultyComboBox.getSelectedItem());
         });
 
         /*
@@ -189,9 +183,9 @@ public class OceanTrader {
         JTextField pointsRemain = ConfigurationScreen.pointsRemaining;
         pointsDiff = diff.equals("Easy") ? 16 : diff.equals("Hard") ? 8 : 12;
         currPoints = (int) ConfigurationScreen.pilotSpinner.getValue()
-                   + (int) ConfigurationScreen.fighterSpinner.getValue()
-                   + (int) ConfigurationScreen.traderSpinner.getValue()
-                   + (int) ConfigurationScreen.engineerSpinner.getValue();
+                + (int) ConfigurationScreen.fighterSpinner.getValue()
+                + (int) ConfigurationScreen.traderSpinner.getValue()
+                + (int) ConfigurationScreen.engineerSpinner.getValue();
         pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
     }
 }

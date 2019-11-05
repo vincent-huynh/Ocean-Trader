@@ -1,6 +1,6 @@
 package oceantrader;
 
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class SpinnerGroup {
         private SpinnerGroup model;
 
         private GroupSpinnerNumberModel(int val, int min,
-                                       int max, int step, SpinnerGroup model) {
+                                        int max, int step, SpinnerGroup model) {
             super(val, min, max, step);
             this.model = model;
         }

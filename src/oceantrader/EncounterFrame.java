@@ -1,12 +1,8 @@
 package oceantrader;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import java.awt.CardLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -141,72 +137,72 @@ public class EncounterFrame extends JFrame {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment
                         .LEADING).addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(oppPanel, javax.swing.GroupLayout
-                                        .DEFAULT_SIZE, javax.swing.GroupLayout
-                                        .DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(oppPanel, javax.swing.GroupLayout
+                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                .DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax
-                                        .swing.GroupLayout.Alignment.LEADING,
+                                                .swing.GroupLayout.Alignment.LEADING,
                                         false)
                                         .addComponent(youHealthBar, javax.swing
-                                            .GroupLayout.PREFERRED_SIZE,
-                                            javax.swing.GroupLayout
-                                                    .DEFAULT_SIZE,
-                                            javax.swing.GroupLayout
-                                                    .PREFERRED_SIZE)
+                                                        .GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout
+                                                        .DEFAULT_SIZE,
+                                                javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(youHPLbl)
                                                 .addGap(93, 93, 93)))
                                 .addPreferredGap(javax.swing.LayoutStyle
-                                        .ComponentPlacement.RELATED,
+                                                .ComponentPlacement.RELATED,
                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                         Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax
                                         .swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(oppHPLbl)
                                         .addComponent(oppHealthBar, javax.swing
-                                        .GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout
-                                                .DEFAULT_SIZE,
-                                        javax.swing.GroupLayout
-                                                .PREFERRED_SIZE))
+                                                        .GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout
+                                                        .DEFAULT_SIZE,
+                                                javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE))
                                 .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax
-                                .swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(154, 154, 154)
-                                        .addComponent(oppSaysLbl))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(71, 71, 71)
-                                        .addComponent(youImage, javax
-                                        .swing.GroupLayout
-                                        .PREFERRED_SIZE,
-                                        javax.swing.GroupLayout
-                                                .DEFAULT_SIZE,
-                                        javax.swing.GroupLayout
-                                                .PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(92, 92, 92)
-                                        .addComponent(youLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle
-                                        .ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax
-                                        .swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(oppImage, javax.swing
-                                        .GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout
-                                                .DEFAULT_SIZE,
-                                        javax.swing.GroupLayout
-                                                .PREFERRED_SIZE)
-                                        .addComponent(oppLabel))
-                                .addGap(77, 77, 77))
+                                        .addGroup(layout.createParallelGroup(javax
+                                                .swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(154, 154, 154)
+                                                        .addComponent(oppSaysLbl))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(71, 71, 71)
+                                                        .addComponent(youImage, javax
+                                                                        .swing.GroupLayout
+                                                                        .PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout
+                                                                        .DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout
+                                                                        .PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(92, 92, 92)
+                                                        .addComponent(youLabel)))
+                                        .addPreferredGap(javax.swing.LayoutStyle
+                                                        .ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax
+                                                .swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(oppImage, javax.swing
+                                                                .GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                .addComponent(oppLabel))
+                                        .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout
@@ -218,18 +214,18 @@ public class EncounterFrame extends JFrame {
                                         .addComponent(oppLabel)
                                         .addComponent(youLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle
-                                        .ComponentPlacement.RELATED, 12,
+                                                .ComponentPlacement.RELATED, 12,
                                         Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax
                                         .swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(youImage, javax
-                                                .swing.GroupLayout
-                                                .PREFERRED_SIZE, javax.swing
-                                                .GroupLayout.DEFAULT_SIZE,
+                                                        .swing.GroupLayout
+                                                        .PREFERRED_SIZE, javax.swing
+                                                        .GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout
                                                         .PREFERRED_SIZE)
                                         .addComponent(oppImage, javax.swing
-                                                .GroupLayout.PREFERRED_SIZE,
+                                                        .GroupLayout.PREFERRED_SIZE,
                                                 javax.swing.GroupLayout
                                                         .DEFAULT_SIZE,
                                                 javax.swing.GroupLayout
@@ -244,13 +240,13 @@ public class EncounterFrame extends JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing
                                         .GroupLayout.Alignment.TRAILING)
                                         .addComponent(youHealthBar, javax.swing
-                                                .GroupLayout.PREFERRED_SIZE,
+                                                        .GroupLayout.PREFERRED_SIZE,
                                                 javax.swing.GroupLayout
                                                         .DEFAULT_SIZE,
                                                 javax.swing.GroupLayout
                                                         .PREFERRED_SIZE)
                                         .addComponent(oppHealthBar, javax.swing
-                                                .GroupLayout.PREFERRED_SIZE,
+                                                        .GroupLayout.PREFERRED_SIZE,
                                                 javax.swing.GroupLayout
                                                         .DEFAULT_SIZE,
                                                 javax.swing.GroupLayout

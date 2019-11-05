@@ -1,10 +1,7 @@
 package oceantrader;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Universe {
 
@@ -38,8 +35,8 @@ public class Universe {
         For use in region generation below.
          */
         TechLevel[] techLevels = {TechLevel.PREAG, TechLevel.AGRICULTURE,
-            TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
-            TechLevel.MODERN, TechLevel.FUTURISTIC};
+                TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
+                TechLevel.MODERN, TechLevel.FUTURISTIC};
 
         /*
         When the Universe object is first created, this for-loop will create
@@ -77,7 +74,21 @@ public class Universe {
     }
 
     /**
+     * Universe is a singleton class. This method ensures that only one
+     * Universe object exists.
+     *
+     * @return The one and only Universe object.
+     */
+    protected static Universe getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new Universe();
+        }
+        return singleInstance;
+    }
+
+    /**
      * Basically this is the distance formula.
+     *
      * @param x1 x1
      * @param y1 y1
      * @param x2 x2
@@ -86,18 +97,6 @@ public class Universe {
      */
     protected double distBetween(double x1, double y1, double x2, double y2) {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    }
-
-    /**
-     * Universe is a singleton class. This method ensures that only one
-     * Universe object exists.
-     * @return The one and only Universe object.
-     */
-    protected static Universe getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new Universe();
-        }
-        return singleInstance;
     }
 
     /**

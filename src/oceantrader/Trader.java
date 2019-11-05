@@ -44,7 +44,7 @@ public class Trader extends Ship {
     }
 
     public double negotiate() {
-        boolean success =  NPCEncounter.getOutcome(OceanTrader.player
+        boolean success = NPCEncounter.getOutcome(OceanTrader.player
                 .getSkillLevel("Trader"));
         Random rand = new Random();
         double discount = 0;

@@ -1,13 +1,6 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -90,6 +83,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 }
             }
+
             public void mouseEntered(MouseEvent e) {
                 payDisc();
             }
@@ -202,67 +196,67 @@ public class BanditEncounter extends JPanel implements IEncounter {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment
                         .LEADING).addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(payBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle
+                        .addGap(49, 49, 49)
+                        .addComponent(payBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle
                                         .ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE)
-                                .addComponent(fleeBtn)
-                                .addGap(55, 55, 55)
-                                .addComponent(fightBtn)
-                                .addGap(41, 41, 41))
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                        .addComponent(fleeBtn)
+                        .addGap(55, 55, 55)
+                        .addComponent(fightBtn)
+                        .addGap(41, 41, 41))
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing
-                                .GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbl1)
-                                        .addPreferredGap(javax.swing
-                                                .LayoutStyle
-                                                .ComponentPlacement
-                                                .UNRELATED)
-                                        .addComponent(demandText,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE,
-                                                100, javax.swing
-                                                        .GroupLayout
-                                                        .PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing
-                                                .LayoutStyle
-                                                .ComponentPlacement
-                                                .UNRELATED)
-                                        .addComponent(jLabel1)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lbl1)
+                                                .addPreferredGap(javax.swing
+                                                        .LayoutStyle
+                                                        .ComponentPlacement
+                                                        .UNRELATED)
+                                                .addComponent(demandText,
+                                                        javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE,
+                                                        100, javax.swing
+                                                                .GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing
+                                                        .LayoutStyle
+                                                        .ComponentPlacement
+                                                        .UNRELATED)
+                                                .addComponent(jLabel1)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment
                         .LEADING).addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax
-                                        .swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lbl1)
-                                        .addComponent(jLabel1)
-                                        .addComponent(demandText,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE,
-                                                javax.swing.GroupLayout
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax
+                                .swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbl1)
+                                .addComponent(jLabel1)
+                                .addComponent(demandText,
+                                        javax.swing.GroupLayout
+                                                .PREFERRED_SIZE,
+                                        javax.swing.GroupLayout
                                                 .DEFAULT_SIZE, javax.swing
                                                 .GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1,
-                                    javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax
-                                        .swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(fleeBtn)
-                                        .addComponent(fightBtn)
-                                        .addComponent(payBtn))
-                                .addContainerGap(javax.swing.GroupLayout
-                                        .DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax
+                                .swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(fleeBtn)
+                                .addComponent(fightBtn)
+                                .addComponent(payBtn))
+                        .addContainerGap(javax.swing.GroupLayout
+                                .DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 

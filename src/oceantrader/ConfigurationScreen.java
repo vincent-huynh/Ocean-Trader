@@ -1,32 +1,22 @@
 package oceantrader;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 
 public class ConfigurationScreen {
-
-    private static int points = 16;
-    private static GridBagLayout gbPanel;
-    private static GridBagConstraints constraints;
 
     protected static JPanel panel;
     protected static JButton startButton;
     protected static JTextField nameField;
     protected static JTextField pointsRemaining;
     protected static JComboBox difficultyComboBox;
-
     protected static JSpinner pilotSpinner;
     protected static JSpinner fighterSpinner;
     protected static JSpinner traderSpinner;
     protected static JSpinner engineerSpinner;
+    private static int points = 16;
+    private static GridBagLayout gbPanel;
+    private static GridBagConstraints constraints;
 
     protected ConfigurationScreen() {
         panel = new JPanel();

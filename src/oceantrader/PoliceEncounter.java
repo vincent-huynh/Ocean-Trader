@@ -1,14 +1,6 @@
 package oceantrader;
 
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -187,26 +179,26 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                  .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(GroupLayout
-                      .Alignment.LEADING, false)
-                      .addComponent(policeLbl)
-                      .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(GroupLayout
-                                .Alignment.LEADING).addComponent(jScrollPane1,
-                                GroupLayout.PREFERRED_SIZE, 351, GroupLayout
-                                        .PREFERRED_SIZE)
-                          .addGroup(layout.createSequentialGroup()
-                            .addComponent(forfeitBtn)
-                            .addGap(63, 63, 63)
-                            .addComponent(fleeBtn)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement
-                                            .RELATED, GroupLayout.DEFAULT_SIZE,
-                                    Short.MAX_VALUE)
-                            .addComponent(fightBtn)))))
-                            .addContainerGap(25, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(GroupLayout
+                                        .Alignment.LEADING, false)
+                                        .addComponent(policeLbl)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addGroup(layout.createParallelGroup(GroupLayout
+                                                        .Alignment.LEADING).addComponent(jScrollPane1,
+                                                        GroupLayout.PREFERRED_SIZE, 351, GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(forfeitBtn)
+                                                                .addGap(63, 63, 63)
+                                                                .addComponent(fleeBtn)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement
+                                                                                .RELATED, GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                                .addComponent(fightBtn)))))
+                                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -229,8 +221,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     }
 
     public void updatePanel() {
-      //do something here, otherwise i'll delete the implementing of the
-      // interface// if not needed probably don't need it here tbh
+        //do something here, otherwise i'll delete the implementing of the
+        // interface// if not needed probably don't need it here tbh
     }
 
     protected void updatePlayer(Player player) {

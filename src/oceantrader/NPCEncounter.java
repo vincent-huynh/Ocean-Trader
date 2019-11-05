@@ -19,8 +19,8 @@ created for consistency among all the NPCs.
 
 package oceantrader;
 
-import java.util.Random;
 import java.util.HashMap;
+import java.util.Random;
 
 public abstract class NPCEncounter {
 
@@ -78,7 +78,7 @@ public abstract class NPCEncounter {
     }
 
     protected static boolean getOutcome(int skillLevel) {
-        return rand.nextInt(100) + 1 <= 30 + 3 * skillLevel ? true : false;
+        return rand.nextInt(100) + 1 <= 30 + 3 * skillLevel;
     }
 
     protected static void damageShip() {

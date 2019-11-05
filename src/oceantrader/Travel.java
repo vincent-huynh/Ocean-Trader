@@ -1,7 +1,6 @@
 package oceantrader;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Travel {
 
@@ -97,8 +96,8 @@ public class Travel {
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
         cost *= multipler;
         str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
-                + " after multipler: %.1f Fuel\n\n", multipler,
-                new String("x"), cost));
+                        + " after multipler: %.1f Fuel\n\n", multipler,
+                "x", cost));
     }
 
     private static void addPilotSavings() {
@@ -107,11 +106,12 @@ public class Travel {
         cost *= savings;
         str.append(String.format("You have %d point(s) allocated to Seamanship."
                 + "\nYour skill bonus discount is -%d%s.\n\nYour final cost is:"
-                + " %.1f Fuel", points, points * 3, new String("%"), cost));
+                + " %.1f Fuel", points, points * 3, "%", cost));
     }
 
     /**
      * This method updates the player's ship fuel after they have traveled.
+     *
      * @param cost The amount of fuel required to travel.
      */
     protected static void updateFuel(int cost) {

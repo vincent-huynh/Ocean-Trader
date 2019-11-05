@@ -1,12 +1,7 @@
 package oceantrader;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 
 public class CostDisplay {
 
@@ -119,111 +114,111 @@ public class CostDisplay {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
         panel.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment
-                    .LEADING).addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addGroup(layout.createSequentialGroup()
-            .addGap(25, 25, 25).addComponent(valueCalcLbl)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                    Short.MAX_VALUE)).addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addComponent(basePriceLbl, javax.swing
-                            .GroupLayout.PREFERRED_SIZE,
-                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                    javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(timeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax
-                    .swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout
-                    .PREFERRED_SIZE)
-            .addComponent(tradeSkillLbl, javax.swing.GroupLayout.PREFERRED_SIZE,
-                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing
-                            .GroupLayout.PREFERRED_SIZE)
-            .addComponent(regionTaxLbl, javax.swing.GroupLayout.PREFERRED_SIZE,
-                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing
-                            .GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addComponent(jScrollPane4, javax.swing
-                            .GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment
-                    .TRAILING).addComponent(jScrollPane2, javax.swing
-                            .GroupLayout.Alignment.TRAILING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment
-                    .TRAILING)).addGap(9, 9, 9).addComponent(semiColonLbl)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addComponent(finalPriceLbl)
-             .addGroup(layout.createSequentialGroup()
-             .addGap(12, 12, 12)
-             .addComponent(finalPriceTF, javax.swing.GroupLayout.PREFERRED_SIZE,
-                     80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-             .addContainerGap())))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                        .LEADING).addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                .Alignment.LEADING).addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25).addComponent(valueCalcLbl)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)).addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                        .Alignment.LEADING).addComponent(basePriceLbl, javax.swing
+                                                .GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(timeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax
+                                                .swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout
+                                                .PREFERRED_SIZE)
+                                        .addComponent(tradeSkillLbl, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing
+                                                        .GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(regionTaxLbl, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing
+                                                        .GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                        .Alignment.LEADING).addComponent(jScrollPane4, javax.swing
+                                        .GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment
+                                                .TRAILING).addComponent(jScrollPane2, javax.swing
+                                                .GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment
+                                                .TRAILING)).addGap(9, 9, 9).addComponent(semiColonLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                        .Alignment.LEADING).addComponent(finalPriceLbl)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(finalPriceTF, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())))
         );
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment
-                    .LEADING).addGroup(layout.createSequentialGroup()
-            .addGap(6, 6, 6)
-            .addComponent(valueCalcLbl)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addGroup(layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                    .Alignment.LEADING).addGroup(layout.createSequentialGroup()
-              .addComponent(finalPriceLbl)
-              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                      .RELATED)
-              .addComponent(finalPriceTF, javax.swing.GroupLayout
-                      .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                      javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                       .Alignment.LEADING)
-                   .addComponent(jScrollPane1, javax.swing.GroupLayout
-                           .PREFERRED_SIZE, javax.swing.GroupLayout
-                           .DEFAULT_SIZE, javax.swing.GroupLayout
-                           .PREFERRED_SIZE)
-                   .addComponent(basePriceLbl, javax.swing.GroupLayout
-                           .PREFERRED_SIZE, javax.swing.GroupLayout
-                           .DEFAULT_SIZE, javax.swing.GroupLayout
-                           .PREFERRED_SIZE))
-               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                       .RELATED)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                       .Alignment.LEADING)
-                   .addComponent(jScrollPane2, javax.swing.GroupLayout
-                           .PREFERRED_SIZE, javax.swing.GroupLayout
-                           .DEFAULT_SIZE, javax.swing.GroupLayout
-                           .PREFERRED_SIZE)
-                   .addComponent(timeLbl, javax.swing.GroupLayout
-                           .PREFERRED_SIZE, javax.swing.GroupLayout
-                           .DEFAULT_SIZE, javax.swing.GroupLayout
-                           .PREFERRED_SIZE))
-               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                       .RELATED)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                       .Alignment.LEADING)
-                       .addComponent(tradeSkillLbl, javax.swing.GroupLayout
-                               .PREFERRED_SIZE, javax.swing.GroupLayout
-                               .DEFAULT_SIZE, javax.swing.GroupLayout
-                               .PREFERRED_SIZE)
-                       .addComponent(jScrollPane3, javax.swing.GroupLayout
-                               .PREFERRED_SIZE, javax.swing.GroupLayout
-                               .DEFAULT_SIZE, javax.swing.GroupLayout
-                               .PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                  .Alignment.LEADING)
-                  .addComponent(regionTaxLbl, javax.swing.GroupLayout
-                          .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                          javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(jScrollPane4, javax.swing.GroupLayout
-                          .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                          javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup().addGap(19, 19, 19)
-                 .addComponent(semiColonLbl, javax.swing.GroupLayout
-                         .PREFERRED_SIZE, 84, javax.swing.GroupLayout
-                         .PREFERRED_SIZE)))
-                    .addContainerGap(20, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment
+                        .LEADING).addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(valueCalcLbl)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                .Alignment.LEADING).addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                        .Alignment.LEADING).addGroup(layout.createSequentialGroup()
+                                        .addComponent(finalPriceLbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
+                                                .RELATED)
+                                        .addComponent(finalPriceTF, javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                                        .Alignment.LEADING)
+                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                        .addComponent(basePriceLbl, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
+                                                        .RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                                        .Alignment.LEADING)
+                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                        .addComponent(timeLbl, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
+                                                        .RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                                        .Alignment.LEADING)
+                                                        .addComponent(tradeSkillLbl, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE)
+                                                        .addComponent(jScrollPane3, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE, javax.swing.GroupLayout
+                                                                .DEFAULT_SIZE, javax.swing.GroupLayout
+                                                                .PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
+                                        .Alignment.LEADING)
+                                        .addComponent(regionTaxLbl, javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout
+                                                        .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup().addGap(19, 19, 19)
+                                        .addComponent(semiColonLbl, javax.swing.GroupLayout
+                                                .PREFERRED_SIZE, 84, javax.swing.GroupLayout
+                                                .PREFERRED_SIZE)))
+                        .addContainerGap(20, Short.MAX_VALUE))
         );
     }
 

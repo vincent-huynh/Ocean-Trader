@@ -24,49 +24,48 @@ public class Player {
         this.ship = Ship.newShip(ShipType.DEFAULT);
 
         switch (difficulty) {
-        case EASY:
-            currency = 1000;
-            this.difficulty = Difficulty.EASY;
-            break;
-        case MEDIUM:
-            currency = 750;
-            this.difficulty = Difficulty.MEDIUM;
-            break;
-        case HARD:
-            currency = 500;
-            this.difficulty = Difficulty.HARD;
-            break;
-        default:
-            break;
+            case EASY:
+                currency = 1000;
+                this.difficulty = Difficulty.EASY;
+                break;
+            case MEDIUM:
+                currency = 750;
+                this.difficulty = Difficulty.MEDIUM;
+                break;
+            case HARD:
+                currency = 500;
+                this.difficulty = Difficulty.HARD;
+                break;
+            default:
+                break;
         }
     }
 
     public Player(String name, int pilotPoints, int fighterPoints,
-                            int traderPoints, int engineerPoints) {
+                  int traderPoints, int engineerPoints) {
 
         this(name, pilotPoints, fighterPoints, traderPoints, engineerPoints,
-                                                             Difficulty.HARD);
+                Difficulty.HARD);
     }
 
     public Player(String name) {
         this(name, 0, 0, 0, 0, Difficulty.HARD);
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public int getCurrency() {
+        return currency;
     }
 
     public void setCurrency(int currency) {
         this.currency = currency;
-    }
-
-    public int getCurrency() {
-        return currency;
     }
 
     public void setCurrency() {
