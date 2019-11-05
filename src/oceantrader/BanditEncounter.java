@@ -32,8 +32,6 @@ public class BanditEncounter extends JPanel implements IEncounter {
         initGUI();
     }
 
-    @SuppressWarnings("unchecked")
-
     private void initGUI() {
 
         lbl1 = new JLabel();
@@ -274,13 +272,10 @@ public class BanditEncounter extends JPanel implements IEncounter {
         if (player.getCurrency() >= 20) {
             int upperBound = (int) (1.10 * player.getCurrency());
             int lowerBound = (int) (.20 * player.getCurrency());
-            int randomInteger =
-                    rand.nextInt(upperBound - lowerBound) + lowerBound;
-            demand = randomInteger;
+            demand = rand.nextInt(upperBound - lowerBound) + lowerBound;
             updatePanel();
         } else {
-            int randomInteger = rand.nextInt(40 - 21) + 21;
-            demand = randomInteger;
+            demand = rand.nextInt(40 - 21) + 21;
             updatePanel();
         }
     }

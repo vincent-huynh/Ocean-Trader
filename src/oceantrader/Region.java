@@ -21,7 +21,7 @@ public class Region implements Comparable<Region> {
         this.yCoord = yCoord;
         this.tax = tax;
         this.distance = 0;
-        this.marketItems = new ArrayList<Item>();
+        this.marketItems = new ArrayList<>();
         generateMarket();
     }
 

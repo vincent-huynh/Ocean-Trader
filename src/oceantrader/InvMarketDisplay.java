@@ -195,17 +195,13 @@ public class InvMarketDisplay {
             });
 
         marketTable.getSelectionModel()
-            .addListSelectionListener(new ListSelectionListener() {
-                @Override
-                public void valueChanged(ListSelectionEvent
-                                             listSelectionEvent) {
-                    if (marketTable.getSelectedRow() != -1) {
-                        buyItem = (Item) marketTable.getValueAt(marketTable
-                            .getSelectedRow(), 3);
-                        RegionDisplay.costDisplay
-                            .updateBuyDisplay(Transaction
-                                .getPriceValues(buyItem));
-                    }
+            .addListSelectionListener(listSelectionEvent -> {
+                if (marketTable.getSelectedRow() != -1) {
+                    buyItem = (oceantrader.Item) marketTable.getValueAt(marketTable
+                        .getSelectedRow(), 3);
+                    oceantrader.RegionDisplay.costDisplay
+                        .updateBuyDisplay(oceantrader.Transaction
+                            .getPriceValues(buyItem));
                 }
             });
 

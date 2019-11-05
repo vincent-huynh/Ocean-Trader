@@ -14,14 +14,14 @@ public class Universe {
     private Universe() {
 
         Random rand = new Random();
-        regions = new ArrayList<Region>();
-        HashMap<Integer, Integer> coords = new HashMap<Integer, Integer>();
+        regions = new ArrayList<>();
+        HashMap<Integer, Integer> coords = new HashMap<>();
 
         /*
         This array list holds all the region names.
         For use in region generation below.
          */
-        ArrayList<String> regionNames = new ArrayList<String>();
+        ArrayList<String> regionNames = new ArrayList<>();
         regionNames.add("Crystal Cove");
         regionNames.add("Sandy Shores");
         regionNames.add("Skull Island");
@@ -61,7 +61,7 @@ public class Universe {
                     }
                 }
                 if (!stop) {
-                    coords.put(new Integer(x), new Integer(y));
+                    coords.put(x, y);
                     regions.add(new Region(regionNames
                             .remove(rand.nextInt(regionNames.size())),
                             techLevels[rand.nextInt(7)], x, y,

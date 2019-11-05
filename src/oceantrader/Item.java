@@ -81,7 +81,6 @@ public class Item {
     }
 
     protected Object[] tableizer() {
-        Object[] row = {name, price, type, this};
-        return row;
+        return new Object[]{name, price, type, this};
     }
 }

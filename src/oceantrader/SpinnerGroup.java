@@ -28,8 +28,7 @@ public class SpinnerGroup {
         if (max > groupMax) {
             return currentVal;
         } else {
-            int nextVal = currentVal + step;
-            return nextVal;
+            return currentVal + step;
         }
     }
 

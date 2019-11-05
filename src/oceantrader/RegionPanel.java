@@ -74,7 +74,6 @@ public class RegionPanel {
         regionList.setModel(regionListy);
     }
 
-    @SuppressWarnings("unchecked")
     private void initGUI() {
 
         regionList = new JList();
@@ -111,16 +110,13 @@ public class RegionPanel {
 
         regionList.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-        regionList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                if (regionList.getSelectedIndex() >= 0) {
-                    Region selected = Universe.getInstance()
-                            .regions.get(regionList.getSelectedIndex());
-                    updateList(selected, regionName, regionTech,
-                            regionCoords, distance);
-                    OceanTrader.regionDisplay.map.reloadGraphics(selected);
-                }
+        regionList.addListSelectionListener(listSelectionEvent -> {
+            if (regionList.getSelectedIndex() >= 0) {
+                oceantrader.Region selected = oceantrader.Universe.getInstance()
+                        .regions.get(regionList.getSelectedIndex());
+                updateList(selected, regionName, regionTech,
+                        regionCoords, distance);
+                oceantrader.OceanTrader.regionDisplay.map.reloadGraphics(selected);
             }
         });
 

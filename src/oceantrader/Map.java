@@ -68,7 +68,7 @@ public class Map extends JPanel {
         this.xCoor.setForeground(Color.WHITE);
         this.regionName.setForeground(DEF_POINT_COLOR);
         for (Region region : instance.regions) {
-            this.regions.put(region, DEF_POINT_COLOR);
+            regions.put(region, DEF_POINT_COLOR);
         }
     }
 
