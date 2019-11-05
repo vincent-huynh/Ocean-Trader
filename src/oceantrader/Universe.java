@@ -38,8 +38,8 @@ public class Universe {
         For use in region generation below.
          */
         TechLevel[] techLevels = {TechLevel.PREAG, TechLevel.AGRICULTURE,
-                TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
-                TechLevel.MODERN, TechLevel.FUTURISTIC};
+            TechLevel.MEDIEVAL, TechLevel.RENAISSANCE, TechLevel.INDUSTRIAL,
+            TechLevel.MODERN, TechLevel.FUTURISTIC};
 
         /*
         When the Universe object is first created, this for-loop will create
