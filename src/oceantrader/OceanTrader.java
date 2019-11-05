@@ -129,11 +129,16 @@ public class OceanTrader {
         No need to worry about these. All of these below are just action
         listeners that updates points as the user clicks through the spinners.
          */
-        ConfigurationScreen.difficultyComboBox.addActionListener(changeEvent -> updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
-        ConfigurationScreen.pilotSpinner.addChangeListener(changeEvent -> updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
-        ConfigurationScreen.fighterSpinner.addChangeListener(changeEvent -> updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
-        ConfigurationScreen.traderSpinner.addChangeListener(changeEvent -> updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
-        ConfigurationScreen.engineerSpinner.addChangeListener(changeEvent -> updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
+        ConfigurationScreen.difficultyComboBox.addActionListener(changeEvent ->
+            updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
+        ConfigurationScreen.pilotSpinner.addChangeListener(changeEvent ->
+            updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
+        ConfigurationScreen.fighterSpinner.addChangeListener(changeEvent ->
+            updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
+        ConfigurationScreen.traderSpinner.addChangeListener(changeEvent ->
+            updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
+        ConfigurationScreen.engineerSpinner.addChangeListener(changeEvent ->
+            updateCurrPoints(oceantrader.ConfigurationScreen.difficultyComboBox.getSelectedItem()));
 
         /*
         After the user has viewed the confirmation page and clicks the button,

@@ -24,20 +24,20 @@ public class Player {
         this.ship = Ship.newShip(ShipType.DEFAULT);
 
         switch (difficulty) {
-            case EASY:
-                currency = 1000;
-                this.difficulty = Difficulty.EASY;
-                break;
-            case MEDIUM:
-                currency = 750;
-                this.difficulty = Difficulty.MEDIUM;
-                break;
-            case HARD:
-                currency = 500;
-                this.difficulty = Difficulty.HARD;
-                break;
-            default:
-                break;
+        case EASY:
+            currency = 1000;
+            this.difficulty = Difficulty.EASY;
+            break;
+        case MEDIUM:
+            currency = 750;
+            this.difficulty = Difficulty.MEDIUM;
+            break;
+        case HARD:
+            currency = 500;
+            this.difficulty = Difficulty.HARD;
+            break;
+        default:
+            break;
         }
     }
 

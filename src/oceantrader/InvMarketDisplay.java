@@ -243,13 +243,15 @@ public class InvMarketDisplay {
                             0, Short.MAX_VALUE).addGroup(layout.createSequentialGroup()
                             .addGap(138, 138, 138).addComponent(marketTextField,
                                 javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
-                                    .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 0,
+                                    .DEFAULT_SIZE, javax.swing.GroupLayout
+                                    .PREFERRED_SIZE).addGap(0, 0,
                                 Short.MAX_VALUE))).addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
                         .createSequentialGroup().addGap(0, 117, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
                             .Alignment.LEADING).addComponent(sellBtn).addComponent(buyBtn))
-                        .addGap(126, 126, 126)))).addGroup(javax.swing.GroupLayout.Alignment
+                        .addGap(126, 126, 126)))).addGroup(javax.swing
+                        .GroupLayout.Alignment
                 .TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                     Short.MAX_VALUE).addComponent(invTextField,
