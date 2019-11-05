@@ -9,8 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -125,50 +123,50 @@ public class RegionPanel {
         GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup().addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment
-                                        .LEADING).addComponent(jScrollPane1).addGroup(layout
-                                        .createSequentialGroup().addGap(11, 11, 11).addGroup(layout
-                                                .createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(regionCoordsLbl).addPreferredGap(LayoutStyle
-                                                                .ComponentPlacement.RELATED).addComponent(regionCoords,
-                                                                GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(regionNameLbl).addPreferredGap(LayoutStyle
-                                                                .ComponentPlacement.RELATED).addComponent(regionName))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(distanceLbl).addPreferredGap(LayoutStyle
-                                                                .ComponentPlacement.UNRELATED).addComponent(distance))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(regionTechLbl).addPreferredGap(LayoutStyle
-                                                                .ComponentPlacement.UNRELATED).addComponent(regionTech)))))
-                                .addContainerGap())
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addContainerGap()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment
+                        .LEADING).addComponent(jScrollPane1).addGroup(layout
+                        .createSequentialGroup().addGap(11, 11, 11).addGroup(layout
+                            .createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(regionCoordsLbl).addPreferredGap(LayoutStyle
+                                        .ComponentPlacement.RELATED).addComponent(regionCoords,
+                                        GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(regionNameLbl).addPreferredGap(LayoutStyle
+                                        .ComponentPlacement.RELATED).addComponent(regionName))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(distanceLbl).addPreferredGap(LayoutStyle
+                            .ComponentPlacement.UNRELATED).addComponent(distance))
+                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(regionTechLbl).addPreferredGap(LayoutStyle
+                                    .ComponentPlacement.UNRELATED).addComponent(regionTech)))))
+                    .addContainerGap())
         );
 
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup().addContainerGap()
-                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 486,
-                                        GroupLayout.PREFERRED_SIZE).addGap(53, 53, 53).addGroup(layout
-                                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(regionNameLbl).addComponent(regionName,
-                                                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment
-                                        .BASELINE).addComponent(regionTechLbl).addComponent(regionTech,
-                                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
-                                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(regionCoordsLbl).addComponent(regionCoords,
-                                                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
-                                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(distanceLbl).addComponent(distance,
-                                                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addContainerGap(283,
-                                        Short.MAX_VALUE))
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addContainerGap()
+                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 486,
+                        GroupLayout.PREFERRED_SIZE).addGap(53, 53, 53).addGroup(layout
+                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(regionNameLbl).addComponent(regionName,
+                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment
+                        .BASELINE).addComponent(regionTechLbl).addComponent(regionTech,
+                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
+                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(regionCoordsLbl).addComponent(regionCoords,
+                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
+                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(distanceLbl).addComponent(distance,
+                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.PREFERRED_SIZE)).addContainerGap(283,
+                        Short.MAX_VALUE))
         );
     }
 }

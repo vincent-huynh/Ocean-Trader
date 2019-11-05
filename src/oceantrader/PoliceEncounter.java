@@ -186,27 +186,27 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(GroupLayout
+                        .Alignment.LEADING, false)
+                        .addComponent(policeLbl)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout
-                                        .Alignment.LEADING, false)
-                                        .addComponent(policeLbl)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addGroup(layout.createParallelGroup(GroupLayout
-                                                        .Alignment.LEADING).addComponent(jScrollPane1,
-                                                        GroupLayout.PREFERRED_SIZE, 351, GroupLayout
-                                                                .PREFERRED_SIZE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(forfeitBtn)
-                                                                .addGap(63, 63, 63)
-                                                                .addComponent(fleeBtn)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement
-                                                                                .RELATED, GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(fightBtn)))))
-                                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(GroupLayout
+                                .Alignment.LEADING).addComponent(jScrollPane1,
+                                GroupLayout.PREFERRED_SIZE, 351, GroupLayout
+                                    .PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(forfeitBtn)
+                                    .addGap(63, 63, 63)
+                                    .addComponent(fleeBtn)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement
+                                                    .RELATED, GroupLayout.DEFAULT_SIZE,
+                                            Short.MAX_VALUE)
+                                    .addComponent(fightBtn)))))
+                    .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
