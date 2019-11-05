@@ -1,6 +1,7 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.ListSelectionModel;
 
 public class SingleSelectionModel extends DefaultListSelectionModel {
     public SingleSelectionModel() {

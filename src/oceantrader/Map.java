@@ -1,13 +1,13 @@
 package oceantrader;
 
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.Shape;
+import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;

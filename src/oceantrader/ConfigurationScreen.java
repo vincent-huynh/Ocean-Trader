@@ -1,7 +1,10 @@
 package oceantrader;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 
 public class ConfigurationScreen {
 

@@ -1,7 +1,11 @@
 package oceantrader;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Random;
 

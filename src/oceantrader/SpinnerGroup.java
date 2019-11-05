@@ -1,6 +1,6 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.SpinnerNumberModel;
 import java.util.ArrayList;
 import java.util.List;
 

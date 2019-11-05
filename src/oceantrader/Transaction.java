@@ -1,6 +1,7 @@
 package oceantrader;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import java.util.Date;
 import java.util.HashMap;
 

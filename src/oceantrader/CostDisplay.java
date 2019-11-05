@@ -1,7 +1,12 @@
 package oceantrader;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.Color;
+import java.awt.Font;
 
 public class CostDisplay {
 
