@@ -27,16 +27,12 @@ public class RegionPanel {
         initGUI();
     }
 
-    protected static void updateList(Region selected,
-                                     JTextField regionName,
-                                     JTextField regionTech,
-                                     JTextField regionCoords,
-                                     JTextField distance) {
+    protected static void updateList(Region selected, JTextField regionName, JTextField regionTech,
+                                     JTextField regionCoords, JTextField distance) {
 
         regionName.setText(selected.getName());
         regionTech.setText(selected.getTechLevel().toString());
-        regionCoords.setText("X: " + selected.getxCoord()
-                + " | Y: " + selected.getyCoord());
+        regionCoords.setText("X: " + selected.getxCoord() + " | Y: " + selected.getyCoord());
         distance.setText(String.format("%.2f Nautical Miles",
                 Region.calcDistance(OceanTrader.player, selected)));
     }
@@ -112,8 +108,7 @@ public class RegionPanel {
             if (regionList.getSelectedIndex() >= 0) {
                 oceantrader.Region selected = oceantrader.Universe.getInstance()
                         .regions.get(regionList.getSelectedIndex());
-                updateList(selected, regionName, regionTech,
-                        regionCoords, distance);
+                updateList(selected, regionName, regionTech, regionCoords, distance);
                 oceantrader.OceanTrader.regionDisplay.map.reloadGraphics(selected);
             }
         });

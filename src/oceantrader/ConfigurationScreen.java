@@ -23,9 +23,9 @@ public class ConfigurationScreen {
     protected static JSpinner fighterSpinner;
     protected static JSpinner traderSpinner;
     protected static JSpinner engineerSpinner;
-    private static int points = 16;
     private static GridBagLayout gbPanel;
     private static GridBagConstraints constraints;
+    private static int points = 16;
 
     protected ConfigurationScreen() {
         panel = new JPanel();

@@ -15,8 +15,7 @@ import java.util.Random;
 
 public class BanditEncounter extends JPanel implements IEncounter {
 
-    private static int demand;
-    private JFrame window = OceanTrader.window;
+    private int demand;
     private Player player;
     private ArrayList<Item> playerInventory;
     private JTextArea buttonDText;
@@ -27,6 +26,9 @@ public class BanditEncounter extends JPanel implements IEncounter {
     private JScrollPane jScrollPane1;
     private JLabel lbl1;
     private JButton payBtn;
+
+    private static Random rand = new Random();
+    private static JFrame window = OceanTrader.window;
 
     public BanditEncounter() {
         initGUI();
@@ -63,18 +65,15 @@ public class BanditEncounter extends JPanel implements IEncounter {
                 OceanTrader.encounterFrame.setVisible(false);
                 if (player.getCurrency() >= demand) {
                     player.setCurrency(player.getCurrency() - demand);
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     JOptionPane.showMessageDialog(window, "You lost " + demand
                             + " coins to the bandit.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else if (playerInventory.size() >= 1) {
                     playerInventory.clear();
-                    OceanTrader.regionDisplay.shipDisplay
-                            .updateShipDisplay(player);
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateInventory();
+                    OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
+                    OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     JOptionPane.showMessageDialog(window, "You could not afford"
                             + " the bandit's demands, so he demanded your"
                             + " inventory.");
@@ -106,12 +105,11 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 } else {
                     player.setCurrency(0);
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     NPCEncounter.damageShip();
-                    JOptionPane.showMessageDialog(window, "You failed "
-                            + "to flee, so the bandit took all of your "
-                            + "coins and damaged your ship.");
+                    JOptionPane.showMessageDialog(window, "You failed to flee,"
+                            + " so the bandit took all of your coins and"
+                            + " damaged your ship.");
                 }
             }
 
@@ -268,7 +266,6 @@ public class BanditEncounter extends JPanel implements IEncounter {
     protected void updatePlayer(Player player) {
         this.player = player;
         playerInventory = player.getShip().getCargoList();
-        Random rand = new Random();
         if (player.getCurrency() >= 20) {
             int upperBound = (int) (1.10 * player.getCurrency());
             int lowerBound = (int) (.20 * player.getCurrency());

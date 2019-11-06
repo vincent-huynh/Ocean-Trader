@@ -104,14 +104,11 @@ public class OceanTrader {
             if (name.isEmpty() || diff == null) {
                 JOptionPane.showMessageDialog(window, "Please enter name.");
             } else if (totalSkill != (diffMap.get(diff)).intValue()) {
-                JOptionPane.showMessageDialog(window,
-                        "Incorrect point allocation.\nExpected: "
-                                + diffMap.get(diff).toString()
-                                + "\nReceived: " + totalSkill);
+                JOptionPane.showMessageDialog(window, "Incorrect point allocation.\nExpected: "
+                                + diffMap.get(diff).toString() + "\nReceived: " + totalSkill);
             } else {
                 Difficulty df = diff.equals("Easy") ? Difficulty.EASY
-                        : diff.equals("Hard") ? Difficulty.HARD
-                        : Difficulty.MEDIUM;
+                        : diff.equals("Hard") ? Difficulty.HARD : Difficulty.MEDIUM;
                 player = new Player(name, pilot, fighter, trader, engineer, df);
                 /*
                 After the player object is created, we pass it onto Nick's GUI
@@ -145,8 +142,7 @@ public class OceanTrader {
         The map and lists of the next GUI are updated before it is displayed.
          */
         confirmScreen.button.addActionListener(e -> {
-            player.setRegion(Universe.getInstance()
-                    .regions.get(rand.nextInt(10)));
+            player.setRegion(Universe.getInstance().regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
             RegionPanel.updateRegionList();
             regionDisplay.map.updateMapTitle(player.getRegion());

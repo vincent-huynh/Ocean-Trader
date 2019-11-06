@@ -40,8 +40,7 @@ public class Travel {
 
             } else {
                 int confirmPage = JOptionPane.showConfirmDialog(window,
-                        str.toString(), "Price Confirmation",
-                        JOptionPane.YES_NO_OPTION);
+                        str.toString(), "Price Confirmation", JOptionPane.YES_NO_OPTION);
 
                 if (confirmPage == 0) {
                     String confirmMsg = String.format("Your ship currently has"
@@ -49,8 +48,7 @@ public class Travel {
                                     + " fuel.\nConfirm Travel?",
                             capacity, Map.selected.getName(), (int) cost);
                     int yesOrNo = JOptionPane.showConfirmDialog(window,
-                            confirmMsg, "Travel Confirmation",
-                            JOptionPane.YES_NO_OPTION);
+                            confirmMsg, "Travel Confirmation", JOptionPane.YES_NO_OPTION);
 
                     if (yesOrNo == 0) {
                         NPCEncounter.initiateEncounter((int) cost);
@@ -70,7 +68,7 @@ public class Travel {
         int listSelected = RegionPanel.regionList.getSelectedIndex();
 
         // Makes changes to the map, and also changes the player's region
-        Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEF_POINT_COLOR);
+        Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
         player.setRegion(Universe.getInstance().regions.get(listSelected));
         String newRegion = player.getRegion().getName();
         JOptionPane.showMessageDialog(window, "Welcome to " + newRegion + "!");
@@ -97,8 +95,7 @@ public class Travel {
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
         cost *= multipler;
         str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
-                        + " after multipler: %.1f Fuel\n\n", multipler,
-                "x", cost));
+                        + " after multipler: %.1f Fuel\n\n", multipler, "x", cost));
     }
 
     private static void addPilotSavings() {

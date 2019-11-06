@@ -26,7 +26,7 @@ public class Map extends JPanel {
     protected static HashMap<Region, Color> regions = new HashMap();
     private Universe instance;
 
-    protected static final Color DEF_POINT_COLOR = Color.GREEN;
+    protected static final Color DEFAULT_POINT_COLOR = Color.GREEN;
     protected static final Color SELECTED_POINT_COLOR = new Color(255, 127, 0);
     protected static final Color CURR_POINT_COLOR = new Color(255, 255, 0);
     protected static final Color BACKGROUND_COLOR = new Color(79, 88, 138);
@@ -66,9 +66,9 @@ public class Map extends JPanel {
         this.current.setForeground(Color.YELLOW);
         this.yCoor.setForeground(Color.WHITE);
         this.xCoor.setForeground(Color.WHITE);
-        this.regionName.setForeground(DEF_POINT_COLOR);
+        this.regionName.setForeground(DEFAULT_POINT_COLOR);
         for (Region region : instance.regions) {
-            regions.put(region, DEF_POINT_COLOR);
+            regions.put(region, DEFAULT_POINT_COLOR);
         }
     }
 
@@ -78,10 +78,9 @@ public class Map extends JPanel {
      * @param newChoice The new region the User selects
      */
     protected void reloadGraphics(Region newChoice) {
-        regions.replace(selected, SELECTED_POINT_COLOR, DEF_POINT_COLOR);
-        regions.replace(newChoice, DEF_POINT_COLOR, SELECTED_POINT_COLOR);
-        regions.replace(OceanTrader.player.getRegion(), DEF_POINT_COLOR,
-                CURR_POINT_COLOR);
+        regions.replace(selected, SELECTED_POINT_COLOR, DEFAULT_POINT_COLOR);
+        regions.replace(newChoice, DEFAULT_POINT_COLOR, SELECTED_POINT_COLOR);
+        regions.replace(OceanTrader.player.getRegion(), DEFAULT_POINT_COLOR, CURR_POINT_COLOR);
         selected = newChoice;
         this.repaint();
     }
@@ -135,8 +134,7 @@ public class Map extends JPanel {
             if (distance < 10) {
                 reloadGraphics(region);
                 RegionPanel.updateList(selected, RegionPanel.regionName,
-                        RegionPanel.regionTech, RegionPanel.regionCoords,
-                        RegionPanel.distance);
+                        RegionPanel.regionTech, RegionPanel.regionCoords, RegionPanel.distance);
                 RegionPanel.regionList.setSelectedIndex(Universe.getInstance()
                         .regions.indexOf(region));
             }
@@ -161,8 +159,7 @@ public class Map extends JPanel {
         double scaleHeightFactor = (mapHeight / 400.0);
         Iterator it = regions.entrySet().iterator();
         while (it.hasNext()) {
-            java.util.Map.Entry<Region, Color> entryItem
-                    = (java.util.Map.Entry) it.next();
+            java.util.Map.Entry<Region, Color> entryItem = (java.util.Map.Entry) it.next();
             Region region = entryItem.getKey();
             g.setColor(entryItem.getValue());
             Shape circle = new Ellipse2D.Double(((int) ((region.getxCoord()

@@ -65,8 +65,7 @@ public class InvMarketDisplay {
             }
         ) {
             private Class[] types = new Class[] {
-                java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
@@ -120,8 +119,7 @@ public class InvMarketDisplay {
             }
         ) {
             private Class[] types = new Class[] {
-                java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[] {
@@ -183,27 +181,23 @@ public class InvMarketDisplay {
             }
         });
 
-        invTable.getSelectionModel()
-            .addListSelectionListener(new ListSelectionListener() {
+        invTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent listSelectionEvent) {
                     if (invTable.getSelectedRow() != -1) {
-                        sellItem = (Item) invTable.getValueAt(invTable
-                            .getSelectedRow(), 3);
+                        sellItem = (Item) invTable.getValueAt(invTable.getSelectedRow(), 3);
                     }
                 }
             });
 
-        marketTable.getSelectionModel()
-            .addListSelectionListener(listSelectionEvent -> {
-                if (marketTable.getSelectedRow() != -1) {
-                    buyItem = (oceantrader.Item) marketTable.getValueAt(marketTable
-                        .getSelectedRow(), 3);
-                    oceantrader.RegionDisplay.costDisplay
-                        .updateBuyDisplay(oceantrader.Transaction
-                            .getPriceValues(buyItem));
-                }
-            });
+        marketTable.getSelectionModel().addListSelectionListener(listSelectionEvent -> {
+            if (marketTable.getSelectedRow() != -1) {
+                buyItem = (oceantrader.Item) marketTable
+                        .getValueAt(marketTable.getSelectedRow(), 3);
+                oceantrader.RegionDisplay.costDisplay.updateBuyDisplay(oceantrader.Transaction
+                        .getPriceValues(buyItem));
+            }
+        });
 
         sellBtn.addActionListener(e -> {
             if (sellItem == null) {
@@ -303,8 +297,7 @@ public class InvMarketDisplay {
     protected void updateInventory() {
         inventoryModel.setRowCount(0);
         for (int i = 0; i < OceanTrader.player.getShip().getCargoSize(); ++i) {
-            Object[] row = OceanTrader.player.getShip().getCargoList().get(i)
-                .tableizer();
+            Object[] row = OceanTrader.player.getShip().getCargoList().get(i).tableizer();
             inventoryModel.addRow(row);
         }
     }

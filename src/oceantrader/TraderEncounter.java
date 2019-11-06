@@ -57,8 +57,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
             }
         ) {
             private Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Integer.class,
-                java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[]{
@@ -105,8 +104,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
             public void mouseClicked(MouseEvent mouseEvent) {
                 updatePanel(); //to update the trader inventory
                 if (buyItem == null) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "No Item Selected!");
+                    JOptionPane.showMessageDialog(traderItems, "No Item Selected!");
                 } else {
                     switch (trader.sellItems(buyItem)) {
                         case "broke":
@@ -114,19 +112,15 @@ public class TraderEncounter extends JPanel implements IEncounter {
                                     "You lack sufficient funds!");
                             break;
                         case "space":
-                            JOptionPane.showMessageDialog(traderItems,
-                                    "No space available!");
+                            JOptionPane.showMessageDialog(traderItems, "No space available!");
                             break;
                         case "success":
                             JOptionPane.showMessageDialog(traderItems,
                                     buyItem.getName() + " was bought!");
-                            OceanTrader.player.getShip().getCargoList()
-                                    .add(buyItem);
+                            OceanTrader.player.getShip().getCargoList().add(buyItem);
                             OceanTrader.encounterFrame.setVisible(false);
-                            OceanTrader.regionDisplay.invMarketDisplay
-                                    .updateInventory();
-                            OceanTrader.regionDisplay.invMarketDisplay
-                                    .updateCurrencyDisplay();
+                            OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                            OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                             Travel.updateFuel((int) Travel.getCost());
                             Travel.travel();
                             break;
@@ -176,8 +170,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     for (Item item : stolen) {
                         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
                             JOptionPane.showMessageDialog(traderItems,
-                                    "Your inventory is full, cannot take "
-                                            + item.getName() + "!");
+                                    "Your inventory is full, cannot take " + item.getName() + "!");
                         } else {
                             JOptionPane.showMessageDialog(traderItems,
                                     "You have gained: " + item.getName());
@@ -205,21 +198,18 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 double dis = trader.negotiate();
                 if (dis > 0) {
                     JOptionPane.showMessageDialog(traderItems,
-                            "You were able to haggle down the price by "
-                                    + dis + "%!");
+                            "You were able to haggle down the price by " + dis + "%!");
                     updatePanel();
                 } else if (dis == -12345) {
                     JOptionPane.showMessageDialog(traderItems,
                             "You cannot negotiate with the trader again!");
                 } else if (dis < 0) {
-
                     JOptionPane.showMessageDialog(traderItems,
-                            "The trader got angry and increased the prices by "
-                                    + (dis * -1) + "%!");
+                            "The trader got angry and increased prices by " + (dis * -1) + "%!");
                     updatePanel();
                 } else {
                     JOptionPane.showMessageDialog(traderItems,
-                            "You were not successful in negotiating.");
+                            "You were unsuccessful in negotiating.");
                 }
             }
 
@@ -229,16 +219,14 @@ public class TraderEncounter extends JPanel implements IEncounter {
             }
         });
 
-        traderItems.getSelectionModel()
-                .addListSelectionListener(listSelectionEvent -> {
-                    if (traderItems.getSelectedRow() != -1) {
-                        buyItem = (oceantrader.Item) traderItems.getValueAt(traderItems
-                                .getSelectedRow(), 3);
-                        oceantrader.RegionDisplay.costDisplay
-                                .updateBuyDisplay(oceantrader.Transaction
-                                        .getPriceValues(buyItem));
-                    }
-                });
+        traderItems.getSelectionModel().addListSelectionListener(listSelectionEvent -> {
+            if (traderItems.getSelectedRow() != -1) {
+                buyItem = (oceantrader.Item) traderItems
+                        .getValueAt(traderItems.getSelectedRow(), 3);
+                oceantrader.RegionDisplay.costDisplay
+                        .updateBuyDisplay(oceantrader.Transaction.getPriceValues(buyItem));
+            }
+        });
 
         explainArea.setEditable(false);
         explainArea.setBackground(null);

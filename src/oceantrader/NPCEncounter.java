@@ -29,7 +29,7 @@ public abstract class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        int forceEncounter = 1; //0 -> Bandit, 1 -> Trader, 2 -> Police
+        int forceEncounter = -1; //0 -> Bandit, 1 -> Trader, 2 -> Police
 
         if (forceEncounter == 0) {
             callNPC(0);
@@ -85,7 +85,6 @@ public abstract class NPCEncounter {
         Ship ship = OceanTrader.player.getShip();
         ship.setHealth(ship.getHealth() - (int) (ship.getMaxHealth()
                 * ((rand.nextInt(30 - 10 + 1) + 10) / 100.0)));
-        OceanTrader.regionDisplay.shipDisplay
-                .updateShipDisplay(OceanTrader.player);
+        OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(OceanTrader.player);
     }
 }

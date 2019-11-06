@@ -72,7 +72,7 @@ public class Transaction {
     }
 
     protected static double[] getPriceValues(Item item) {
-        return new double[]{item.getPrice(), dateOffset(), skillDiscount(),
+        return new double[] {item.getPrice(), dateOffset(), skillDiscount(),
                 tax(), calculatePrice(item)};
     }
 
