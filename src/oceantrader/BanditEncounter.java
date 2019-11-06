@@ -66,8 +66,8 @@ public class BanditEncounter extends JPanel implements IEncounter {
                 if (player.getCurrency() >= demand) {
                     player.setCurrency(player.getCurrency() - demand);
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                    JOptionPane.showMessageDialog(window, "You lost " + demand
-                            + " coins to the bandit.");
+                    JOptionPane.showMessageDialog(window, "You paid "
+                            + demand + " coins to the bandit.");
                 } else if (playerInventory.size() >= 1) {
                     playerInventory.clear();
                     OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
@@ -94,8 +94,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
             public void mouseClicked(MouseEvent mouseEvent) {
                 OceanTrader.encounterFrame.setVisible(false);
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
-                    JOptionPane.showMessageDialog(window, "You have "
-                            + "successfully fled but you lost fuel.");
+                    JOptionPane.showMessageDialog(window, "You have successfully fled!");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
