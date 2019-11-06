@@ -75,8 +75,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     JOptionPane.showMessageDialog(window, "You could not afford"
-                            + " the bandit's demands, so he demanded your"
-                            + " inventory.");
+                            + " the bandit's demands, so he demanded your inventory.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -108,8 +107,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You failed to flee,"
-                            + " so the bandit took all of your coins and"
-                            + " damaged your ship.");
+                            + " so the bandit took all of your coins and damaged your ship.");
                 }
             }
 
@@ -125,25 +123,20 @@ public class BanditEncounter extends JPanel implements IEncounter {
             public void mouseClicked(MouseEvent mouseEvent) {
                 OceanTrader.encounterFrame.setVisible(false);
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
-                    Random rand = new Random();
                     int creditsGained = rand.nextInt(1000 - 300) + 300;
                     player.setCurrency(creditsGained + player.getCurrency());
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
-                    JOptionPane.showMessageDialog(window, "You have"
-                            + " successfully defeated the bandit and received "
-                            + creditsGained + " of the bandit's coins as a"
-                            + " reward.");
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                    JOptionPane.showMessageDialog(window, "You have successfully"
+                            + " defeated the bandit and received " + creditsGained
+                            + " of the bandit's coins as a reward.");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
                     player.setCurrency(0);
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     NPCEncounter.damageShip();
-                    JOptionPane.showMessageDialog(window, "You failed "
-                            + "to fight off the bandit, so the bandit took all"
-                            + " of your coins and damaged your ship.");
+                    JOptionPane.showMessageDialog(window, "You failed to fight off the bandit,"
+                            + " so the bandit took all of your coins and damaged your ship.");
                 }
             }
 
