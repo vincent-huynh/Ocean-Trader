@@ -47,16 +47,15 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         forfeitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
                 OceanTrader.encounterFrame.setVisible(false);
                 player.getShip().getCargoList().remove(itemPos);
                 JOptionPane.showMessageDialog(window, "You forfeited your "
                         + forbidden.getName() + " and continued to your destination.");
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                NPCEncounter.modifyKarma(-1, "lost");
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 forfeitDisc();
@@ -67,15 +66,14 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         fleeBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
                 OceanTrader.encounterFrame.setVisible(false);
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
                     fleeSuccess = true;
                     JOptionPane.showMessageDialog(window, "You successfully fled from the police!");
+                    NPCEncounter.modifyKarma(-1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
-
                     fleeSuccess = false;
                     int fee = rand.nextInt(player.getCurrency() / 4);
                     player.getShip().getCargoList().remove(itemPos);
@@ -86,9 +84,9 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     NPCEncounter.damageShip();
+                    NPCEncounter.modifyKarma(-1, "gained");
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 fleeDisc();
@@ -103,6 +101,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
                     JOptionPane.showMessageDialog(window, "You won the fight!"
                             + " You safely traveled to your destination.");
+                    NPCEncounter.modifyKarma(-1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -116,9 +115,9 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     NPCEncounter.damageShip();
+                    NPCEncounter.modifyKarma(-1, "gained");
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 fightDisc();

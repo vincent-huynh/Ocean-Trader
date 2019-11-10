@@ -7,6 +7,7 @@ public class Player {
     private Region region;
     private Ship ship;
     private int currency;
+    private int karma;
 
     private int pilotPoints;
     private int fighterPoints;
@@ -22,6 +23,7 @@ public class Player {
         this.traderPoints = traderPoints;
         this.engineerPoints = engineerPoints;
         this.ship = Ship.newShip(ShipType.DEFAULT);
+        this.karma = 0;
 
         switch (difficulty) {
         case EASY:
@@ -88,6 +90,14 @@ public class Player {
 
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+
+    public int getKarma() {
+        return karma;
+    }
+
+    public void modifyKarma(int amount) {
+        karma = karma + amount < 0 ? 0 : karma + amount;
     }
 
     public int getSkillLevel(String skill) {

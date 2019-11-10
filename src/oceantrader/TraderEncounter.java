@@ -121,6 +121,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                             OceanTrader.encounterFrame.setVisible(false);
                             OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                             OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                            NPCEncounter.modifyKarma(-1, "lost");
                             Travel.updateFuel((int) Travel.getCost());
                             Travel.travel();
                             break;
@@ -131,7 +132,6 @@ public class TraderEncounter extends JPanel implements IEncounter {
                     trader = new Trader();
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 buyDisc();
@@ -147,7 +147,6 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 ignoreDisc();
@@ -181,10 +180,10 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 trader = new Trader();
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                 OceanTrader.encounterFrame.setVisible(false);
+                NPCEncounter.modifyKarma(1, "gained");
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 robDisc();
@@ -212,7 +211,6 @@ public class TraderEncounter extends JPanel implements IEncounter {
                             "You were unsuccessful in negotiating.");
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 negotiateDisc();
@@ -237,7 +235,6 @@ public class TraderEncounter extends JPanel implements IEncounter {
         explainArea.setLineWrap(true);
         explainArea.setFont(new java.awt.Font("Dialog", 1, 14));
         jScrollPane1.setViewportView(explainArea);
-
         doNotTouch();
     }
 
