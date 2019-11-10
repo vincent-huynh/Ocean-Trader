@@ -70,7 +70,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
                     fleeSuccess = true;
                     JOptionPane.showMessageDialog(window, "You successfully fled from the police!");
-                    NPCEncounter.modifyKarma(-1, "gained");
+                    NPCEncounter.modifyKarma(1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -84,7 +84,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     NPCEncounter.damageShip();
-                    NPCEncounter.modifyKarma(-1, "gained");
+                    NPCEncounter.modifyKarma(1, "gained");
                 }
             }
             @Override
@@ -101,7 +101,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
                     JOptionPane.showMessageDialog(window, "You won the fight!"
                             + " You safely traveled to your destination.");
-                    NPCEncounter.modifyKarma(-1, "gained");
+                    NPCEncounter.modifyKarma(1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
@@ -115,7 +115,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     NPCEncounter.damageShip();
-                    NPCEncounter.modifyKarma(-1, "gained");
+                    NPCEncounter.modifyKarma(1, "gained");
                 }
             }
             @Override
