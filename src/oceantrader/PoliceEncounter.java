@@ -47,17 +47,15 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         forfeitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
                 OceanTrader.encounterFrame.setVisible(false);
                 player.getShip().getCargoList().remove(itemPos);
-                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                 JOptionPane.showMessageDialog(window, "You forfeited your "
-                        + forbidden.getName() + " and continued to your"
-                        + " destination.");
+                        + forbidden.getName() + " and continued to your destination.");
+                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                NPCEncounter.modifyKarma(-1, "lost");
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 forfeitDisc();
@@ -68,38 +66,27 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         fleeBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
-                int pilotSkill = player.getSkillLevel("Pilot");
-                boolean outcome = NPCEncounter.getOutcome(pilotSkill);
-
                 OceanTrader.encounterFrame.setVisible(false);
-                if (outcome) {
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
                     fleeSuccess = true;
-                    JOptionPane.showMessageDialog(window, "You "
-                            + "successfully fled from the police!");
+                    JOptionPane.showMessageDialog(window, "You successfully fled from the police!");
+                    NPCEncounter.modifyKarma(1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
-
                     fleeSuccess = false;
-
-                    int money = player.getCurrency();
-                    int fee = rand.nextInt(money / 4);
-
-                    NPCEncounter.damageShip();
+                    int fee = rand.nextInt(player.getCurrency() / 4);
                     player.getShip().getCargoList().remove(itemPos);
-                    player.setCurrency(money - fee);
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateInventory();
-                    JOptionPane.showMessageDialog(window, "You were "
-                            + "unsuccessful in evading the police. Your "
-                            + forbidden.getName() + " was confiscated, and you "
+                    player.setCurrency(player.getCurrency() - fee);
+                    JOptionPane.showMessageDialog(window, "You were unsuccessful in evading the"
+                            + " police. Your " + forbidden.getName() + " was confiscated, and you "
                             + "are fined " + fee + " for trying to escape.");
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                    NPCEncounter.damageShip();
+                    NPCEncounter.modifyKarma(1, "gained");
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 fleeDisc();
@@ -110,36 +97,27 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         fightBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                int fightSKill = player.getSkillLevel("Fighter");
-                boolean outcome = NPCEncounter.getOutcome(fightSKill);
-
                 OceanTrader.encounterFrame.setVisible(false);
-                if (outcome) {
+                if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
                     JOptionPane.showMessageDialog(window, "You won the fight!"
                             + " You safely traveled to your destination.");
+                    NPCEncounter.modifyKarma(1, "gained");
                     Travel.updateFuel((int) Travel.getCost());
                     Travel.travel();
                 } else {
                     fleeSuccess = false;
-
-                    int money = player.getCurrency();
-                    int fee = rand.nextInt(money / 2);
-
+                    int fee = rand.nextInt(player.getCurrency() / 2);
                     player.getShip().getCargoList().remove(itemPos);
-                    player.setCurrency(money - fee);
+                    player.setCurrency(player.getCurrency() - fee);
+                    JOptionPane.showMessageDialog(window, "You lost the fight. Your ship was"
+                            + " damaged, your " + forbidden.getName() + " was confiscated and you "
+                            + "were fined " + fee + " for fighting the police.");
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
                     NPCEncounter.damageShip();
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateCurrencyDisplay();
-                    OceanTrader.regionDisplay.invMarketDisplay
-                            .updateInventory();
-                    JOptionPane.showMessageDialog(window, "You lost "
-                            + "the fight. Your ship was damaged, your "
-                            + forbidden.getName() + " was confiscated and you "
-                            + "were fined " + fee + " for fighting the "
-                            + "police.");
+                    NPCEncounter.modifyKarma(1, "gained");
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
                 fightDisc();
@@ -186,27 +164,27 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(GroupLayout
+                        .Alignment.LEADING, false)
+                        .addComponent(policeLbl)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout
-                                        .Alignment.LEADING, false)
-                                        .addComponent(policeLbl)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addGroup(layout.createParallelGroup(GroupLayout
-                                                        .Alignment.LEADING).addComponent(jScrollPane1,
-                                                        GroupLayout.PREFERRED_SIZE, 351, GroupLayout
-                                                                .PREFERRED_SIZE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(forfeitBtn)
-                                                                .addGap(63, 63, 63)
-                                                                .addComponent(fleeBtn)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement
-                                                                                .RELATED, GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(fightBtn)))))
-                                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(GroupLayout
+                                .Alignment.LEADING).addComponent(jScrollPane1,
+                                GroupLayout.PREFERRED_SIZE, 351, GroupLayout
+                                    .PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(forfeitBtn)
+                                    .addGap(63, 63, 63)
+                                    .addComponent(fleeBtn)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement
+                                                    .RELATED, GroupLayout.DEFAULT_SIZE,
+                                            Short.MAX_VALUE)
+                                    .addComponent(fightBtn)))))
+                    .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -239,7 +217,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         inventory = player.getShip().getCargoList();
         itemPos = rand.nextInt(inventory.size());
         forbidden = inventory.get(itemPos);
-        policeLbl.setText("The Police believe you stole: "
-                + forbidden.getName() + ".");
+        policeLbl.setText("The Police believe you stole: " + forbidden.getName() + ".");
     }
 }

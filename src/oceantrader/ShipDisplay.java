@@ -76,11 +76,9 @@ public class ShipDisplay {
     protected void updateShipDisplay(Player player) {
         ship = player.getShip();
         typeLabel.setText("Ship Type: " + ship.getType());
-        healthLabel.setText("Health: " + ship.getHealth()
-                + " / " + ship.getMaxHealth());
+        healthLabel.setText("Health: " + ship.getHealth() + " / " + ship.getMaxHealth());
         fuelLabel.setText("Fuel Capacity: " + ship.getFuelCapacity()
                 + " / " + ship.getMaxFuelCapacity());
-        cargoLabel.setText("Cargo Space: " + ship.getCargoSize()
-                + " / " + ship.getMaxCargoSpace());
+        cargoLabel.setText("Cargo Space: " + ship.getCargoSize() + " / " + ship.getMaxCargoSpace());
     }
 }

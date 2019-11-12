@@ -27,9 +27,9 @@ public class Travel {
             JOptionPane.showMessageDialog(window, "You are at this region!");
         } else {
             addBaseCost();
-            addDiffMultipler();
+            addDiffMultiplier();
             addPilotSavings();
-
+            addKarmaCost();
             int capacity = player.getShip().getFuelCapacity();
             if (cost > capacity) {
                 String errorMsg = String.format("Not enough fuel!"
@@ -37,21 +37,16 @@ public class Travel {
                                 + "\nTraveling to %s will cost %d fuel.",
                         capacity, Map.selected.getName(), (int) cost);
                 JOptionPane.showMessageDialog(window, errorMsg);
-
             } else {
                 int confirmPage = JOptionPane.showConfirmDialog(window,
-                        str.toString(), "Price Confirmation",
-                        JOptionPane.YES_NO_OPTION);
-
+                        str.toString(), "Price Confirmation", JOptionPane.YES_NO_OPTION);
                 if (confirmPage == 0) {
                     String confirmMsg = String.format("Your ship currently has"
                                     + " %d fuel.\nTraveling to %s will use %d"
                                     + " fuel.\nConfirm Travel?",
                             capacity, Map.selected.getName(), (int) cost);
                     int yesOrNo = JOptionPane.showConfirmDialog(window,
-                            confirmMsg, "Travel Confirmation",
-                            JOptionPane.YES_NO_OPTION);
-
+                            confirmMsg, "Travel Confirmation", JOptionPane.YES_NO_OPTION);
                     if (yesOrNo == 0) {
                         NPCEncounter.initiateEncounter((int) cost);
                     }
@@ -70,7 +65,7 @@ public class Travel {
         int listSelected = RegionPanel.regionList.getSelectedIndex();
 
         // Makes changes to the map, and also changes the player's region
-        Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEF_POINT_COLOR);
+        Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
         player.setRegion(Universe.getInstance().regions.get(listSelected));
         String newRegion = player.getRegion().getName();
         JOptionPane.showMessageDialog(window, "Welcome to " + newRegion + "!");
@@ -92,13 +87,12 @@ public class Travel {
         str.append(String.format("Base Fuel Cost: %.1f Fuel\n\n", cost));
     }
 
-    private static void addDiffMultipler() {
-        double multipler = player.getDifficulty() == Difficulty.EASY ? 1.0
+    private static void addDiffMultiplier() {
+        double multiplier = player.getDifficulty() == Difficulty.EASY ? 1.0
                 : player.getDifficulty() == Difficulty.MEDIUM ? 1.5 : 2.0;
-        cost *= multipler;
+        cost *= multiplier;
         str.append(String.format("Your Difficulty Multipler is %.1f%s\nNew cost"
-                        + " after multipler: %.1f Fuel\n\n", multipler,
-                "x", cost));
+                        + " after multipler: %.1f Fuel\n\n", multiplier, "x", cost));
     }
 
     private static void addPilotSavings() {
@@ -106,8 +100,15 @@ public class Travel {
         double savings = (100 - points * 3.0) / 100;
         cost *= savings;
         str.append(String.format("You have %d point(s) allocated to Seamanship."
-                + "\nYour skill bonus discount is -%d%s.\n\nYour final cost is:"
-                + " %.1f Fuel", points, points * 3, "%", cost));
+                + "\nYour skill bonus discount is -%d%s.\nNew cost after discount: %.1f Fuel\n\n",
+                points, points * 3, "%", cost));
+    }
+
+    private static void addKarmaCost() {
+        int multiplier = 10 * player.getKarma();
+        cost *= ((100.0 + multiplier) / 100.0);
+        str.append(String.format("You have %d negative karma.\nYour fuel cost is increased by %d%s."
+                + "\n\nYour final cost is: %.1f Fuel", player.getKarma(), multiplier, "%", cost));
     }
 
     /**

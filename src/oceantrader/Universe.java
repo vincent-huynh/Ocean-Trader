@@ -53,8 +53,7 @@ public class Universe {
                 int x = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 int y = rand.nextInt(201) * (rand.nextBoolean() ? -1 : 1);
                 for (Map.Entry<Integer, Integer> entry : coords.entrySet()) {
-                    if (distBetween((double) x, (double) y,
-                            entry.getKey().doubleValue(),
+                    if (distBetween((double) x, (double) y, entry.getKey().doubleValue(),
                             entry.getValue().doubleValue()) < 5) {
                         stop = true;
                         break;
@@ -62,8 +61,7 @@ public class Universe {
                 }
                 if (!stop) {
                     coords.put(x, y);
-                    regions.add(new Region(regionNames
-                            .remove(rand.nextInt(regionNames.size())),
+                    regions.add(new Region(regionNames.remove(rand.nextInt(regionNames.size())),
                             techLevels[rand.nextInt(7)], x, y,
                             (int) Math.round(rand.nextDouble() * 7)));
                     newCoords = false;

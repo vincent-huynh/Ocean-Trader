@@ -1,11 +1,12 @@
 package oceantrader;
 
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Trader extends Ship {
-    //Vincent --> Method updatePanel()
+
     private boolean negotiable = true;
+    private static Random rand = new Random();
 
     public Trader() {
         super(ShipType.MERCHANT, 45, 650, 1250);
@@ -18,13 +19,11 @@ public class Trader extends Ship {
     }
 
     public void generateCargo() {
-        Random rand = new Random();
         ArrayList<Item> allItems = new ArrayList<>();
         allItems.addAll(TechLevel.FUTURISTIC.getItems());
         allItems.addAll(TechLevel.FUTURISTIC.getFormerItem());
         for (int i = 0; i < rand.nextInt(5) + 5; i++) {
-            this.getCargoList().add(allItems
-                    .remove(rand.nextInt(allItems.size())));
+            this.getCargoList().add(allItems.remove(rand.nextInt(allItems.size())));
             this.getCargoList().get(i).setSellPrice((int)
                     (this.getCargoList().get(i).getPrice() * 0.75));
         }
@@ -44,38 +43,30 @@ public class Trader extends Ship {
     }
 
     public double negotiate() {
-        boolean success = NPCEncounter.getOutcome(OceanTrader.player
-                .getSkillLevel("Trader"));
-        Random rand = new Random();
+        boolean success = NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Trader"));
         double discount = 0;
         if (!negotiable) {
             return -12345;
         } else if (success && negotiable) {
-            discount = (OceanTrader.player.getSkillLevel("Trader")
-                    * rand.nextDouble() * 0.3) / 100;
+            discount = (OceanTrader.player.getSkillLevel("Trader") * rand.nextDouble() * 0.3) / 100;
             for (int i = 0; i < getCargoSize(); i++) {
                 Item item = getCargoList().get(i);
                 item.setPrice((int) (item.getPrice() * (1 - discount)));
             }
-        } else {
-            if (rand.nextDouble() < 0.4) {
-                discount = (OceanTrader.player.getSkillLevel("Trader")
-                        * rand.nextDouble() * 0.3) / 100;
-                for (int i = 0; i < getCargoSize(); i++) {
-                    Item item = getCargoList().get(i);
-                    item.setPrice((int) (item.getPrice() * (1 + discount)));
-                }
-                discount *= -1;
+        } else if (rand.nextDouble() < 0.4) {
+            discount = (OceanTrader.player.getSkillLevel("Trader") * rand.nextDouble() * 0.3) / 100;
+            for (int i = 0; i < getCargoSize(); i++) {
+                Item item = getCargoList().get(i);
+                item.setPrice((int) (item.getPrice() * (1 + discount)));
             }
+            discount *= -1;
         }
         negotiable = false;
         return (int) (discount * 100 * 100) / 100.0;
     }
 
     public ArrayList<Item> robbed() {
-        boolean robbed = NPCEncounter.getOutcome(OceanTrader.player
-                .getSkillLevel("Fighter"));
-        Random rand = new Random();
+        boolean robbed = NPCEncounter.getOutcome(OceanTrader.player.getSkillLevel("Fighter"));
         ArrayList<Item> stolen = new ArrayList<>();
         if (robbed) {
             for (int i = 0; i < rand.nextInt(getCargoSize() / 2 - 1) + 1; i++) {

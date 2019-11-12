@@ -109,31 +109,19 @@ public class EncounterFrame extends JFrame {
 
         youImage.setPreferredSize(new java.awt.Dimension(75, 75));
 
-        javax.swing.GroupLayout youImageLayout = new javax.swing
-                .GroupLayout(youImage);
+        javax.swing.GroupLayout youImageLayout = new javax.swing.GroupLayout(youImage);
         youImage.setLayout(youImageLayout);
-        youImageLayout.setHorizontalGroup(
-                youImageLayout.createParallelGroup(javax.swing.GroupLayout
-                        .Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE)
-        );
-        youImageLayout.setVerticalGroup(
-                youImageLayout.createParallelGroup(javax.swing.GroupLayout
-                        .Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE)
-        );
-
+        youImageLayout.setHorizontalGroup(youImageLayout.createParallelGroup(
+                javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE));
+        youImageLayout.setVerticalGroup(youImageLayout.createParallelGroup(
+                javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE));
         oppImage.setPreferredSize(new java.awt.Dimension(75, 75));
-
-        javax.swing.GroupLayout oppImageLayout = new javax.swing
-                .GroupLayout(oppImage);
+        javax.swing.GroupLayout oppImageLayout = new javax.swing.GroupLayout(oppImage);
         oppImage.setLayout(oppImageLayout);
-        oppImageLayout.setHorizontalGroup(
-                oppImageLayout.createParallelGroup(javax.swing.GroupLayout
-                        .Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE)
-        );
-        oppImageLayout.setVerticalGroup(
-                oppImageLayout.createParallelGroup(javax.swing.GroupLayout
-                        .Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE)
-        );
+        oppImageLayout.setHorizontalGroup(oppImageLayout.createParallelGroup(
+                javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE));
+        oppImageLayout.setVerticalGroup(oppImageLayout.createParallelGroup(
+                javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 75, Short.MAX_VALUE));
 
         javax.swing.GroupLayout layout = new javax.swing
                 .GroupLayout(getContentPane());
@@ -277,8 +265,7 @@ public class EncounterFrame extends JFrame {
             bandit.updatePlayer(OceanTrader.player);
             currentSelection = banditPanel;
             card.show(oppPanel, "bandit");
-            youHealthBar.setMaximum(OceanTrader.player.getShip()
-                    .getMaxHealth());
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
 
@@ -287,8 +274,7 @@ public class EncounterFrame extends JFrame {
             oppImage.setIcon(imgs[1]);
             currentSelection = traderPanel;
             card.show(oppPanel, "trader");
-            youHealthBar.setMaximum(OceanTrader.player.getShip()
-                    .getMaxHealth());
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
 
@@ -299,8 +285,7 @@ public class EncounterFrame extends JFrame {
             popo.updatePlayer(OceanTrader.player);
             currentSelection = policePanel;
             card.show(oppPanel, "police");
-            youHealthBar.setMaximum(OceanTrader.player.getShip()
-                    .getMaxHealth());
+            youHealthBar.setMaximum(OceanTrader.player.getShip().getMaxHealth());
             youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
             youHealthBar.setStringPainted(true);
         }
