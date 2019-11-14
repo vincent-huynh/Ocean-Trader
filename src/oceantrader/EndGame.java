@@ -34,12 +34,12 @@ public class EndGame extends JFrame {
 
         titleBtn.addActionListener(e -> {
             window.dispose();
+            dispose();
             startGame();
         });
 
         endGame.addActionListener(e -> {
             System.exit(0);
-
         });
 
         add(panel);
