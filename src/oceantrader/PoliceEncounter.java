@@ -107,13 +107,8 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 } else {
                     fleeSuccess = false;
-                    int fee;
-                    if (player.getCurrency() != 0) {
-                        fee = rand.nextInt(player.getCurrency() / 2);
-                    } else {
-                        fee = 10;
-                    }
-
+                    int fee = player.getCurrency() != 0
+                            ? rand.nextInt(player.getCurrency() / 2) : 10;
                     player.getShip().getCargoList().remove(itemPos);
                     player.setCurrency(player.getCurrency() - fee);
                     JOptionPane.showMessageDialog(window, "You lost the fight. Your ship was"
