@@ -52,6 +52,7 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                 JOptionPane.showMessageDialog(window, "You forfeited your "
                         + forbidden.getName() + " and continued to your destination.");
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+
                 NPCEncounter.modifyKarma(-1, "lost");
                 Travel.updateFuel((int) Travel.getCost());
                 Travel.travel();
@@ -106,7 +107,13 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 } else {
                     fleeSuccess = false;
-                    int fee = rand.nextInt(player.getCurrency() / 2);
+                    int fee;
+                    if (player.getCurrency() != 0) {
+                        fee = rand.nextInt(player.getCurrency() / 2);
+                    } else {
+                        fee = 10;
+                    }
+
                     player.getShip().getCargoList().remove(itemPos);
                     player.setCurrency(player.getCurrency() - fee);
                     JOptionPane.showMessageDialog(window, "You lost the fight. Your ship was"

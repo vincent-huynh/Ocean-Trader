@@ -144,7 +144,8 @@ public class OceanTrader {
         confirmScreen.button.addActionListener(e -> {
             player.setRegion(Universe.getInstance().regions.get(rand.nextInt(10)));
             Universe.getInstance().sortRegions();
-            RegionPanel.updateRegionList();
+            regionDisplay.regionPanel.updateRegionList();
+            regionDisplay.regionPanel.update();
             regionDisplay.map.updateMapTitle(player.getRegion());
             cardLayout.show(cardPanel, "Main");
             regionDisplay.invMarketDisplay.updateInventory();
