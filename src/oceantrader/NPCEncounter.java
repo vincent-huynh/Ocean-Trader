@@ -53,6 +53,9 @@ public abstract class NPCEncounter {
         ship.setHealth(ship.getHealth() - (int) (ship.getMaxHealth()
                 * ((rand.nextInt(30 - 10 + 1) + 10) / 100.0)));
         OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
+        if (ship.getHealth() <= 0) {
+            OceanTrader.endGame();
+        }
     }
 
     protected static void modifyKarma(int amount, String type) {

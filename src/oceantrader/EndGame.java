@@ -15,7 +15,6 @@ public class EndGame extends JFrame {
     protected JButton titleBtn;
     protected JButton endGame;
 
-
     protected EndGame() {
         initGUI();
     }
@@ -39,17 +38,14 @@ public class EndGame extends JFrame {
 
         endGame.addActionListener(e -> {
             System.exit(0);
-
         });
 
         add(panel);
         setAlwaysOnTop(true);
-        setSize(400,400);
+        setSize(400, 400);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
     }
-
 
     private static void setSpecs(JButton button) {
         button.setFont(new Font("Tahoma", Font.PLAIN, 30));
