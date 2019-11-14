@@ -19,7 +19,7 @@ public class Travel {
      */
     protected static void confirmTravel() {
 
-        Object value = RegionPanel.regionList.getSelectedValue();
+        Object value = OceanTrader.regionDisplay.regionPanel.regionList.getSelectedValue();
 
         if (value == null) {
             JOptionPane.showMessageDialog(window, "No region selected.");
@@ -62,7 +62,7 @@ public class Travel {
 
         // Variables to help keep the code clean and easier to read.
         Region region = player.getRegion();
-        int listSelected = RegionPanel.regionList.getSelectedIndex();
+        int listSelected = OceanTrader.regionDisplay.regionPanel.regionList.getSelectedIndex();
 
         // Makes changes to the map, and also changes the player's region
         Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEFAULT_POINT_COLOR);
@@ -72,8 +72,8 @@ public class Travel {
 
         // Logistics to update the GUI list and map to properly reflect changes.
         Universe.getInstance().sortRegions();
-        RegionPanel.updateRegionList();
-        RegionPanel.regionList.setSelectedIndex(0);
+        OceanTrader.regionDisplay.regionPanel.updateRegionList();
+        OceanTrader.regionDisplay.regionPanel.regionList.setSelectedIndex(0);
         OceanTrader.regionDisplay.map.updateMapTitle(player.getRegion());
         OceanTrader.regionDisplay.map.repaint();
         OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);

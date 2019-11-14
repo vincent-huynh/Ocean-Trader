@@ -1,54 +1,44 @@
 package oceantrader;
 
-import javax.swing.AbstractListModel;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-import java.awt.Dimension;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
+import java.util.AbstractList;
 
-public class RegionPanel {
+public class RegionPanel extends JPanel {
+    protected JLabel coordDisp;
+    private JLabel coordsLbl;
+    protected JLabel distDisp;
+    private JLabel distLbl;
+    private JProgressBar healthBar;
+    private JLabel jLabel1;
+    private JProgressBar jProgressBar1;
+    private JLabel lineLbl;
+    private JLabel mntDockLbl;
+    private JButton refuelBtn;
+    private JLabel refuelLbl;
+    private JButton refuelMaxBtn;
+    private JSlider refuelSlider;
+    private JTextField refuelSliderTxt;
+    protected JLabel regionDisp;
+    private JLabel regionLbl;
+    protected JList<String> regionList;
+    private JScrollPane regionScrollPane;
+    private JButton repairBtn;
+    private JLabel repairLbl;
+    private JButton repairMaxBtn;
+    private JSlider repairSlider;
+    private JTextField repairSliderTxt;
+    private JLabel shipHPLbl;
+    protected JLabel techDisp;
+    private JLabel techLbl;
 
-    protected static JList regionList;
-    protected static AbstractListModel regionListy;
-    protected static JTextField regionName;
-    protected static JTextField regionTech;
-    protected static JTextField regionCoords;
-    protected static JTextField distance;
-    protected JPanel panel;
 
-    protected RegionPanel() {
-        panel = new JPanel();
+    public RegionPanel() {
         initGUI();
     }
 
-    protected static void updateList(Region selected, JTextField regionName, JTextField regionTech,
-                                     JTextField regionCoords, JTextField distance) {
-
-        regionName.setText(selected.getName());
-        regionTech.setText(selected.getTechLevel().toString());
-        regionCoords.setText("X: " + selected.getxCoord() + " | Y: " + selected.getyCoord());
-        distance.setText(String.format("%.2f Nautical Miles",
-                Region.calcDistance(OceanTrader.player, selected)));
-    }
-
-    private static void jTextFieldEdit(JTextField jTextField) {
-        jTextField.setEditable(false);
-        jTextField.setBorder(BorderFactory.createEmptyBorder());
-        jTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    }
-
-    private static void jLabelEdit(JLabel jLabel) {
-        jLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    }
-
-    protected static void updateRegionList() {
-        regionListy = new AbstractListModel() {
+    protected void updateRegionList() {
+        AbstractListModel regionListy = new AbstractListModel() {
             private String[] strings = Universe.getInstance().getRegionArray();
 
             @Override
@@ -68,100 +58,266 @@ public class RegionPanel {
         regionList.setModel(regionListy);
     }
 
+    //@SuppressWarnings("unchecked")
     private void initGUI() {
-
-        regionList = new JList();
-        JScrollPane jScrollPane1 = new JScrollPane();
-
-        JLabel regionNameLbl = new JLabel("Region:");
-        jLabelEdit(regionNameLbl);
-
-        JLabel regionTechLbl = new JLabel("Tech Level:");
-        jLabelEdit(regionTechLbl);
-
-        JLabel regionCoordsLbl = new JLabel("Coordinates:");
-        jLabelEdit(regionCoordsLbl);
-
-        JLabel distanceLbl = new JLabel("Distance:");
-        jLabelEdit(distanceLbl);
-
-        regionName = new JTextField();
-        jTextFieldEdit(regionName);
-
-        regionTech = new JTextField();
-        jTextFieldEdit(regionTech);
-
-        regionCoords = new JTextField();
-        jTextFieldEdit(regionCoords);
-
-        distance = new JTextField();
-        jTextFieldEdit(distance);
-
-        panel.setMaximumSize(new Dimension(350, 950));
-        panel.setPreferredSize(new Dimension(350, 950));
-
+        declareVars();
+        Font godFont = new java.awt.Font("Comic Sans MS", 0, 18);
+        Font jesusFont = new java.awt.Font("Comic Sans MS", 1, 14);
+        regionList.setFont(new java.awt.Font("Comic Sans MS", 0, 20));
         updateRegionList();
 
-        regionList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        setLabels(godFont, jesusFont);
 
         regionList.addListSelectionListener(listSelectionEvent -> {
             if (regionList.getSelectedIndex() >= 0) {
                 oceantrader.Region selected = oceantrader.Universe.getInstance()
                         .regions.get(regionList.getSelectedIndex());
-                updateList(selected, regionName, regionTech, regionCoords, distance);
-                oceantrader.OceanTrader.regionDisplay.map.reloadGraphics(selected);
+                updateList(selected, regionDisp, techDisp, coordDisp, distDisp);
+                OceanTrader.regionDisplay.map.reloadGraphics(selected);
             }
         });
 
-        jScrollPane1.setViewportView(regionList);
+        refuelBtn.setText("Refuel");
+        refuelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refuelBtnActionPerformed(evt);
+            }
+        });
 
-        GroupLayout layout = new GroupLayout(panel);
-        panel.setLayout(layout);
+
+
+        doNotTouch();
+    }
+
+    private void doNotTouch() {
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup().addContainerGap()
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment
-                        .LEADING).addComponent(jScrollPane1).addGroup(layout
-                        .createSequentialGroup().addGap(11, 11, 11).addGroup(layout
-                            .createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(regionCoordsLbl).addPreferredGap(LayoutStyle
-                                        .ComponentPlacement.RELATED).addComponent(regionCoords,
-                                        GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(regionNameLbl).addPreferredGap(LayoutStyle
-                                        .ComponentPlacement.RELATED).addComponent(regionName))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(distanceLbl).addPreferredGap(LayoutStyle
-                            .ComponentPlacement.UNRELATED).addComponent(distance))
-                            .addGroup(layout.createSequentialGroup()
-                                    .addComponent(regionTechLbl).addPreferredGap(LayoutStyle
-                                    .ComponentPlacement.UNRELATED).addComponent(regionTech)))))
-                    .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lineLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                                        .addComponent(regionScrollPane)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(regionLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(regionDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(techLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(techDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(distLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(distDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(coordsLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(coordDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(69, 69, 69)
+                                                                .addComponent(mntDockLbl))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(shipHPLbl)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(repairLbl)
+                                                                                .addComponent(jLabel1)))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(healthBar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(22, 22, 22)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(refuelSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(refuelSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(repairSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(repairSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(repairBtn)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(repairMaxBtn))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(refuelBtn)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(refuelMaxBtn))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(37, 37, 37)
+                                                                .addComponent(refuelLbl)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
-
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup().addContainerGap()
-                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 486,
-                        GroupLayout.PREFERRED_SIZE).addGap(53, 53, 53).addGroup(layout
-                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(regionNameLbl).addComponent(regionName,
-                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment
-                        .BASELINE).addComponent(regionTechLbl).addComponent(regionTech,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
-                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(regionCoordsLbl).addComponent(regionCoords,
-                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(layout
-                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(distanceLbl).addComponent(distance,
-                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.PREFERRED_SIZE)).addContainerGap(283,
-                        Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(regionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(regionLbl)
+                                        .addComponent(regionDisp))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(techLbl)
+                                        .addComponent(techDisp))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(coordsLbl)
+                                        .addComponent(coordDisp))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(distLbl)
+                                        .addComponent(distDisp))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lineLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mntDockLbl)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(shipHPLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(healthBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(repairLbl)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(repairSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(repairSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(repairBtn)
+                                        .addComponent(repairMaxBtn))
+                                .addGap(35, 35, 35)
+                                .addComponent(refuelLbl)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(refuelSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(refuelSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(refuelBtn)
+                                        .addComponent(refuelMaxBtn))
+                                .addContainerGap(99, Short.MAX_VALUE))
         );
     }
+    private void declareVars() {
+        regionScrollPane = new JScrollPane();
+        regionList = new JList<>();
+        regionLbl = new JLabel();
+        techLbl = new JLabel();
+        coordsLbl = new JLabel();
+        distLbl = new JLabel();
+        regionDisp = new JLabel();
+        techDisp = new JLabel();
+        coordDisp = new JLabel();
+        distDisp = new JLabel();
+        lineLbl = new JLabel();
+        mntDockLbl = new JLabel();
+        shipHPLbl = new JLabel();
+        healthBar = new JProgressBar();
+        jLabel1 = new JLabel();
+        jProgressBar1 = new JProgressBar();
+        repairLbl = new JLabel();
+        repairSlider = new JSlider();
+        repairSliderTxt = new JTextField();
+        refuelLbl = new JLabel();
+        refuelSlider = new JSlider();
+        refuelSliderTxt = new JTextField();
+        refuelBtn = new JButton();
+        repairBtn = new JButton();
+        repairMaxBtn = new JButton();
+        refuelMaxBtn = new JButton();
+    }
+    private void setLabels(Font godFont, Font jesusFont) {
+        regionScrollPane.setViewportView(regionList);
+        regionLbl.setFont(godFont);
+        regionLbl.setText("Region:");
+
+        techLbl.setFont(godFont);
+        techLbl.setText("Tech Level:");
+
+        coordsLbl.setFont(godFont);
+        coordsLbl.setText("Coordinates:");
+
+        distLbl.setFont(godFont);
+        distLbl.setText("Distance:");
+
+        regionDisp.setFont(godFont);
+        regionDisp.setText(" ");
+
+        techDisp.setFont(godFont);
+        techDisp.setText(" ");
+
+        coordDisp.setFont(godFont);
+        coordDisp.setText(" ");
+
+        distDisp.setFont(godFont);
+        distDisp.setText(" ");
+
+        lineLbl.setText("______________________________________________________");
+
+        mntDockLbl.setFont(new java.awt.Font("Comic Sans MS", 1, 24));
+        mntDockLbl.setText("Maintenance Dock");
+
+        shipHPLbl.setFont(jesusFont);
+        shipHPLbl.setText("Ship Health:");
+
+        healthBar.setFont(jesusFont);
+        healthBar.setStringPainted(true);
+
+        jLabel1.setFont(jesusFont);
+        jLabel1.setText("Ship Fuel:");
+
+        jProgressBar1.setFont(jesusFont);
+        jProgressBar1.setStringPainted(true);
+
+        repairLbl.setFont(jesusFont);
+        repairLbl.setText("Repair");
+
+        repairSliderTxt.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
+        repairSliderTxt.setText(" ");
+
+        refuelLbl.setFont(jesusFont);
+        refuelLbl.setText("Refuel");
+
+        refuelSliderTxt.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
+        refuelSliderTxt.setText(" ");
+
+        repairBtn.setText("Repair");
+
+        repairMaxBtn.setText("Repair Max");
+
+        refuelMaxBtn.setText("Refuel Max");
+    }
+    protected void updateList(Region selected, JLabel regionDisp, JLabel techDisp,
+                              JLabel coordDisp, JLabel distDisp) {
+        regionDisp.setText(selected.getName());
+        techDisp.setText(selected.getTechLevel().toString());
+        coordDisp.setText("X: " + selected.getxCoord() + " | Y: " + selected.getyCoord());
+        distDisp.setText(String.format("%.2f Nautical Miles",
+                Region.calcDistance(OceanTrader.player, selected)));
+    }
+    private void refuelBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+
+
+
+
 }

@@ -133,9 +133,10 @@ public class Map extends JPanel {
                     region.getxCoord(), region.getyCoord());
             if (distance < 10) {
                 reloadGraphics(region);
-                RegionPanel.updateList(selected, RegionPanel.regionName,
-                        RegionPanel.regionTech, RegionPanel.regionCoords, RegionPanel.distance);
-                RegionPanel.regionList.setSelectedIndex(Universe.getInstance()
+                RegionPanel regionPanel = OceanTrader.regionDisplay.regionPanel;
+                regionPanel.updateList(selected, regionPanel.regionDisp,
+                        regionPanel.techDisp, regionPanel.coordDisp, regionPanel.distDisp);
+                regionPanel.regionList.setSelectedIndex(Universe.getInstance()
                         .regions.indexOf(region));
             }
         }

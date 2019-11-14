@@ -34,7 +34,7 @@ public class RegionDisplay {
         costDisplay = new CostDisplay();
         map = new Map();
 
-        leftPanel = regionPanel.panel;
+        leftPanel = regionPanel;
         leftPanel.setPreferredSize(new Dimension(350, 1000));
         leftPanel.setBackground(mainGUIColor);
 
