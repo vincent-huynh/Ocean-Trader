@@ -161,10 +161,14 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 Ship ship = player.getShip();
                 ArrayList<Item> stolen = trader.robbed();
                 if (stolen.size() == 0) {
-                    NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(traderItems,
                             "You were not able to steal anything and the "
                                     + "trader inflicted damage on your ship!");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
                 } else {
                     for (Item item : stolen) {
                         if (ship.getCargoSize() == ship.getMaxCargoSpace()) {

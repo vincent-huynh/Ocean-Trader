@@ -183,7 +183,7 @@ public class OceanTrader {
         pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
     }
 
-    public static void endGame() {
+    protected static void endGame() {
         EndGame end = new EndGame();
     }
 }

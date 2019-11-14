@@ -80,11 +80,16 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     player.getShip().getCargoList().remove(itemPos);
                     player.setCurrency(player.getCurrency() - fee);
                     JOptionPane.showMessageDialog(window, "You were unsuccessful in evading the"
-                            + " police. Your " + forbidden.getName() + " was confiscated, and you "
-                            + "are fined " + fee + " for trying to escape.");
+                            + " police. Your " + forbidden.getName() + " was confiscated, your" +
+                            " ship was damaged, and you were fined " + fee + " for trying to" +
+                            " escape.");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                    NPCEncounter.damageShip();
                     NPCEncounter.modifyKarma(1, "gained");
                 }
             }
@@ -114,9 +119,13 @@ public class PoliceEncounter extends JPanel implements IEncounter {
                     JOptionPane.showMessageDialog(window, "You lost the fight. Your ship was"
                             + " damaged, your " + forbidden.getName() + " was confiscated and you "
                             + "were fined " + fee + " for fighting the police.");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
                     OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                    NPCEncounter.damageShip();
                     NPCEncounter.modifyKarma(1, "gained");
                 }
             }

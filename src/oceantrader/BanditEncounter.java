@@ -75,9 +75,13 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     JOptionPane.showMessageDialog(window, "You could not afford"
                             + " the bandit's demands, so he demanded your inventory.");
                 } else {
-                    NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You didn't have any"
                             + " items, so the bandit damaged your ship.");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
                 }
                 NPCEncounter.modifyKarma(-1, "lost");
                 Travel.updateFuel((int) Travel.getCost());
@@ -101,10 +105,14 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 } else {
                     player.setCurrency(0);
-                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                    NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You failed to flee,"
                             + " so the bandit took all of your coins and damaged your ship.");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                     NPCEncounter.modifyKarma(-1, "lost");
                 }
             }
@@ -131,9 +139,13 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     Travel.travel();
                 } else {
                     player.setCurrency(0);
-                    NPCEncounter.damageShip();
                     JOptionPane.showMessageDialog(window, "You failed to fight off the bandit,"
                             + " so the bandit took all of your coins and damaged your ship.");
+                    NPCEncounter.damageShip();
+                    if (player.getShip().getHealth() <= 0) {
+                        OceanTrader.endGame();
+                        return;
+                    }
                     NPCEncounter.modifyKarma(-1, "lost");
                 }
                 OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
