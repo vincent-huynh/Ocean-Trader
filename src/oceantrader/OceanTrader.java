@@ -182,4 +182,8 @@ public class OceanTrader {
                 + (int) ConfigurationScreen.engineerSpinner.getValue();
         pointsRemain.setText((pointsDiff - currPoints) + " points remaining.");
     }
+
+    public static void endGame() {
+        EndGame end = new EndGame();
+    }
 }

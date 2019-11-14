@@ -33,6 +33,7 @@ public class EndGame extends JFrame {
 
         titleBtn.addActionListener(e -> {
             window.dispose();
+            dispose();
             startGame();
         });
 
