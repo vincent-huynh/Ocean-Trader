@@ -179,6 +179,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
                 }
                 trader = new Trader();
                 OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                OceanTrader.regionDisplay.regionPanel.update();
                 OceanTrader.encounterFrame.setVisible(false);
                 NPCEncounter.modifyKarma(1, "gained");
                 Travel.updateFuel((int) Travel.getCost());

@@ -137,6 +137,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
                     NPCEncounter.modifyKarma(-1, "lost");
                 }
                 OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                OceanTrader.regionDisplay.regionPanel.update();
             }
 
             @Override

@@ -72,6 +72,7 @@ public class Travel {
 
         // Logistics to update the GUI list and map to properly reflect changes.
         Universe.getInstance().sortRegions();
+        OceanTrader.regionDisplay.regionPanel.update();
         OceanTrader.regionDisplay.regionPanel.updateRegionList();
         OceanTrader.regionDisplay.regionPanel.regionList.setSelectedIndex(0);
         OceanTrader.regionDisplay.map.updateMapTitle(player.getRegion());

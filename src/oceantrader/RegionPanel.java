@@ -1,7 +1,11 @@
 package oceantrader;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.AbstractList;
 
 public class RegionPanel extends JPanel {
@@ -11,7 +15,7 @@ public class RegionPanel extends JPanel {
     private JLabel distLbl;
     private JProgressBar healthBar;
     private JLabel jLabel1;
-    private JProgressBar jProgressBar1;
+    private JProgressBar fuelBar;
     private JLabel lineLbl;
     private JLabel mntDockLbl;
     private JButton refuelBtn;
@@ -58,14 +62,28 @@ public class RegionPanel extends JPanel {
         regionList.setModel(regionListy);
     }
 
-    //@SuppressWarnings("unchecked")
+    protected void updateSliders() {
+        if (OceanTrader.player != null) {
+            Ship playerShip = OceanTrader.player.getShip();
+            int repairMax = playerShip.getMaxHealth() - playerShip.getHealth();
+            int refuelMax = playerShip.getMaxFuelCapacity() - playerShip.getFuelCapacity();
+            repairSlider.setMaximum(repairMax);
+            refuelSlider.setMaximum(refuelMax);
+            toggle(false);
+        } else {
+            repairSlider.setMaximum(0);
+            refuelSlider.setMaximum(0);
+            toggle(true);
+        }
+    }
+
     private void initGUI() {
         declareVars();
         Font godFont = new java.awt.Font("Comic Sans MS", 0, 18);
         Font jesusFont = new java.awt.Font("Comic Sans MS", 1, 14);
         regionList.setFont(new java.awt.Font("Comic Sans MS", 0, 20));
         updateRegionList();
-
+        updateSliders();
         setLabels(godFont, jesusFont);
 
         regionList.addListSelectionListener(listSelectionEvent -> {
@@ -77,10 +95,49 @@ public class RegionPanel extends JPanel {
             }
         });
 
-        refuelBtn.setText("Refuel");
-        refuelBtn.addActionListener(new java.awt.event.ActionListener() {
+        refuelBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refuelBtnActionPerformed(evt);
+                refuelBtnActionPerformed();
+            }
+        });
+
+        refuelMaxBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                refuelMaxBtnActionPerformed();
+            }
+        });
+
+        repairBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                repairBtnActionPerformed();
+            }
+        });
+
+        repairMaxBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                repairMaxBtnActionPerformed();
+            }
+        });
+        repairSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                if (repairSlider.getValueIsAdjusting()) {
+                    int val = repairSlider.getValue();
+                    repairSliderTxt.setText(val + "");
+                }
+            }
+        });
+
+        refuelSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                if (refuelSlider.getValueIsAdjusting()) {
+                    int val = refuelSlider.getValue();
+                    refuelSliderTxt.setText(val + "");
+                }
             }
         });
 
@@ -89,6 +146,25 @@ public class RegionPanel extends JPanel {
         doNotTouch();
     }
 
+    protected void updateHealthBar() {
+        int max = OceanTrader.player.getShip().getMaxHealth();
+        int curr = OceanTrader.player.getShip().getHealth();
+        healthBar.setMaximum(max);
+        healthBar.setValue(curr);
+        healthBar.setString(String.format("%d / %d", curr, max));
+    }
+    protected void updateFuelBar() {
+        int max = OceanTrader.player.getShip().getMaxFuelCapacity();
+        int curr = OceanTrader.player.getShip().getFuelCapacity();
+        fuelBar.setMaximum(max);
+        fuelBar.setValue(curr);
+        fuelBar.setString(String.format("%d / %d", curr, max));
+    }
+    protected void update() {
+        updateFuelBar();
+        updateHealthBar();
+        updateSliders();
+    }
     private void doNotTouch() {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,7 +208,7 @@ public class RegionPanel extends JPanel {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                         .addComponent(healthBar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                                        .addComponent(fuelBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(22, 22, 22)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -190,7 +266,7 @@ public class RegionPanel extends JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(fuelBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
@@ -231,7 +307,7 @@ public class RegionPanel extends JPanel {
         shipHPLbl = new JLabel();
         healthBar = new JProgressBar();
         jLabel1 = new JLabel();
-        jProgressBar1 = new JProgressBar();
+        fuelBar = new JProgressBar();
         repairLbl = new JLabel();
         repairSlider = new JSlider();
         repairSliderTxt = new JTextField();
@@ -283,26 +359,30 @@ public class RegionPanel extends JPanel {
         jLabel1.setFont(jesusFont);
         jLabel1.setText("Ship Fuel:");
 
-        jProgressBar1.setFont(jesusFont);
-        jProgressBar1.setStringPainted(true);
+        fuelBar.setFont(jesusFont);
+        fuelBar.setStringPainted(true);
 
         repairLbl.setFont(jesusFont);
         repairLbl.setText("Repair");
 
         repairSliderTxt.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
-        repairSliderTxt.setText(" ");
+        repairSliderTxt.setText(repairSlider.getValue() + "");
+        repairSliderTxt.setEditable(false);
 
         refuelLbl.setFont(jesusFont);
         refuelLbl.setText("Refuel");
 
         refuelSliderTxt.setFont(new java.awt.Font("Comic Sans MS", 0, 14));
-        refuelSliderTxt.setText(" ");
+        refuelSliderTxt.setText(refuelSlider.getValue() + "");
+        refuelSliderTxt.setEditable(false);
 
         repairBtn.setText("Repair");
-
+        refuelBtn.setText("Refuel");
         repairMaxBtn.setText("Repair Max");
-
         refuelMaxBtn.setText("Refuel Max");
+
+        refuelSlider.setMinimum(0);
+        repairSlider.setMinimum(0);
     }
     protected void updateList(Region selected, JLabel regionDisp, JLabel techDisp,
                               JLabel coordDisp, JLabel distDisp) {
@@ -312,12 +392,58 @@ public class RegionPanel extends JPanel {
         distDisp.setText(String.format("%.2f Nautical Miles",
                 Region.calcDistance(OceanTrader.player, selected)));
     }
-    private void refuelBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void refuelBtnActionPerformed() {
+        int val = refuelSlider.getValue();
+        ShipHandler.refuelShip(val);
+    }
+    private void refuelMaxBtnActionPerformed() {
+        ShipHandler.refuelShip(-1);
+    }
+    private void repairBtnActionPerformed() {
+        int val = repairSlider.getValue();
+        ShipHandler.repairShip(val);
+    }
+    private void repairMaxBtnActionPerformed() {
+        ShipHandler.repairShip(-1);
+    }
+    private void toggleRepair() {
+        if (OceanTrader.player != null) {
+            Ship playerShip = OceanTrader.player.getShip();
+            int diff = playerShip.getMaxHealth() - playerShip.getHealth();
+            if (diff == 0) {
+                repairBtn.setEnabled(false);
+                repairMaxBtn.setEnabled(false);
+            } else {
+                repairBtn.setEnabled(true);
+                repairMaxBtn.setEnabled(true);
+            }
+        }
     }
 
+    private void toggleRefuel() {
+        if (OceanTrader.player != null) {
+            Ship playerShip = OceanTrader.player.getShip();
+            int diff = playerShip.getMaxFuelCapacity() - playerShip.getFuelCapacity();
+            if (diff == 0) {
+                refuelBtn.setEnabled(false);
+                refuelMaxBtn.setEnabled(false);
+            } else {
+                refuelBtn.setEnabled(true);
+                refuelMaxBtn.setEnabled(true);
+            }
+        }
+    }
 
+    private void toggle(boolean start) {
+        if (!start) {
+            toggleRefuel();
+            toggleRepair();
+        } else {
+            refuelBtn.setEnabled(false);
+            refuelMaxBtn.setEnabled(false);
+            repairBtn.setEnabled(false);
+            repairMaxBtn.setEnabled(false);
+        }
 
-
-
+    }
 }

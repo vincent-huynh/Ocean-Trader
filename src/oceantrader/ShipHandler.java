@@ -35,6 +35,7 @@ public class ShipHandler {
                 OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                 JOptionPane.showMessageDialog(window, String.format("Your ship's fuel"
                         + " has been replenished by %d!", amount));
+                OceanTrader.regionDisplay.regionPanel.update();
             } else {
                 JOptionPane.showMessageDialog(window,
                         String.format("You do not have enough coins to refuel %d!", amount));
@@ -74,6 +75,7 @@ public class ShipHandler {
                 OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
                 JOptionPane.showMessageDialog(window, String.format("Your ship's health"
                         + " has been replenished by %d!", amount));
+                OceanTrader.regionDisplay.regionPanel.update();
             } else {
                 JOptionPane.showMessageDialog(window,
                         String.format("You do not have enough coins to repair %d!", amount));
