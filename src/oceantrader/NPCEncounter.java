@@ -12,7 +12,7 @@ public abstract class NPCEncounter {
 
     protected static void initiateEncounter(int fuelCost) {
 
-        int forceEncounter = 0; //0 -> Bandit, 1 -> Trader, 2 -> Police
+        int forceEncounter = 2; //0 -> Bandit, 1 -> Trader, 2 -> Police
 
         if (forceEncounter != -1) {
             callNPC(forceEncounter);
