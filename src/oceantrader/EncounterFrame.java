@@ -25,9 +25,9 @@ public class EncounterFrame extends JFrame {
     private JLabel youImage;
     private JLabel oppImage;
 
-    private JPanel banditPanel;
-    private JPanel policePanel;
-    private JPanel traderPanel;
+    protected JPanel banditPanel;
+    protected JPanel policePanel;
+    protected JPanel traderPanel;
 
     private CardLayout card;
 
