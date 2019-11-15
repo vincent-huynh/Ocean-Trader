@@ -46,6 +46,7 @@ public class EndGame extends JFrame {
         setSize(400, 400);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private static void setSpecs(JButton button) {
