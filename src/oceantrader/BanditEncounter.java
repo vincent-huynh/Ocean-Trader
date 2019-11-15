@@ -3,7 +3,6 @@ package oceantrader;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -16,9 +15,9 @@ import java.util.Random;
 public class BanditEncounter extends JPanel implements IEncounter {
 
     protected static int demand;
+    protected static ArrayList<Item> playerInventory;
     private Bandit bandit;
     private Player player;
-    protected static ArrayList<Item> playerInventory;
     private JTextArea buttonDText;
     private JTextField demandText;
     private JButton fightBtn;
