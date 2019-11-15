@@ -103,34 +103,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 updatePanel(); //to update the trader inventory
-                if (buyItem == null) {
-                    JOptionPane.showMessageDialog(traderItems, "No Item Selected!");
-                } else {
-                    switch (trader.sellItems(buyItem)) {
-                        case "broke":
-                            JOptionPane.showMessageDialog(traderItems,
-                                    "You lack sufficient funds!");
-                            break;
-                        case "space":
-                            JOptionPane.showMessageDialog(traderItems, "No space available!");
-                            break;
-                        case "success":
-                            JOptionPane.showMessageDialog(traderItems,
-                                    buyItem.getName() + " was bought!");
-                            OceanTrader.player.getShip().getCargoList().add(buyItem);
-                            OceanTrader.encounterFrame.setVisible(false);
-                            OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                            OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                            NPCEncounter.modifyKarma(-1, "lost");
-                            Travel.updateFuel((int) Travel.getCost());
-                            Travel.travel();
-                            break;
-                        default:
-                            break;
-                    }
-                    buyItem = null;
-                    trader = new Trader();
-                }
+                trader.concedable();
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
@@ -169,22 +142,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
         negotiateBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                double dis = trader.negotiate();
-                if (dis > 0) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You were able to haggle down the price by " + dis + "%!");
-                    updatePanel();
-                } else if (dis == -12345) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You cannot negotiate with the trader again!");
-                } else if (dis < 0) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "The trader got angry and increased prices by " + (dis * -1) + "%!");
-                    updatePanel();
-                } else {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You were unsuccessful in negotiating.");
-                }
+                trader.negotiable();
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {

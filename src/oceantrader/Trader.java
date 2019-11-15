@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class Trader extends Ship implements TraderNPC {
 
@@ -119,10 +120,59 @@ public class Trader extends Ship implements TraderNPC {
     }
 
     public void concedable() {
-
+        TraderEncounter traderPanel = (TraderEncounter) OceanTrader.encounterFrame.getTraderPanel();
+        Trader trader = traderPanel.getTrader();
+        Item buyItem = traderPanel.getBuyItem();
+        JTable traderItems = traderPanel.getTraderItems();
+        if (buyItem == null) {
+            javax.swing.JOptionPane.showMessageDialog(traderItems, "No Item Selected!");
+        } else {
+            switch (trader.sellItems(buyItem)) {
+                case "broke":
+                    javax.swing.JOptionPane.showMessageDialog(traderItems,
+                            "You lack sufficient funds!");
+                    break;
+                case "space":
+                    javax.swing.JOptionPane.showMessageDialog(traderItems, "No space available!");
+                    break;
+                case "success":
+                    javax.swing.JOptionPane.showMessageDialog(traderItems,
+                            buyItem.getName() + " was bought!");
+                    OceanTrader.player.getShip().getCargoList().add(buyItem);
+                    OceanTrader.encounterFrame.setVisible(false);
+                    OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                    NPCEncounter.modifyKarma(-1, "lost");
+                    Travel.updateFuel((int) Travel.getCost());
+                    Travel.travel();
+                    break;
+                default:
+                    break;
+            }
+            traderPanel.setBuyItem(null);
+            traderPanel.setTrader(new Trader());
+        }
     }
 
     public void negotiable() {
-
+        TraderEncounter traderPanel = (TraderEncounter) OceanTrader.encounterFrame.getTraderPanel();
+        Trader trader = traderPanel.getTrader();
+        JTable traderItems = traderPanel.getTraderItems();
+        double dis = trader.negotiate();
+        if (dis > 0) {
+            javax.swing.JOptionPane.showMessageDialog(traderItems,
+                    "You were able to haggle down the price by " + dis + "%!");
+            traderPanel.updatePanel();
+        } else if (dis == -12345) {
+            javax.swing.JOptionPane.showMessageDialog(traderItems,
+                    "You cannot negotiate with the trader again!");
+        } else if (dis < 0) {
+            javax.swing.JOptionPane.showMessageDialog(traderItems,
+                    "The trader got angry and increased prices by " + (dis * -1) + "%!");
+            traderPanel.updatePanel();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(traderItems,
+                    "You were unsuccessful in negotiating.");
+        }
     }
 }
