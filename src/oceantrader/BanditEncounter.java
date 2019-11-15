@@ -17,7 +17,7 @@ public class BanditEncounter extends JPanel implements IEncounter {
 
     private int demand;
     private Player player;
-    private ArrayList<Item> playerInventory;
+    protected ArrayList<Item> playerInventory;
     private JTextArea buttonDText;
     private JTextField demandText;
     private JButton fightBtn;
