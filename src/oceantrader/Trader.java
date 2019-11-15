@@ -2,8 +2,10 @@ package oceantrader;
 
 import java.util.Random;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Trader extends Ship {
+public class Trader extends Ship implements TraderNPC {
 
     private boolean negotiable = true;
     private static Random rand = new Random();
@@ -74,5 +76,53 @@ public class Trader extends Ship {
             }
         }
         return stolen;
+    }
+
+    public void fightable() {
+        JPanel traderPanel = OceanTrader.encounterFrame.getTraderPanel();
+        Player player = OceanTrader.player;
+        Ship ship = player.getShip();
+        ArrayList<Item> stolen = robbed();
+        if (stolen.size() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(traderPanel,
+                    "You were not able to steal anything and the "
+                            + "trader inflicted damage on your ship!");
+            NPCEncounter.damageShip();
+            if (player.getShip().getHealth() <= 0) {
+                OceanTrader.endGame();
+                return;
+            }
+        } else {
+            for (Item item : stolen) {
+                if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
+                    javax.swing.JOptionPane.showMessageDialog(traderPanel,
+                            "Your inventory is full, cannot take " + item.getName() + "!");
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(traderPanel,
+                            "You have gained: " + item.getName());
+                    ship.getCargoList().add(item);
+                }
+            }
+        }
+        OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+        OceanTrader.regionDisplay.regionPanel.update();
+        OceanTrader.encounterFrame.setVisible(false);
+        NPCEncounter.modifyKarma(1, "gained");
+        Travel.updateFuel((int) Travel.getCost());
+        Travel.travel();
+    }
+
+    public void avertable() {
+        OceanTrader.encounterFrame.setVisible(false);
+        Travel.updateFuel((int) Travel.getCost());
+        Travel.travel();
+    }
+
+    public void concedable() {
+
+    }
+
+    public void negotiable() {
+
     }
 }
