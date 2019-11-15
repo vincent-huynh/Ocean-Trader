@@ -5,26 +5,26 @@ import javax.swing.JOptionPane;
 
 public class Bandit implements NPC {
     
-    private static Player player = OceanTrader.player;
     private static JFrame window = OceanTrader.window;
 
     @Override
     public void fightable() {
         OceanTrader.encounterFrame.setVisible(false);
-        if (NPCEncounter.getOutcome(player.getSkillLevel("Fighter"))) {
+        if (NPCEncounter.getOutcome(BanditEncounter.player.getSkillLevel("Fighter"))) {
             int creditsGained = BanditEncounter.rand.nextInt(1000 - 300) + 300;
-            player.setCurrency(creditsGained + player.getCurrency());
+            BanditEncounter.player.setCurrency(creditsGained
+                    + BanditEncounter.player.getCurrency());
             JOptionPane.showMessageDialog(window, "You have successfully defeated the bandit and"
                     + " received " + creditsGained + " of the bandit's coins as a reward.");
             NPCEncounter.modifyKarma(-1, "lost");
             Travel.updateFuel((int) Travel.getCost());
             Travel.travel();
         } else {
-            player.setCurrency(0);
+            BanditEncounter.player.setCurrency(0);
             JOptionPane.showMessageDialog(window, "You failed to fight off the bandit,"
                     + " so the bandit took all of your coins and damaged your ship.");
             NPCEncounter.damageShip();
-            if (player.getShip().getHealth() <= 0) {
+            if (BanditEncounter.player.getShip().getHealth() <= 0) {
                 OceanTrader.endGame();
                 return;
             }
@@ -37,17 +37,17 @@ public class Bandit implements NPC {
     @Override
     public void avertable() {
         OceanTrader.encounterFrame.setVisible(false);
-        if (NPCEncounter.getOutcome(player.getSkillLevel("Pilot"))) {
+        if (NPCEncounter.getOutcome(BanditEncounter.player.getSkillLevel("Pilot"))) {
             JOptionPane.showMessageDialog(window, "You have successfully fled!");
             NPCEncounter.modifyKarma(-1, "lost");
             Travel.updateFuel((int) Travel.getCost());
             Travel.travel();
         } else {
-            player.setCurrency(0);
+            BanditEncounter.player.setCurrency(0);
             JOptionPane.showMessageDialog(window, "You failed to flee, so the"
                     + " bandit took all of your coins and damaged your ship.");
             NPCEncounter.damageShip();
-            if (player.getShip().getHealth() <= 0) {
+            if (BanditEncounter.player.getShip().getHealth() <= 0) {
                 OceanTrader.endGame();
                 return;
             }
@@ -59,14 +59,15 @@ public class Bandit implements NPC {
     @Override
     public void concedable() {
         OceanTrader.encounterFrame.setVisible(false);
-        if (player.getCurrency() >= BanditEncounter.demand) {
-            player.setCurrency(player.getCurrency() - BanditEncounter.demand);
+        if (BanditEncounter.player.getCurrency() >= BanditEncounter.demand) {
+            BanditEncounter.player.setCurrency(BanditEncounter.player.getCurrency()
+                    - BanditEncounter.demand);
             OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
             JOptionPane.showMessageDialog(window, "You paid "
                     + BanditEncounter.demand + " coins to the bandit.");
         } else if (BanditEncounter.playerInventory.size() >= 1) {
             BanditEncounter.playerInventory.clear();
-            OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
+            OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(BanditEncounter.player);
             OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
             JOptionPane.showMessageDialog(window, "You could not afford the"
                     + " bandit's demands, so he demanded your inventory.");
@@ -74,7 +75,7 @@ public class Bandit implements NPC {
             JOptionPane.showMessageDialog(window, "You didn't have any items,"
                     + " so the bandit damaged your ship.");
             NPCEncounter.damageShip();
-            if (player.getShip().getHealth() <= 0) {
+            if (BanditEncounter.player.getShip().getHealth() <= 0) {
                 OceanTrader.endGame();
                 return;
             }
