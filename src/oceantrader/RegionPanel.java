@@ -43,6 +43,7 @@ public class RegionPanel extends JPanel {
     private JLabel shipHPLbl;
     protected JLabel techDisp;
     private JLabel techLbl;
+    private JButton snapBtn;
 
     public RegionPanel() {
         initGUI();
@@ -102,6 +103,12 @@ public class RegionPanel extends JPanel {
             }
         });
 
+        snapBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                snapBtnPerformed();
+            }
+        });
         refuelBtn.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refuelBtnActionPerformed();
@@ -149,6 +156,7 @@ public class RegionPanel extends JPanel {
             }
         });
 
+
         doNotTouch();
     }
 
@@ -178,132 +186,94 @@ public class RegionPanel extends JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                        .addContainerGap().addGroup(layout.createParallelGroup(
-                                javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lineLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 326,
-                                Short.MAX_VALUE).addComponent(regionScrollPane)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(regionLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(regionDisp, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(techLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(techDisp, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(distLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(distDisp, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(coordsLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(coordDisp, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment
-                                    .LEADING).addGroup(layout.createSequentialGroup()
-                                        .addGap(69, 69, 69).addComponent(mntDockLbl))
-                                .addGroup(layout.createSequentialGroup().addContainerGap()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                                .Alignment.LEADING)
-                                                .addComponent(shipHPLbl)
-                                                .addGroup(layout.createParallelGroup(javax.swing
-                                                        .GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(repairLbl)
-                                                        .addComponent(jLabel1)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                                .RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                                .Alignment.LEADING, false)
-                                                .addComponent(healthBar, javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                .addComponent(fuelBar, javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE, javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                                .Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                        .addComponent(refuelSlider, javax.swing
-                                                .GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle
-                                                .ComponentPlacement.RELATED)
-                                        .addComponent(refuelSliderTxt,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE,
-                                                50, javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE))
+                                                .addContainerGap()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lineLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                                        .addComponent(regionScrollPane)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(regionLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(regionDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(techLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(techDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(distLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(distDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(coordsLbl)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(coordDisp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(repairSlider,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.
-                                                LayoutStyle.ComponentPlacement
-                                                .RELATED)
-                                        .addComponent(repairSliderTxt,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE, 50,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(repairBtn)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(repairMaxBtn))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(refuelBtn)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(refuelMaxBtn))))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(refuelLbl)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                            .addContainerGap())
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(69, 69, 69)
+                                                                .addComponent(mntDockLbl))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(shipHPLbl)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(repairLbl)
+                                                                                .addComponent(jLabel1)))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(healthBar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                                        .addComponent(fuelBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(22, 22, 22)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(refuelSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(refuelSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(repairSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(repairSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(repairBtn)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(repairMaxBtn))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(refuelBtn)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(refuelMaxBtn))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(37, 37, 37)
+                                                                .addComponent(refuelLbl)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(132, 132, 132)
+                                .addComponent(snapBtn)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(regionScrollPane, javax.swing.GroupLayout
-                                        .PREFERRED_SIZE, 306, javax.swing.GroupLayout.
-                                        PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addComponent(regionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(regionLbl)
                                         .addComponent(regionDisp))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(techLbl)
                                         .addComponent(techDisp))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(coordsLbl)
                                         .addComponent(coordDisp))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(distLbl)
                                         .addComponent(distDisp))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -311,64 +281,37 @@ public class RegionPanel extends JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(mntDockLbl)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.LEADING, false)
-                                        .addComponent(shipHPLbl, javax.swing.GroupLayout
-                                                .DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(healthBar, javax.swing.GroupLayout
-                                                .DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(shipHPLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(healthBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.LEADING, false)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(fuelBar, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fuelBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(repairLbl)
-                                                .addPreferredGap(javax.swing.LayoutStyle
-                                                        .ComponentPlacement.UNRELATED)
-                                                .addComponent(repairSlider, javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE, javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE, javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE))
-                                        .addComponent(repairSliderTxt, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE, javax.swing.GroupLayout
-                                                .DEFAULT_SIZE, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(repairSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(repairSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(repairBtn)
                                         .addComponent(repairMaxBtn))
                                 .addGap(35, 35, 35)
                                 .addComponent(refuelLbl)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.TRAILING)
-                                        .addComponent(refuelSlider, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE, javax.swing.GroupLayout
-                                                .DEFAULT_SIZE, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE)
-                                        .addComponent(refuelSliderTxt, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE, javax.swing.GroupLayout
-                                                .DEFAULT_SIZE, javax.swing.GroupLayout
-                                                .PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement
-                                        .UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout
-                                        .Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(refuelSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(refuelSliderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(refuelBtn)
                                         .addComponent(refuelMaxBtn))
-                                .addContainerGap(99, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(snapBtn)
+                                .addContainerGap())
         );
     }
 
@@ -399,6 +342,7 @@ public class RegionPanel extends JPanel {
         repairBtn = new JButton();
         repairMaxBtn = new JButton();
         refuelMaxBtn = new JButton();
+        snapBtn = new JButton();
     }
 
     private void setLabels(Font godFont, Font jesusFont) {
@@ -465,6 +409,10 @@ public class RegionPanel extends JPanel {
 
         refuelSlider.setMinimum(0);
         repairSlider.setMinimum(0);
+
+        snapBtn.setText("Snap");
+        snapBtn.setFont(jesusFont);
+        snapBtn.setVisible(false);
     }
 
     protected void updateList(Region selected, JLabel regionDisp, JLabel techDisp,
@@ -532,5 +480,13 @@ public class RegionPanel extends JPanel {
             repairBtn.setEnabled(false);
             repairMaxBtn.setEnabled(false);
         }
+    }
+
+    private void snapBtnPerformed() {
+        //Whatever you want here
+    }
+
+    protected void enableSnap() {
+        snapBtn.setVisible(true);
     }
 }
