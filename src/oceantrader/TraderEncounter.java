@@ -50,18 +50,18 @@ public class TraderEncounter extends JPanel implements IEncounter {
         traderTop.setText("A trader would like to trade!");
 
         traderModel = new javax.swing.table.DefaultTableModel(
-            new Object[][]{
-            },
-            new String[]{
-                "Item Name", "Price", "Type", ""
-            }
+                new Object[][]{
+                },
+                new String[]{
+                        "Item Name", "Price", "Type", ""
+                }
         ) {
             private Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
+                    java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[]{
-                false, false, false, false
+                    false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,34 +103,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 updatePanel(); //to update the trader inventory
-                if (buyItem == null) {
-                    JOptionPane.showMessageDialog(traderItems, "No Item Selected!");
-                } else {
-                    switch (trader.sellItems(buyItem)) {
-                        case "broke":
-                            JOptionPane.showMessageDialog(traderItems,
-                                    "You lack sufficient funds!");
-                            break;
-                        case "space":
-                            JOptionPane.showMessageDialog(traderItems, "No space available!");
-                            break;
-                        case "success":
-                            JOptionPane.showMessageDialog(traderItems,
-                                    buyItem.getName() + " was bought!");
-                            OceanTrader.player.getShip().getCargoList().add(buyItem);
-                            OceanTrader.encounterFrame.setVisible(false);
-                            OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                            OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                            NPCEncounter.modifyKarma(-1, "lost");
-                            Travel.updateFuel((int) Travel.getCost());
-                            Travel.travel();
-                            break;
-                        default:
-                            break;
-                    }
-                    buyItem = null;
-                    trader = new Trader();
-                }
+                trader.concedable();
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
@@ -142,10 +115,8 @@ public class TraderEncounter extends JPanel implements IEncounter {
         ignoreBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                OceanTrader.encounterFrame.setVisible(false);
+                trader.avertable();
                 trader = new Trader();
-                Travel.updateFuel((int) Travel.getCost());
-                Travel.travel();
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
@@ -157,37 +128,9 @@ public class TraderEncounter extends JPanel implements IEncounter {
         robBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                Player player = OceanTrader.player;
-                Ship ship = player.getShip();
-                ArrayList<Item> stolen = trader.robbed();
-                if (stolen.size() == 0) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You were not able to steal anything and the "
-                                    + "trader inflicted damage on your ship!");
-                    NPCEncounter.damageShip();
-                    if (player.getShip().getHealth() <= 0) {
-                        OceanTrader.endGame();
-                        return;
-                    }
-                } else {
-                    for (Item item : stolen) {
-                        if (ship.getCargoSize() == ship.getMaxCargoSpace()) {
-                            JOptionPane.showMessageDialog(traderItems,
-                                    "Your inventory is full, cannot take " + item.getName() + "!");
-                        } else {
-                            JOptionPane.showMessageDialog(traderItems,
-                                    "You have gained: " + item.getName());
-                            ship.getCargoList().add(item);
-                        }
-                    }
-                }
+                trader.fightable();
                 trader = new Trader();
-                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                OceanTrader.regionDisplay.regionPanel.update();
-                OceanTrader.encounterFrame.setVisible(false);
-                NPCEncounter.modifyKarma(1, "gained");
-                Travel.updateFuel((int) Travel.getCost());
-                Travel.travel();
+
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
@@ -199,22 +142,7 @@ public class TraderEncounter extends JPanel implements IEncounter {
         negotiateBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                double dis = trader.negotiate();
-                if (dis > 0) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You were able to haggle down the price by " + dis + "%!");
-                    updatePanel();
-                } else if (dis == -12345) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You cannot negotiate with the trader again!");
-                } else if (dis < 0) {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "The trader got angry and increased prices by " + (dis * -1) + "%!");
-                    updatePanel();
-                } else {
-                    JOptionPane.showMessageDialog(traderItems,
-                            "You were unsuccessful in negotiating.");
-                }
+                trader.negotiable();
             }
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
@@ -336,5 +264,101 @@ public class TraderEncounter extends JPanel implements IEncounter {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
                                 Short.MAX_VALUE))
         );
+    }
+
+    public javax.swing.JButton getBuyBtn() {
+        return buyBtn;
+    }
+
+    public void setBuyBtn(javax.swing.JButton buyBtn) {
+        this.buyBtn = buyBtn;
+    }
+
+    public javax.swing.JTextArea getExplainArea() {
+        return explainArea;
+    }
+
+    public void setExplainArea(javax.swing.JTextArea explainArea) {
+        this.explainArea = explainArea;
+    }
+
+    public javax.swing.JButton getIgnoreBtn() {
+        return ignoreBtn;
+    }
+
+    public void setIgnoreBtn(javax.swing.JButton ignoreBtn) {
+        this.ignoreBtn = ignoreBtn;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public void setjScrollPane2(javax.swing.JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    public javax.swing.JButton getNegotiateBtn() {
+        return negotiateBtn;
+    }
+
+    public void setNegotiateBtn(javax.swing.JButton negotiateBtn) {
+        this.negotiateBtn = negotiateBtn;
+    }
+
+    public javax.swing.JButton getRobBtn() {
+        return robBtn;
+    }
+
+    public void setRobBtn(javax.swing.JButton robBtn) {
+        this.robBtn = robBtn;
+    }
+
+    public javax.swing.JTable getTraderItems() {
+        return traderItems;
+    }
+
+    public void setTraderItems(javax.swing.JTable traderItems) {
+        this.traderItems = traderItems;
+    }
+
+    public javax.swing.JLabel getTraderTop() {
+        return traderTop;
+    }
+
+    public void setTraderTop(javax.swing.JLabel traderTop) {
+        this.traderTop = traderTop;
+    }
+
+    public javax.swing.table.DefaultTableModel getTraderModel() {
+        return traderModel;
+    }
+
+    public void setTraderModel(javax.swing.table.DefaultTableModel traderModel) {
+        this.traderModel = traderModel;
+    }
+
+    public Trader getTrader() {
+        return trader;
+    }
+
+    public void setTrader(Trader trader) {
+        this.trader = trader;
+    }
+
+    public Item getBuyItem() {
+        return buyItem;
+    }
+
+    public void setBuyItem(Item buyItem) {
+        this.buyItem = buyItem;
     }
 }

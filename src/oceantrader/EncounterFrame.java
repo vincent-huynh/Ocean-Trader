@@ -296,4 +296,8 @@ public class EncounterFrame extends JFrame {
         ((IEncounter) currentSelection).updatePanel();
         youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
     }
+
+    public JPanel getTraderPanel() {
+        return this.traderPanel;
+    }
 }
