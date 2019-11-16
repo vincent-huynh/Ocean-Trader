@@ -89,7 +89,7 @@ public class Trader extends Ship implements TraderNPC {
                             + "trader inflicted damage on your ship!");
             NPCEncounter.damageShip();
             if (player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
         } else {
