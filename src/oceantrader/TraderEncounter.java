@@ -48,18 +48,18 @@ public class TraderEncounter extends JPanel implements IEncounter {
         traderTop.setText("A trader would like to trade!");
 
         traderModel = new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        "Item Name", "Price", "Type", ""
-                }
+            new Object[][]{
+            },
+            new String[]{
+                "Item Name", "Price", "Type", ""
+            }
         ) {
             private Class[] types = new Class[]{
-                    java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, Item.class
             };
 
             private boolean[] canEdit = new boolean[]{
-                    false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

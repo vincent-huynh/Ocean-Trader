@@ -69,8 +69,8 @@ public class Travel {
         Universe universe = Universe.getInstance();
         if (END_GAME_TEST) {
             if (universe.endGameRegion == null) {
-                universe.endGameRegion = universe.regions.get((int) (Math.random() *
-                        universe.regions.size()));
+                universe.endGameRegion = universe.regions.get((int) (Math.random()
+                    * universe.regions.size()));
                 universe.endGameRegion.getMarketItems().add(universe.endGame);
                 universe.endGame.setPrice(0);
                 universe.endGame.setSellPrice(0);
