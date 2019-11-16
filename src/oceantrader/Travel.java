@@ -12,6 +12,8 @@ public class Travel {
     private static double cost = 0;
     private static StringBuilder str = new StringBuilder();
 
+    private static final boolean END_GAME_TEST = true;
+
     /*
      * Basically checks to see whether or not the user has a valid selection
      * when hitting "travel". If so, then it does a bunch of checks with fuel
@@ -63,6 +65,36 @@ public class Travel {
         // Variables to help keep the code clean and easier to read.
         Region region = player.getRegion();
         int listSelected = OceanTrader.regionDisplay.regionPanel.regionList.getSelectedIndex();
+
+
+
+        Universe universe = Universe.getInstance();
+        if (END_GAME_TEST) {
+            if (universe.endGameRegion == null) {
+                universe.endGameRegion = universe.regions.get((int) (Math.random() *
+                        universe.regions.size()));
+                universe.endGameRegion.getMarketItems().add(universe.endGame);
+                universe.endGame.setPrice(0);
+                universe.endGame.setSellPrice(0);
+                System.out.println("You are testing item Universe located at "
+                        + universe.endGameRegion.getName());
+            }
+        } else {
+            //The value 10 is used to increase the rarity of the endGame item, the higher the rarer
+            //the smaller the more common
+            int endGameIndex = (int) (Math.random() * (universe.regions.size() + 10));
+            if (universe.endGameRegion != null) {
+                universe.endGameRegion.getMarketItems().remove(universe.endGame);
+            }
+            if (endGameIndex < universe.regions.size()) {
+                universe.endGameRegion = universe.regions.get(endGameIndex);
+                universe.endGameRegion.getMarketItems().add(universe.endGame);
+                System.out.println(universe.endGameRegion.getName());
+            } else {
+                universe.endGameRegion = null;
+                System.out.println("Item currently not in a region");
+            }
+        }
 
         // Makes changes to the map, and also changes the player's region
         Map.regions.replace(region, Map.CURR_POINT_COLOR, Map.DEFAULT_POINT_COLOR);

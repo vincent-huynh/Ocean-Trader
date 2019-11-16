@@ -10,13 +10,16 @@ public class Universe {
 
     private static Universe singleInstance = null;
     protected ArrayList<Region> regions;
+    protected Item endGame;
+    protected Region endGameRegion;
+    protected String location;
 
     private Universe() {
 
         Random rand = new Random();
         regions = new ArrayList<>();
+        endGame = new Item("Universe", 100000, "Endgame");
         HashMap<Integer, Integer> coords = new HashMap<>();
-
         /*
         This array list holds all the region names.
         For use in region generation below.
@@ -71,6 +74,10 @@ public class Universe {
         /*
         After this for loop finishes, 10 regions will have been generated
         and added to the regions variable above.
+         */
+
+        /*
+         * This portion of the code is is set to generate
          */
     }
 
