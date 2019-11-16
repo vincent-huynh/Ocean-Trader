@@ -173,6 +173,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
         inventory = player.getShip().getCargoList();
         itemPos = rand.nextInt(inventory.size());
         forbidden = inventory.get(itemPos);
-        policeLbl.setText("The Police believe you stole: " + forbidden.getName() + ".");
+        policeLbl.setText("The Police believe you stole: " + forbidden.getName());
     }
 }
