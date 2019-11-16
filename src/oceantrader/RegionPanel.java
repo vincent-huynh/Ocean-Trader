@@ -503,11 +503,7 @@ public class RegionPanel extends JPanel {
     }
 
     private void snapBtnPerformed() {
-<<<<<<< HEAD
-        OceanTrader.endGame(3);
-=======
         OceanTrader.endGame(0);
->>>>>>> a1c8de34869c9fce1b97dc38bffc38a6f39e876b
     }
 
     protected void enableSnap() {
