@@ -18,7 +18,7 @@ public class Universe {
 
         Random rand = new Random();
         regions = new ArrayList<>();
-        endGame = new Item("Universe", 100000, "Endgame");
+        endGame = new Item("Infinity Gauntlet", 100000, "Endgame");
         HashMap<Integer, Integer> coords = new HashMap<>();
         /*
         This array list holds all the region names.
