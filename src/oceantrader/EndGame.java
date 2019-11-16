@@ -1,9 +1,6 @@
 package oceantrader;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import java.awt.Font;
 
 import static oceantrader.OceanTrader.startGame;
@@ -14,8 +11,11 @@ public class EndGame extends JFrame {
     protected JPanel panel;
     protected JButton titleBtn;
     protected JButton endGame;
+    protected static JLabel label;
 
-    protected EndGame() {
+    protected EndGame(int num) {
+
+        textSet(num);
         initGUI();
     }
 
@@ -51,5 +51,23 @@ public class EndGame extends JFrame {
 
     private static void setSpecs(JButton button) {
         button.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    }
+
+    private static void textSet(int num) {
+        String text;
+        switch (num) {
+            case 0:
+                text = "Congratulations! You bought the universe!"
+                        + " You beat the game!";
+                break;
+            case 1:
+                text = "Your ship has sunken, and you've been cast to sea... "
+                        + "would you like to try again?";
+                break;
+            default:
+                text = "Welcome to the end of the game.";
+                break;
+        }
+        label.setText(text);
     }
 }
