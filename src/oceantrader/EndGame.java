@@ -11,7 +11,7 @@ public class EndGame extends JFrame {
     protected JPanel panel;
     protected JButton titleBtn;
     protected JButton endGame;
-    protected static JLabel label;
+    protected static JLabel label = new JLabel();
 
     protected EndGame(int num) {
 
@@ -28,6 +28,7 @@ public class EndGame extends JFrame {
         setSpecs(titleBtn);
         setSpecs(endGame);
 
+        panel.add(label);
         panel.add(titleBtn);
         panel.add(endGame);
 
