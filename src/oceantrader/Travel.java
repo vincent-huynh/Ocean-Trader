@@ -66,8 +66,6 @@ public class Travel {
         Region region = player.getRegion();
         int listSelected = OceanTrader.regionDisplay.regionPanel.regionList.getSelectedIndex();
 
-
-
         Universe universe = Universe.getInstance();
         if (END_GAME_TEST) {
             if (universe.endGameRegion == null) {

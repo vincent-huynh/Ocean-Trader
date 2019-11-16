@@ -41,6 +41,11 @@ public class Transaction {
                 ship.getCargoList().add(item);
                 confirmationDialog("Purchased", item);
 
+                if (item.getName().equals(Universe.getInstance().endGame.getName())) {
+                    System.out.println("End Game Item Bought");
+                    OceanTrader.endGame();
+                }
+
                 InvMarketDisplay.buyItem = null;
                 OceanTrader.regionDisplay.shipDisplay.updateShipDisplay(player);
             }
