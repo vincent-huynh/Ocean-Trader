@@ -128,26 +128,26 @@ public class Trader extends Ship implements TraderNPC {
             javax.swing.JOptionPane.showMessageDialog(traderItems, "No Item Selected!");
         } else {
             switch (trader.sellItems(buyItem)) {
-                case "broke":
-                    javax.swing.JOptionPane.showMessageDialog(traderItems,
-                            "You lack sufficient funds!");
-                    break;
-                case "space":
-                    javax.swing.JOptionPane.showMessageDialog(traderItems, "No space available!");
-                    break;
-                case "success":
-                    javax.swing.JOptionPane.showMessageDialog(traderItems,
-                            buyItem.getName() + " was bought!");
-                    OceanTrader.player.getShip().getCargoList().add(buyItem);
-                    OceanTrader.encounterFrame.setVisible(false);
-                    OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
-                    OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
-                    NPCEncounter.modifyKarma(-1, "lost");
-                    Travel.updateFuel((int) Travel.getCost());
-                    Travel.travel();
-                    break;
-                default:
-                    break;
+            case "broke":
+                javax.swing.JOptionPane.showMessageDialog(traderItems,
+                        "You lack sufficient funds!");
+                break;
+            case "space":
+                javax.swing.JOptionPane.showMessageDialog(traderItems, "No space available!");
+                break;
+            case "success":
+                javax.swing.JOptionPane.showMessageDialog(traderItems,
+                        buyItem.getName() + " was bought!");
+                OceanTrader.player.getShip().getCargoList().add(buyItem);
+                OceanTrader.encounterFrame.setVisible(false);
+                OceanTrader.regionDisplay.invMarketDisplay.updateInventory();
+                OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
+                NPCEncounter.modifyKarma(-1, "lost");
+                Travel.updateFuel((int) Travel.getCost());
+                Travel.travel();
+                break;
+            default:
+                break;
             }
             traderPanel.setBuyItem(null);
             traderPanel.setTrader(new Trader());
