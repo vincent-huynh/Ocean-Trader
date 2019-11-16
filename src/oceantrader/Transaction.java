@@ -43,7 +43,10 @@ public class Transaction {
 
                 if (item.getName().equals(Universe.getInstance().endGame.getName())) {
                     System.out.println("End Game Item Bought");
-                    OceanTrader.endGame();
+                    JOptionPane.showMessageDialog(OceanTrader.window, "You have purchased the "
+                        + "ultimate weapon in the game. Press the snap button to end this cruel,"
+                        + " harsh world");
+                    OceanTrader.regionDisplay.regionPanel.enableSnap();
                 }
 
                 InvMarketDisplay.buyItem = null;
