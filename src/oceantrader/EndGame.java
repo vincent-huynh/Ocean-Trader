@@ -48,8 +48,9 @@ public class EndGame extends JFrame {
 
         add(panel);
         setAlwaysOnTop(true);
-        setSize(400, 400);
+        setSize(1400, 1000);
         setVisible(true);
+        window.setVisible(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -62,15 +63,16 @@ public class EndGame extends JFrame {
         String text;
         switch (num) {
         case 0:
-            text = "Congratulations! You bought the universe! You beat the game!";
+            text = "Congratulations, you have bought the Universe! You beat the game!";
             break;
         case 1:
-            text = "Your ship has sunk and you've been cast to sea... would you like to try again?";
+            text = "Your ship has sunk and you've been cast to sea... Try again?";
             break;
         default:
-            text = "Welcome to the end of the game.";
+            text = "Welcome to the end of the game!";
             break;
         }
         label.setText(text);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 30));
     }
 }

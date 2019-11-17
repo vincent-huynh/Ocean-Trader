@@ -157,8 +157,6 @@ public class RegionPanel extends JPanel {
                 }
             }
         });
-
-
         doNotTouch();
     }
 

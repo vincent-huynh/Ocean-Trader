@@ -42,10 +42,10 @@ public class Transaction {
                 confirmationDialog("Purchased", item);
 
                 if (item.getName().equals(Universe.getInstance().endGame.getName())) {
-                    System.out.println("End Game Item Bought");
+                    System.out.println("End Game Item Bought!");
                     JOptionPane.showMessageDialog(OceanTrader.window, "You have purchased the "
-                        + "ultimate weapon in the game. Press the snap button to end this cruel,"
-                        + " harsh world");
+                        + "ultimate weapon in the game. Snap your fingers to end this cruel,"
+                        + " harsh world!");
                     OceanTrader.regionDisplay.regionPanel.enableSnap();
                 }
 
