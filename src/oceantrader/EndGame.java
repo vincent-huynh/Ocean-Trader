@@ -1,8 +1,13 @@
 package oceantrader;
 
-import javax.swing.*;
-import javax.swing.text.StyledDocument;
-import java.awt.*;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle;
+import javax.swing.WindowConstants;
+import java.awt.Font;
 
 import static oceantrader.OceanTrader.startGame;
 import static oceantrader.OceanTrader.window;
@@ -15,7 +20,6 @@ public class EndGame extends JFrame {
     private JButton titleBtn;
 
     public EndGame(int num) {
-
         initGUI();
         textSet(num);
     }
@@ -26,6 +30,7 @@ public class EndGame extends JFrame {
         titleBtn = new JButton();
         closeBtn = new JButton();
 
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -40,8 +45,6 @@ public class EndGame extends JFrame {
         deathTxt.setBorder(null);
         deathTxt.setOpaque(false);
         jScrollPane1.setViewportView(deathTxt);
-
-
 
         titleBtn.setFont(new Font("Comic Sans MS", 1, 18));
         titleBtn.setText("Return to Title Screen");
@@ -58,7 +61,6 @@ public class EndGame extends JFrame {
         closeBtn.addActionListener(e -> {
             System.exit(0);
         });
-
         doNotTouch();
     }
 
@@ -66,7 +68,7 @@ public class EndGame extends JFrame {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         setAlwaysOnTop(true);
-        setSize(1400,1000);
+        setSize(1400, 1000);
         setVisible(true);
         window.setVisible(false);
         layout.setHorizontalGroup(
@@ -77,39 +79,43 @@ public class EndGame extends JFrame {
                                 .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(270, 270, 270)
-                                .addComponent(titleBtn, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
-                                .addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(titleBtn, GroupLayout.PREFERRED_SIZE,
+                                        283, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
+                                        294, Short.MAX_VALUE)
+                                .addComponent(closeBtn, GroupLayout.PREFERRED_SIZE,
+                                        283, GroupLayout.PREFERRED_SIZE)
                                 .addGap(270, 270, 270))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE,
+                                        600, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
+                                        247, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(titleBtn, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(titleBtn, GroupLayout.PREFERRED_SIZE,
+                                                103, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(closeBtn, GroupLayout.PREFERRED_SIZE,
+                                                103, GroupLayout.PREFERRED_SIZE))
                                 .addGap(71, 71, 71))
         );
         pack();
     }
 
     private void textSet(int num) {
-        String text;
         switch (num) {
-            case 0:
-                text = "Congratulations, you have bought the Universe! You beat the game!";
-                break;
-            case 1:
-                text = "Your ship has sunk and you've been cast to sea... Try again?";
-                break;
-            default:
-                text = "Welcome to the end of the game!";
-                break;
+        case 0:
+            deathTxt.setText("Congrats, you have bought the Universe! You beat the game!");
+            break;
+        case 1:
+            deathTxt.setText("Your ship has sunk and you've been cast to sea... Try again?");
+            break;
+        default:
+            deathTxt.setText("Welcome to the end of the game!");
+            break;
         }
-        deathTxt.setText(text);
     }
-
 }
