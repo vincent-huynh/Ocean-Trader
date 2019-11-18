@@ -412,7 +412,7 @@ public class RegionPanel extends JPanel {
 
         snapBtn.setText("Snap");
         snapBtn.setFont(jesusFont);
-        snapBtn.setVisible(false);
+        //snapBtn.setEnabled(false);
     }
 
     protected void updateList(Region selected, JLabel regionDisp, JLabel techDisp,

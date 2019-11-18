@@ -1,55 +1,82 @@
-package oceantrader;
+package oceantrader;/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.Font;
 
-import static oceantrader.OceanTrader.startGame;
-import static oceantrader.OceanTrader.window;
+import javax.swing.*;
 
-public class EndGame extends JFrame {
+public class EndGame extends JPanel {
 
-    protected JPanel panel;
-    protected JButton titleBtn;
-    protected JButton endGame;
+    private JButton closeBtn;
+    private JTextArea deathTxt;
+    private JScrollPane deathTxtPane;
+    private JButton titleBtn;
 
-    protected EndGame() {
-        initGUI();
+    public EndGame() {
+        initComponents();
     }
 
-    private void initGUI() {
+    private void initComponents() {
+        deathTxtPane = new JScrollPane();
+        deathTxt = new JTextArea();
+        titleBtn = new JButton();
+        closeBtn = new JButton();
 
-        panel = new JPanel();
+        deathTxtPane.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        titleBtn = new JButton("Return to Title Screen");
-        endGame = new JButton("End Game");
-        setSpecs(titleBtn);
-        setSpecs(endGame);
+        deathTxt.setEditable(false);
+        deathTxt.setBackground(new java.awt.Color(204, 204, 204));
+        deathTxt.setColumns(20);
+        deathTxt.setFont(new java.awt.Font("Comic Sans MS", 1, 18));
+        deathTxt.setLineWrap(true);
+        deathTxt.setRows(5);
+        deathTxt.setText("You have died!");
+        deathTxt.setWrapStyleWord(true);
+        deathTxt.setBorder(null);
+        deathTxtPane.setViewportView(deathTxt);
 
-        panel.add(titleBtn);
-        panel.add(endGame);
+        titleBtn.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
+        titleBtn.setText("Return to Title Screen");
 
-        titleBtn.addActionListener(e -> {
-            window.dispose();
-            dispose();
-            startGame();
-        });
+        closeBtn.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
+        closeBtn.setText("End Game");
 
-        endGame.addActionListener(e -> {
-            System.exit(0);
-        });
-
-        add(panel);
-        setAlwaysOnTop(true);
-        setSize(400, 400);
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        doNotTouch();
     }
 
-    private static void setSpecs(JButton button) {
-        button.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    private void doNotTouch() {
+        GroupLayout layout = new GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(deathTxtPane)
+                                                .addContainerGap())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(titleBtn)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                                .addComponent(closeBtn)
+                                                .addGap(36, 36, 36))))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(deathTxtPane, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(titleBtn)
+                                        .addComponent(closeBtn))
+                                .addGap(93, 93, 93))
+        );
+    }
+
+    protected void setDeathTxt(String txt) {
+        deathTxt.setText(txt);
     }
 }
