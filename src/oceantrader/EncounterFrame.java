@@ -131,36 +131,24 @@ public class EncounterFrame extends JFrame {
                         .LEADING).addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(oppPanel, javax.swing.GroupLayout
-                                .DEFAULT_SIZE, javax.swing.GroupLayout
-                                .DEFAULT_SIZE, Short.MAX_VALUE)
+                            .DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax
-                                                .swing.GroupLayout.Alignment.LEADING,
-                                        false)
-                                        .addComponent(youHealthBar, javax.swing
-                                                        .GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(youHPLbl)
-                                                .addGap(93, 93, 93)))
+                            .addGap(27, 27, 27).addGroup(layout.createParallelGroup(javax
+                                .swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(youHealthBar, javax.swing.GroupLayout
+                                        .PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            javax.swing.GroupLayout
+                                            .PREFERRED_SIZE).addGroup(layout.createSequentialGroup()
+                                            .addComponent(youHPLbl).addGap(93, 93, 93)))
                                 .addPreferredGap(javax.swing.LayoutStyle
-                                                .ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE)
+                                        .ComponentPlacement.RELATED, javax.swing.GroupLayout
+                                            .DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax
-                                        .swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(oppHPLbl)
-                                        .addComponent(oppHealthBar, javax.swing
-                                                        .GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .DEFAULT_SIZE,
-                                                javax.swing.GroupLayout
-                                                        .PREFERRED_SIZE))
+                                    .swing.GroupLayout.Alignment.LEADING).addComponent(oppHPLbl)
+                                    .addComponent(oppHealthBar, javax.swing
+                                    .GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout
+                                    .DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                 layout.createSequentialGroup()

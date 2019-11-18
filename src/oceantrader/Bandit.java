@@ -25,7 +25,7 @@ public class Bandit implements NPC {
                     + " so the bandit took all of your coins and damaged your ship.");
             NPCEncounter.damageShip();
             if (BanditEncounter.player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
             NPCEncounter.modifyKarma(-1, "lost");
@@ -48,7 +48,7 @@ public class Bandit implements NPC {
                     + " bandit took all of your coins and damaged your ship.");
             NPCEncounter.damageShip();
             if (BanditEncounter.player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
             OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
@@ -76,7 +76,7 @@ public class Bandit implements NPC {
                     + " so the bandit damaged your ship.");
             NPCEncounter.damageShip();
             if (BanditEncounter.player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
         }

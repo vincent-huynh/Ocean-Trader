@@ -29,7 +29,7 @@ public class Police implements NPC {
                     + "were fined " + fee + " for fighting the police.");
             NPCEncounter.damageShip();
             if (PoliceEncounter.player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
             OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();
@@ -57,7 +57,7 @@ public class Police implements NPC {
                     + " ship was damaged, and you were fined " + fee + " for trying to escape.");
             NPCEncounter.damageShip();
             if (PoliceEncounter.player.getShip().getHealth() <= 0) {
-                OceanTrader.endGame();
+                OceanTrader.endGame(1);
                 return;
             }
             OceanTrader.regionDisplay.invMarketDisplay.updateCurrencyDisplay();

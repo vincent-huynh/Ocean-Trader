@@ -5,26 +5,24 @@ package oceantrader;/*
  */
 
 
-import javax.swing.*;
-
 public class EndGame extends JPanel {
 
     private JButton closeBtn;
     private JTextArea deathTxt;
     private JScrollPane deathTxtPane;
     private JButton titleBtn;
-
+    
     public EndGame() {
         initComponents();
     }
-
+                      
     private void initComponents() {
         deathTxtPane = new JScrollPane();
         deathTxt = new JTextArea();
         titleBtn = new JButton();
         closeBtn = new JButton();
 
-        deathTxtPane.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        deathTxtPane.setBorder(BorderFactory.createBevelBorder(border.BevelBorder.RAISED));
 
         deathTxt.setEditable(false);
         deathTxt.setBackground(new java.awt.Color(204, 204, 204));
@@ -43,9 +41,9 @@ public class EndGame extends JPanel {
         closeBtn.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
         closeBtn.setText("End Game");
 
-        doNotTouch();
-    }
-
+        
+    }                       
+    
     private void doNotTouch() {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -75,8 +73,7 @@ public class EndGame extends JPanel {
                                 .addGap(93, 93, 93))
         );
     }
-
-    protected void setDeathTxt(String txt) {
-        deathTxt.setText(txt);
-    }
+                 
+    
+                 
 }

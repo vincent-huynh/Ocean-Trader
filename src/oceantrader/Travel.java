@@ -12,7 +12,7 @@ public class Travel {
     private static double cost = 0;
     private static StringBuilder str = new StringBuilder();
 
-    private static final boolean END_GAME_TEST = true;
+    private static final boolean END_GAME_TEST = false;
 
     /*
      * Basically checks to see whether or not the user has a valid selection
