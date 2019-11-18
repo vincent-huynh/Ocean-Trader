@@ -51,6 +51,7 @@ public class EndGame extends JFrame {
         setSize(1400, 1000);
         setVisible(true);
         window.setVisible(false);
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
