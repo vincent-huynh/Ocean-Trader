@@ -280,7 +280,6 @@ public class EncounterFrame extends JFrame {
     }
 
     protected void updatePanel() {
-        IEncounter p = (IEncounter) currentSelection;
         ((IEncounter) currentSelection).updatePanel();
         youHealthBar.setValue(OceanTrader.player.getShip().getHealth());
     }

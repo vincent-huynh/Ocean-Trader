@@ -32,10 +32,6 @@ public class SpinnerGroup {
         return max;
     }
 
-    private void groupValUpdated(int val) {
-        System.out.println(val);
-    }
-
     private class GroupSpinnerNumberModel extends SpinnerNumberModel {
 
         private SpinnerGroup model;

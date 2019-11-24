@@ -74,8 +74,8 @@ public class Travel {
                 universe.endGameRegion.getMarketItems().add(universe.endGame);
                 universe.endGame.setPrice(0);
                 universe.endGame.setSellPrice(0);
-                System.out.println("You are testing item Universe located at "
-                        + universe.endGameRegion.getName());
+//                System.out.println("You are testing item Universe located at "
+//                        + universe.endGameRegion.getName());
             }
         } else {
             //The value 10 is used to increase the rarity of the endGame item, the higher the rarer
@@ -87,10 +87,10 @@ public class Travel {
             if (endGameIndex < universe.regions.size()) {
                 universe.endGameRegion = universe.regions.get(endGameIndex);
                 universe.endGameRegion.getMarketItems().add(universe.endGame);
-                System.out.println(universe.endGameRegion.getName());
+                //System.out.println(universe.endGameRegion.getName());
             } else {
                 universe.endGameRegion = null;
-                System.out.println("Item currently not in a region");
+                //System.out.println("Item currently not in a region");
             }
         }
 
