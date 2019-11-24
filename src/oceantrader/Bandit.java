@@ -4,9 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Bandit implements NPC {
-    
+
+    //Variables to help keep the code clean and easier to read
     private static JFrame window = OceanTrader.window;
 
+    /*
+     * Method to process the player trying to fight off the bandit
+     */
     @Override
     public void fightable() {
         OceanTrader.encounterFrame.setVisible(false);
@@ -34,6 +38,9 @@ public class Bandit implements NPC {
         OceanTrader.regionDisplay.regionPanel.update();
     }
 
+    /*
+     * Method to process the player trying to flee back to the previous region
+     */
     @Override
     public void avertable() {
         OceanTrader.encounterFrame.setVisible(false);
@@ -56,6 +63,10 @@ public class Bandit implements NPC {
         }
     }
 
+    /*
+     * Method to process the player paying the bandit's demand and continuing
+     *  to the desired destination
+     */
     @Override
     public void concedable() {
         OceanTrader.encounterFrame.setVisible(false);

@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 
 public class TitleScreen {
 
+    //Variables to help keep the code clean and easier to read.
     private JLabel label;
     private JPanel panelBox;
     protected static Color launchScreenColor = new Color(211, 243, 255);
@@ -19,6 +20,9 @@ public class TitleScreen {
     protected JButton button;
     protected JPanel panelGridBag;
 
+    /*
+     * Constructor to display the title screen of the game
+     */
     protected TitleScreen() {
 
         panelBox = new JPanel();

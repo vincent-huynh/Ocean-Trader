@@ -7,11 +7,15 @@ import java.util.HashMap;
 
 public class Transaction {
 
+    //Variables to help keep the code clean and easier to read.
     private static JFrame window = OceanTrader.window;
     private static Player player = OceanTrader.player;
     private static HashMap<Integer, Double> offset = null;
     private static Ship ship = player.getShip();
 
+    /*
+    * Method to process the transaction details when a player buys an item
+    */
     protected static void processTransactionBuy(Item item) {
 
         int price = (int) calculatePrice(item);
@@ -55,6 +59,9 @@ public class Transaction {
         }
     }
 
+    /*
+     * Method to process the transaction details when a player sells an item
+     */
     protected static void processTransactionSell(Item item) {
 
         int price = (int) (item.getSellPrice() * (75.0 / 100.0));
@@ -75,23 +82,38 @@ public class Transaction {
         }
     }
 
+    /*
+     * Method to calculate the price of an item
+     */
     private static double calculatePrice(Item item) {
         return item.getPrice() * dateOffset() * skillDiscount() * tax();
     }
 
+    /*
+     * Method to get the price values of an item
+     */
     protected static double[] getPriceValues(Item item) {
         return new double[] {item.getPrice(), dateOffset(), skillDiscount(),
                 tax(), calculatePrice(item)};
     }
 
+    /*
+     * Method to calculate the discount of an item based on the player's skill
+     */
     private static double skillDiscount() {
         return (100 - (player.getSkillLevel("Trader") * 3.0)) / 100;
     }
 
+    /*
+     * Method to calculate the tax of an item
+     */
     private static double tax() {
         return (100.0 + player.getRegion().getTax()) / 100.0;
     }
 
+    /*
+     * Method to calculate the date offset for the price based on the day
+     */
     private static double dateOffset() {
         if (offset == null) {
             offset = new HashMap<>();
@@ -110,10 +132,17 @@ public class Transaction {
                 * offset.getOrDefault(10 + date.getHours(), 1.0);
     }
 
+    /*
+     * Method to update the player's currency
+     */
     private static void updateCurrency(int price) {
         player.setCurrency(player.getCurrency() + price);
     }
 
+    /*
+     * Method to display a confirmation dialog to the player when they buy or
+     *  sell an item
+     */
     private static void confirmationDialog(String s, Item item) {
         String msg = String.format("Successfully %s %s!", s, item.getName());
         JOptionPane.showMessageDialog(window, msg);
