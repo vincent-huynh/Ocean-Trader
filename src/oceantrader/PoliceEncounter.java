@@ -22,7 +22,6 @@ public class PoliceEncounter extends JPanel implements IEncounter {
     private JScrollPane jScrollPane1;
     private JTextArea jTextArea1;
     private JLabel policeLbl;
-    private JFrame window = OceanTrader.window;
     private ArrayList<Item> inventory;
     private Random rand;
     protected static Player player;

@@ -12,7 +12,6 @@ public class Universe {
     protected ArrayList<Region> regions;
     protected Item endGame;
     protected Region endGameRegion;
-    protected String location;
 
     private Universe() {
 

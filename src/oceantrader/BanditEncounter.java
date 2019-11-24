@@ -28,7 +28,6 @@ public class BanditEncounter extends JPanel implements IEncounter {
     private JButton payBtn;
 
     protected static Random rand = new Random();
-    private static JFrame window = OceanTrader.window;
 
     public BanditEncounter() {
         initGUI();

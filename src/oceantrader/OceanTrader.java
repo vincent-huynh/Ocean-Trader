@@ -184,6 +184,6 @@ public class OceanTrader {
     }
 
     protected static void endGame(int value) {
-        EndGame end = new EndGame(value);
+        new EndGame(value);
     }
 }
